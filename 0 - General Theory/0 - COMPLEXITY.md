@@ -1,4 +1,6 @@
+## Notation
 
+O(n) = At most(n) = [ >= n]
 
 
 

@@ -1,12 +1,11 @@
 # Dictionary
 A dictionary represents the mathematical concept of unique relation
 between a set *D* and a set *C*
+
+`R:D --> C`
 * **Keys** represent the elements of D
 * **Values** represent the elements of C
 
-```
-R:D --> C
-```
 
 ## Data
 The logical idea is to have a set of pairs *{key:value}*
@@ -25,3 +24,5 @@ The logical idea is to have a set of pairs *{key:value}*
 ## Implementation type
 1. Sorted Arrays
 2. Connected Structures
+
+...To be completed

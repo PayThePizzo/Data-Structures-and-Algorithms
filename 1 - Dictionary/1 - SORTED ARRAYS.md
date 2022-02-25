@@ -1,12 +1,15 @@
 
 # Sorted Arrays
+
+### Data
+
 Array of length *n* containing records with two fields
 (key, info).
 
 The array is sorted on the **keys**
 
----
-##Key Elements
+
+### Attributes
 
 A.length contains the dimension of the array.
 
@@ -14,9 +17,9 @@ A[i].key is the k for a pair at index i
 
 A[i].info is the v for a pair at index i
 
-_Space_ Complexity: S(n) = Theta(n)
+**Space Complexity**: S(n) = Theta(n)
 
-
+---
 
 ## Search
 **Pre**: P & R (start, stop index) must be between 0 and A.length
