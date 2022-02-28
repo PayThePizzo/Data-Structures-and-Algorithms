@@ -18,7 +18,7 @@ In graph theory, a tree is an undirected, connected and acyclic ***graph***
 In other words, a connected graph that does not contain even a single cycle is called a tree. 
 A tree represents hierarchical structure in a graphical form
 
-![Tree example](![](/Resources/tree-parts.jpg))
+![Tree example](https://github.com/PayThePizzo/ASD/blob/main/Resources/tree-parts.jpg)
 
 ## Terminology
 _Basic_
