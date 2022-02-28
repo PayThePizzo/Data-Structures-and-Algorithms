@@ -13,13 +13,15 @@ It is a couple `T = (N, A)`</mark>
 A tree is **non-linear** and a **hierarchical** data structure consisting of a collection of nodes such that each node 
 of the tree stores a value, a list of references to nodes.
 
-In graph theory, a tree is an undirected, connected and acyclic***graph***
+In graph theory, a tree is an undirected, connected and acyclic ***graph***
 
 In other words, a connected graph that does not contain even a single cycle is called a tree. 
 A tree represents hierarchical structure in a graphical form
 
+![Tree example](![](/Resources/tree-parts.jpg))
+
 ## Terminology
-Basic
+_Basic_
 
 * **Root Node**: The <mark>topmost node</mark> of a tree or the node which does not have any parent node is called the root node.
   * A non-empty tree must contain exactly one root node and exactly one path from the root to all other nodes of the tree.
@@ -29,7 +31,7 @@ Basic
 * **Siblings**: Children of the same parent node are called siblings.
 
 ---
-Levels
+_Levels_
 
 * **Degree of a Node**: The total count of subtrees/children attached to that node is called the degree of the node. 
   * The degree of a leaf node must be 0. 
@@ -41,7 +43,7 @@ Levels
     * The root node has level 0.
 
 ---
-Generalizing
+_Generalizing_
 
 * **Ancestor of a Node**: <mark>Any predecessor</mark> nodes on the path of the root to that node are called Ancestors of that node. 
 * **Descendant**: <mark>Any successor</mark> node on the path from the leaf node to that node.
