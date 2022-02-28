@@ -1,12 +1,48 @@
-# ASD
-Data Structures and Algorithm course/notes for beginners.
-...Under Construction
+# Algorithms and Data Structures
+*Data Structures and Algorithms* course notes.
+
+This repository follows the content of "Algorithms and Data Structures" 
+[Mod. 1](https://www.unive.it/data/insegnamento/339889) and 
+[Mod. 2](https://www.unive.it/data/insegnamento/339890) for the 
+[Bachelor of Computer Science](https://www.unive.it/pag/3/) at
+[Ca' Foscari University of Venice](https://www.unive.it/).
+
+However, there will be some content that is added by myself for a better understanding of the main data
+structures used in Tech nowadays.
+This is a project that will be, eventually, extended to implement more information about the subject in a second time.
+
+--- 
+
+## Data Structures
+We **do not include** some basic data structure that must be covered in an introductory course such as:
+* Sets
+* Arrays
+* Stack
+* Queues
+* Linked Lists and their declinations
 
 ## Algorithms
 We will try implement most of the algorithms in order to make them runnable.
 
+We cover:
+* Time Complexity
+* Recursion resolution 
+* The basic operations for the main data structures
+* Sorting
+* Dynamic Programming
+* Graph Theory
+
+---
+
 ## Compilation
+
+### C
 TBD
+
+### C++
+TBD
+
+---
 
 ### Credits
 All credits for the content go to: 
