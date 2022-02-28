@@ -15,7 +15,7 @@ _L.head_ is the pointer to the first element of the collection
   * If it is L.head == NULL, then it's an _empty_ list
   * So L starts with the first list *p* if p is empty then there are no other elements
 
-**Space Complexity** : S(n) = Theta(n)
+**Space Complexity** : S(n) = Θ(n)
 
 ---
 
@@ -57,7 +57,7 @@ Final Time Complexity: <mark>T(n) = O(n)</mark>
 * T(while) = O(n) 
 * T(blocks) = O(1)
 
-We take the first element encountered, so we can reduce the T(n) to O rather than Theta.
+We take the first element encountered, so we can reduce the T(n) to O rather than Θ.
 
 ---
 
@@ -85,7 +85,7 @@ delete(Dictionary L, Key k)
         else:
             x = x.next
 ```
-Final Time Complexity: <mark>T(n) = Theta(n)</mark>
+Final Time Complexity: <mark>T(n) = Θ(n)</mark>
 * We always iterate through the whole list
 
 ---

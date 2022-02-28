@@ -17,7 +17,7 @@ A[i].key is the k for a pair at index i
 
 A[i].info is the v for a pair at index i
 
-**Space Complexity**: S(n) = Theta(n)
+**Space Complexity**: S(n) = Θ(n)
 
 ---
 
@@ -56,7 +56,7 @@ search(Dictionary A, Key k)
 Final Time Complexity: <mark>T(n) = O(log(n))</mark>
 * T(**search_index**) = <mark>O(log(n)))</mark>
     * Since we do not have any lower limit, we might find immediately what we are looking for!
-* T(n) search = Theta(1)
+* T(n) search = Θ(1)
 
 ---
 
@@ -94,13 +94,13 @@ insert(Dictionary A, Element v, Key k)
 Final Time Complexity: <mark>T(n) = O(n)</mark>
 
 Why?
-* T(cost) = Theta(1)
+* T(cost) = Θ(1)
 * T(while) = O(i*d) 
   * *d* being the computational cost of the body
 * T(reallocate) = <mark>O(n)</mark>
 * T(for) = (n-i+1)
 
-It is not Theta(n) because there is a case where we just need to update the value
+It is not Θ(n) because there is a case where we just need to update the value
 
 ---
 
@@ -129,7 +129,7 @@ Why?
 * T(for) = (n-1)*d
 * T(reallocate) = O(n)
 
-It is not Theta(n) because we could find the index right away
+It is not Θ(n) because we could find the index right away
 
 ---
 
@@ -144,7 +144,7 @@ vector of length n.
 
 ### Conditions
 Invariant: Array of dim *h*, where for every *n*>0: <mark> n<= h < 4n</mark>
-* S(n) = Theta(h) = Theta(n)
+* S(n) = Θ(h) = Θ(n)
 
 
 ### Structure

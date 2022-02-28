@@ -92,7 +92,7 @@ Tree, a set of nodes and a set of arches
   * Pre: 𝑢 ∈ 𝑇 
   * Post: Returns father of 𝑢.
   
-* Child(Tree t, Node u):
+* Children(Tree t, Node u):
   * Pre: 𝑢 ∈ 𝑇 
   * Post: Returns a list of the children of 𝑢.
   

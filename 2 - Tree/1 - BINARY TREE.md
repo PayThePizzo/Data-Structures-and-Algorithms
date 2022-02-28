@@ -27,6 +27,7 @@ Labels larger than **k** are not present.
 ## Complete K-ary Tree
 It is a K-ary tree where all the leaves have the same depth
 * All the internal nodes have _degree = k_.
+* The total number of leaves of complete k-ary tree is `k**h`
 
 ---
 

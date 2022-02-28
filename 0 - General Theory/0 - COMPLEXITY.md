@@ -2,6 +2,8 @@
 
 O(n) = At most(n) = [ >= n]
 
+### Cycle
+* Usually 
 
 
 ### Amortized analysis
