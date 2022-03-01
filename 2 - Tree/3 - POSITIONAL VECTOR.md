@@ -8,7 +8,8 @@ Let **T = (N, A)** be a complete k-ary tree with n nodes.
  * Every node has k children
  
 Example:
-![Positional Vector Tree](https://github.com/PayThePizzo/ASD/tree/main/Resources/PV-Tree.jpg)
+
+![Positional Vector Tree](https://github.com/PayThePizzo/ASD/blob/main/Resources/PV-Tree.jpg?raw=TRUE)
 
 --- 
 
@@ -38,12 +39,14 @@ Final Time Complexity: <mark>T(n) = O(1)</mark>
 
 --- 
 ## Children
-
+1. Create list
+2. See if the first child has index >= n, if so it is a leaf
+3. Else we iterate through the vector to insert children into the list 
 ```python
 children(Tree P, Node v)
     l = create_list()
-    if (k*v+1 >= n):
-        return l;
+    if (k*v+1 >= n): #First child of 
+        return l; #Child is a leaf
     else:
         for (i=0 to k-1):
             insert((k*v+1+i), l);
@@ -51,11 +54,15 @@ children(Tree P, Node v)
 ```
 Final Time Complexity: <mark>T(n) = O(k)</mark>
 * k being the degree of the tree
-
+* We suppose create_list() and insert() have constant T(n)
 ---
 
 
 ### Conclusion
-Pro: We can find in constant time the position of the parent and children of a specific node.
+Pro: We can find in constant time the position of the parent 
+and children of a specific node.
 
-Con: We can use it only for Full/Complete K-ary Trees
+Cons: 
+* We can use it only for Full/Complete K-ary Trees
+* It is difficult to delete and insert elements inside trees using 
+vectors (arrays)
