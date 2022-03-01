@@ -12,3 +12,33 @@ L’altezza di un heap di n elementi è sempre log n, le foglie si trovano agli 
 maggiori della parte intera di n/2, per cui metà dei nodi sono foglie, e il numero massimo di nodi ad
 altezza h è n/2
 h+1
+
+Descrizione e Proprietà
+Un Heap è un albero binario quasi completo, rappresentabile come un array, con le seguenti
+proprietà:
+● data la sua altezza ℎ, l’albero è completo fino all’altezza ℎ − 1;
+● l’array 𝐴 che descrive l’Heap soddisfa la proprietà di ordinamento parziale degli heap,
+ovvero ogni nodo ha valore al più uguale a quello del padre.
+Operazioni sugli heap
+● Heapify(A,i):
+○ PRECONDIZIONI: dato i, indice dell’array A, si assume che i figli di A[i] siano
+degli Heap, ma che A[i] sia minore di almeno uno dei suoi figli.
+○ POSTCONDIZIONI: A[i] viene spostato in una posizione più bassa dell’albero
+rappresentato da A, in maniera che che l’albero sia un Heap.
+● Build-Heap(A):
+○ PRECONDIZIONI:A è un array, non ordinato.
+○ POSTCONDIZIONI: Viene restituito un Heap costruito a partire dagli elementi
+di A.
+● Heapsort(A):
+○ PRECONDIZIONI:A è un array non ordinato.
+○ POSTCONDIZIONI: A viene ordinato secondo l’algoritmo Heapsort.
+● Max(A):
+○ PRECONDIZIONI: A è un Heap.
+○ POSTCONDIZIONI: Viene restituito il massimo elemento dell’Heap (la
+radice).
+● Insert(A,x):
+○ PRECONDIZIONI:A è un Heap.
+○ POSTCONDIZIONI: L’elemento x viene inserito nell’Heap, in maniera tale che
+venga rispettata la proprietà dell’Heap.
+
+

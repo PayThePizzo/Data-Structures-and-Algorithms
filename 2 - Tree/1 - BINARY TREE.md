@@ -6,6 +6,7 @@ Recursive Definition:
 
 Trees nodes can have zero or more children. However, 
 when a tree has at the most two children, then it’s called binary tree.
+* A BT's node *x* is said to **Central** when the count of its subtree's leaves is equal to the sum of the nodes' keys belonging to the path(Root, x).
 
 Full, Complete, and Perfect binary trees
 Depending on how nodes are arranged in a binary tree, it can be full, complete and perfect:
@@ -31,9 +32,23 @@ It is a K-ary tree where all the leaves have the same depth
 
 ---
 
-## Binary Search Tree (BST)
-Binary Search Trees or BST for short are a particular application of binary trees. BST has at most two nodes (like all binary trees). However, the values are so that the left children value must be less than the parent, and the right children must be higher.
+## Balanced Binary Tree
+A balanced tree is a tree if its height has a superior limit such that: <mark>h = O(log(n))</mark>
 
-Duplicates: Some BST doesn’t allow duplicates while others add the same values as a right child. Other implementations might keep a count on a case of duplicity (we are going to do this one later).**
+A Complete Binary Tree is a Balanced Binary Tree (but the opposite is not always true)
+
+
+
+---
+
+## Binary Search Tree (BST)
+Binary Search Trees or BST for short are a particular application of binary trees.
+
+BST has at most two nodes (like all binary trees). However, the values are so that the left children value must be less than the parent, and the right children must be higher.
+
+Duplicates: Some BST doesn’t allow duplicates while others add the same values 
+as a right child. 
+Other implementations might keep a count on a case of duplicity 
+(we are going to do this one later).**
 
 
