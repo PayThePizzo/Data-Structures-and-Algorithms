@@ -96,13 +96,7 @@ Tree, a set of nodes and a set of arches
   * Pre: 𝑢 ∈ 𝑇 
   * Post: Returns a list of the children of 𝑢.
   
-* DFS-Visit(Tree t):
-  * Pre:// 
-  * Post: Depth First Search Visit on the Tree t.
-  
-* BFS-Visit(Tree t):
-  * Pre:// 
-  * Post: Breadth First Search visit on the Tree t.
+* Visits 
 
 ---
 ## Implementation Type

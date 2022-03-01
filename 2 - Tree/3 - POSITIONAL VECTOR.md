@@ -58,3 +58,9 @@ Final Time Complexity: <mark>T(n) = O(k)</mark>
 Pro: We can find in constant time the position of the parent and children of a specific node.
 
 Con: We can use it only for Full/Complete K-ary Trees
+
+---
+
+# Attention
+In the exam for the course, this will be used to represent K-ary Trees,
+unless anything else is specified
