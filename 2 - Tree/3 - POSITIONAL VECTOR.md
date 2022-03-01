@@ -8,6 +8,7 @@ Let **T = (N, A)** be a complete k-ary tree with n nodes.
  * Every node has k children
  
 Example:
+
 ![Positional Vector Tree](https://github.com/PayThePizzo/ASD/tree/main/Resources/PV-Tree.jpg?raw=TRUE)
 
 --- 
