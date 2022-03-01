@@ -6,10 +6,8 @@ Every node has a specific position inside the structure.
 Let **T = (N, A)** be a complete k-ary tree with n nodes.
  * Leaves have the same depth
  * Every node has k children
- 
-Example:
 
-![Positional Vector Tree](https://github.com/PayThePizzo/ASD/tree/main/Resources/PV-Tree.jpg?raw=TRUE)
+![Positional Vector Tree](https://github.com/PayThePizzo/ASD/blob/main/Resources/PV-Tree.jpg?raw=TRUE)
 
 --- 
 
