@@ -6,8 +6,10 @@ Every node has a specific position inside the structure.
 Let **T = (N, A)** be a complete k-ary tree with n nodes.
  * Leaves have the same depth
  * Every node has k children
+ 
+Example:
 
-![Positional Vector Tree](https://github.com/PayThePizzo/ASD/blob/main/Resources/PV-Tree.jpg?raw=TRUE)
+![Positional Vector Tree](https://github.com/PayThePizzo/ASD/tree/main/Resources/PV-Tree.jpg)
 
 --- 
 
@@ -58,9 +60,3 @@ Final Time Complexity: <mark>T(n) = O(k)</mark>
 Pro: We can find in constant time the position of the parent and children of a specific node.
 
 Con: We can use it only for Full/Complete K-ary Trees
-
----
-
-# Attention
-In the exam for the course, this will be used to represent K-ary Trees,
-unless anything else is specified
