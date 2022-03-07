@@ -7,18 +7,29 @@ Let **x** be a node in a BST
 This ensures that symmetric visit the order of the returned key 
 will not be decreasing.
 
-They are not necessarily balanced
+Example:
+
+![BST Tree](https://github.com/PayThePizzo/ASD/blob/main/Resources/BST.png?raw=TRUE)
+
+For the second one the property does not stand, in fact all the keys in the right subtree should
+be larger than 3.
+
+
+### Balancing Trees
+They are not necessarily balanced, the **balancing principle** (as we stated before)
+implies that the height of the tree is such that: <mark>h = O(log(n))</mark>
+
+This is very important since it will help us optimize our algorithms.
 
 ---
 
-## Tree Search - Recursive
+## Tree Search
 * Pre: //
-* Post: Returns node 𝑢 with the label 𝑥 if present. Else, returns NULL.
+* Post: Returns node 𝑢 with the key k if present (starting from the Node x). Else, returns NULL.
 
 ### Recursive
-
 ```python
-tree_search(Node x, Key k)
+tree_search_rec(Node x, Key k)
     if(x == NULL || x.key == k):
         return x;
     if(x.key > k):
@@ -33,7 +44,7 @@ tree_search(Node x, Key k)
 
 ### Iterative
 ```python
-search(Node x, Key k)
+tree_search_iter(Node x, Key k)
     while(x != NULL && x != k):
         if(x.key > k):
             x = x.left;
@@ -41,16 +52,36 @@ search(Node x, Key k)
             x = x.right;
     return x;
 ```
+**Final Time Complexity**: T(n) = O(h)
+* Basically, it is like we are walking down a path from the root of the tree and as we know,
+the longest path is equal to the tree's height.
+
 ---
 
 ## Tree Max
-* Pre: //
-* Post: Returns node 𝑢 with the smallest label 𝑥 if present the tree is NOT empty. 
+* Pre: x can be found in T
+* Post: Returns node 𝑢 with the largest key k (if present & tree is NOT empty). 
 Else, returns NULL.
 
+Idea:
+* If x.right == NULL, every key k in the right subtree is such that: `k <= x.key`;
+    * So x.key must be the maximum.
+* Else, we can find larger keys in the right subtree;
+    * The maximum must be in this subtree.
+
+### Recursive
 ```python
-maximum(Node x)
-    if(x != NULL && x.right != NULL):
+tree_maximum_rec(Node x)
+    if(x != NULL && x.right != NULL): #Max can be found on the right-subtree
+        x = x.right;
+    return x;
+```
+**Final Time Complexity**: T(n) = O(h)
+
+### Iterative
+```python
+tree_maximum_iter(Node x)
+    while(x.right != NULL):
         x = x.right;
     return x;
 ```
@@ -59,19 +90,40 @@ maximum(Node x)
 ---
 
 ## Tree Minimum
-* Pre: //
-* Post: Returns node 𝑢 with the largest label 𝑥 if present the tree is NOT empty.
-  Else, returns NULL.
+* Pre: x can be found in T
+* Post: Returns node 𝑢 with the smallest key k (if present & tree is NOT empty).
+Else, returns NULL.
 
+Idea:
+* If x.left == NULL, every key k in the left subtree is such that: `k >= x.key`;
+  * So x.key must be the minimum.
+* Else, we can find smaller keys in the left subtree;
+  * The minimum must be in this subtree.
+
+### Recursive
 ```python
-tree_ minimum(Node x)
-    if(x != NULL && x.left != NULL):
+tree_ minimum_rec(Node x)
+    if(x != NULL && x.left != NULL): #Min can be found on the left-subtree
+        x = x.left;
+    return x;
+```
+**Final Time Complexity**: T(n) = O(h)
+
+### Iterative
+```python
+tree_minimum_iter(Node x)
+    while(x.left != NULL): 
         x = x.left;
     return x;
 ```
 **Final Time Complexity**: T(n) = O(h)
 
 ---
+
+## Intro
+Given a Node x of BST, we want to find the successor and the predecessor by following
+the order of a <mark>Symmetric Visit</mark>
+
 
 ## Successor
 A successor for a node x in a BST, is the node who follows x in a symmetric visit
@@ -87,13 +139,15 @@ We distinguish two cases here:
 2. Else, the successor is the minimum ancestor of x, whose left child is also
 an ancestor of x
 
+![Succ](https://github.com/PayThePizzo/ASD/blob/main/Resources/Succ.png?raw=TRUE)
+
 ```python
 successor(Node x){
     if(x != NULL && x.right != NULL):
         return minimum(x.right);
     else:
         Node y = x.p;
-        // se x è figlio destro del padre di x
+        # x is right child of x.parent 
         while(y != NULL && x == y.right):
             # Keep going up
             x = y;

@@ -33,7 +33,7 @@ It is a K-ary tree where all the leaves have the same depth
 ---
 
 ## Balanced Binary Tree
-A balanced tree is a tree if its height has a superior limit such that: <mark>h = O(log(n))</mark>
+A balanced tree is a tree if its height is such that: <mark>h = O(log(n))</mark>
 
 A Complete Binary Tree is a Balanced Binary Tree (but the opposite is not always true)
 

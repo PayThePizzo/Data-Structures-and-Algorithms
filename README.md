@@ -50,7 +50,7 @@ All credits for the content go to:
 * [CLRS] T. H. Cormen, C. E. Leiserson, R. L. Rivest, C. Stein. Introduction to algorithms 3/ed. McGraw-Hill, 2010.
 * Computer Science Bachelor Students at Ca' Foscari University of Venice.
 
-We add specific credits to each markdown file in case we get some more information.
+We add specific credits to each markdown file in case we get some more external information.
 We highly recommend buying these books.
 
 ### Final Message
