@@ -127,7 +127,7 @@ the order of a <mark>Symmetric Visit</mark>
 
 ## Successor
 A successor for a node x in a BST, is the node who follows x in a symmetric visit
-* Pre: Node 𝑢 belongs to the tree T
+* Pre: Node 𝑢 can be found in T
 * Post: Returns the successor through a symmetric visit of the node 𝑢
 
 If all the keys are distinct the successor of u is the node v with the smallest key
@@ -142,11 +142,11 @@ an ancestor of x
 ![Succ](https://github.com/PayThePizzo/ASD/blob/main/Resources/Succ.png?raw=TRUE)
 
 ```python
-successor(Node x){
+tree_successor_iter(Node x){
     if(x != NULL && x.right != NULL):
-        return minimum(x.right);
+        return tree_minimum(x.right);
     else:
-        Node y = x.p;
+        Node y = x.parent;
         # x is right child of x.parent 
         while(y != NULL && x == y.right):
             # Keep going up
@@ -155,7 +155,6 @@ successor(Node x){
         return y;
 ```
 **Final Time Complexity**: T(n) = O(h)
-* h as the height
 * becomes O(n) if T is a highly unbalanced tree
 * becomes O(log(n)) if T is balance
 
@@ -172,7 +171,7 @@ The procedure is specular to the one of the successor.
 ```python
 predecessor(Node x)
     if(x != NULL && x.left != NULL):
-        return maximum(x->left);
+        return maximum(x.left);
     else:
         # If x is left child of
         Node y = x.p;
@@ -192,14 +191,13 @@ predecessor(Node x)
 ---
 
 ## Tree Insert
-* Pre: //
-* Post: Node 𝑢 is inserted in T
+* Pre: z is a node such that z.key = v and z.left = z.right = NULL
+* Post: Node z is inserted in T
 
 ```python
 insert(Tree t, Node z)
     Node y = NULL;
     Node x = t.root;
-
     while(x != NULL)
         y = x; # When we go deeper we save the parent
         if(z.key < x.key):
@@ -207,10 +205,9 @@ insert(Tree t, Node z)
             x = x.left;
         else:
             # x equal to its right child
-            x = x.right;
-        
+            x = x.right;    
     z.parent = y;
-    if(y == NULL):
+    if(y == NULL): #T is empty from the start
         t.root = z;
     else if(z.key < y.key):
         y.left = z;
