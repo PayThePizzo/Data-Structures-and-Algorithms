@@ -227,12 +227,14 @@ insert(Tree t, Node z)
 ## Tree Transplant
 * Pre: Nodes u and v belong to tree T
 * Post: Substitutes the T's subtree with root in u,
-  with a the subtree with root in v
+with the subtree with root in v
+
+![Transplant](https://github.com/PayThePizzo/ASD/blob/main/Resources/Transplant.png?raw=TRUE)
 
 ```python
 transplant(Tree t, Node u, Node v)
     if(u.parent == t.root):
-        t.root = v;
+        t.root = v; #If u is the root, we need to change the root
     else if(u == u.parent.left): 
         u.parent.left = v;
     else:
@@ -241,19 +243,20 @@ transplant(Tree t, Node u, Node v)
         v.parent = u.parent;
 ```
 
----
-
 ## Tree Delete Node
-* Pre: //
-* Post: Delete node 𝑢, ensures T remains a BST if 𝑢 ∈ T.
+* Pre: z ∈ T
+* Post: Delete node z, ensures T remains a BST.
 
 When deleting a node, we can encounter three cases:
-1. Node z is childless
+1. Node z is **childless**
    1. We need to modify the father by transplanting z with NULL;
-2. Node z has only one child
+   2. z.p = NULL
+2. Node z has **only one** child
    1. We remove z and we connect z.child with z.parent
+   2. z.parent = z.child.parent 
 3. Node z has two children
-   1. We need to look for a successor
+   1. We need to look for a successor `y`, such that `successor(z): y`, and we replace z with y
+   2. y does not have a left-child
 
 ```python
 remove(Tree t, Node z){
