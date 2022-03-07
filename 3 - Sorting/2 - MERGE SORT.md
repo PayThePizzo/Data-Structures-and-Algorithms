@@ -1,4 +1,6 @@
 # Merge Sort
+Merge sort belongs to a class of algorithms which use a Divide-et-Impera approach.
+
 
 Utilizza il metodo del divide et impera, ordinando un array delimitato da due indici p e r:
 1. Divide: si divide l’array in due parti A[p .. q] e A[q+1 .. r], con q indice di mezzo

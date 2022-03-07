@@ -1,4 +1,5 @@
 # Quick Sort
+Quick sort belongs to a class of algorithms which use a Divide-et-Impera approach.
 
 ```python
 Quick_sort(Array A, int p, int r)

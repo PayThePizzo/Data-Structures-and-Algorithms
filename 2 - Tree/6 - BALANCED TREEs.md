@@ -29,6 +29,9 @@ However, they must satisfy the following conditions:
 
 ![BTrees](https://github.com/PayThePizzo/ASD/blob/main/Resources/BTrees.png?raw=TRUE)
 
+The keys being ordered reduced to a cost O(log(n)) the cost for
+most operations.
+
 --- 
 
 # 3) Red and Black Trees
@@ -48,4 +51,7 @@ They must also respect the following conditions:
 same number of black nodes.
 
 If all these conditions are to be found in a BST, then a RB Tree also 
-guarantees that: `longest_path <= 2*(smallest_path)` 
+guarantees the following invariant: `longest_path <= 2*(smallest_path)` 
+* The longest path of the tree cannot be longer than double the smallest path.
+
+Here again, most operations have a reduced cost equal to O(log(n)).

@@ -1,4 +1,7 @@
-
+# Heap Sort
+Heap sort belongs to a particular category of algorithms where
+some data structure were precisely thought in order to simplify
+the sorting problem.
 
 max heapify:
 * PRE: gli alberi radicati in left(i) e right(i) sono maxHeap*/
