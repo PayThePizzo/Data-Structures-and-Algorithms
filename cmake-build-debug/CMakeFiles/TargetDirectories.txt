@@ -1,0 +1,3 @@
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-debug/CMakeFiles/ASD.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-debug/CMakeFiles/rebuild_cache.dir
