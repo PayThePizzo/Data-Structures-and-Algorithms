@@ -1,5 +1,5 @@
-# Algorithms and Data Structures
-*Data Structures and Algorithms* course notes.
+# Algoritmi e Strutture Dati
+Note del corso, per la versione inglese curata da @PayThePizzo [premere qui](https://github.com/PayThePizzo/DataStrutucures-Algorithms)
 
 This repository follows the content of "Algorithms and Data Structures" 
 [Mod. 1](https://www.unive.it/data/insegnamento/339889) and 
