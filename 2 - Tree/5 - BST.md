@@ -124,6 +124,15 @@ tree_minimum_iter(Node x)
 Given a Node x of BST, we want to find the successor and the predecessor by following
 the order of a <mark>Symmetric Visit</mark>
 
+## Symmetric Visit
+A Symmetric visit for a BST of n nodes can be implemented by
+1. Finding the tree_minimum()
+2. n-1 calls to tree_successor()
+
+**Final Time Complexity**: T(n) = Θ(n)
+* n calls to the procedures, which requires T(n) = Ω(n)
+* Iterating through every n-1 arch two times at most, which requires T(n) = O(n)
+
 
 ## Successor
 A successor for a node x in a BST, is the node who follows x in a symmetric visit
@@ -192,38 +201,6 @@ predecessor(Node x)
 
 ---
 
-## Tree Insert
-* Pre: z is a node such that z.key = v and z.left = z.right = NULL
-* Post: Node z is inserted in T
-
-```python
-insert(Tree t, Node z)
-    Node y = NULL;
-    Node x = t.root;
-    while(x != NULL)
-        y = x; # When we go deeper we save the parent
-        if(z.key < x.key):
-            # x equal to its left child
-            x = x.left;
-        else:
-            # x equal to its right child
-            x = x.right;    
-    z.parent = y;
-    if(y == NULL): #T is empty from the start
-        t.root = z;
-    else if(z.key < y.key):
-        y.left = z;
-    else:
-        y.right = z;
-```
-
-**Final Time Complexity**: T(n) = O(h)
-* h as the height
-* becomes O(n) if T is a highly unbalanced tree
-* becomes O(log(n)) if T is balance
-
----
-
 ## Tree Transplant
 * Pre: Nodes u and v belong to tree T
 * Post: Substitutes the T's subtree with root in u,
@@ -234,12 +211,12 @@ with the subtree with root in v
 ```python
 transplant(Tree t, Node u, Node v)
     if(u.parent == t.root):
-        t.root = v; #If u is the root, we need to change the root
-    else if(u == u.parent.left): 
-        u.parent.left = v;
+        t.root = v; # If u is the root, we need to change the root
+    else if(u == u.parent.left): # Verify if u is left or right child, to keep it that way
+        u.parent.left = v; 
     else:
         u.parent.right = v;
-    if(v != NULL):
+    if(v != NULL): # update v.parent
         v.parent = u.parent;
 ```
 
@@ -260,12 +237,12 @@ When deleting a node, we can encounter three cases:
 
 ```python
 remove(Tree t, Node z){
-    if(z.left == NULL): # No left child > Change z with its right child
+    if(z.left == NULL): # No left child/ z is leaf -> Replace z with its right child
         transplant(t, z, z.right); 
-    else if(z.right == NULL): # No right child > Change z with its left child
+    else if(z.right == NULL): # No right child/ z is leaf -> Replace  z with its left child
         transplant(t, z, z.left); 
     else: # Both children > find successor
-        Node y = minimum(z.right); 
+        Node y = tree_minimum(z.right); 
         if(y.parent != z):  # z successor's parent != z
             transplant(t, y, y.right);  # Now y right child is z's right child
             y.right = z.right; 
@@ -278,69 +255,82 @@ remove(Tree t, Node z){
 
 ---
 
-## Tree Build
-Using a sorted vector v.
-
-### Iterative - Tree Set
-Using a tree-set of type
-
-```c
-typedef struct tree{
-    node rootl
-} * Tree;
-```
+## Tree Insert
+* Pre: z is a node such that z.key = v and z.left = z.right = NULL
+* Post: Node z is inserted in T
 
 ```python
-Tree build(int v[], int dim)
+tree_insert(Tree t, Node z)
+    Node y = NULL;
+    Node x = t.root;
+    while(x != NULL)
+        y = x; # When we go deeper we save the parent
+        if(z.key < x.key):
+            # x equal to its left child
+            x = x.left;
+        else:
+            # x equal to its right child
+            x = x.right;    
+    z.parent = y;
+    if(y == NULL): #T is empty from the start
+        t.root = z;
+    else if(z.key < y.key):
+        y.left = z;
+    else:
+        y.right = z;
+```
+**Final Time Complexity**: T(n) = O(h)
+* h as the height
+* becomes O(n) if T is a highly unbalanced tree
+* becomes O(log(n)) if T is balance
+
+
+## BST Tree Build
+Using a vector v. which contains the key we want to insert in T
+
+### Iterative
+```python
+bst_build(int v[], int dim)
     Tree t = newtree();
-    for(int i = 0; i < dim; i++):
+    for(i=0 to v.length):
         u = newnode(v[i]);
-        insert(t, u);
+        tree_insert(t, u);
     return t;
 ```
 **Final Time Complexity**: T(n) = O(n**2)
-* If input is ordered we have a very time consuming algorithm
+* If input is unordered we have a very time consuming algorithm
 
+This is too expensive, but we can do better.
 
 ### Divide et Impera - Vector
-Using a sorted vector v and a Divide-et-Impera algorithm.
+Using a **sorted** vector v and a Divide-et-Impera algorithm.
 
 Idea: If v is sorted, we can start from the half of the array and take the element in the middle.
 * Left Side: elements that we find at the left of the central element
 * Right Side: the rest
 
 ```python
-Node buildAux_optim(int v[], int start, int end, Node parent)
-    if(start > end):
-        return NULL;
-    int med = (start + end) / 2;
-    Node x = newnode(v[med]);
-    x.parent = parent;
-    x.left = buildAux_optim(v, start, med - 1, x);
-    x.right = buildAux_optim(v, med + 1, end, x);
-    return x;
-
 tree_buildBST_optim(int v[], int dim)
     Tree t = newtree();
     t.root = buildAux_optim(v, 0, dim - 1, NULL);
     return t;
+
+Node buildAux_optim(int v[], int start, int end, Node parent)
+    if(start > end):
+        return NULL;
+    else:
+        int med = ⌊(start + end)/2⌋ ;
+        Node x = newnode(v[med]);
+        x.parent = parent;
+        x.left = tree_buildBST_optim(v, start, med - 1, x);
+        x.right = tree_buildBST_optim(v, med + 1, end, x);
+    return x;
 ```
 **Final Time Complexity**: T(n) = Θ(n log(n))
 1. Sort the vector -> Θ(n log(n))
 2. Apply the tree_buildBST_optim() function -> Θ(n)
 
 The tree is kept balanced!
-
---- 
-
-## Symmetric Visit
-A Symmetric visit for a BST of n nodes can be implemented by
-1. Finding the tree_minimum()
-2. n-1 calls to tree_successor()
-
-**Final Time Complexity**: T(n) = Θ(n)
-* n calls to the procedures, which requires T(n) = Ω(n) 
-* Iterating through every n-1 arch two times at most, which requires T(n) = O(n)
 
 ---
 
@@ -356,7 +346,7 @@ However:
 * If the tree is unbalanced **h -> n** 
 * If the tree is kept balanced **h -> log(n)**
 
-So what we ought to do is to keep the tree we are working with, balaced.
+So what we ought to do is to keep the tree we are working with, balanced.
 _But how do we do just that?_ There are some implementations of trees that might be interesting to cover
 in order to discover it:
 1. AVL Trees

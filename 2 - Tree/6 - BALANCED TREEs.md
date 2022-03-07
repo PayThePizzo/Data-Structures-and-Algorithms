@@ -20,13 +20,13 @@ However they must satisfy the following conditions:
 1. Every leaf has the same depth
 2. Every node (except for the root) saves k(v) sorted keys.
    1. where `t-1 <= k(v) <= 2t-1`
-3. The root saves `1 >= n <= 2t-1` keys
+3. The root saves `1 >= n <= 2t-1` ordered keys
 4. Every internal node v, has `k(v)+1` children
 5. The keys i(v) separates the intervals of keys saved in each subtree:
    1. If c(i) is a key in the i-ary subtree of a node v, then 
    `c(1) <= v.key(1) <= c(2) <= ... <= x.v(k)`
 
----
+--- 
 
 # 3) Red and Black Trees
 Red and black trees are BST *almost* balanced.
