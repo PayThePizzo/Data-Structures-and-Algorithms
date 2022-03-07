@@ -1,4 +1,5 @@
 # Insertion Sort
+It is an algorithm that exploits and incremental technique: 
 
 Invariante: il sotto-array A[1 .. j-1] è formato dagli elementi ordinati che che originariamente erano
 in A[1 .. j-1]. Quando il ciclo termina, j = A.length + 1, quindi per l’invariante gli elementi A[1 ..
@@ -16,7 +17,7 @@ Funziona molto bene con array piccoli.
 
 
 ```python
-Insertion_sort(Array A)
+insertion_sort(Array A)
     for j = 2 TO A.length #Array starts from 1
         key = A[j]
         i = j-1

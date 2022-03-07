@@ -45,7 +45,8 @@ TBD
 ---
 
 ### Credits
-All credits for the content go to: 
+All credits for the content go to:
+* Professor [Alessandra Raffaeta'](https://www.unive.it/data/persone/5591966) and [Marcello Pelillo](https://www.unive.it/data/persone/5592849)
 * [DFI] C. Demetrescu, I. Finocchi, G.F. Italiano. Algoritmi e strutture dati. Seconda Edizione. McGraw-Hill, 2008.
 * [CLRS] T. H. Cormen, C. E. Leiserson, R. L. Rivest, C. Stein. Introduction to algorithms 3/ed. McGraw-Hill, 2010.
 * Computer Science Bachelor Students at Ca' Foscari University of Venice.
