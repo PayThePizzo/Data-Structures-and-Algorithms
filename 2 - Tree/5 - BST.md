@@ -139,7 +139,9 @@ We distinguish two cases here:
 2. Else, the successor is the minimum ancestor of x, whose left child is also
 an ancestor of x
 
-![Succ](https://github.com/PayThePizzo/ASD/blob/main/Resources/Succ.png?raw=TRUE)
+
+![Succ](https://github.com/PayThePizzo/ASD/blob/main/Resources/Succ.jpg?raw=TRUE)
+
 
 ```python
 tree_successor_iter(Node x){
