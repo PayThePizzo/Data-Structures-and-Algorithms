@@ -16,7 +16,7 @@ we need to maintain the BF.
 B-Trees are balanced BST of degree t (with t>=2). They are not necessarily
 binary trees. 
 
-However they must satisfy the following conditions: 
+However, they must satisfy the following conditions: 
 1. Every leaf has the same depth
 2. Every node (except for the root) saves k(v) sorted keys.
    1. where `t-1 <= k(v) <= 2t-1`
@@ -24,7 +24,10 @@ However they must satisfy the following conditions:
 4. Every internal node v, has `k(v)+1` children
 5. The keys i(v) separates the intervals of keys saved in each subtree:
    1. If c(i) is a key in the i-ary subtree of a node v, then 
-   `c(1) <= v.key(1) <= c(2) <= ... <= x.v(k)`
+   `c(1) <= v.key(1) <= c(2) <= ... <= x.v(k)` with 1..k as the number of the children.
+
+
+![BTrees](https://github.com/PayThePizzo/ASD/blob/main/Resources/BTrees.png?raw=TRUE)
 
 --- 
 
