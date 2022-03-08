@@ -1,7 +1,7 @@
 # Quick Sort
 Quick sort belongs to a class of algorithms which use a Divide-et-Impera approach.
 
-[1] [Quick Sort](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/quicksort.png?raw=TRUE)
+[Quick Sort](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/quicksort.png?raw=TRUE)
 
 ---
 
