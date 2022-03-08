@@ -30,17 +30,26 @@ INV[(r+1)/k] ≡
 * Moreover, L[i] and R[j] are the smallest elements of their vectors respectively (not yet copied into A).
 * In conclusion, L & R contain `n1+n2+n3 = r-p+3` elements. This means, we copied all the elements into A
 and the guards have not been copied.
+
 ---
 ## The Algorithm - Divide et Impera
 It sorts a vector limited by two indexes *p*, representing the starting index, and *r*,
 representing the ending index.
 
-1. Divide: divides the main vector into two sub-vectors `q = (p+r)/2`
-   1. A[p .. q] 
-   2. A[q+1 .. r]
-2. Impera: recursively sorts the sub-vectors through mergesort. 
+1. **Divide/Split**: recursively divides the main vector into two sub-vectors A[p .. q] with `q = (p+r)/2` and A[q+1 .. r]
+2. **Impera**: recursively sorts the sub-vectors through mergesort. 
    1. If the problem is sufficiently small (0/1 elements), we can compute the result immediately
-3. Merge: merges the sorted sub-vectors to create one big sorted vector.
+   2. Else if one of the vectors is empty, we put in the queue the remaining subsequence of the vector.
+3. **Merge/Combine**: merges the sorted sub-vectors to create one big sorted vector.
+   1. The first elements of the two vectors are compared
+      1. If they are different, we add the smallest to the new vector. We will then, recursively continue
+      the merge sort on the queue (of the vector which had the smallest element), and on the other vector
+      that has remained untouched.
+      2. If they are equal, they are both added to the new vector. We will then, recursively continue
+      the merge sort on the two queues.
+
+**By queue, we mean a vector without its first element.
+
 
 ![Merge Sort](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/mergesort2.jpg?raw=TRUE)
 
