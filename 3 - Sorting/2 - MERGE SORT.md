@@ -16,57 +16,90 @@ We
 
 ---
 ## Invariant
+As we know, the study of the invariant must be completed by analyzing all the iteration cycles.
+Here, we will only focus on the third one.
 
+**INV**:
+* The sub-vector A[p..k-1] contains the smallest sorted `k-p` elements present in L[1.. n1+1] and
+R[1.. n2+1].
+* Moreover, L[i] and R[j] are the smallest elements of their vectors respectively (not yet copied into A).
 
 1) Initialization: Respected
 2) Preservation: Respected
 3) Conclusion: When the for block stops, `k = r+1`
 
-INV[(r+1)/k] ≡ 
-
+INV[(r+1)/k] ≡
+* The sub-vector A[p..r+1-1] contains the smallest sorted `r+1-p` elements present in L[1.. n1+1] and
+  R[1.. n2+1].
+* Moreover, L[i] and R[j] are the smallest elements of their vectors respectively (not yet copied into A).
+* In conclusion, L & R contain `n1+n2+n3 = r-p+3` elements. This means, we copied all the elements into A
+and the guards have not been copied.
 ---
 ## The Algorithm
+It sorts a vector limited by two indexes *p*, representing the starting index, and *r*,
+representing the ending index.
 
-Utilizza il metodo del divide et impera, ordinando un array delimitato da due indici p e r:
-1. Divide: si divide l’array in due parti A[p .. q] e A[q+1 .. r], con q indice di mezzo
-2. Impera: ordina i due sotto-array ottenuti in modo ricorsivo utilizzando il mergesort. Se il problema è sufficientemente piccolo (0/1 elementi), risolve direttamente
-3. Combina: fonde assieme i due sotto-array ordinati per generare un singolo vettore ordinato
+1. Divide: divides the main vector into two sub-vectors `q = (p+r)/2`
+   1. A[p .. q] 
+   2. A[q+1 .. r]
+2. Impera: recursively sorts the sub-vectors through mergesort. 
+   1. If the problem is sufficiently small (0/1 elements), we can compute the result immediately
+3. Merge: merges the sorted sub-vectors to create one big sorted vector.
 
 ![Merge Sort](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/mergesort2.jpg?raw=TRUE)
 
 Let's see the algorithm now.
+
+### Merge Sort
+* Pre: p,r are valid indexes of A.
+* Post: sorts A correctly
+
 ```python
-merge_sort(Array A, int, p, int r)
-    if p < r //Almeno 2 elementi in A
-    q = floor( (p+r)/2 )
-    Merge_sort(A, p, q)
-    Merge_sort(A, q+1, r)
-    Merge(A, p, q, r)
-
-
-Merge(Array A, int p, int q, int r)
-    n1 = q - p + 1
-    n2 = r - q
-    crea array ausiliari L[1 .. n1+1] e R[1 .. n2+1]
-    for i = 1 TO n1
-        L[i] = A[p+i-1]
-    for j = 1 TO n2
-        R[i] = A[q+j]
-    L[n1+1] = infinity
-    R[n2+1] = infinity
-    i = 1
-    j = 1
-    for k = p TO r
-        if L[i] <= R[j]
-            A[k] = L[i]
-            i++
-        else
-            A[k] = R[j]
-            j++
-
-
+merge_sort(Array A, int p, int r)
+    if (p<r): # A contains at least two elements
+        q = ⌊(p+r)/2⌋;
+        merge_sort(A, p, q);
+        merge_sort(A, q+1, r);
+        merge(A, p, q, r);
 ```
-**Final Time Complexity** T(n) = Θ(n * log(n))
+
+### Merge
+Pre:
+* `p <= q <= r`
+* A[p..q] is sorted && A[q+1..r] is sorted
+* A[p..q] and A[q+1..r] are not empty
+
+Post: 
+* Sub-vectors are correctly merged together into a sorted vector.
+
+```python
+Merge(Array A, int p, int q, int r)
+    #Initialization
+    n1 = q - p + 1; # Lower
+    n2 = r - q; # Upper
+    int L[n1] = create_arrL(n1); # L = [1 .. n1+1] Aux Vector
+    int R[n1] = create_arrR(n2); # R = [1 .. n2+1] Aux Vector
+    
+    # Copy in L & R, all the elements.
+    for (i = 1 to n1):
+        L[i] = A[p+i-1];
+    for (j = 1 to n2):
+        R[i] = A[q+j];
+    
+    # Guard condition
+    L[n1+1] = infinity();
+    R[n2+1] = infinity();
+    i = 1, j = 1;
+    
+    for (k = p to r)
+        if (L[i] <= R[j]):
+            A[k] = L[i];
+            i++;
+        else:
+            A[k] = R[j];
+            j++;
+```
+**Final Time Complexity** T(n) = <mark>Θ(n * log(n))</mark>
 * Merge: T(n) = Θ(n)
   1) variable initialization: O(1)
   2) for block: Θ(n)
@@ -74,6 +107,8 @@ Merge(Array A, int p, int q, int r)
   4) for block: Θ(n)
 * Sort: T(n) = Θ(log(n))
 
+** _Guard condition_: Infinity() is a **technique in pseudocode** used to avoid running out 
+of elements inside the two sub-vectors. We never check if one of the two vectors is empty.
 
 ---
 ### Conclusion
