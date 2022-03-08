@@ -27,7 +27,7 @@ However, they must satisfy the following conditions:
    `c(1) <= v.key(1) <= c(2) <= ... <= x.v(k)` with 1..k as the number of the children.
 
 
-![BTrees](https://github.com/PayThePizzo/ASD/blob/main/Resources/BTrees.png?raw=TRUE)
+![BTrees](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/BTrees.png?raw=TRUE)
 
 The keys being ordered reduced to a cost O(log(n)) the cost for
 most operations.

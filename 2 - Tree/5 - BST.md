@@ -9,7 +9,7 @@ will not be decreasing.
 
 Example:
 
-![BST Tree](https://github.com/PayThePizzo/ASD/blob/main/Resources/BST.png?raw=TRUE)
+![BST Tree](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/BST.png?raw=TRUE)
 
 For the second one the property does not stand, in fact all the keys in the right subtree should
 be larger than 3.
@@ -149,7 +149,7 @@ We distinguish two cases here:
 an ancestor of x
 
 
-![Succ](https://github.com/PayThePizzo/ASD/blob/main/Resources/Succ.jpg?raw=TRUE)
+![Succ](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/Succ.jpg?raw=TRUE)
 
 
 ```python
@@ -206,7 +206,7 @@ predecessor(Node x)
 * Post: Substitutes the T's subtree with root in u,
 with the subtree with root in v
 
-![Transplant](https://github.com/PayThePizzo/ASD/blob/main/Resources/Transplant.png?raw=TRUE)
+![Transplant](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/Transplant.png?raw=TRUE)
 
 ```python
 transplant(Tree t, Node u, Node v)

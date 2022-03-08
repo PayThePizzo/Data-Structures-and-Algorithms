@@ -22,17 +22,21 @@ from the unsorted section at each iteration.
 ---
 
 ## In-Loco sorting
-Questo algoritmo ordina in loco, cioè con uno spazio aggiuntivo O(1), n elementi, eseguendo nel
-caso peggiore Θ(n**2) confronti: il for è eseguito n − 1 volte, mentre il numero massimo di confronti è
-12 j per ogni ciclo. Nel caso migliore l’array è già ordinato, e si impiega Θ(n), mentre nel caso peggiore
-l’array è ordinato in senso inverso, quindi Θ(n**2).
+Questo algoritmo ordina in loco, cioè con uno spazio aggiuntivo O(1).
 
-Invariant: the sub-array A[1 .. j-1] è formato dagli elementi ordinati che che originariamente erano
-in A[1 .. j-1]. 
+---
 
-Quando il ciclo termina, j = A.length + 1, quindi per l’invariante gli elementi A[1 ..
-A.length+1-1] sono ordinati, e questi costituiscono gli elementi originariamente presenti in A.
+## Invariant
+The sub-array A[1 .. j-1] is made of the sorted elements which were in A[1...j-1] originally.
+* This is trivially true before the *for block*
+* _Conservation Property_ is respected
+* After the for block, j stops at **j = A.length-1** 
 
+**INV[(A.length+1)/j]** ≡ The subarray A[1... A.length+1-1] is composed of sorted elements which were originally in
+A[1...A.length+1-1]
+
+---
+## The Algorithm
 
 Idea: 
 * A first cycle to go through all the cards, a second one to 
@@ -54,14 +58,21 @@ insertion_sort(Array A)
             i = i-1
         A[i+1] = key
 ```
-**Final Time Complexity**
+**Final Time Complexity** =  Θ(n**2)
+* Best =  Θ(n)
+  * Sorted Array
+* Worst =  Θ(n**2)
+  * Unsorted Array
+* Average =  Θ(n**2)
+
 
 **Final Space Complexity**
 
 ---
 
 ### Conclusion
-Works well with small vectors
+* Pro: Works well with small vectors
+* Con: It is sensitive to unordered input
 
 --- 
 
