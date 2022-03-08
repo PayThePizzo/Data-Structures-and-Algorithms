@@ -57,7 +57,7 @@ partition(Array A, int p, int r)
 
 ---
 
-## Randomized Version
+### Randomized Version
 
 ```python
 randomized_partition(int arr[], int p, int r)
@@ -70,6 +70,72 @@ randomized_quicksort(int arr[], int p, int r)
         q = randomized_partition(arr, p, r);
         randomized_quicksort(arr, p, q - 1);
         randomized_quicksort(arr, q + 1, r);
+```
+
+---
+
+### Optimization 1 - Insertion Sort on small vectors
+By using a value m `5 <= m <= 25` to have a range of cases where the insertion sort overrides the main algorithm
+can help to improve the average case scenario.
+
+Case 1: 
+```python
+quicksort(int * arr, int p, int r)
+   if(r - p <= M):
+      insertionsort(arr);
+```
+
+Case 2:
+```python
+quicksort(int * arr, int p, int r)
+   if(r - p <= M):
+      return;
+
+sort(int * arr, int p, int r)
+    quicksort(arr, p, r);
+    insertionsort(arr);
+```
+
+### Optimization 2 - Median as pivot
+Using a value m as the pivot for the quick sort means, choosing the median of three elements inside an unsorted vector:
+* A leftmost element
+* A rightmost element
+* A center element
+
+
+### Optimization 3 - Dutch Flag (Tri-Partition)
+When we find duplicates, not even randomizing the choice of the pivot can help much.
+Instead, of dividing the vector in 2 parts we divide it in 3 part:
+1) Partition with elements < x
+2) Partition with elements = x
+3) Partition with elements > x
+
+This slightly changes the invariant, but the main idea stays the same.
+
+```python
+partition(int * arr, int p, int r)
+    int x = arr[r];
+    int min = p, eq = p, max = r;
+    while(eq < max):
+        if(arr[eq] < x):
+            swap(arr, min, eq);
+            eq++;
+            min++;
+        else if(arr[eq] == x):
+            eq++;
+        else:
+            max--;
+            swap(arr, max, eq);
+
+    swap(arr, r, max);
+    return [min, max];
+
+    
+quicksort(int * arr, int p, int r)
+    if(p < r):
+        int[] qt = partition(arr, p, r);
+        quicksort(arr, p, q - 1);
+        quicksort(arr, t + 1, r);
 ```
 
 ---
