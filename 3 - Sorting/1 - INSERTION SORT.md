@@ -16,8 +16,8 @@ Characteristics:
 ## Incremental Technique 
 The array is virtually split into a  k **sorted** and an  A.length-k **unsorted part**.
 
-Our goal is to extend the sorted part of the array from k to k+1 by placing in the correct position an element 
-from the unsorted section at each iteration.
+Initially,`k = 1`. Our goal is to extend the sorted part of the array from k to k+1 
+by placing in the correct position an element from the unsorted section at each iteration.
 
 ---
 

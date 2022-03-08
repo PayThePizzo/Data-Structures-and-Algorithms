@@ -10,11 +10,7 @@ arrays until the whole array is merged.[1]
 ![Merge Sort](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/mergesort.jpg?raw=TRUE)
 
 ---
-## Divide-Et-Impera
-We 
 
-
----
 ## Invariant
 As we know, the study of the invariant must be completed by analyzing all the iteration cycles.
 Here, we will only focus on the third one.
@@ -35,7 +31,7 @@ INV[(r+1)/k] ≡
 * In conclusion, L & R contain `n1+n2+n3 = r-p+3` elements. This means, we copied all the elements into A
 and the guards have not been copied.
 ---
-## The Algorithm
+## The Algorithm - Divide et Impera
 It sorts a vector limited by two indexes *p*, representing the starting index, and *r*,
 representing the ending index.
 
@@ -114,13 +110,14 @@ of elements inside the two sub-vectors. We never check if one of the two vectors
 ### Conclusion
 
 Pros:
-* More **efficient** than Insertion-Sort even in the worst case
+* More **efficient** than Insertion-Sort even in the worst case, T(n)=Θ(n * log(n))
 * It is a **stable** method, numbers with the same value have the same order in the array
 of output and input.
 
 Cons:
 * Not In-Place
-* Not sensitive to order
+* Not sensitive to order of the input 
+  * If the input vector is already sorted, T(n)=Θ(n * log(n)) still.
 * Depends on the number of keys to sort
 
 We can optimize it by combining it with different algorithms, in order to handle
