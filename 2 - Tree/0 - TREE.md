@@ -108,5 +108,5 @@ Tree, a set of nodes and a set of arches
 
 ---
 ### Credits
-* [Geeks for Geeks](https://www.geeksforgeeks.org/)
-* [Adrian Mejia on Trees](https://adrianmejia.com/data-structures-for-beginners-trees-binary-search-tree-tutorial/)
+* [Geeks for Geeks - Trees](https://www.geeksforgeeks.org/)
+* [Adrian Mejia - Trees](https://adrianmejia.com/data-structures-for-beginners-trees-binary-search-tree-tutorial/)

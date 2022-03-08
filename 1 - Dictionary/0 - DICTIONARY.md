@@ -24,5 +24,3 @@ The logical idea is to have a set of pairs *{key:value}*
 ## Implementation type
 1. Sorted Arrays
 2. Connected Structures
-
-...To be completed

@@ -9,7 +9,7 @@ Let **T = (N, A)** be a complete k-ary tree with n nodes.
  
 Example:
 
-![Positional Vector Tree](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/PV-Tree.jpg)
+![Positional Vector Tree](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/PV-Tree.jpg?raw=TRUE)
 
 --- 
 

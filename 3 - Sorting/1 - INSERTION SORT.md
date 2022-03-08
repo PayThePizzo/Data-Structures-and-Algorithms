@@ -5,7 +5,7 @@ cards in your hands.
 The array is virtually split into a **sorted** and an **unsorted part**. 
 Values from the unsorted part are picked and placed at the correct position in the sorted part
 
-![Insertion Sort](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/insertionsort.png?raw=TRUE)
+![Insertion Sort](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/insertionsort.png?raw=TRUE)
 
 Characteristics:
 * Incremental
@@ -22,15 +22,15 @@ from the unsorted section at each iteration.
 ---
 
 ## In-Loco sorting
-Questo algoritmo ordina in loco, cioè con uno spazio aggiuntivo O(1).
+This algorithm sorts in-place, namely with an external additional space S(n)= O(1).
 
 ---
 
 ## Invariant
 The sub-array A[1 .. j-1] is made of the sorted elements which were in A[1...j-1] originally.
-* This is trivially true before the *for block*
-* _Conservation Property_ is respected
-* After the for block, j stops at **j = A.length-1** 
+1) _Initialization:_ This is trivially true before the *for block*
+2) _Preservation_: It is respected
+3) _Conclusion_: After the for block, j stops at **j = A.length-1** 
 
 **INV[(A.length+1)/j]** ≡ The subarray A[1... A.length+1-1] is composed of sorted elements which were originally in
 A[1...A.length+1-1]
@@ -58,21 +58,19 @@ insertion_sort(Array A)
             i = i-1
         A[i+1] = key
 ```
-**Final Time Complexity** =  Θ(n**2)
+**Final Time Complexity** =  <mark>Θ(n**2)</mark>
 * Best =  Θ(n)
   * Sorted Array
 * Worst =  Θ(n**2)
   * Unsorted Array
 * Average =  Θ(n**2)
 
-
-**Final Space Complexity**
-
 ---
 
 ### Conclusion
-* Pro: Works well with small vectors
-* Con: It is sensitive to unordered input
+Pros: 
+* Works well with small vectors 
+* It is sensitive to unordered input
 
 --- 
 
