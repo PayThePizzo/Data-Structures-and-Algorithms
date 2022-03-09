@@ -1,44 +1,102 @@
+# Heap
+Put it simply, a heap is an almost-complete binary tree. 
+Given a height `h` for a heap: 
+* at **h-1** the heap is a complete binary tree
+* at h, is almost-complete BT with all the leaves on the **left side**.
 
-Utilizza una struttura dati chiamata heap, un albero binario quasi completo. In un heap tutti i livelli
-sono riempiti ad eccezione dell’ultimo, in cui le foglie sono addossate a sinsitra. Grazie a questa sua
-proprietà è facile da salvare in un array A, con attributi .length (numero degli elementi dell’array) e
-.heap_size (numero degli elementi dell’heap).
-La radice è salvata all’inizio di A, e se i è l’indice di un nodo, allora il figlio sinistro si trova a 2 ∗ i,
-mentre il figlio destro a 2 ∗ i + 1. Di conseguenza il genitore è la parte intera di i/2. In base alle
-proprietà soddisfatte dai nodi, esistono due tipi di heap: maxheap, dove per ogni nodo i diverso dalla
-radice, il padre di i è maggiore o uguale al figlio, e minheap, per cui vale la proprietà contraria. In
-un maxheap quindi la radice è l’elemento maggiore (e il contrario vale per minheap).
-L’altezza di un heap di n elementi è sempre log n, le foglie si trovano agli indici strettamente
-maggiori della parte intera di n/2, per cui metà dei nodi sono foglie, e il numero massimo di nodi ad
-altezza h è n/2
-h+1
+[1] ![Heap](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/heap.png?raw=TRUE)
 
-Descrizione e Proprietà
-Un Heap è un albero binario quasi completo, rappresentabile come un array, con le seguenti
-proprietà:
-● data la sua altezza ℎ, l’albero è completo fino all’altezza ℎ − 1;
-● l’array 𝐴 che descrive l’Heap soddisfa la proprietà di ordinamento parziale degli heap,
-ovvero ogni nodo ha valore al più uguale a quello del padre.
-Operazioni sugli heap
-● Heapify(A,i):
-○ PRECONDIZIONI: dato i, indice dell’array A, si assume che i figli di A[i] siano
-degli Heap, ma che A[i] sia minore di almeno uno dei suoi figli.
-○ POSTCONDIZIONI: A[i] viene spostato in una posizione più bassa dell’albero
-rappresentato da A, in maniera che che l’albero sia un Heap.
-● Build-Heap(A):
-○ PRECONDIZIONI:A è un array, non ordinato.
-○ POSTCONDIZIONI: Viene restituito un Heap costruito a partire dagli elementi
-di A.
-● Heapsort(A):
-○ PRECONDIZIONI:A è un array non ordinato.
-○ POSTCONDIZIONI: A viene ordinato secondo l’algoritmo Heapsort.
-● Max(A):
-○ PRECONDIZIONI: A è un Heap.
-○ POSTCONDIZIONI: Viene restituito il massimo elemento dell’Heap (la
-radice).
-● Insert(A,x):
-○ PRECONDIZIONI:A è un Heap.
-○ POSTCONDIZIONI: L’elemento x viene inserito nell’Heap, in maniera tale che
-venga rispettata la proprietà dell’Heap.
+---
+
+## Heap - Array Implementation
+
+Thanks to its main feature, it is easy to use an array as implementation.
+
+**Basic Characteristics**: 
+* A.length: #elements of the **array**
+* A.heapsize: #elements of the **heap**
+  * If `1 <= i <= A.heapsize`, A[i] is an element of the heap
+* A[1] is the root 
+
+**Operations**:
+```python
+Node left_child(Node i)
+    return A[ 2*i ]
+```
+
+```python
+Node right_child(Node i)
+    return A[ 2*i+1 ]
+```
+
+```python
+Node parent(Node i)
+    return A[ ⌊i/2⌋ ]
+``` 
+
+---
+
+Based on what properties are satisfied by the nodes we can consider two types of 
+heap
+
+## Max Heap
+<mark>Max Heap Property</mark>: for every node i, except the root, we have `A[parent(i)] >= A[i]`
+* The root is the largest element
+
+## Min Heap
+<mark>Min Heap Property</mark>: for every node i, except the root, we have `A[parent(i)] <= A[i]`
+* The root is the smallest element
+
+---
+
+## Properties
+<mark>Lemma 1.</mark> **h = ⌊log(n)⌋**, with n the #elements
+
+<mark>Lemma 2.</mark> In the array implementation of a heap with n elements, the leaves
+are nodes with index `⌊n/2⌋+1 <= i <= n`
+* This means half of the nodes are leaves
+
+<mark>Lemma 3.</mark> The are maximum `⌈n/(2**(h+1)⌉` nodes of height h in a heap of n elements
+* If the #leaves = n/2, the h of leaf is 0
 
 
+---
+
+## Operations 
+
+Heapify(A,i):
+* Pre: Given i, index of the array A, we suppose 
+  * A[i]'s children are heap too
+  * A[i] must be smaller of at least one of its children
+* Post: A[i] is moved in a lower position of the tree (implemented through an Array A like a heap)
+* Variant: max_heapify()
+
+Build-Heap(A):
+* Pre: A is an unsorted array 
+* Post: Returns a heap built from A
+* Variant: build_max_heap()
+
+Heapsort(A):
+* Pre: A is an unsorted array
+* Post: Sorts A
+
+Max(A):
+* Pre: A is a Heap
+* Post: Returns the largest element of A (The root if it is a Max Heap)
+
+Insert(A,x):
+* Pre: A is an Heap
+* Post: x is inserted in A, in a way that the condition of heap is not violated
+
+---
+## Conclusion
+
+Pros:
+* All the operations on the heap, have T(h) = O(log(n))
+
+Cons:
+
+---
+
+### Extra Credits
+* [1] [Simple Dev Code - Heap](https://simpledevcode.wordpress.com/2015/08/05/the-heap-data-structure-c-java-c/)

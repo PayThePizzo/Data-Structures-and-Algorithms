@@ -80,23 +80,23 @@ Tree, a set of nodes and a set of arches
 
 ---
 ## Operations
-* NewTree():
-  * Pre: //
-  * Post: Returns a Tree.
+NewTree():
+* Pre: //
+* Post: Returns a Tree.
 
-* Treempty(Tree t):
-  * Pre: //
-  * Post: Returns true if t is empty, else false.
+Treempty(Tree t):
+* Pre: //
+* Post: Returns true if t is empty, else false.
 
-* Father(Tree t, Node u):
-  * Pre: 𝑢 ∈ 𝑇 
-  * Post: Returns father of 𝑢.
+Father(Tree t, Node u):
+* Pre: 𝑢 ∈ 𝑇 
+* Post: Returns father of 𝑢.
   
-* Children(Tree t, Node u):
-  * Pre: 𝑢 ∈ 𝑇 
-  * Post: Returns a list of the children of 𝑢.
+Children(Tree t, Node u):
+* Pre: 𝑢 ∈ 𝑇 
+* Post: Returns a list of the children of 𝑢.
   
-* Visits 
+Visits 
 
 ---
 ## Implementation Type
