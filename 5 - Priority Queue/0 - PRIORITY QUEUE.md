@@ -1,3 +1,5 @@
+
+
 Descrizione e Proprietà
 Una coda con priorità viene definita come un insieme di elementi, le cui chiavi associate
 sono legate da una relazione di ordine totale. Sono spesso implementate usando degli
