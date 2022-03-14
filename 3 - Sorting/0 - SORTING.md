@@ -22,7 +22,11 @@ a space <mark>S(n) = O(1)</mark> (constant) is the superior limit for the space 
 
 ---
 
+## Stable Algorithms
 
+---
+
+## Divide et Impera
 
 ---
 

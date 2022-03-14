@@ -1,5 +1,17 @@
 # Hash Tables
-consider a piece of software that needs a dynamic set which supports 3 operations: insert, delete and search.
+A Hash-Table is a data structure which optimizes the concept of dictionaries.
+In fact, it is implemented in a way such that T(n) for searches are on average O(1) and
+O(n) in the worst case.
+
+A Hash Table is a direct-access dictionary-like table.
+1. The keys go from 0 to ω
+2. 
+
+Many applications need a dynamic set which supports 3 fundamental operations:
+* Insert
+* Delete
+* Search.
+
 Each element of the set has a unique key, the latter belonging to the universe set U = {0,1,2,...,*w*-1}, with *w* not too big.
 
 for this we *could* use direct address tables
