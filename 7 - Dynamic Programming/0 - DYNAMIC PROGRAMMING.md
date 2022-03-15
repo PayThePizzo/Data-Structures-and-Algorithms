@@ -1,3 +1,7 @@
+# Dynamic Programming
+
+
+
 È una tecnica di progettazione da applicare quando un problema si può dividere in sottoproblemi più
 piccoli e non indipendenti, come i problemi di ottimizzazione. L’idea consiste nel risolvere ogni sottoproblema una volta sola, memoizzando la soluzione e non dovendola quindi ricalcolare. La definizione
 di una soluzione si svolge in quattro fasi:

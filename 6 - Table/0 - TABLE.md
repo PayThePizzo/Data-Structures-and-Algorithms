@@ -1,0 +1,15 @@
+# Table
+A table is a sequence of elements **E**i, which is composed of:
+* A key: *K*i 
+  * It is basically a group of bits or chars
+* Info: *I*i
+
+The objective of the table is to memorize the info Ii, while the key is used to locate the information
+from the outside.
+
+## Examples
+One good example of a Table would be a Dictionary.
+
+## Implementations
+1. Open Hash
+2. Hash-Table
