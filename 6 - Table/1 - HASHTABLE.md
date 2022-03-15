@@ -22,14 +22,27 @@ Hashing Function
 * A hashing function is a non-invertible function <mark>*h()*: U → {0,1,...,m-1}</mark>
   * m, being the size of the hash table, usually very small compared to |U|
 
+The hashing function reduces the interval of table's indexes.
+
 ![Hashing Function](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/hashfun.png?raw=TRUE)
 
-Being `n < ω` we might find some conflicts called "Collisions".
-* It happens when h(k1) = h(k2), k1 != k2
+---
 
-### Collision Solving
-1. Close Hashing - Open Addressing
-2. Open Hashing - Separate Chaining/ Close Addressing
+### Problem: Collisions
+
+Being `n < ω` we might find some conflicts called "Collisions".
+* It **can happen** when |U|>m, this means two different keys can be mapped to the same cell.
+* It **surely** happens when |K|>m
+
+Example: upon insertion of an element k2, h(k2) is occupied by k1. 
+* h(k1) = h(k2), k1 != k2
+
+## Collision Solving
+1. Chaining - Collision List
+2. Open Addressing
+
+
+### Closed Hashing
 
 ---
 
@@ -68,3 +81,11 @@ Many applications need a dynamic set which supports 3 fundamental operations:
 Clearly, this is space-inefficient. However, when the set of keys K is much smaller than U, 
 we can use *hash tables*.
 
+---
+
+### Extra Credits
+* [Prof. Alberto Montresor - Tabelle Hash](http://www.cs.unibo.it/~donat/07-hashing.pdf)
+* [Prof. Massimo Franceschet - Tabelle Hash](https://www.sci.unich.it/~meo/didattica/courses/asdI/lucidi/hash.pdf)
+* [Prof. Maria Rita di Berardini, Prof. Emanuela Merelli - Tabelle Hash](https://computerscience.unicam.it/merelli/algoritmi06/%5B04%5DTabelleHash.pdf)
+* [Wikipedia - Hash Table](https://it.wikipedia.org/wiki/Hash_table)
+* [Programming Guide - Open vs Closed Addressing](https://programming.guide/hash-tables-open-vs-closed-addressing.html)

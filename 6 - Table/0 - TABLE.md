@@ -11,5 +11,5 @@ from the outside.
 One good example of a Table would be a Dictionary.
 
 ## Implementations
-1. Open Hash
-2. Hash-Table
+1. Dictionary
+   1. Hash Table
