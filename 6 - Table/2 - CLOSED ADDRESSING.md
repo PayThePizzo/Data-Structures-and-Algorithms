@@ -110,7 +110,7 @@ If n = O(m): alpha = n/m = O(m)/n = Θ(1)
 
 Pros:
 * Easier removal (no need for deleted markings)
-* Typically performs better with high load factor. 
+* Typically, performs better with high load factor. 
 * No issues with clustering.
 
 Cons:

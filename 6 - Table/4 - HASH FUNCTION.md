@@ -7,7 +7,10 @@ The values are usually used to index a fixed-size table called a hash table.
 
 Use of a hash function to index a hash table is called _hashing_ or scatter storage addressing.[1]
 
+We will face the properties and the logic between hash functions.
+
 ---
+
 ## Uniformity
 
 A good hash function should map the expected inputs as evenly as possible over its output range.
@@ -18,9 +21,6 @@ if a typical set of m records is hashed to n table slots, the probability of a b
 more than m/n records should be vanishingly small. In particular, if m is less than n, 
 very few buckets should have more than one or two records. 
 A small number of collisions is virtually inevitable, even if n is much larger than m. [2]
-
-
----
 
 ## SUHA - Simple Uniform Hashing Assumption
 
@@ -34,7 +34,6 @@ regardless of the other elements already placed</mark>.
 
 This means the assumption of uniform hashing, given a hash function h, and a hash table of size m, 
 the probability that two non-equal elements will hash to the same slot is: `P[h(a) = h(b)] = 1/m` [3]
-
 
 ---
 
@@ -63,8 +62,27 @@ Con:
 * One drawback is that it won't break up clustered keys. 
 For example, the keys 123000, 456000, 789000, etc. modulo 1000 all map to the same address.
 * We need to choose carefully M
-  * Avoid choosing M as a power of 2, `m != 2**p` with p a real number
-  * If k is a string, interpreted on the base 2**p, it is a bad idea to choose `m = (2**p)-1`
+  * Avoid choosing M as a power of 2, `M != 2**p` with p a real number
+  * If k is a string, interpreted on the base 2**p, it is a bad idea to choose `M = (2**p)-1`
+
+
+### Multiplicative Hashing
+
+Another standard technique is using ⌊m * (k*A mod 1)⌋
+
+This come from the idea of using `h(k) = m * k`, k belongs to [0,1)
+
+Given an integer key belonging to U, we transform it in a number in this range [0,1)
+* We get a constant A such that `0 < A < 1`
+* We calculate `k*A`
+* We extract the rest `k*A mod 1` in the range, which is equal to k*A - ⌊k*A⌋
+
+Pros:
+* M is not a critical value anymore
+* Works well with any value A can take
+* Knuth saw that it works well with `A = (sqrt(5)-1)/2`
+
+Cons:
 
 
 --- 
