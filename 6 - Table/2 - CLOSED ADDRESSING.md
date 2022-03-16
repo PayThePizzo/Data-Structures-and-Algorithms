@@ -1,13 +1,13 @@
 # Closed Addressing
 It is also known as *Open Hashing*
 
+Collisions are dealt with using **separate data structures**
+
 The main table containing the co-domain's indexes is a sequence of "buckets".
 A **bucket**, as previously stated, is an index of the table and/or the result of the hashing function.
 
 In this case a key is always stored in the **bucket** it's hashed to.
 * We find an arbitrary number of keys per bucket.
-
-Collisions are dealt with using **separate data structures**
 
 ### Implementation Techniques
 1. Separate chaining using linked lists 
@@ -16,7 +16,9 @@ Collisions are dealt with using **separate data structures**
 
 We will deal with the first one.
 
-### Separate chaining using linked lists
+---
+
+## Separate chaining using linked lists
 
 Resolving the collisions by inserting all the elements mapped on the same cell,
 into a linked-list.
@@ -26,6 +28,16 @@ into a linked-list.
 ![Closed Addressing](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/ClosedAddressing.png?raw=TRUE)
 
 What kind of list is best for the operations we need to perform? 
+
+### Load Factor
+With this implementation we can think of the load factor is the mean number of elements 
+saved inside a certain list.
+
+With SUHA: nj as T[j].length
+* T is the table
+* j is the list index
+
+The average value of nj is `sum(n0 to nm-1)/m` = `n/m` = alpha
 
 ---
 
@@ -47,14 +59,21 @@ If the keys of the elements are ordered, it's efficient to insert the item by ma
 key is comparable either numerically or lexically, thus resulting in faster termination of insertions and 
 unsuccessful searches.
 
+---
+
 ### Chained Hash Search
 
 ```python
 chain_hash_search(T, k)
     search for an element with key k in list T[h(k)]
 ```
-**Final Time Complexity**: T(n) = O(T[h(k)].length)
+**Final Time Complexity**: T(n) = O(T[h(k)].length) = O(n)
 * It is proportional to the length of the list in the cell h(k)
+  * Worst case is when all keys are mapped to the same cell
+* Average case (given that [SUHA](https://en.wikipedia.org/wiki/SUHA_(computer_science))) depends on
+the length n(h(k)) of the list T[h(k)]
+
+---
 
 ### Chain Hash Delete 
 We have a pointer x to the element that we want to delete.
@@ -70,9 +89,20 @@ chain_hash_delete(T, x)
 ---
 
 ## Load Factor
-No theoretical maximum load factor.
 
-Performance degrades as load factor grows.
+### Theorem - Average Case [Unsuccessful Research]
+In a Hash Table, where the collisions are solved by chaining, an unsuccessful search
+requires:
+* T(n) = Θ(1 + alpha) = Θ(1 + n/m) (under SUHA)
+
+### Theorem - Average Case [Successful Research]
+In a Hash Table, where the collisions are solved by chaining, a successful search
+requires:
+* T(n) = Θ(1 + alpha) = Θ(1 + n/m) (under SUHA)
+
+Conclusion
+If n = O(m): alpha = n/m = O(m)/n = Θ(1)
+* All operations, on average, have T(n) = Θ(1)
 
 ---
 
