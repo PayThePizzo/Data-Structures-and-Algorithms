@@ -37,7 +37,7 @@ the probability that two non-equal elements will hash to the same slot is: `P[h(
 
 ---
 
-## How do we hash?
+## How do we hash? - Closed Addressing
 
 Let's consider a lucky case:
 * There are k real numbers which represent the keys and hash table of size m. 
@@ -46,6 +46,8 @@ These keys are randomly and uniformly distributed (like i.i.d. random variables)
 
 Usually, hash functions assume the keys are natural numbers belonging to *N*. When
 they are not natural numbers we need to interpret them as numbers (i.e. char to int)
+
+Here we present some options of the many you can find.
 
 ### Division Hashing
 
@@ -82,12 +84,58 @@ Pros:
 * Works well with any value A can take
 * Knuth saw that it works well with `A = (sqrt(5)-1)/2`
 
-Cons:
+To simplify the computing of the function
+* **w**: the length of a memory word
+* **k**, must be of the length of memory word
+* **q**, must be `0 < q < 2**w`
+* **m**, must be `m = 2**p`
+* **A**, a constant,must be `q/(2**w)`
+
+Now
+1. `k*A = k * q/(2**w)`
+2. Since `k*q = r1*(2**w) + r0`
+3. We get that  
+   1. `r1 = ⌊(k*q)/(2**w)⌋`
+   2. `r2 = (k*q)/(2**w) mod 1`
+
+![Calc HT](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/calcht.png?raw=TRUE)
+
+This all means that `k * A` is r0, the less significant part of the word created by `k*q` 
+
+So, this justifies `h(K) = ⌊m * (k*A mod 1)⌋` which is equal to `⌊(2**p) * (k*A mod 1)⌋` 
+* Our hash function returns, indeed, <mark>the p-bits more significant of the less significant part of
+the product between `k*q` </mark>
+* It means we take the p-bits significant bits of r0
+
+The problem is, if we receive many keys mapped to the same cell, our performances heavily drop.
+* It is the case with n keys where `h(k1) = h(k2) = ... = h(kn)`
+
+### Universal Hashing 
+Universal Hashing refers to **selecting a hash function at _random_ from a family of hash functions** with a certain 
+mathematical property.
+
+This guarantees a low number of collisions in expectation, even if the data is chosen by an adversary.[4]
+
+---
+## How do we hash? - Open Addressing
+
+### Open
+
+The hash function is now different from the one we faced before
+* Input: `U x {0,1,...,m-1}`
+  * Key, chosen from *U* 
+  * **Order of inspection**, a number in the interval `[0, m-1]` 
+* Output: 
+  * An **index** in the hash table, in the interval `[0, m-1]`
+
+So `h(K,i)` <mark>represents the position of the key k after **i** failed inspections.</mark>
 
 
---- 
+
+---
 
 ### Extra Credits
 * [1] [Wikipedia - Hash Function](https://en.wikipedia.org/wiki/Hash_function)
 * [2] [Wikipedia - Hash Function/Properties](https://en.wikipedia.org/wiki/Hash_function#Properties)
 * [3] [Wikipedia - SUHA](https://en.wikipedia.org/wiki/SUHA_(computer_science))
+* [4] [Wikipedia - Universal Hashing](https://en.wikipedia.org/wiki/Universal_hashing)
