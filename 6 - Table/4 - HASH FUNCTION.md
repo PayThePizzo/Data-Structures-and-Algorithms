@@ -10,8 +10,9 @@ Use of a hash function to index a hash table is called _hashing_ or scatter stor
 We will face the properties and the logic between hash functions.
 
 ---
+## Properties
 
-## Uniformity
+### Uniformity
 
 A good hash function should map the expected inputs as evenly as possible over its output range.
 
@@ -22,7 +23,7 @@ more than m/n records should be vanishingly small. In particular, if m is less t
 very few buckets should have more than one or two records. 
 A small number of collisions is virtually inevitable, even if n is much larger than m. [2]
 
-## SUHA - Simple Uniform Hashing Assumption
+### SUHA - Simple Uniform Hashing Assumption
 
 It is a basic assumption that facilitates the mathematical analysis of hash tables.
 * This assumption generalizes the details of the hash function and allows for certain assumptions
@@ -130,7 +131,7 @@ The hash function is now different from the one we faced before
 
 So `h(K,i)` <mark>represents the position of the key k after **i** failed inspections.</mark>
 
-
+ 
 
 ---
 
