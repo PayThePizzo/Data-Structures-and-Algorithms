@@ -187,19 +187,33 @@ Cons:
 ### Double Hashing
 
 Here we combine two hashing auxiliary functions: `h(k,i) = ((h1(k)*i) + h2(k)) mod m`
-* <mark>The first one determines the starting point and the second one the pace of probing</mark> (the distance between the keys)
-* The value of h2(k) must be relatively prime to the hash-table size m for the entire
-  hash table to be searched
-* A convenient way to ensure this condition is to let m be a power of 2 and to design h2 so that it always produces an
-  odd number. Another way is to let m be prime and to design h2 so that it always
-  returns a positive integer less than m.
 
-The initial probe goes to position T[h1(k)]; successive probe positions are offset 
-from previous positions by the amount h2.k/, modulo m. 
+The initial probe goes to position T[h1(k)]; successive probe positions are offset
+from previous positions by the amount h2(k), modulo m.
 
-Thus, unlike the case of linear or quadratic probing, the probe sequence here depends in 
+Thus, unlike the case of linear or quadratic probing, the probe sequence here depends in
 two ways upon the key k, since the initial probe position, the offset, or both, may vary.
 
+The value of h2(k) must be relatively prime to the hash-table size m for the entire
+hash table to be searched
+
+What is the role of these hash functions?
+1. <mark>The first one determines the starting point
+2. The second one the pace of probing</mark> (the distance between the keys)
+
+![doublehash](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/doublehash.jpg?raw=TRUE)
+
+How do we ensure this?
+* A convenient way to ensure this condition is to let m be a power of 2 and to design h2 so
+  that it always produces an odd number.
+* Another way is to let m be prime and to design h2 so that it always
+  returns a positive integer less than m.
+
+Pros:
+* Double hashing uses `m**2` sequences of probing since every possible pair `(h1(k), h2(k))` produces a
+distinct sequence of probing.
+
+Cons:
 
 ---
 
