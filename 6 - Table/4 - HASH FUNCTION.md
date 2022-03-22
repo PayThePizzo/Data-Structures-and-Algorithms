@@ -149,13 +149,57 @@ Given an auxiliary ordinary hash function `h'`: _U_ --> {0,1,..., m-1}
 
 The method of linear probing uses the hash function: `h(k,i) = (h'(k) + i) mod m`
 
-Example:
-![Linear Probe](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/linearprobe.png?raw=TRUE)
-
 <mark>We cannot alter the order of the keys we want to insert</mark>, this completely
 alters the outcome of the function.
 
+Example:
+![Linear Probe](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/linearprobe.png?raw=TRUE)
+
+Pros: 
+* Linear probing is easy to implement
+
+Cons:
+* There are only <mark>m distinct sequences of probe</mark> since the first cell probed determines the entire sequence of probes.
+* It suffers from a problem known as **primary clustering**. 
+  * Long runs of occupied slots **tend to get longer**, and the average search time increases.
+  * Clusters arise because an empty slot preceded by `i` full slots gets filled next with probability `(i+1)/m`. 
+  
+
 ### Quadratic Probe
+
+Quadratic probing uses a hash function of the form: `h(k,i) = (h'(k) + (c1*i) + (c2*(i**2)) mod m`
+* h' is an auxiliary hash function
+* c1 and c2 are positive auxiliary constants such that `c1 != 0 && c2 != 0`
+* i takes value in {0, 1,..., m-1}
+
+Pros:
+* Better performances than linear probe
+
+Cons:
+* _c1, c2 and m_ must not have arbitrary values.
+  * `c1 = c2 = 1/2` and `m = (2**p)`.
+* The first position determines the entire sequence, again the count of permutations is m and not *m!*
+* It suffers from a problem known as **secondary clustering**.
+  * Secondary clusters are generated when **two distinct keys** are mapped to the same cell. This means
+  their **sequences turns out to be the same**.
+
+
+### Double Hashing
+
+Here we combine two hashing auxiliary functions: `h(k,i) = ((h1(k)*i) + h2(k)) mod m`
+* <mark>The first one determines the starting point and the second one the pace of probing</mark> (the distance between the keys)
+* The value of h2(k) must be relatively prime to the hash-table size m for the entire
+  hash table to be searched
+* A convenient way to ensure this condition is to let m be a power of 2 and to design h2 so that it always produces an
+  odd number. Another way is to let m be prime and to design h2 so that it always
+  returns a positive integer less than m.
+
+The initial probe goes to position T[h1(k)]; successive probe positions are offset 
+from previous positions by the amount h2.k/, modulo m. 
+
+Thus, unlike the case of linear or quadratic probing, the probe sequence here depends in 
+two ways upon the key k, since the initial probe position, the offset, or both, may vary.
+
 
 ---
 
