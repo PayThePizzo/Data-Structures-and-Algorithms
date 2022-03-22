@@ -23,7 +23,7 @@ in the next section.
 ---
 ## Load Factor
 
-Theoretical maximum load factor of 1.
+Theoretical maximum load factor of 1. 
 
 The size of the hash table array must always be at least as large as the 
 number of keys in the hash table.
@@ -130,14 +130,47 @@ However, this means the load factor is not the primary actor in the time complex
 and closed addressing through chaining has better performances in case of many deletions.
 
 ---
+## Analysis of Open Addressing 
 
+We will utilize some assumptions:
+* Uniform hashing
+* No deletions
+
+The load factor `0 <= alpha <= 1` because we only have the cells in our table.
+
+### Theorem - Unsuccessful Search
+Given an open addressing hash table, with `alpha < 1`, the average count of probes is `1/(1-alpha)`
+
+### Theorem - Successful Search
+Given an open addressing hash table, with `alpha < 1`, the average count of probes `(1/alpha)* ln(1/(1-alpha))`
+
+---
+## Restructuring a hashtable
+When a hash table has a large number of entries (alpha > 0.5), the average time for operations can become 
+quite substantial.
+
+In such a case, the currently existing elements will have to be inserted into the new table. 
+This may call for:
+* Rehashing of all these key values
+* Transferring all the records
+
+Subsequent dictionary operations will be more efficient and 
+can more than make up for the overhead in creating the larger table.
+Usually it doubles the size. [1]
+
+
+---
 ## Conclusion
 
 Pros:
 * No size overhead apart from the hash table array. 
-* Better memory locality and cache performance. 
-All elements laid out linearly in memory. 
+* Better memory locality and cache performance. All elements laid out linearly in memory. 
 * Performs better than closed addressing when the number of keys is known in 
 advance and the churn is low.
 
 Cons:
+* Chaining results better performing than this implementation (alpha >=2 )
+
+--- 
+### Extra Credits
+* [1] [Restructuring](https://gtl.csa.iisc.ac.in/dsa/node51.html)

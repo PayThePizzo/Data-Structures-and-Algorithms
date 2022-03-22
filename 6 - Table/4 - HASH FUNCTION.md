@@ -210,7 +210,7 @@ How do we ensure this?
   returns a positive integer less than m.
 
 Pros:
-* Double hashing uses `m**2` sequences of probing since every possible pair `(h1(k), h2(k))` produces a
+* Double hashing uses Theta(`m**2`) sequences of probing since every possible pair `(h1(k), h2(k))` produces a
 distinct sequence of probing.
 * We get closer to the uniform distribution
 
