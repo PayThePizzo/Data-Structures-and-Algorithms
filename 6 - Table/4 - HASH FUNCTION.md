@@ -18,10 +18,11 @@ A good hash function should map the expected inputs as evenly as possible over i
 
 That is, every hash value in the output range should be generated with roughly the <mark>same probability!</mark>
 
-if a typical set of m records is hashed to n table slots, the probability of a bucket receiving many 
+If a typical set of m records is hashed to n table slots, the probability of a bucket receiving many 
 more than m/n records should be vanishingly small. In particular, if m is less than n, 
 very few buckets should have more than one or two records. 
 A small number of collisions is virtually inevitable, even if n is much larger than m. [2]
+
 
 ### SUHA - Simple Uniform Hashing Assumption
 
@@ -130,8 +131,31 @@ The hash function is now different from the one we faced before
   * An **index** in the hash table, in the interval `[0, m-1]`
 
 So `h(K,i)` <mark>represents the position of the key k after **i** failed inspections.</mark>
+* We want that for every key `k`, the sequence of inspections <h(k, 0), h(k,1), ..., h(k,m-1)> must be a permutation of all the
+hash table's indexes. This means we use our table exhaustively.
+* The permutation must let every cell, be considered like a possible cell for an insertion of a key (using the tables' indexes)
 
- 
+---
+
+## Probe
+In our analysis, we assume **uniform hashing** at every iteration: the probe sequence of each key
+is equally likely to be any of the _m!_ permutations of <0, 1, ..., m-1> of our hash table.
+* h(k,0) distributes the keys uniformly on the *m* cells
+* h(k,0) distributes the keys uniformly on the *m-1* cells
+
+### Linear Probe
+
+Given an auxiliary ordinary hash function `h'`: _U_ --> {0,1,..., m-1}
+
+The method of linear probing uses the hash function: `h(k,i) = (h'(k) + i) mod m`
+
+Example:
+![Linear Probe](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/linearprobe.png?raw=TRUE)
+
+<mark>We cannot alter the order of the keys we want to insert</mark>, this completely
+alters the outcome of the function.
+
+### Quadratic Probe
 
 ---
 
