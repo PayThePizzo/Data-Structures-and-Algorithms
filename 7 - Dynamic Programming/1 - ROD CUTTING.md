@@ -58,7 +58,7 @@ decomposition of the remainder</mark>. So rn, the maximum revenue can be re-desi
     * r(n-i), the remainder to be further divided.
     * i, the position of the cut. When **i = n, there is no cut**
 
-## Step 4 - Sub-Optimal Solution
+## Step 4 - pt.1 Sub-Optimal Solution
 Construct an optimal solution from computed information.
 
 Cut_Rod(p,n):
@@ -91,9 +91,9 @@ Why is CUT-ROD so inefficient?
 * It solves the same sub-problems repeatedly.
 
 
-## Step 4 - Optimal Solution
+## Step 4 - pt.2 Optimal Solution
 
-If we save the solution of n sub-problems we can improve the complexity from exponential to polynomial.
+If we <mark>save the solution of n sub-problems we can improve the complexity</mark> from exponential to polynomial.
 * We avoid repeated computations by saving the solution
 * Distinct sub-problems are very rare (usually are #n)
   * If the count of sub-problems is polynomial, then each one of them can be solved in a polynomial time.
