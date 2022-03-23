@@ -157,12 +157,12 @@ BU_Cut_Rod2(p, n)
     for (i = 1 to n):
         r[i] = -1; #initialization
     r[0] = 0
-    for(j = 1 to n):
+    for(j = 1 to n): #We compute from smaller problems
         q = -1;
         for(i = 1 to j):       
-            if(q < p[i] + r[j-i]):
-                q = p[i] + r[j-i];
-                s[j] = i;
+            if(q < p[i] + r[j-i]): #if the max improves
+                q = p[i] + r[j-i]; #new max
+                s[j] = i; #where to cut for optimality
             r[j] = q;
     return(r,s);
 ```
@@ -172,6 +172,6 @@ Print_Cut_Rod_Sol(p,n)
     r,s = BU_Cut_Rod2(p, n); #unpacking
     while(n > 0):
         print(s[n]);
-        n=n-s[n];
+        n -= s[n];
 ```
 **Final Time Complexity**: T(n) = θ(n**2)
