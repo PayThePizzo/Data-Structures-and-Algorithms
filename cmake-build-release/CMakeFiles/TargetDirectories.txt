@@ -1,3 +1,0 @@
-C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/ASD.dir
-C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/edit_cache.dir
-C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/rebuild_cache.dir

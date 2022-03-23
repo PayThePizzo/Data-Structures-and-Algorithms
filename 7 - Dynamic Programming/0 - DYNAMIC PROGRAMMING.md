@@ -70,6 +70,26 @@ where the top-down approach does not actually recurse to examine all possible su
 The bottom-up approach often has much better constant factors, since it has less overhead for procedure calls
 
 ---
+### Sub-problem Graphs
+
+We can think of the subproblem graph as a “reduced” or “collapsed” version of the 
+recursion tree for the top-down recursive method, in which we coalesce all nodes for 
+the same subproblem into a single vertex and direct all edges from parent to child
+
+The size of the subproblem graph G = (V, E) can help us determine the running
+time of the dynamic programming algorithm. 
+
+Since we solve each subproblem just once, the running time is the sum of the times 
+needed to solve each subproblem.
+
+Typically, the time to compute the solution to a subproblem is proportional to the
+degree (number of outgoing edges) of the corresponding vertex in the subproblem graph, 
+and the number of subproblems is equal to the number of vertices in the subproblem graph. 
+
+In this common case, the running time of dynamic programming is linear in the number of vertices and edges.
+
+
+---
 
 ### Extra Credits
 * [1] Mainly take from Chapter 15 of Introduction to Algorithms (see main README.md)

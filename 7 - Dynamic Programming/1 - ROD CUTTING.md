@@ -10,7 +10,7 @@ The management of Serling Enterprises wants to know **the best way to cut up the
 ### Problem Statement
 
 Input: 
-* A rod of length `n` inches 
+* A rod **j** of length `n` inches 
 * A table of prices `pi` with `1 <= i <= n`
 
 Output:
@@ -90,14 +90,88 @@ Why is CUT-ROD so inefficient?
 * The problem is that CUT-ROD calls itself recursively over and over again with the same parameter values
 * It solves the same sub-problems repeatedly.
 
+---
 
 ## Step 4 - pt.2 Optimal Solution
 
 If we <mark>save the solution of n sub-problems we can improve the complexity</mark> from exponential to polynomial.
 * We avoid repeated computations by saving the solution
+  * Through a vector r which saves the maximum revenues for each length i
+  * p[i] >= 0 
 * Distinct sub-problems are very rare (usually are #n)
   * If the count of sub-problems is polynomial, then each one of them can be solved in a polynomial time.
 
-```python
+### Top-Down
 
+```python
+MCR_Aux (p, j, r)
+    if(r[j] < 0): #if r[j]>= 0 it's already solved, return value
+        if(j == 0):
+            r[j] = 0;
+        else:
+            q = -1;
+            for(i = 1 to j):
+                q = max(q, p[i]+ MCR_Aux(p, j-i, r))''
+            r[j] = q; 
+    return r[j];
 ```
+```python
+TD_Cut_Rod(p, n)
+    r[n] # A vector with indexes 0 to n
+    for(i = 0 to n):
+        r[i] = -1 #initialize the array so that the cells are negative
+    return MCR_Aux(p, n, r)
+```
+**Final Time Complexity**: T(n) = `sum(j, j=1 to n)` = `(n*(n+1))/2` = θ(n**2)
+* A call for a problem that has already been solved has constant time.
+* Plus, we only need to compute the result once for each problem.
+
+### Bottom-Up
+
+```python
+BU_Cut_Rod(p, n)
+    r[n] # A vector with indexes 0 to n
+    for (i = 0 to n):
+        r[i] = -1; #initialization
+    r[0] = 0;
+    for(j = 1 to n):
+        q = -1;
+        for(i = 1 to j):
+            q = max(q, p[i]+r[j-i]);
+        r[j] = q;
+    return r[n];
+```
+**Final Time Complexity**: T(n) = θ(n**2)
+
+### Bottom-Up v2
+Here is an extended version of BOTTOM-UP-CUT-ROD that computes, for each
+rod size j*
+* Not only the maximum revenue rj
+  * Vector r[0,n] containing the revenues for length `0<= i <= n`
+* But also sj , the optimal size of the first piece to cut off:
+  * Vector s[1,n] containing the positions of the optimal cuts 
+
+```python
+BU_Cut_Rod2(p, n)
+    r[0,n], s[1,n]
+    for (i = 1 to n):
+        r[i] = -1; #initialization
+    r[0] = 0
+    for(j = 1 to n):
+        q = -1;
+        for(i = 1 to j):       
+            if(q < p[i] + r[j-i]):
+                q = p[i] + r[j-i];
+                s[j] = i;
+            r[j] = q;
+    return(r,s);
+```
+
+```python
+Print_Cut_Rod_Sol(p,n)
+    r,s = BU_Cut_Rod2(p, n); #unpacking
+    while(n > 0):
+        print(s[n]);
+        n=n-s[n];
+```
+**Final Time Complexity**: T(n) = θ(n**2)
