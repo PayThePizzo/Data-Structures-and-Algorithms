@@ -100,7 +100,7 @@ Now
    1. `r1 = ⌊(k*q)/(2**w)⌋`
    2. `r2 = (k*q)/(2**w) mod 1`
 
-![Calc HT](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/calcht.png?raw=TRUE)
+![Calc HT](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/calcht.png?raw=TRUE)
 
 This all means that `k * A` is r0, the less significant part of the word created by `k*q` 
 
@@ -153,7 +153,7 @@ The method of linear probing uses the hash function: `h(k,i) = (h'(k) + i) mod m
 alters the outcome of the function.
 
 Example:
-![Linear Probe](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/linearprobe.png?raw=TRUE)
+![Linear Probe](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/linearprobe.png?raw=TRUE)
 
 Pros: 
 * Linear probing is easy to implement
@@ -201,7 +201,7 @@ What is the role of these hash functions?
 1. <mark>The first one determines the starting point
 2. The second one the pace of probing</mark> (the distance between the keys)
 
-![doublehash](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/doublehash.jpg?raw=TRUE)
+![doublehash](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/doublehash.jpg?raw=TRUE)
 
 How do we ensure this?
 * A convenient way to ensure this condition is to let m be a power of 2 and to design h2 so

@@ -142,7 +142,7 @@ Strategy:
   * b[i,j] points to the table entry corresponding to the optimal sub-problem solution chosen
   when computing c[i,j]
 
-![LCS movement on matrix B](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/lcsmovement.png?raw=TRUE)
+![LCS movement on matrix B](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/lcsmovement.png?raw=TRUE)
 
 ```python
 BU_LCS(x,y)
@@ -170,7 +170,7 @@ BU_LCS(x,y)
 **Final Time Complexity** T(n)= Θ(n*m)
 * Polynomial
 
-![example lcs](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/exlcs.png?raw=TRUE)
+![example lcs](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exlcs.png?raw=TRUE)
 
 Now that we have found the count of an LCS, we want to display which one it could be!
 
@@ -279,5 +279,5 @@ TD_LCS(X, Y)
 **Final Time Complexity** T(n)= Θ(n*m)
 * If the strings are equivalent, we are in O(m) rather than O(n**2)
 
-![example lcs td](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/exlcstd.png?raw=TRUE)
+![example lcs td](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exlcstd.png?raw=TRUE)
 
