@@ -78,6 +78,8 @@ not apply to the main problem, it could still be valid for a smaller one.
    1. If `w(k) != x(m)`, then W belongs to LCS(X(m-1), Y)
    2. If `w(k) != y(n)`, then W belongs to LCS(X, Y(n-1))
 
+---
+
 Demonstration:
 1. w(k) = x(m) = y(m), else I could build a sequence by chaining x(m) to W, resulting in 
 W(x(m)) which is still a subsequence of X,Y.
@@ -90,6 +92,8 @@ that W(k-1) belongs to LCS(X(m-1), Y(n-1)) since we know it is a subsequence and
 3. With w(k) = x(m) = y(m)
    1. |W'(w(k))| > |Wk-1(w(k))|, which means they still are subsequences of X,Y (by chaining a common w(k))
    2. But |W'(w(k))| > W is absurd since W is an optimal LCS.
+
+---
 
 Thanks to this we managed to express the LCS(X,Y) in terms of sub-problems, now we have
 a polynomial way to construct our solution.
@@ -122,10 +126,10 @@ of an optimal solution. Let us define c[i,j]
 You see we **rule out** some sub-problems due to how we defined the problem and the possible 
 solutions. We have now, _`n*m` subproblems_
 
-## Step 3
+## Step 3 & 4 - Bottom Up
 Computing the length of an LCS to be the length of an LCS of the sequences X(i), Y(j)
 
-### LCS Bottom-Up
+### LCS
 Input:
 * X, Y
 
@@ -141,7 +145,7 @@ Strategy:
 ![LCS movement on matrix B](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/lcsmovement.png?raw=TRUE)
 
 ```python
-LCS(x,y)
+BU_LCS(x,y)
     c[0...m+1,0...n+1]
     b[1...m,1...n]
     m = x.length;
@@ -166,26 +170,114 @@ LCS(x,y)
 **Final Time Complexity** T(n)= Θ(n*m)
 * Polynomial
 
+![example lcs](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/exlcs.png?raw=TRUE)
+
+Now that we have found the count of an LCS, we want to display which one it could be!
+
+### Printing
+Constructing an LCS
+
+Let's print an LCS!
+* We start from the i,j position and decrease either i or j
+* We only print if there's an oblique arrow.
+* Since the recursive call happens before the print, we get to the top from the bottom
+and only print at the very end.
+
 ```python
 printLCSAux(X, b, i, j)
-    if(i > 0 && j > 0)
-        if(b[i,j] == ↖)
-            printLCSAux(X, b, i - 1, j - 1)
-            print(X[i])
-        else if(b[i,j] == ↑)
-            printLCSAux(X, b, i - 1, j)
-        else
-            printLCSAux(X, b, i, j - 1)
+    if(i > 0 && j > 0): #if not an empty string
+        if(b[i,j] == ↖): #if we have a common char
+            printLCSAux(X, b, i - 1, j - 1); #first we deal with the subproblem
+            print(X[i]); 
+        else if(b[i,j] == ↑): #if we have NOT a common char
+            printLCSAux(X, b, i - 1, j);
+        else:
+            printLCSAux(X, b, i, j - 1);
 ```
+**Final Time Complexity** T(n)= O(i+j)
+* At every function call, we decrease either one of the two parameters.
 
 ```python
 printLCS(X,Y)
-    b,c = LCS(X,Y)
-    // non serve mettere X e Y come parametri in quanto sappiamo la lunghezza
-    // della sequenza e sappiamo che deve essere comune per forza
-    printLCSaux(X,b, X.length, Y.length)
+    b,c = BU_LCS(X,Y);
+    printLCSaux(X,b, X.length, Y.length);
 ```
+**Final Time Complexity** T(n)= Θ(n*m)
+* We need to go through LCS
 
-## Step 4
-Cons tructing an LCS
+---
+
+### Improve memory
+We can reduce the memory usage through two different optimizations
+
+**First Method**
+
+In the LCS algorithm, for example, we can eliminate the b table altogether.
+
+Given the value of c[i,j], we can determine in O(1) time which of
+these three values was used to compute c[i,j] without inspecting table b.
+Each c[i,j]  entry **depends on only three other c table entries**:
+1. c[i-1,j-1]
+2. c[i-1,j]
+3. c[i,j-1]
+
+Thus, we can reconstruct an LCS in O(m+n) time using a procedure similar to printLCS.
+The order here matters a lot!
+
+```python
+printLCSAux(X, c, i, j)
+    if(i > 0 && j > 0):
+        if(c[i,j] == c[i - 1,j]):
+            printLCSAux(X, c, i - 1, j);
+        else if(c[i,j] == c[i,j - 1]):
+            printLCSAux(X, c, i, j - 1);
+        else:
+            printLCSAux(X, c, i - 1, j - 1);
+            print(X[i]);
+```
+Although we save `Θ(n*m)` space by this method, the auxiliary 
+space requirement for computing an LCS does not asymptotically decrease, since 
+we need `Θ(n*m)` space for the c table anyway.
+
+
+**Second Method**
+
+We can, however, reduce the asymptotic space requirements for LCS-LENGTH,
+since it needs only two rows of table c at a time: the row being computed, and the
+previous row
+
+This improvement works if **we need only the length of an LCS**; if we need to reconstruct
+the elements of an LCS, the smaller table does not keep enough information to
+retrace our steps in O(m+n) time.
+
+---
+
+## Step 3 & 4 - Top Down
+
+```python
+TD_LCSAux(x, y, c, i, j)
+    if(c[i,j] == -1): # Problem not solved
+        if(i == 0 || j == 0): 
+            c[i,j] = 0;
+        else if(x[i] == y[j]):
+            c[i,j] = TD_LCSAux(x, y, i - 1, j - 1) + 1;
+        else:
+            c[i,j] = max(TD_LCSAux(x, y, i - 1, j),
+                         TD_LCSAux(x, y, i, j - 1));
+    return c[i,j];
+```
+**Final Time Complexity** T(n)= O(n*m)
+* This is directly proportional to the possible sub-problems 
+
+```python
+TD_LCS(X, Y)
+    m = X.length
+    n = Y.length
+    c[0..m,0..n] = -1 #initialized with all elements equals to -1
+    return TD_LCSAux(X, Y, c, m, n)
+```
+**Final Time Complexity** T(n)= Θ(n*m)
+* If the strings are equivalent, we are in O(m) rather than O(n**2)
+
+![example lcs td](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/exlcstd.png?raw=TRUE)
 

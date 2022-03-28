@@ -9,7 +9,7 @@ As we saw, divide-and-conquer algorithms partition the problem into disjoint sub
 solve the subproblems recursively, and then combine their solutions to solve the original problem. 
 
 In contrast, dynamic programming applies when the subproblems overlap that is, when subproblems share subsubproblems. 
-In this context, a divide-and-conquer algorithm **does more work than necessary**, repeatedly solving the common subsubproblems
+In this context, a divide-and-conquer algorithm **does more work than necessary**, <mark>repeatedly solving the common subsubproblems</mark>
 
 We typically apply dynamic programming to <mark>optimization problems.</mark> 
 
@@ -88,6 +88,14 @@ and the number of subproblems is equal to the number of vertices in the subprobl
 
 In this common case, the running time of dynamic programming is linear in the number of vertices and edges.
 
+
+---
+
+## To sum up
+We apply dynamic programming when
+* It is an optimization problem
+* The solution can be written as an optimal solution of sub-problems
+* The sub-problem are repeated
 
 ---
 
