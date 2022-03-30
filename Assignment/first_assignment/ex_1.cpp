@@ -11,7 +11,7 @@
 
 using namespace std;
 
-// Test if balanced
+//TODO: Test if balanced
 int treBil_aux_rec(PNode root){
     if (root->left && root->right) {        // both children
         return std::max(treBil_aux_rec(root->left)+1,
