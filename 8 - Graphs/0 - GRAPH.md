@@ -1,7 +1,12 @@
 # Graph
-In our section for graphs we assume
+When we talk about graphs we make a fundamental distinction between
+directed and undirected graphs.
+
+Also, when dealing with graphs we assume:
 * V is always finite (|V| = n)
 * We use sets {3,4}, rather than pairs (3,4)
+
+---
 
 ## Directed Graph
 <mark>A directed graph **G** is a pair **(V, E)** </mark> where
@@ -35,8 +40,25 @@ If we say that `|V| = n`, then `|E| = n^2`
 ![undirected graph ex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/undirectedgex.png?raw=TRUE)
 
 The minimum number of edges is 0.
-
 The maximum number of edges can be found as `(n^2)-n/2`
+
+---
+
+## Implementations
+In computer science, regardless of the type of graph used, 
+the most common implementations to represent these data structures are:
+1. Adjacency List
+2. Adjacency Matrix 
+3. Incidence Matrix
+
+Let's focus on some more definitions 
+
+### Adjacency - Vertices' POV
+Two vertices u,v **are adjacent** if there is an edge that connects them.
+
+### Incidence - Edge's POV
+For an edge, we would say that the edge (u,v) 
+is **incident** to the vertices u,v.
 
 
  
