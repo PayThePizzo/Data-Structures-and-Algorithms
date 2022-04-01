@@ -11,7 +11,7 @@ In our section for graphs we assume
   * An edge is represented by an arrow
   * Self-loops are allowed
 
-![directed graph ex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/directedgex.png?RAW=TRUE)
+![directed graph ex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/directedgex.png?raw=TRUE)
 
 At high level, a graph is a binary relation between a certain number of objects (vertices).
 Furthermore, a binary relation on a certain set A, is the **sub-set of the cartesian product** of that same set A.
@@ -32,7 +32,7 @@ If we say that `|V| = n`, then `|E| = n^2`
   * An edge is a set {u,v} where `v ∈ V` and `u != v`
     * Self-loops are not allowed, this is why `u!=v`
 
-![directed graph ex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/undirectedgex.png?RAW=TRUE)
+![undirected graph ex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/undirectedgex.png?raw=TRUE)
 
 The minimum number of edges is 0.
 
