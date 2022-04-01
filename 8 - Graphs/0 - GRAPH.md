@@ -44,21 +44,26 @@ The maximum number of edges can be found as `(n^2)-n/2`
 
 ---
 
-## Implementations
-In computer science, regardless of the type of graph used, 
-the most common implementations to represent these data structures are:
-1. Adjacency List
-2. Adjacency Matrix 
-3. Incidence Matrix
-
-Let's focus on some more definitions 
+Many definitions for directed and undirected graphs are the same, 
+although certain terms have slightly different meanings in the two contexts
 
 ### Adjacency - Vertices' POV
 Two vertices u,v **are adjacent** if there is an edge that connects them.
+* The vertex v is adjacent to vertex u.
 
 ### Incidence - Edge's POV
 For an edge, we would say that the edge (u,v) 
-is **incident** to the vertices u,v.
+is **incident** from vertex u, and is **incident** to vertex v.
 
+---
 
- 
+## Implementations
+In computer science, regardless of the type of graph used,
+the most common implementations to represent these data structures are:
+1. Adjacency List
+   1. Best for sparse graphs
+2. Adjacency Matrix
+   1. Best for tight/dense graphs
+3. Incidence Matrix
+
+![Example implementation](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/eximplem.png?raw=TRUE)

@@ -17,3 +17,12 @@ Example: this graph right here, would be implemented like this
 ![ex list AL](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exlistAL.png?raw=TRUE)
 
 
+---
+
+### Conclusions
+
+Pros:
+* Works best with sparse graphs since S(n) = O(n+m) = O(|V| + |E|)
+
+Cons:
+* Dense graphs might require very large space and verifying adjacency in case of a long linked list, takes more time
