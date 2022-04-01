@@ -15,3 +15,5 @@ Example: this graph right here, would be implemented like this
 
 
 ![ex list AL](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exlistAL.png?raw=TRUE)
+
+
