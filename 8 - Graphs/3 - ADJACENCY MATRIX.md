@@ -6,17 +6,27 @@ Every element a(i,j):
 * 1 if between i and j there is an edge
 
 
-Example: this graph right here, would be implemented like this
+Example: this directed graph right here, would be implemented like this
 
-![ex graph AL](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exgraphAL.png?raw=TRUE)
+![ex graph AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exgraphAM.png?raw=TRUE)
 
-![ex matrix AL](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exmatrixAL.png?raw=TRUE)
+![ex matrix AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exmatrixAM.png?raw=TRUE)
+
+Example: this undirected graph right here, would be implemented like this
+
+![ex un matrix AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exUngraphAM.png?raw=TRUE)
+
+![ex un matrix AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exUnmatrixAM.png?raw=TRUE)
+
+We can easily that self-loops are absent since all the elements where i = j, are represented by 0.
+* It also a symmetric matrix because edges do not have a direction. 
+* a(i,j) = a(j,i) for every i,j = 1...n.
 
 ---
 
 ### Conclusions
 
-Pros:
+Pros: 
 * Works best with dense graphs
 * Verifying adjacency, regardless of the graph's density, takes T(n) = O(1)
 
