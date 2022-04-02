@@ -1,4 +1,4 @@
-# Graph Properties and Definitions 
+# Graph Properties and Definitions pt1
 Here we regroup some definitions which are fundamental to get started on graph theory.
 
 ---
@@ -11,14 +11,6 @@ Simply put, a **dense/tight** graph are those for which |E| is close to |V|^2.
 ### Sparse Graph
 Simply put, a **sparse** graph are those for which |E| is much less 
 than |V|^2 (usually close to |V|).
-
-TBC...
-
----
-
-## Let's consider Vertices
-
-### Degree of a graph
 
 TBC...
 
@@ -117,6 +109,14 @@ An empty graph is a graph G=(V,E), where E = V x V
 
 Notation: a complete graph on **n vertices** is <mark>K(n)</mark>
 
+### Bipartite Graph
+A graph G=(V,E) is bipartite if
+* V = V(L) U V(R), V(L) ∩ V(R) = ∅
+    * Dividing V in two subsets V-left and V-right, which have no common vertex.
+* G[V(L)], G[V(R)] are empty
+    * The only edges present leave one vertex of a subset, and enters another vertex of the opposite vertex.
+    * No edges between vertices of the same subset.
+  
 ---
 
 ## Cyclicality
@@ -139,11 +139,20 @@ A graph that is not cyclic is said to be acyclic.
 A cyclic graph possessing exactly one (undirected, simple) cycle is called a unicyclic graph.
 
 ---
+## Tree  
 
-## Bipartite Graph
-A graph G=(V,E) is bipartite if
-* V = V(L) U V(R), V(L) ∩ V(R) = ∅
-  * Dividing V in two subsets V-left and V-right, which have no common vertex.
-* G[V(L)], G[V(R)] are empty
-  * The only edges present leave one vertex of a subset, and enters another vertex of the opposite vertex.
-  * No edges between vertices of the same subset.
+### Free Tree
+A free tree is an <mark>undirected, connected and acyclic graph G=(V,E)</mark>
+* They are not the same as rooted trees, the hierarchical data structure we are used to. 
+* In fact, they **have no root nor hierarchy**.
+
+### Rooted Tree
+A rooted tree is a pair (G, r) where:
+* G is a free tree
+* r is a vertex of the tree, called "root"
+  * r ∈ V
+
+### Forest
+A forest is an acyclic graph.
+A forest is a graph composed of a certain number of C.C.s, and each C.C. is a tree.
+

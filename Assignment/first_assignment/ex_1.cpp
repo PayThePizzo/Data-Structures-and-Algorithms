@@ -17,7 +17,7 @@ int treBil_aux_rec(PNode root){
     else if (!root->left && root->right) {  //only right child
         return treBil_aux_rec(root->right)+1 ;
     }
-    else if(!root->left && !root->right){   //empty
+    else if(!root->left && !root->right) {   //empty
         return 0;
     }
 }
