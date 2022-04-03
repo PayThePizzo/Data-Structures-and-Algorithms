@@ -12,8 +12,6 @@ Simply put, a **dense/tight** graph are those for which |E| is close to |V|^2.
 Simply put, a **sparse** graph are those for which |E| is much less 
 than |V|^2 (usually close to |V|).
 
-TBC...
-
 ---
 
 ## Subgraph
@@ -46,6 +44,10 @@ A <mark>path is a sequence of vertices `<x0, x1, ..., xq>`</mark> where
 Here we find an example: 
 
 ![ex path](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/expath.png?raw=TRUE)
+
+### Sub-Path
+Given a path `p = <x0, x1, ..., xk>` a sub-path of p, 
+* p' = <x(i+1), x(i+2), ..., xj> where `0 <= i <= j <= k`
 
 ### Simple Path
 A simple path is a path in a graph which **does not have repeating vertices**.
@@ -109,6 +111,10 @@ An empty graph is a graph G=(V,E), where E = V x V
 
 Notation: a complete graph on **n vertices** is <mark>K(n)</mark>
 
+### Clique
+An undirected graph G=(V,E) with 𝐶 ⊆ V as a subset of V has the following property:<mark>
+the sub-graph G[C] is complete</mark>
+
 ### Bipartite Graph
 A graph G=(V,E) is bipartite if
 * V = V(L) U V(R), V(L) ∩ V(R) = ∅
@@ -116,7 +122,7 @@ A graph G=(V,E) is bipartite if
 * G[V(L)], G[V(R)] are empty
     * The only edges present leave one vertex of a subset, and enters another vertex of the opposite vertex.
     * No edges between vertices of the same subset.
-  
+    
 ---
 
 ## Cyclicality

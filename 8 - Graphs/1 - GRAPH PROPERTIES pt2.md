@@ -14,25 +14,87 @@ Formally, given u ∈ V
 
 ### Degree of vertex - Undirected graphs
 Given an undirected graph G=(V,E), if we consider one of its vertices u ∈ V,
-the number of edges incident to/enter u is the degree of that vertex.
+the number of edges incident to u is the degree of that vertex.
 * deg(u) = |N(u)|, with **deg(u) ∈ [0,n-1]**
   * If the vertex has a degree of 0, then it is an isolated vertex.
+  * If the vertex has a degree of 1, then it is a terminal vertex
   * Since there are no self-loops the maximum deg(u) is n-1.
 
 It is not possible to construct an undirected graph where all the vertices' degrees are 
 distinct.
 
-### Out-Degree of vertex - Directed graphs
+### Out-Degree/In-Degree of vertex - Directed graphs
+Given a directed graph G=(V,E), the degree of a vertex u **depends on the entering/leaving edges** related to u.
+* Out-Degree of a Vertex, is the count of edges leaving that vertex.
+* In-Degree of a Vertex, is the count of edges entering that vertex.
 
-### In-Degree of vertex - Directed graphs
+We can derive that: **sum(in-deg(u), u∈V) = sum(out-deg(u), u∈V) = m = |E|**
 
 ---
 
 ## Handshake Lemma
 Let G be an undirected graph G=(V,E), with n=|V| and m=|E|
-* `sum(deg(u))` with u∈V `sum(deg(u))= 2m`
+* <mark>`sum(deg(u), u∈V) = 2m`</mark>
   * We always obtain an **even** number for a sum of every degree
   * Also, it is two times the number of edges
 * `m = 1/2 * sum(deg(u))`
 
-Why is this true?
+Why is this true? Demonstration
+* We know graph can always be represented by an Adjacency Matrix 
+  * Let's say V={1,2,...,n}, to calculate deg(i) we just need to sum the i-th row's elements.
+  * `deg(i) = sum(a(i,j), j= 1 to n)`  
+* `sum(deg(i), i= 1 to n) = sum(sum(a(i,j), j = 1 to n), i = 1 to n) = 2m`
+
+Here are some trivial consequences of this Lemma:
+
+### Property - 1
+In an undirected graph G, the count of vertices of odd degree is always even.
+
+Demonstration: given an undirected graph G=(V,E)
+* V can be divided in P,D such that V= P U D and
+* P = {u∈V| deg(u) is even}
+* D = {u∈V| deg(u) is odd}
+
+Then:
+
+![dem prop 1](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/demprop1.png?raw=TRUE)
+
+So 2m = 2*sum(h(u), u∈V) + |D|
+* |D| = 2m - 2sum(h(u),u∈V) = 2(m-2sum(h(u),u∈V) 
+* |D| is an integer and is even.
+  * We are not interested in what sum(h(u), u∈V) is, it does not change the outcome
+
+### K-Regular Graph
+Let G be an undirected graph G=(V,E) and integer k, we say that G is <mark>*k-regular*
+if ∀u∈V: deg(u) = k</mark>
+* If all vertices have the same degree k.
+  * A 3-regular graph is a cubical graph 
+
+Here are some examples:
+
+2-regular graphs have deg(u)=2
+* 2m = sum(deg(u)) = 2n
+  * **m = n!** in a 2-regular graph
+
+3-regular graphs have deg(u)=3
+* 2m = sum(deg(u)) = 3n
+  * 2m = 3n = 2n + n
+  * n = 2(m-n), so **n is even in a 3-regular graph**
+
+4-regular graphs have deg(u)=4
+* 2m = sum(deg(u)) = 4n
+  * m = 2n, **m is even and it is always 2n in 4-regular graph**
+
+### Property - 3
+Let G be an undirected graph G=(V,E) without isolated vertices. We suppose
+|E| = |V|-1, so m=n-1
+
+Let V1 = {u∈V| deg(u)=1}
+
+We can demonstrate that there exist at least two vertices with degree equal to 1 (terminal vertex), |V1|>=2
+* m = n -1 
+* 2n-2 = 2m = sum(deg(u), u∈V) = sum(deg(u), u∈V1) + sum(deg(u), u∈{V\V1})
+* |V1| + sum(deg(u), u∈{V\V1}) >= |V1| + 2|V\V1| = |V1| + 2|V| - 2|V1|
+* 2n - 2 >= |V1| - 2n - 2|V1| -> -2 >= |V1| - 2|V1| -> **|V1|>= 2**
+
+---

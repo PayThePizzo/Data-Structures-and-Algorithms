@@ -8,13 +8,13 @@ Every element a(i,j):
 
 Example: this directed graph right here, would be implemented like this
 
-![ex graph AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exgraphAM.png?raw=TRUE)
+![ex graph AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exgraphAL.png?raw=TRUE)
 
 ![ex matrix AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exmatrixAM.png?raw=TRUE)
 
 Example: this undirected graph right here, would be implemented like this
 
-![ex un matrix AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exUngraphAM.png?raw=TRUE)
+![ex un graph AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exUngraphAM.png?raw=TRUE)
 
 ![ex un matrix AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exUnmatrixAM.png?raw=TRUE)
 
