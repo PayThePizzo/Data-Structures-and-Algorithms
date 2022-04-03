@@ -24,6 +24,34 @@ We can easily that self-loops are absent since all the elements where i = j, are
 
 ---
 
+## Matrix manipulation and graph properties
+Let G be an undirected graph G=(V,E), let's consider its Adjacency Matrix A
+
+### A x A
+We can do AxA which is product of two matrices.
+
+```python
+A = [   [0,1,0,0],
+        [1,0,1,1],
+        [0,1,0,1],
+        [0,1,1,0]]
+
+AxA = [ [1,0,1,1]
+        [,3,,]
+        [,,2,]
+        [,,,2]]
+```
+The numbers on the main diagonal, [1,3,2,2] represent the degrees of the vertices.
+* ∀i = 1 to n: a(i,i)∈(AxA) = deg(i)
+* ∀i,j = 1 to n, with i!=j: a(i,j)∈(AxA) = ...
+
+### A x A x A 
+
+### A^k
+
+
+---
+
 ### Conclusions
 
 Pros: 

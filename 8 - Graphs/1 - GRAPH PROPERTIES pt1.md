@@ -71,6 +71,11 @@ When we talk about connectivity and graphs we use the topological point of view.
 
 ### Connected Graph
 A graph G=(V,E) is said to be connected i.f.f. there exists at least one path from u to v.
+* In order to do this we need at least a certain number of edges for every graph.
+
+Let G be an undirected graph G=(V,E), if G is also connected then:
+* <mark>|E|>=|V|-1</mark> it is a necessary (but not sufficient) condition.
+* The opposite is not necessarily true
 
 ### Disconnected Graph
 A graph that is not connected is said to be disconnected.
@@ -104,7 +109,7 @@ An empty graph is a graph G=(V,E), where E = ∅
 * The density is 0
 
 ### Complete Graph
-An empty graph is a graph G=(V,E), where E = V x V
+A complete graph is a graph G=(V,E), where E = V x V
 * E contains **all the possible edges** between the vertices in V.
 * It is trivially a connected graph. Although the opposite is not true. 
 * The density is 1
@@ -114,6 +119,12 @@ Notation: a complete graph on **n vertices** is <mark>K(n)</mark>
 ### Clique
 An undirected graph G=(V,E) with 𝐶 ⊆ V as a subset of V has the following property:<mark>
 the sub-graph G[C] is complete</mark>
+* Maximal Clique:  a clique V'⊆V which is not contained inside a larger clique
+* Maximum Clique: a clique V'⊆V with the maximum cardinality
+  * a Maximum Clique is also Maximal, the opposite is not always true.
+* Clique Number ω(G): the cardinality of its maximum clique
+  * 
+
 
 ### Bipartite Graph
 A graph G=(V,E) is bipartite if
@@ -138,8 +149,12 @@ In other words, some number of vertices connected in a closed chain.
 
 When it comes to directed graphs, there must be at least three vertices.
 
-### Acyclic Graph
+### Acyclic Graph / Forest
 A graph that is not cyclic is said to be acyclic. 
+
+Let G be an undirected graph G=(V,E), if G is also acyclic then:
+* <mark>|E|<=|V|-1</mark>
+* The opposite is not necessarily true
 
 ### Unicyclic Graph
 A cyclic graph possessing exactly one (undirected, simple) cycle is called a unicyclic graph.
@@ -151,6 +166,8 @@ A cyclic graph possessing exactly one (undirected, simple) cycle is called a uni
 A free tree is an <mark>undirected, connected and acyclic graph G=(V,E)</mark>
 * They are not the same as rooted trees, the hierarchical data structure we are used to. 
 * In fact, they **have no root nor hierarchy**.
+
+So if G is an acyclic and connected graph (a tree) <mark>|E|=|V|-1</mark>
 
 ### Rooted Tree
 A rooted tree is a pair (G, r) where:

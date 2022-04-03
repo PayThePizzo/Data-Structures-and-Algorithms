@@ -1,0 +1,52 @@
+# Graph Properties and Definitions pt1
+
+## Graph Isomorphism
+Let's consider two graphs G1=(V1,E1) and G2=(V2,E2)
+
+An isomorphism is a relation `ϕ : V1 --> V2` between the vertices of
+the first graph and those of the second one 
+1. It must be bijective
+2. ∀u,v ∈ V1: (u,v)∈(E1) <=> (ϕ(u), ϕ(v))∈(V2)
+   1. It preserves the adjacency between vertices of the same graph 
+   2. if u1,v1 are connected through an edge, u2,v2 must be too
+
+G1 and G2 are isomorphic, **G1 ≃ G2** if: 
+* there is an isomorphism between G1 and G2.
+
+Here's an example:
+![ex isomorphism](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exisom.png?raw=TRUE)
+
+So now, let's consider these two graphs: can we find an isomorphism?
+```python
+G1              |   G2
+    (1)         |       (a)-(b)-(c)
+  /     \       |
+(3)     (2)     |
+
+#This is an isomorphism G1 ≃ G2!
+# ϕ(1) = a
+# ϕ(2) = b
+# ϕ(3) = c
+```
+
+Mind that there is **more than one isomorphism** 
+* To this day, it is an NP-complete problem to verify if two graphs are
+isomorphic. Nobody has found a solution in polynomial time.
+
+From another point of view, it is relatively easy to find out whether two graphs 
+G1, G2 are not isomorphic. Here are some properties that stand true but are not sufficient:
+1. **|V1| = |V2|, |E1| = |E2|** are necessary (but not sufficient) conditions
+2. ϕ(u∈V)∈V2 -> deg(u∈V) = deg(ϕ(u∈V))
+   1. The **isomorphism maps vertices with the same degree**
+3. **Degree Sequence**: given G=(V,E) is a sorted vector of length n=|V|, which means vertices are sorted 
+   based on their degrees. 
+   2. Two graphs are isomorphic if they have the same degree sequences, 
+   **deg-seq(G1)=deg-seq(G2)** is a necessary (but not sufficient) condition
+4. CC(G1) = CC(G2)
+5. ω(G1) = ω(G2)
+   1. Clique number are the same
+
+There are many properties we could list but nothing helped to solve the problem.
+
+---
+
