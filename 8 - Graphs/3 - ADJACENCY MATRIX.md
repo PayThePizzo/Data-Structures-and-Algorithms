@@ -24,31 +24,40 @@ We can easily that self-loops are absent since all the elements where i = j, are
 
 ---
 
-## Matrix manipulation and graph properties
-Let G be an undirected graph G=(V,E), let's consider its Adjacency Matrix A
+## Matrix manipulation and graph properties - Undirected
+Let G be an undirected graph G=(V,E), let's consider its Adjacency Matrix A and see if we can find 
+any properties 
 
 ### A x A
 We can do AxA which is product of two matrices.
 
 ```python
-A = [   [0,1,0,0],
-        [1,0,1,1],
-        [0,1,0,1],
-        [0,1,1,0]]
+A = [   [0,1,1,1],
+        [1,0,1,0],
+        [1,1,0,1],
+        [1,0,1,0]]
 
-AxA = [ [1,0,1,1]
-        [,3,,]
-        [,,2,]
-        [,,,2]]
+AxA = [ [3, 1, 2, 1]
+        [1, 2, 1, 2]
+        [2, 1, 3, 1]
+        [1, 2, 1, 2]]
 ```
-The numbers on the main diagonal, [1,3,2,2] represent the degrees of the vertices.
-* ∀i = 1 to n: a(i,i)∈(AxA) = deg(i)
-* ∀i,j = 1 to n, with i!=j: a(i,j)∈(AxA) = ...
+The numbers on the main diagonal, [3,2,3,2] represent the degrees of the vertices.
+* <mark>∀i = 1 to n: a(i,i)∈(AxA) = deg(i)</mark>
+  * a(i,i)∈(AxA) = sum(a(i,l)*a(l,i), l= 1 to n) 
+  * a(i,i)∈(AxA) = sum(a(i,l)*a(i,l), l= 1 to n), since they are symmetrical
+  * a(i,i)∈(AxA) = sum(a(i,l)^2, i= 1 to n), which is similar to sum(a(i,l), i= 1 to n)
+  * Since we only have 1s and 0s sum(a(i,l)^2, i= 1 to n) = sum(a(i,l), i= 1 to n)
+  * a(i,i)∈(AxA) = sum(a(i,l), i= 1 to n) = deg(i)
 
-### A x A x A 
-
+Now, we consider the elements outside the main diagonal. 
+* ∀i,j = 1 to n, with i!=j: a(i,j)∈(AxA) <mark>represents the count path of length 2, 
+between the vertex i and j.</mark>
+  * a(i,j)∈(AxA) = sum(a(i,l)*a(l,j), l = 1 to n), mind that the product is 1 when both are not 0.
+  * This is only possible when there exist two edges a(i,l) and a(l,j) 
+  
 ### A^k
-
+1. ∀i = 1 to n, with i!=j: <mark>a(i,j)∈(A^k)</mark> is the count of path of length **k**, between i and j.
 
 ---
 

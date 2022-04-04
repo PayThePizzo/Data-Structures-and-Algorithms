@@ -74,8 +74,11 @@ A graph G=(V,E) is said to be connected i.f.f. there exists at least one path fr
 * In order to do this we need at least a certain number of edges for every graph.
 
 Let G be an undirected graph G=(V,E), if G is also connected then:
-* <mark>|E|>=|V|-1</mark> it is a necessary (but not sufficient) condition.
+* <mark>G is connected -> |E|>=|V|-1</mark> it is a necessary (but not sufficient) condition.
 * The opposite is not necessarily true
+
+Let G be an undirected graph G=(V,E)
+* if <mark>deg(u∈V)>= (n-1)/2 -> G is connected</mark>
 
 ### Disconnected Graph
 A graph that is not connected is said to be disconnected.
@@ -90,6 +93,8 @@ A C.C. is a subset of vertices V'⊆ V, for which some properties stand true:
    1. Each component is **maximal**, is not contained in any larger subgraph, that also is connected.
 
 Observation: The C.C. of a graph, are a partition of V.
+
+### Complementary Graph
 
 ---
 
@@ -123,8 +128,6 @@ the sub-graph G[C] is complete</mark>
 * Maximum Clique: a clique V'⊆V with the maximum cardinality
   * a Maximum Clique is also Maximal, the opposite is not always true.
 * Clique Number ω(G): the cardinality of its maximum clique
-  * 
-
 
 ### Bipartite Graph
 A graph G=(V,E) is bipartite if
@@ -153,7 +156,7 @@ When it comes to directed graphs, there must be at least three vertices.
 A graph that is not cyclic is said to be acyclic. 
 
 Let G be an undirected graph G=(V,E), if G is also acyclic then:
-* <mark>|E|<=|V|-1</mark>
+* <mark>|E|<=|V|-1</mark>, too many edges cannot be placed without creating cycles
 * The opposite is not necessarily true
 
 ### Unicyclic Graph
