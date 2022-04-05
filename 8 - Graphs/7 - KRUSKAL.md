@@ -61,3 +61,4 @@ Example:
 
 ![ex kruskal](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exkruskal.png?raw=TRUE)
 
+![ex kruskal 2](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exkruskal2.png?raw=TRUE)
