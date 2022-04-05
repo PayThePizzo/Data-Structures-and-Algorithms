@@ -1,14 +1,56 @@
+# Kruskal
+This algorithm uses a set A, which is initially empty. 
+It selects an edge, and adds it to A as long as there are no cycles. 
 
+The order for edge extraction is based on the weight of the edges (from the minimum weight).
 
 ```python
-MSTK(G, w)
+MST_KRUSKAL(Graph G, Function w)
     A <- {}
-    for each v in V[G]
-        MAKE-SET(v)
-        #ordina gli archi di E per w non decrescente
-    for each (u,v) in E #in ordine
-        if FIND-SET(u) != FIND-SET(v) then
-            A <- A U {(u,v)}
-            UNION(u,v)
-    return A
+    for (Vertex v in G.V):
+        make_set(v);    #initialize the sets
+    sort(G.E)       #sorts smallest to largest
+    for (each Edge (u,v) in G.E):   #in order
+        if(find_set(u) != find_set(v)): #if it does not create a cycle
+            union(u,v);
+            A <- A U {(u,v)};
+    return A;
 ```
+**Final Time Complexity**: T(n) =  O(m*log(m))
+
+### 1 - Complexity Demonstration
+Given a connected graph G=(V,E) where 
+* n = |V|
+* m = |E|
+* m >= n-1
+
+1. First cycle = O(n)
+2. Sorting = O(m*log(m))
+   1. We cannot do better than this, since we are sorting edges
+3. Second cycle and operations = O(m * log(m))
+   1. Operations = O(log(m))
+
+In total T(n) = O(n + m * log(m) + m * log(m)) =  O(m*log(n))
+* n is dominated by m, as we know by hypothesis
+
+#### CPU improvements
+The following improvements, change a bit the complexity from a CPU p.o.v but does not impact asymptotically 
+the complexity
+
+1. **A** could be a minimum weight edge, we save a step.
+2. In the second cycle we could stop when we find an MST.
+   1. Stop when |A| = n-1
+   2. It is hard to realize.
+
+### 2 - Correctness Demonstration
+It is trivially true by the fundamental theorem of MST, because Kruskal's algorithm is a direct
+consequence of the **MST Theorem**. So if your professor asks you to demonstrate the correctness
+of Kruskal, just demonstrate the correctness of this theorem
+
+Thanks to the corollary 23.2 we know that
+* The set A, during the iterations, becomes a forest: a set of CC which are all trees.
+* Taking the light edge, means the edge connects the CCs.
+* We are in the right conditions
+
+Moreover, find_set(u) != find_set(v) ensures that the two vertices are not in the same
+CC, which would create a cycle.

@@ -1,3 +1,5 @@
+# Prim
+
 
 ```python
 MSTP(G, w, r)
@@ -14,3 +16,13 @@ MSTP(G, w, r)
                 key[v] <- w(u,v)
     return A = {(u, pi[u]) in E | u in V\{r}}
 ```
+**Final Time Complexity**: T(n) =
+
+### 1 - Complexity Demonstration
+
+
+
+#### CPU improvements
+
+
+### 2 - Correctness Demonstration
