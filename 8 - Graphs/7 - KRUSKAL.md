@@ -1,8 +1,12 @@
 # Kruskal
 This algorithm uses a set A, which is initially empty. 
-It selects an edge, and adds it to A as long as there are no cycles. 
+It selects an edge, and adds it to A as long as there are no cycles.
+* The order for edge selection is based on the weight of the edges (from the minimum weight).
 
-The order for edge extraction is based on the weight of the edges (from the minimum weight).
+At the beginning it may look like the growing data structure, looks like a forest
+and eventually becomes a tree.
+
+## The algorithm
 
 ```python
 MST_KRUSKAL(Graph G, Function w)
