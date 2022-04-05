@@ -54,3 +54,10 @@ Thanks to the corollary 23.2 we know that
 
 Moreover, find_set(u) != find_set(v) ensures that the two vertices are not in the same
 CC, which would create a cycle.
+
+--- 
+
+Example:
+
+![ex kruskal](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exkruskal.png?raw=TRUE)
+
