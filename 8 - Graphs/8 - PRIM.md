@@ -19,7 +19,7 @@ The resulting tree has a particular vertex, the root. So it is a
   * Changing vertex, changes the ST that we can find.
   
 #### Fourth Difference
-∀u∈V[G], Prim keeps to field up to date at every iteration for each vertex:
+∀u∈V[G], Prim keeps a field up to date at every iteration for each vertex:
 * key[u], for a vertex it represents the minimum weight out of all the edges **crossing 
 the cut** and that are incident to that particular vertex.
     * Numeric field used in the P.Q.
@@ -28,12 +28,13 @@ the cut** and that are incident to that particular vertex.
     * Pointer Q -> V\Q
     * If key[u] = inf(), π[u] = NULL
 
-Prim manages a priority queue Q⊆V[G], which utilizes the key field. Can be implemented through a binary heap.
+Prim manages a **priority queue** Q⊆V[G], which utilizes the key field. Can be implemented through a binary heap.
 * Contains the **vertices to select/extract**. While Kruskal extracts edges.
 
+## The algorithm
 At every iteration, the graph is cut into two halves.
 * V\Q, the set containing the already selected vertices
-* Q, the set containing the rest of the vertices.
+* Q, the set containing the vertices to be selected.
 
 There surely are edges going from V\Q to Q. like here:
 
@@ -42,8 +43,6 @@ There surely are edges going from V\Q to Q. like here:
 In Q, every vertex u has already all the info necessary!
 * Easy to find light edge at every step, because its minimum(u.key, u∈Q)
 * We perform a cut and update the data inside Q.
-
-## The algorithm
 
 ```python
 MST_PRIM(Graph G, Function w, Vertex r)
