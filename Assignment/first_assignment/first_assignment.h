@@ -1,6 +1,8 @@
 #ifndef ASD_EX_1_H
 #define ASD_EX_1_H
 #include <math.h>
+#include <vector>
+using namespace std;
 // Ex 1 =================================================
 
 struct Node{
@@ -48,6 +50,16 @@ struct NodeG{
 };
 
 typedef NodeG* PNodeG;
+
+
+struct DList{
+    int h;
+    int level;
+    DList* next;
+};
+
+typedef DList* PDList;
+
 
 int larghezza(PNodeG r);
 
