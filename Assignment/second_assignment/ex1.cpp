@@ -1,15 +1,11 @@
 //
-// Created by PayThePizzo on 3/30/2022.
+// Created by PayThePizzo on 4/14/2022.
 //
 
-#include <iostream>
+#include "second_assignment.h"
 #include <math.h>
 #include <vector>
 #include <limits>
-
-using namespace std;
-
-
 
 bool unione(vector<pair<int, int>>& arr, pair<int, int>& ris){
     int min = INT_MAX;
@@ -33,25 +29,6 @@ bool unione(vector<pair<int, int>>& arr, pair<int, int>& ris){
     ris.first = min;
     ris.second = max;
 
-    cout << ris.first <<  " ";
-    cout << ris.second << endl;
-
     return true;
 }
 
-int main(){
-
-    vector<pair<int, int>> arr;
-    arr.push_back({1, 2});
-    arr.push_back({3, 4});
-
-
-    pair<int, int> ris;
-    ris.first = 0;
-    ris.second = 0;
-
-    unione(arr, ris);
-
-
-    return 0;
-}
