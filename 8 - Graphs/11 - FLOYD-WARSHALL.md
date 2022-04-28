@@ -10,7 +10,8 @@ We assume that:
 2. Each vertex has a number like so V={1,2,...,n}.
 3. We accept negative edges
 4. No negative cycles 
-   1. Even though the algorithm can be used to locate negative cycles
+   1. Even though the algorithm can be used to locate negative cycles, We just need to 
+   look at the **main diagonal**. **If it contains numbers lower than 0**, then there are negative cycles.
 
 Since the algorithm performs operation in a matrix-like data structure, represent the
 entry graph as a matrix. The algorithm, takes a matrix W for input and returns a matrix D
@@ -70,11 +71,11 @@ represent the entry graph as a matrix.
 
 ---
 
-## 2 - Correctness Demonstration
+## Correctness Demonstration
 
 To go from W to D, we need to first add some more notions
 
-#### 1 - Intermediate Vertices
+### 1 - Intermediate Vertices
 An intermediate vertex of a simple path p=<v1, v2,...vi> is any vertex of p other than v1 or vi,
 that is, any vertex in the set {v2, v3, ..., vi-1}
 
@@ -121,8 +122,8 @@ solution!
   * <mark>d^k(ij) = min{d^k-1(ik)+ d^k-1(kj), d^k-1(ij)}</mark>
 
 Finally, d^k(ij) equals to
-* w(ij), if k = 0
-* min{d^k-1(ik)+ d^k-1(kj), d^k-1(ij)}, else
+* **w(ij)**, if k = 0
+* **min{d^k-1(ik)+ d^k-1(kj), d^k-1(ij)}**, else
 
 ---
 
@@ -140,11 +141,12 @@ FLOYD_WARSHALL(W)
 ```
 **Final Time Complexity**: T(n) = Θ(n**3)
 
-### 1 - Complexity Demonstration
+### Complexity Demonstration
 1) First operations are constant: O(1)
 2) 3 nested for: T(n) = Θ(n**3)
    1) min() can be found in constant time: O(1)
 
+#### Spatial Complexity
 From a spatial point of view, the algorithm generates n matrices of size n^2. 
 So in total, S(n) = Θ(n^3). 
 
@@ -154,6 +156,12 @@ We can use just one matrix and overwrite its content of without conflicts/dirty-
 
 #### Property 1
 If there are no negative cycles (as for hypothesis), then for every k=1 to n: d^k(ii) = 0
+* d^k(ii) = 0 
+* d^k(ii) = d^k(ii) = min{d^k-1(ik)+ d^k-1(ki), d^k-1(ii)}
+* d^k(ii) = d^k(ii) = min{d^k-1(ik)+ d^k-1(ki), 0}, by hypothesis
+  * d^k-1(ik)+ d^k-1(ki) means there is a cycle that goes from i to k and back to i.
+  * A cycle, since there are no negative cycles, must be >= 0.
+  * In this case, the minimum we can find is 0!
 
 #### Property 2
 During the transition from D^k-1 to D^k, the row k and column k do not change.
@@ -162,21 +170,46 @@ For i,j,k∈V
 * d^k(ik) = d^k-1(ik)
 * d^k(kj) = d^k-1(kj)
 
+Why is this true? (We'll show only one but it works for both)
+* d^k(ik) = d^k-1(ik) **?**
+  * d^k(ik) = min{d^k-1(ik), d^k-1(ik) + d^k-1(kk)}
+  * d^k(ik) = min{d^k-1(ik), d^k-1(ik) + 0}, by property 1
+  * d^k(ik) = min{d^k-1(ik), d^k-1(ik)}
+  * d^k(ik) = d^k-1(ik)
+  
+To determine the value of d^k(ij), at time k-1, we look for the **minimum** between
+1. d^k-1(ik)+ d^k-1(kj) the sum of the elements **kj+ik** at time k-1 of the matrix D^k-1 and,
+2. d^k-1(ij), the element in **ij** at time k-1 of the matrix D^k-1
 
+![min fw](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/minfw.png?raw=TRUE)
 
+Thanks to the property 2, we can reformulate the algorithm now:
+```python
+FLOYD_WARSHALL(W)
+    n = count(W.rows);
+    D = W;
+    for(k=1 to n): #Computes the sequence of D^k
+        for(i=1 to n):
+            for(j=1 to n):
+                d(ij) = min{d(ik)+ d(kj), d(ij)};
+    return D;
+```
 
 ---
 
 #### Example
 
----
+![exfw](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exfw.png?raw=TRUE)
 
-#### CPU Improvement
+Some cheatcodes now:
 
----
+The elements of the column **k-1** and row **k-1** we have considered, at a time **k-1**,
+do not change at a time k!
+* D^0 -> D^1
+  * column 0 and row 0, do not change when we are in D^1!
 
-#### Problems
+If we need to compute a result and we find +inf() on the column or row we are considering, 
+we can copy that particular row or column. The minimum between +inf() and a small number, is always that number!
+* Look out for negative cycles!
 
----
 
-## Conclusions
