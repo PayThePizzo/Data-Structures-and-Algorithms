@@ -1,2 +1,22 @@
 # Max Clique Problem
+It is a problem for undirected, non-weighted graphs G=(V,E).
 
+
+--- 
+
+## Clique
+Let G be a graph such that, G=(V,E). A clique **C⊆V**, is a **subset of V** such that any **vertex inside the
+clique is connected with all the vertices inside the clique**. 
+* This means for any pair of vertices in V, there exists an edge connecting them. 
+* If C is a clique, G[C] is complete (the subgraph G restricted by C is complete).
+
+## Maximal Clique
+A clique is maximal if it is **not contained inside a larger clique**.
+* ∄ clique D, C⊆D
+* Maximal clique does not imply it is also a maximum clique
+
+## Maximum Clique
+If the cardinality of C, **|C|**, is the **largest out of all possible cliques**.
+* Maximum clique implies it is also a maximal clique
+
+---
