@@ -58,8 +58,9 @@ The algorithm we just saw, and Kruskal share this same "skeleton", but they are 
       1) **Add it**  to _data structure_
 4) **Return** the _data structure_
 
-
-
+#### Ambiguous points
+The predicate used to sort the elements and the condition of compatibility are yet
+to be defined and can change for each problem we face.
  
 
 
