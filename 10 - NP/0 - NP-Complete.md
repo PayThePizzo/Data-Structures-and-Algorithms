@@ -18,6 +18,8 @@ time and the other is NP-complete. This is the case for the greedy clique.
 The **class P** consists of those problems that are solvable in polynomial time. They
 are problems that can be solved in time O(n^k) for some
 constant k, where n is the size of the input to the problem.
+* However, it can contain untreatable problems (since the algorithm might take
+too long, and it is not usable in real life)
 
 The **class NP** consists of those problems that are “verifiable” in
 polynomial time.
@@ -41,5 +43,6 @@ Problems have two subcategories:
     * We cannot construct an algorithm capable of evaluating this as it would
     need to mimic the input program. It is a paradox.
 * _Decidable_, for which it is possible to write an algorithm
-  * Treatable: Class P algorithm
-  * Untreatable:
+  * Treatable: algorithms that have polynomial time **O(n^k)**, **Class P algorithm**
+  * Untreatable: algorithms which might take too long **O(k^n)**, and are not usable
+  in real life.
