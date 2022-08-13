@@ -14,7 +14,7 @@ The logical idea is to have a set of pairs *{key:value}*
 * **Search(Dictionary S, Key K)**
   * Pre: None
   * Post: Returns the value associated to the key K if it is present inside S. Else, it returns NULL
-* **Insert(Dictionary S, Element V,Key K)**
+* **Insert(Dictionary S, Element V, Key K)**
   * Pre: None
   * Post: Associates the value V with the Key K,
 * **Delete(Dictionary S, Key k)**
