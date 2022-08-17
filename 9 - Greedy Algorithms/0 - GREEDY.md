@@ -51,10 +51,10 @@ share a common structure.
 ## Greedy Common Structure
 The following structure is a very common structure between certain types of greedy algorithm.
 The algorithm we just saw, and Kruskal share this same "skeleton", but they are not the only ones.
-1) **Sorting** on some criteria
+1) **Sorting** on some _criteria_
 2) **Initialization** of a _data structure_
-3) **For each element** (one at a time, in order from step 1)
-   1) **If** A U {x} is ok (compatibility condition) 
+3) **For each element** (extracted following the sorting _criteria_)
+   1) **If** A U {x} is OK (compatibility condition) 
       1) **Add it**  to _data structure_
 4) **Return** the _data structure_
 
