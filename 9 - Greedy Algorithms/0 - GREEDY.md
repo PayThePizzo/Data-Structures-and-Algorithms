@@ -19,7 +19,7 @@ set of mutually compatible activities.
 
 Example with Gantt diagram:
 
-![ex act](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exact.jpg?raw=TRUE)
+![ex act](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exact.png?raw=TRUE)
 
 Let's try and study an algorithm that extracts activities in a greedy way:
 1) Sort activities by end time
