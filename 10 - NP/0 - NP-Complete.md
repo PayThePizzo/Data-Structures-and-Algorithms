@@ -1,6 +1,8 @@
 # NP-Complete Problems
 We will focus here on the **complexity of the PROBLEMS**, not the algorithms.
 
+
+
 ### Intro
 Almost all the algorithms we have studied thus far have been
 polynomial-time algorithms: on inputs of size n, their worst-case
@@ -86,7 +88,6 @@ Clique:
 
 If there is a polynomial-time solution for _Clique_, there must exist a polynomial
 solution for _Max Clique_ too, an.
-
 
 
 
