@@ -30,8 +30,8 @@ A problem is a **binary relation between two sets** (typically large).
 
 Problems have two subcategories:
 * _Decidable_, for which it is possible to write an algorithm that **solve them in a finite time-span**
-  * Treatable: algorithms that have polynomial time **O(n^k)**, **Class P algorithm**
-  * Untreatable: algorithms that have exponential time **O(k^n)**, and are not usable
+  * Treatable: algorithms that have polynomial time **O(n^k)**
+  * Untreatable: algorithms that have exponential o super-exponential time **O(k^n)**, and are not usable
     in real life. They cannot be reduced to polynomial time.
 * _Undecidable_, for which **it is not possible to write algorithms** that **solve them in a finite time-span**
   * We have no clue whether it is possible to find an algorithm that will converge, like the *alt problem*
@@ -43,6 +43,9 @@ Given a program and some data, we want to write an algorithm to that returns:
 
 We cannot construct an algorithm capable of evaluating this as it would need to mimic the input program. 
 It is a paradox.
+
+We cannot reduce the hardness of a problem on the presence of a solution at a certain time in history!
+We need some classification!
 
 ---
 

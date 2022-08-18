@@ -5,6 +5,8 @@ The **class P** consists of those decision problems that are **solvable in polyn
 * for some constant k,
 * n is the size of the input to the problem.
 
+Ex: MST, SP, Sorting...
+
 However, it can contain untreatable problems (since the algorithm might take too long, and it is not usable in real life)
 
 **If a problem is solvable in polynomial time, it is also verifiable in polynomial time! P⊆NP**
@@ -24,13 +26,13 @@ The **class NP** consists of those decision problems that are **“verifiable”
 ## A verifiable problem
 Given an "Instance-Yes" `i` and a Certificate `c` of a solution, If we can **verify through the Certificate c that `i` is an Instance-Yes**.
 
+Ex: It is like verifying a demonstration of an algorithm for a theorem.
+
 When it is not verifiable in polynomial time:
 * If verification algorithm we plan, returns `No` for a certain tuple (Instance-Yes i, Certificate c)
   * The **certificate is not sufficient or not correct**
   * It does not imply that the theorem is not correct! Only the demonstration is not correct.
 * If the verification algorithm is not polynomial, trivially.
-
-Ex: It is like verifying a demonstration of an algorithm for a theorem.
 
 ### Hamiltonian Graph - NP
 The problem: Is the graph a hamiltonian graph? Is there a cycle capable of touching all the vertices and go back

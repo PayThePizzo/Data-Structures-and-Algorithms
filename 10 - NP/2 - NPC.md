@@ -1,14 +1,5 @@
-# Class NPC or NP-Complete
-The **class NPC** consists of those **decision problems** that are in **NP** and is as
-“hard” as any problem in NP.
-
-P belongs to NPC class if:
-* P∈NP
-* ∀P'∈NP : P'⊆P(polynomial)
-
-
-∀u,v∈𝐶 -> ∃(u,v)
-
+### Intro
+We need to study some notation before getting to the point!
 
 ## Polynomial Reducibility (between problems) - <=p
 A **binary relation between two decision problems** (it can be extended to non-decision problems).
@@ -49,3 +40,34 @@ There must exist`A(1,3): I(1)->I(3)`, which is polynomial, by _concatenation_!
 ![trans 13](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/a13.png?raw=True)
 
 > <=p is TRANSITIVE!
+
+Is <=p symmetric? If given `P(1) <=p P(2)`, is it true that `P(2) <= P(1)? **NO**
+* Only for NPC problems.
+
+If it was, then we would have **P=NP** which is yet to be proved.
+
+> <=p is NOT SYMMETRIC
+
+---
+
+# Class NPC or NP-Complete
+A problem P belongs to NPC class if:
+1) `P∈NP`, **verifiable in polynomial time**
+   1) NPC ⊆ NP
+2) `∀P'∈NP : P' <=p P`(polynomial), closed to the polynomial reducibility
+   1) We need to **verify** that **all the problems in NP, are polynomially reducible to the problem P**.
+   2) This means that all NPC problems can be reduced between them, by _point 2_. If we solve just one in polynomial time, then
+      all of them must have a polynomial time solution.
+   3) As of today, no NPC problem was found to be reducible in polynomial time.
+   
+## Fundamental Theorem of NP-Completeness
+> P∩NPC != Ø --> P = NP
+
+They are very hard problems, not solvable in polynomial time. However, we do not know if they are untreatable!
+
+### Demonstration
+
+
+
+
+
