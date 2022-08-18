@@ -83,12 +83,7 @@ We want to demonstrate P = NP:
      * There is a polynomial algorithm that maps Q to P.
      * There is another polynomial algorithm that solves P.
      * There must be a polynomial algorithm that solves Q ∈ P
-
-
-![NPC](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/npc.png?raw=True)
-
-![NPC Topology](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/npctopology.png?raw=True)
-
+     
 ---
 
 # NPI or NP-Indeterminate
@@ -96,9 +91,28 @@ A class of problems which do not belong to NPC (no NPC demonstration was formula
 
 Ex: Isomorphism of Graphs
 
+![NPC](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/npc.png?raw=True)
+
+![NPC Topology](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/npctopology.png?raw=True)
+
 ### Isomorphism of Graphs - NPI
-TBD
+Given G1 and G2, is G2 an isomorphism of G2?
 
 #### Demonstration that Isom. of G. is in NP
 TBD
+
+---
+
+# Is NPC = Ø?
+By defining a set, we suppose that it is not empty!
+When it was first formulated, it was not clear whether it was empty or not.
+
+## Cook's Theorem - 
+Cook demonstrates the existence of the first NPC problem, which implied NPC != Ø.
+
+The notion of NP-completeness was proposed in 1971 by Cook, who gave
+the first NP-completeness proofs for formula satisfiability and 3-CNF satisfiability.
+
+
+
 
