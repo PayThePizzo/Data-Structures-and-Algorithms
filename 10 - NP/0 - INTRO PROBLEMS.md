@@ -1,8 +1,3 @@
-# NP-Complete Problems
-We will focus here on the **complexity of the PROBLEMS**, not the algorithms.
-
-
-
 ### Intro
 Almost all the algorithms we have studied thus far have been
 polynomial-time algorithms: on inputs of size n, their worst-case
@@ -22,7 +17,9 @@ time and the other is NP-complete. This is the case for the greedy clique.
 
 ---
 
-## Problem
+# Problem
+We will focus here on the **complexity of the PROBLEMS**, not the algorithms.
+
 We want to categorize the <mark> the complexity of a problem</mark>. 
 But first let's define a "problem".
 
@@ -39,7 +36,7 @@ Problems have two subcategories:
 * _Undecidable_, for which **it is not possible to write algorithms** that **solve them in a finite time-span**
   * We have no clue whether it is possible to find an algorithm that will converge, like the *alt problem*
 
-#### Example of Undecidable Problem: The Alt Problem.
+### Example of Undecidable Problem: The Alt Problem.
 Given a program and some data, we want to write an algorithm to that returns:
 * `TRUE`, if the program stops at some point, given with the input.
 * `FALSE`, else.
@@ -49,17 +46,17 @@ It is a paradox.
 
 ---
 
-## Classes of Problems
+# Classes of Problems
 * Optimization Problems
   * Max Clique
 * Decision Problems
 
-### Optimization Problems
+## Optimization Problems
 Many problems of interest are optimization problems, in which each feasible (i.e.,
 “legal”) solution has an associated value, and we wish to find a feasible solution
 with the best value.
 
-### Decision Problems
+## Decision Problems
 The expected answer is a binary, either yes or no for example.
 * For a decision problem P, **|S| = 2**. S = S' U S'', such that:
   * S' = { Instances-Yes }
