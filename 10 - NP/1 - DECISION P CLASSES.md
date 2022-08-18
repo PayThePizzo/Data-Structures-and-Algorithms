@@ -112,17 +112,4 @@ The problem: Is the graph a NON-hamiltonian graph?
 _Does this problem belong to NP?_ **NO**
 A possible Certificate could be represented by **all the possible cycles**, so the all the possible permutations of vertices.
 The algorithm shall verify each one of them!
-Therefore, an algorithm exists! But the T(best): Ω(n!), which is super-exponential! 
-
----
-
-## Class NPC or NP-Complete
-The **class NPC** consists of those **decision problems** that are in **NP** and is as
-“hard” as any problem in NP.
-
-P belongs to NPC class if:
-* P∈NP
-* ∀P'∈NP : P'⊆P(polinomial)
-
-
-∀u,v∈𝐶 -> ∃(u,v)
+Therefore, an algorithm exists! But the T(best): Ω(n!), which is super-exponential!
