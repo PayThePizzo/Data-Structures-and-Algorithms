@@ -82,13 +82,14 @@ We want to demonstrate P = NP:
    * **Q ∈ P**, by _transitivity_
      * There is a polynomial algorithm that maps Q to P.
      * There is another polynomial algorithm that solves P.
+     * There must be a polynomial algorithm that solves Q ∈ P
 
 
 ![NPC](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/npc.png?raw=True)
 
 ---
 
-#NPI or NP-Indeterminate
+# NPI or NP-Indeterminate
 A class of problems which do not belong to NPC (no NPC demonstration was formulated), nor a polynomial algorithm has been found for them.
 
 Ex: Isomorphism of Graphs
