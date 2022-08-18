@@ -35,7 +35,7 @@ We need to plan a **verification algorithm**:
   * `Yes`
   * `No`, **means that the given certificate is not sufficient or not correct**
 
-![Hamiltonian Graph]()
+![Ex Hamiltonian Graph](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exhamiltongraph.png?raw=True)
 
 In this case, as a certificate we can use a sorted sequence of vertices (permutation of n = |V| vertices).
 This permutation identifies the path along the graph G, which should represent the hamiltonian cycle.
@@ -53,6 +53,7 @@ We need to plan a **verification algorithm**:
   * `Yes`
   * `No`, **means that the given certificate is not sufficient or not correct**
 
+![Ex]
 
 ---
 
