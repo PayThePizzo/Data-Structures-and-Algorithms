@@ -17,3 +17,8 @@ Given P(1) and P(2), we can say that P(1) is polynomially reducible to P(2) `P(1
 a polynomial algorithm A (such that T(A)=O(n^k)) which "maps"/transforms the Instances of P(1) in equivalent Instances of P(2).
 
 ![poly red](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/polyred.png?raw=True)
+
+By applying A, we obtain a result that preserves the positivity/negativity of the instances!
+
+![poly red2](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/polyred2.png?raw=True)
+
