@@ -113,6 +113,24 @@ Cook demonstrates the existence of the first NPC problem, which implied NPC != �
 The notion of NP-completeness was proposed in 1971 by Cook, who gave
 the first NP-completeness proofs for formula satisfiability and 3-CNF satisfiability.
 
+> CIRCUIT_SAT ∈ NPC
+
+The satisfiability problem concerns circuit's logic. CIRCUIT_SAT is the case where a circuit produces `1` for a
+configuration.
+
+Imagine having a circuit with n entry lines (2^n possible configurations), and just one output `1` or `0`.
+Given a boolean circuit, with n entries and just one output, can we determine the **entry values** such that
+the output equals `1`?
+
+An approach could be the TRY-THEM-ALL, but this would bring us to T(CIRCUIT_SAT): Ω(2^n).
+If we could find a way to reduce the problem to NP, we would be done. However, it is not our means that limit us, the
+problem itself is intrinsically hard and requires an exponential solution!
+
+So when we face a problem, we must try and understand if this problem belongs to NPC class.
+We shall try and demonstrate that the problem P' belongs to NPC
+* 
+
+
 
 
 
