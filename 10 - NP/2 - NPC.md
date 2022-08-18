@@ -87,6 +87,8 @@ We want to demonstrate P = NP:
 
 ![NPC](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/npc.png?raw=True)
 
+![NPC Topology](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/npctopology.png?raw=True)
+
 ---
 
 # NPI or NP-Indeterminate
