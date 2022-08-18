@@ -61,13 +61,41 @@ A problem P belongs to NPC class if:
    3) As of today, no NPC problem was found to be reducible in polynomial time.
    
 ## Fundamental Theorem of NP-Completeness
-> P∩NPC != Ø --> P = NP
+> P∩NPC != Ø : P = NP
 
 They are very hard problems, not solvable in polynomial time. However, we do not know if they are untreatable!
 
 ### Demonstration
+Hypothesis: ∃P' ∈ P∩NPC, At least one problem for which this is true.
+* Implies P' ∈ P
+* Implies P' ∈ NPC
+  * Implies ∀P''∈NP : P'' <=p P`
+
+We want to demonstrate P = NP:
+1) Case 1: **P⊆NP**, trivially true!
+   * The verification algorithm mimics that solving algorithm.
+2) Case 2: NP⊆P? Only if we demonstrate that **∀Q ∈ NP : Q ∈ P**, for every problem Q, Q belongs to P too!
+   * **Q ∈ NP**, Let Q be a generic problem of NP
+   * **P' ∈ NPC**, by _hypothesis_
+   * **∀Q∈NP : Q <=p P'**, by _point 2 of NPC_, Q can be reduced to P'
+   * **Q <=p P' ∈ P**, by _hypothesis_
+   * **Q ∈ P**, by _transitivity_
+     * There is a polynomial algorithm that maps Q to P.
+     * There is another polynomial algorithm that solves P.
 
 
+![NPC](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/npc.png?raw=True)
 
+---
 
+#NPI or NP-Indeterminate
+A class of problems which do not belong to NPC (no NPC demonstration was formulated), nor a polynomial algorithm has been found for them.
+
+Ex: Isomorphism of Graphs
+
+### Isomorphism of Graphs - NPI
+TBD
+
+#### Demonstration that Isom. of G. is in NP
+TBD
 
