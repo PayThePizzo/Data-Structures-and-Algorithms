@@ -98,7 +98,7 @@ The latter is a solution algorithm.
 The Greedy algorithms do not allow for any error backtracking, so we cannot correct our errors! It would fail with
 a graph like the following one:
 
-![exfailclique](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exfailclique.png?raw=True))
+![exfailclique](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exfailclique.png?raw=True)
 
 We will later see why this is an NPC problem.
 
