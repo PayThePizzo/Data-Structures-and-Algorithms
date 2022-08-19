@@ -36,6 +36,8 @@ It can be demonstrated that a **graph is planar i.f.f. the maximum clique has ma
 Algorithms that return different outputs everytime we execute them
 
 ## 4) Heuristics
-Algorithms that have no formal demonstration but work based on experimental empiricism. An algorithm is "good enough"
+Algorithms that have no formal demonstration but works based on experimental empiricism. Basically, an algorithm is "good enough"
 when it works well for many instances.
 
+We might have some hopes for convergence but no absolutes on the truth of the result! From the results on the instances
+we consider how much we can trust it before we put it at work.
