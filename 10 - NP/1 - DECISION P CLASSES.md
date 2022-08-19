@@ -34,7 +34,7 @@ When it is not verifiable in polynomial time:
   * It does not imply that the theorem is not correct! Only the demonstration is not correct.
 * If the verification algorithm is not polynomial, trivially.
 
-### Hamiltonian Graph - NP
+### Hamiltonian Graph - NPC
 The problem: Is the graph a hamiltonian graph? Is there a cycle capable of touching all the vertices and go back
 to the starting point?
 
@@ -65,7 +65,9 @@ HAMILTONIAN_GRAPH(Graph G, Permutation A):
     return False
 ```
 
-### Clique - NP
+We will later see why this is an NPC problem.
+
+### Clique - NPC
 The problem: Is there a clique in G with k vertices?
 
 _Does this problem belong to NP?_ YES
@@ -92,6 +94,13 @@ CLIQUE(Graph G, Int k, Clique C)
 
 Mind that the algorithm of verification for the clique problem IS NOT the GREEDY_CLIQUE() algorithm!
 The latter is a solution algorithm.
+
+The Greedy algorithms do not allow for any error backtracking, so we cannot correct our errors! It would fail with
+a graph like the following one:
+
+![exfailclique](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exfailclique.png?raw=True))
+
+We will later see why this is an NPC problem.
 
 --
 
