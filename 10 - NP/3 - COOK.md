@@ -74,7 +74,6 @@ A variant of this problem is the Conjunctive Normal Form, where the boolean stat
 are composed of clauses 'C': `ϕ = C1 ^ C2 ^ C3 ^ ... ^ Ck`
 
 Each clause Ci is represented by a disjunction of literals: `Ci = (X1 v NOT(X2) v NOT(X4))`.
-They all have different combination of AND/OR/NOT etc...
 
 This kind of statements help us with the problem of finding an Instance-Yes, the result is true i.f.f all the
 clauses are true!
@@ -95,3 +94,35 @@ This is a common event among algorithm a parameter such as k in k-CNF, dictates 
 * ∀k >= 3, SAT-k-CNF ∈ NPC
 
 ---
+
+## Clique ∈ NPC
+The problem: Is there a clique in G with k vertices?
+
+Demonstration:
+1. **CLIQUE ∈ NP**
+* Easy to write a polynomial verification algorithm, like we saw before.
+2. ∃P' ∈ NPC : P' <=p CLIQUE ?
+* It can be demonstrated that **SAT-3-CNF <= p CLIQUE**
+
+### Example of demonstration that SAT-3-CNF <= p CLIQUE
+We need an Instance-Yes of SAT-3-CNF `i(S)`, and create CLIQUE Instance-Yes `i(C)` such that i(C) is **equivalent** to i(S).
+Therefore we are applying the very concept of polynomial reducibility!
+
+![excliqueis](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/excliqueis.png?raw=True)
+
+The resulting graph would have:
+* |V| = #literals
+* Groups of vertices = #clauses
+    * Only edges between **compatible** literals in **different groups**
+        * No edges in the same group
+        * No edge if one is the negation of the other
+
+![excliqueic](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/excliqueic.png?raw=True)
+
+It can be demonstrated that the entry statement `ϕ = C1^ C2 ^ C3` is satisfiable i.f.f.
+inside the graph there exists a clique with 3 vertices. Also, It can be demonstrated that this is also the Maximum Clique, ω(G)=3
+* We just need to find a clique of 3 vertices, there are many of them!
+
+Now, for those vertices belonging to one of the cliques, which is the configuration of values (X1, X2, X3)
+such that ϕ is satisfiable?
+* (X1 = 0, X2 = 0, X3 = 1)
