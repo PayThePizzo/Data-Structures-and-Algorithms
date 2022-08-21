@@ -73,6 +73,7 @@ we must imply that the node x does not coincide with y
 * **Internal node**: A node with at least one child is called Internal Node. 
 * **Leaf Node or External Node**: The nodes which do not have any child nodes are called leaf nodes.
 * **Neighbour of a Node**: Parent or child nodes of that node are called neighbors of that node. 
+  * Any node connected to u through a direct edge.
 
 ---
 ## Data
