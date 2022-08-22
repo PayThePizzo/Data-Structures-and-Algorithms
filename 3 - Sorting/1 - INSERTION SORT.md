@@ -27,7 +27,7 @@ This algorithm sorts in-place, namely with an external additional space S(n)= O(
 ---
 
 ## Invariant
-The sub-array A[1 .. j-1] is made of the sorted elements which were in A[1...j-1] originally.
+The sub-array A[1 .. j-1] is made of the **sorted elements** which were unordered in A[1...j-1] originally.
 1) _Initialization:_ This is trivially true before the *for block*
 2) _Preservation_: It is respected
 3) _Conclusion_: After the for block, j stops at **j = A.length-1** 
@@ -50,15 +50,15 @@ Move the greater elements one position up to make space for the swapped element.
 
 ```python
 insertion_sort(Array A)
-    for j = 2 TO A.length #Array starts from 1
+    for j=2 TO A.length #Array starts from 1
         key = A[j]
         i = j-1
-        while i > 0 AND A[i] > key
+        while i > 0 AND A[i] > key #Modify predecessor when we find a smaller element
             A[i+1] = A[i]
             i = i-1
-        A[i+1] = key
+        A[i+1] = key 
 ```
-**Final Time Complexity** =  <mark>Θ(n**2)</mark>
+**Final Time Complexity** = <mark>Θ(n**2)</mark>
 * Best =  Θ(n)
   * Sorted Array
 * Worst =  Θ(n**2)
