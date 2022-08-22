@@ -20,16 +20,20 @@ Depending on how nodes are arranged in a binary tree, it can be full, complete a
 ## K-ary Tree
 It is a generalization of a Binary Tree.
 
-It is a Tree <mark>where the children of a node are labeled with positive integers</mark>.
-Labels larger than **k** are not present.
+It is a Tree <mark>where the children of a node are labeled with positive integers i between [1, k]</mark>.
+No labels larger than **k** are present.
 
 * A binary tree is a K-ary tree with k = 2.
 
 ## Complete K-ary Tree
-It is a K-ary tree where all the leaves have the same depth
-* All the internal nodes have _degree = k_.
-* The total number of leaves of complete k-ary tree is `k**h`
+It is a K-ary tree where 
+1. all the leaves have the same depth
+2. All the internal nodes have _degree = k_.
 
+It can be demonstrated that for a Complete K-ary Tree:
+* Count of leaves at height h, **k^h**
+* Count of internal at height h, **(k^h)-1/(k-1)**
+* Height, **h = log(k,n)**
 ---
 
 ## Balanced Binary Tree
@@ -37,14 +41,13 @@ A balanced tree is a tree if its height is such that: <mark>h = O(log(n))</mark>
 
 A Complete Binary Tree is a Balanced Binary Tree (but the opposite is not always true)
 
-
-
 ---
 
 ## Binary Search Tree (BST)
 Binary Search Trees or BST for short are a particular application of binary trees.
 
-BST has at most two nodes (like all binary trees). However, the values are so that the left children value must be less than the parent, and the right children must be higher.
+BST has at most two nodes (like all binary trees). However, the values are so that the left 
+children value must be less than the parent, and the right children must be higher.
 
 Duplicates: Some BST doesn’t allow duplicates while others add the same values 
 as a right child. 

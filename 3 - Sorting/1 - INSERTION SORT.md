@@ -60,10 +60,11 @@ insertion_sort(Array A)
 ```
 **Final Time Complexity** = <mark>Θ(n**2)</mark>
 * Best =  Θ(n)
-  * Sorted Array
+  * Array ascending order
 * Worst =  Θ(n**2)
-  * Unsorted Array
-* Average =  Θ(n**2)
+  * Array decreasing order
+  * 
+* Average =  Θ(n**2) = (n-1 * )
 
 ---
 
