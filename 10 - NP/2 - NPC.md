@@ -68,10 +68,9 @@ They are very hard problems, not solvable in polynomial time. However, we do not
 ### Demonstration
 Hypothesis: ∃P' ∈ P∩NPC, At least one problem for which this is true.
 * Implies P' ∈ P
-* Implies P' ∈ NPC
-  * Implies ∀P''∈NP : P'' <=p P`
+* Implies P' ∈ NPC --> ∀P''∈NP : P'' <=p P`
 
-We want to demonstrate P = NP:
+Thesis: We want to demonstrate P = NP:
 1) Case 1: **P⊆NP**, trivially true!
    * The verification algorithm mimics that solving algorithm.
 2) Case 2: NP⊆P? Only if we demonstrate that **∀Q ∈ NP : Q ∈ P**, for every problem Q, Q belongs to P too!
