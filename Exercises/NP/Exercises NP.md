@@ -71,12 +71,11 @@ which keeps being empty by hypothesis. Therefore `If ISOM_GRAPH <=p CLIQUE` is n
 
 If we found out that CLIQUE <=p ISOM_GRAPH, we would obtain that all NPC problems are reducible to NPI problem.  
 
-For the F.T. of NPC, we just need to verify that:
-1) ISOM_GRAPH ∈ NPC is unknown for the time being, trivially since ISOM_GRAPH ∈ NPI;
-2) CLIQUE <=p ISOM_GRAPH ∈ **P**:
-   * CLIQUE <=p ISOM_GRAPH has not been demonstrated yet. It has not been demonstrated yet that an NPC
-   problem can be polynomially reduced to a NP problem.
-   * ISOM_GRAPH ∈ **P** is false, trivially there is no polynomial solving algorithm as of today for ISOM_GRAPH.
+For the F.T. of NPC, we just need to verify that CLIQUE <=p ISOM_GRAPH ∈ **P**:
+* ISOM_GRAPH ∈ NPC is unknown for the time being, trivially since ISOM_GRAPH ∈ NPI;
+* CLIQUE <=p ISOM_GRAPH has not been demonstrated yet. It has not been demonstrated yet that an NPC
+problem can be polynomially reduced to a NP problem.
+* ISOM_GRAPH ∈ **P** is false, trivially there is no polynomial solving algorithm as of today for ISOM_GRAPH.
 
 The fact that any problem in NPC, is polynomially reducible to any problem in NPI, tells us nothing regarding the nature 
 of the set P∩NPC, which keeps being empty by hypothesis. Therefore `If CLIQUE <=p ISOM_GRAPH` is not sufficient to imply `P = NP`.
@@ -88,7 +87,7 @@ If we found out CLIQUE <=p NEG_CYCLE, we would obtain that all NPC problems are 
 Knowing all NPC problems are NP, we would have a way to make P and NP coincide.
 
 For the F.T. of NPC, we just need to verify that CLIQUE <=p NEG_CYCLE ∈ **P**:
-* * NEG_CYCLE ∈ **P** is true, trivially.
+* NEG_CYCLE ∈ **P** is true, trivially.
 * CLIQUE <=p NEG_CYCLE, it has not been demonstrated yet that an NPC
 problem can be polynomially reduced to a P problem, but it would be more than enough to make P = NP;
 
