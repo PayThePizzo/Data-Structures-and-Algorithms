@@ -6,9 +6,9 @@ What we know:
 
 1) **NEG_CYCLE ∈ P**, similarly to Bellman-Ford.
     1) In polynomial time we can tell where there exists a negative-weight cycle inside a given graph.
-        1) BF checks and returns FALSE when negative cycles are present, namely when after RELAX() on every edge
-           there are still estimates larger than the real distances.
-    2) Therefore, **NEG_CYCLE ∈ NP** and it is polynomially reducible to any problem in NPC.
+    2) BF checks and returns FALSE when negative cycles are present, namely when after RELAX() on every edge
+       there are still estimates larger than the real distances.
+    3) Therefore, **NEG_CYCLE ∈ NP** and it is polynomially reducible to any problem in NPC.
 2) **CLIQUE ∈ NPC**
    1) By Cook's Theorem and Cook's property, it was proven that CIRCUIT_SAT ∈ NPC and CIRCUIT_SAT <=p SAT <=p SAT-3-CNF.
    2) Clique ∈ NP, we can easily write an exponential algorithm that checks whether an instance-yes is a clique, given a certificate.
