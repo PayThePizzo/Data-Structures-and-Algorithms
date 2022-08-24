@@ -22,55 +22,36 @@ What we know:
       3) Now, for those vertices belonging to one of the cliques, we must find a configuration of values (X1, X2, X3) 
       such that ϕ is satisfiable.
 3) **ISOM_GRAPH ∈ NPI**
+4) If P1, P2 are two problems and P1 <=p P2 stands true, then P1 belongs to the same class of P2.
 
 ## Solution
 
-Let's try and resolve the problem: Demonstrate the F.T. of NPC:
-
-F.T. of NPC tells us: **P** ∩ NPC != Ø : **P** = NP, then we need to demonstrate it.
-* Hypothesis: ∃P' ∈ **P** ∩ NPC
-* Thesis: **P** = NP
-    1) CASE 1: **P** ⊆ NP, trivially
-    2) CASE 2: If ∀Q ∈ NP : Q ∈ **P**, then NP⊆P
-        * Q ∈ NP, trivially
-        * P' ∈ NPC, trivially
-        * ∀Q ∈ NP : Q <=p P', by definition of NPC
-        * Q <=p P' ∈ **P**, by hypothesis
-        * Q ∈ **P**, by transitivity
+Let's try and resolve the problem: If X <=p Y,  then P = NP is true?
 
 > If NEG_CYCLE <=p CLIQUE --> P = NP, FALSE
 
-We just need to verify that NEG_CYCLE <=p CLIQUE ∈ **P**:
-* _NEG_CYCLE <=p CLIQUE is true_, by definition NPC;
-* But _CLIQUE ∈ P is false_, there is no polynomial solving algorithm as of today for CLIQUE. It is not sufficient for
-NEG_CYCLE to be polynomially reducible to CLIQUE, CLIQUE must belong to P too!
+If we found an instance of NEG_CYCLE that is polynomially reducible to CLIQUE we would obtain that all P problems 
+(which are also in NP) are reducible to NPC problem.  However, this is not sufficient because CLIQUE would have to be 
+solvable in polynomial time which is not the case for now.
 
 > If ISOM_GRAPH <=p CLIQUE --> P = NP, FALSE
 
-We just need to verify that ISOM_GRAPH <=p CLIQUE ∈ **P**:
-* ISOM_GRAPH <=p CLIQUE is true_, by definition NPC;
-* But _CLIQUE ∈ P is false_, there is no polynomial solving algorithm as of today for CLIQUE. It is not sufficient for
-ISOM_GRAPH to be polynomially reducible to CLIQUE, CLIQUE must belong to P too!
-* Moreover, ISOM_GRAPH is in NPI and no polynomial solving algorithm has be found for it.
+If we found an instance of ISOM_GRAPH that is polynomially reducible to CLIQUE we would obtain that all NPI problems are
+reducible to NPC problem. However, this is not sufficient because CLIQUE would have to be solvable in polynomial time
+which is not the case for now.
 
 > If CLIQUE <=p ISOM_GRAPH --> P = NP, FALSE
 
-We just need to verify that:
-1) ISOM_GRAPH ∈ NPC
-   * ISOM_GRAPH ∈ NPC is unknown for the time being, ISOM_GRAPH ∈ NPI;
-2) CLIQUE <=p ISOM_GRAPH ∈ **P**:
-   * CLIQUE <=p ISOM_GRAPH is false, it has not been demonstrated yet that an NPC
-     problem can be polynomially reduced to a NP problem. 
-   * ISOM_GRAPH ∈ **P** is false, there is no polynomial solving algorithm as of today for ISOM_GRAPH.
+If we found an instance of CLIQUE that is polynomially reducible to ISOM_GRAPH, we would obtain that all NPC problems are
+reducible to NPI problem, which is trivial since CLIQUE and ISOM_GRAPH are in NP and can be polynomially reduced 
+symmetrically between them. However, this is not sufficient because ISOM_GRAPH would have to be solvable in polynomial time
+which is not the case for now.
 
 > If CLIQUE <=p NEG_CYCLE --> P = NP, TRUE
 
-We just need to verify that:
-1) NEG_CYCLE ∈ NPC is true_, by definition NPC;
-2) CLIQUE <=p NEG_CYCLE ∈ **P**:
-   * CLIQUE <=p ISOM_GRAPH is false it has not been demonstrated yet that an NPC
-     problem can be polynomially reduced to a NP problem;
-   * NEG_CYCLE ∈ **P** is true, trivially.
+If we found an instance of CLIQUE that is polynomially reducible to NEG_CYCLE, then CLIQUE ∈ **P** and we would have found
+a way to reduce all NPC problems to the class P. Knowing all NPC problems are NP, we found a way to make P and NP coincide.
+
 
 ---
 
