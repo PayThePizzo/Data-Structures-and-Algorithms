@@ -88,6 +88,7 @@ Thesis: We want to demonstrate P = NP:
 # NPI or NP-Intermediate
 A class of problems for which no NPC demonstration was formulated, nor a polynomial algorithm has been found for them.
 
+
 Ex: Isomorphism of Graphs
 
 ![NPC](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/npc.png?raw=True)

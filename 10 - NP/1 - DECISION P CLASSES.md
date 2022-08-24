@@ -34,7 +34,7 @@ When it is not verifiable in polynomial time:
   * It does not imply that the theorem is not correct! Only the demonstration is not correct.
 * If the verification algorithm is not polynomial, trivially.
 
-### Hamiltonian Graph - NPC
+### Hamiltonian Graph - NP
 The problem: Is the graph a hamiltonian graph? Is there a cycle capable of touching all the vertices and go back
 to the starting point?
 
@@ -67,7 +67,7 @@ HAMILTONIAN_GRAPH(Graph G, Permutation A):
 
 We will later see why this is an NPC problem.
 
-### Clique - NPC
+### Clique - NP
 The problem: Is there a clique in G with k vertices?
 
 _Does this problem belong to NP?_ YES

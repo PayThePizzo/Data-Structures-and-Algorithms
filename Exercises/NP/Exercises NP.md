@@ -3,13 +3,15 @@
 ![Exercise 1](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Exercises/NP/Ex1.png?raw=TRUE)
 
 What we know:
-
-1) **NEG_CYCLE ∈ P**, similarly to Bellman-Ford.
-    1) In polynomial time we can tell where there exists a negative-weight cycle inside a given graph.
-    2) BF checks and returns FALSE when negative cycles are present, namely when after RELAX() on every edge
-       there are still estimates larger than the real distances.
-    3) Therefore, **NEG_CYCLE ∈ NP** and it is polynomially reducible to any problem in NPC.
-2) **CLIQUE ∈ NPC**
+1) By definition of polynomial reduction, if P1, P2 are two problems such that:
+   * P2 ∈ NP & P1 <=p P2 stands true --> P1 ∈ NP.
+   * Mind that, we must have a POLYNOMIAL algorithm that maps ALL the instances of P1 to equivalent instances of P2
+2) P ⊆ NP, trivially
+3) **NEG_CYCLE ∈ P, NEG_CYCLE ∈ NP**.
+    1) In polynomial time we can tell where there exists a negative-weight cycle inside a given graph, thanks to Bellman-Ford.
+       1) BF checks and returns FALSE when negative cycles are present, namely when after RELAX() on every edge
+          there are still estimates larger than the real distances.
+4) **CLIQUE ∈ NPC**
    1) By Cook's Theorem and Cook's property, it was proven that CIRCUIT_SAT ∈ NPC and CIRCUIT_SAT <=p SAT <=p SAT-3-CNF.
    2) Clique ∈ NP, we can easily write an exponential algorithm that checks whether an instance-yes is a clique, given a certificate.
    3) To demonstrate SAT-3-CNF <=p CLIQUE (and CLIQUE <=p SAT-3-CNF)
@@ -21,36 +23,77 @@ What we know:
       exists a clique with 3 vertices, which is trivial to demonstrate.
       3) Now, for those vertices belonging to one of the cliques, we must find a configuration of values (X1, X2, X3) 
       such that ϕ is satisfiable.
-3) **ISOM_GRAPH ∈ NPI**
-4) If P1, P2 are two problems and P1 <=p P2 stands true, then P1 belongs to the same class of P2.
+5) **ISOM_GRAPH ∈ NP, ISOM_GRAPH ∈ NPI**
+
 
 ## Solution
 
-Let's try and resolve the problem: If X <=p Y,  then P = NP is true?
+Let's try and resolve the problem through the F.T. of NPC:
 
-> If NEG_CYCLE <=p CLIQUE --> P = NP, FALSE
+F.T. of NPC tells us: **P** ∩ NPC != Ø : **P** = NP, then we need to demonstrate it.
+* Hypothesis: ∃P' ∈ **P** ∩ NPC, if there exists at least one instance of a problem for which this stands true.
+* Thesis: **P** = NP, then they coincide.
+   1) CASE 1: **P** ⊆ NP, trivially
+   2) CASE 2: If ∀Q ∈ NP : Q ∈ **P**, then NP⊆P
+      * Q ∈ NP, trivially
+      * P' ∈ NPC, trivially
+      * ∀Q ∈ NP : Q <=p P', by definition of NPC
+      * Q <=p P' ∈ **P**, by hypothesis
+      * Q ∈ **P**, by transitivity
 
-If we found an instance of NEG_CYCLE that is polynomially reducible to CLIQUE we would obtain that all P problems 
-(which are also in NP) are reducible to NPC problem.  However, this is not sufficient because CLIQUE would have to be 
-solvable in polynomial time which is not the case for now.
 
-> If ISOM_GRAPH <=p CLIQUE --> P = NP, FALSE
+### If NEG_CYCLE <=p CLIQUE --> P = NP [FALSE]
 
-If we found an instance of ISOM_GRAPH that is polynomially reducible to CLIQUE we would obtain that all NPI problems are
-reducible to NPC problem. However, this is not sufficient because CLIQUE would have to be solvable in polynomial time
-which is not the case for now.
+If we found out that NEG_CYCLE <=p CLIQUE, we would obtain 
+that all P problems (which are also in NP) are reducible to NPC problems. 
 
-> If CLIQUE <=p ISOM_GRAPH --> P = NP, FALSE
+For the F.T. of NPC, we just need to verify that NEG_CYCLE <=p CLIQUE ∈ **P**:
+* _NEG_CYCLE <=p CLIQUE is trivially true_, by definition NPC;
+* But _CLIQUE ∈ P is false_, there is no polynomial solving algorithm as of today for CLIQUE.
 
-If we found an instance of CLIQUE that is polynomially reducible to ISOM_GRAPH, we would obtain that all NPC problems are
-reducible to NPI problem, which is trivial since CLIQUE and ISOM_GRAPH are in NP and can be polynomially reduced 
-symmetrically between them. However, this is not sufficient because ISOM_GRAPH would have to be solvable in polynomial time
-which is not the case for now.
+The fact that any problem in P, is polynomially reducible to any problem in NPC, tells us nothing regarding the nature of the set P∩NPC,
+which keeps being empty by hypothesis. Therefore `If NEG_CYCLE <=p CLIQUE` is not sufficient to imply `P = NP`.
 
-> If CLIQUE <=p NEG_CYCLE --> P = NP, TRUE
 
-If we found an instance of CLIQUE that is polynomially reducible to NEG_CYCLE, then CLIQUE ∈ **P** and we would have found
-a way to reduce all NPC problems to the class P. Knowing all NPC problems are NP, we found a way to make P and NP coincide.
+### If ISOM_GRAPH <=p CLIQUE --> P = NP [FALSE]
+
+If we found out that ISOM_GRAPH <=p CLIQUE, we would obtain that all NPI problems are
+reducible to NPC problems. 
+
+For the F.T. of NPC, we just need to verify that ISOM_GRAPH <=p CLIQUE ∈ **P**:
+* ISOM_GRAPH <=p CLIQUE is trivially true, by definition NPC;
+* But _CLIQUE ∈ P has not been demonstrated yet_, so there is no polynomial solving algorithm as of today for CLIQUE.
+
+The fact that any problem in NPI, is polynomially reducible to any problem in NPC, tells us nothing regarding the nature of the set P∩NPC,
+which keeps being empty by hypothesis. Therefore `If ISOM_GRAPH <=p CLIQUE` is not sufficient to imply `P = NP`.
+
+### If CLIQUE <=p ISOM_GRAPH --> P = NP [FALSE]
+
+If we found out that CLIQUE <=p ISOM_GRAPH, we would obtain that all NPC problems are reducible to NPI problem.  
+
+For the F.T. of NPC, we just need to verify that:
+1) ISOM_GRAPH ∈ NPC is unknown for the time being, trivially since ISOM_GRAPH ∈ NPI;
+2) CLIQUE <=p ISOM_GRAPH ∈ **P**:
+   * CLIQUE <=p ISOM_GRAPH has not been demonstrated yet. It has not been demonstrated yet that an NPC
+   problem can be polynomially reduced to a NP problem.
+   * ISOM_GRAPH ∈ **P** is false, trivially there is no polynomial solving algorithm as of today for ISOM_GRAPH.
+
+The fact that any problem in NPC, is polynomially reducible to any problem in NPI, tells us nothing regarding the nature 
+of the set P∩NPC, which keeps being empty by hypothesis. Therefore `If CLIQUE <=p ISOM_GRAPH` is not sufficient to imply `P = NP`.
+
+
+### If CLIQUE <=p NEG_CYCLE --> P = NP [TRUE]
+
+If we found out CLIQUE <=p NEG_CYCLE, we would obtain that all NPC problems are reducible to P problems. 
+Knowing all NPC problems are NP, we would have a way to make P and NP coincide.
+
+For the F.T. of NPC, we just need to verify that CLIQUE <=p NEG_CYCLE ∈ **P**:
+* * NEG_CYCLE ∈ **P** is true, trivially.
+* CLIQUE <=p NEG_CYCLE, it has not been demonstrated yet that an NPC
+problem can be polynomially reduced to a P problem, but it would be more than enough to make P = NP;
+
+The fact that any problem in NPC, is polynomially reducible to any problem in P, tells us exactly what we needed regarding the nature
+of the set P∩NPC, which would not be empty. Therefore `If  CLIQUE <=p NEG_CYCLE` is sufficient to imply `P = NP`.
 
 
 ---
