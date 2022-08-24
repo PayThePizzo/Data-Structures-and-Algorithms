@@ -85,8 +85,8 @@ Thesis: We want to demonstrate P = NP:
      
 ---
 
-# NPI or NP-Indeterminate
-A class of problems which do not belong to NPC (no NPC demonstration was formulated), nor a polynomial algorithm has been found for them.
+# NPI or NP-Intermediate
+A class of problems for which no NPC demonstration was formulated, nor a polynomial algorithm has been found for them.
 
 Ex: Isomorphism of Graphs
 
