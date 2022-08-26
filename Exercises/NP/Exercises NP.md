@@ -11,9 +11,9 @@ What we know:
     1) In polynomial time we can tell where there exists a negative-weight cycle inside a given graph, thanks to Bellman-Ford.
        1) BF checks and returns FALSE when negative cycles are present, namely when after RELAX() on every edge
           there are still estimates larger than the real distances.
-4) **CLIQUE ∈ NPC**
+4) **CLIQUE ∈ NP, CLIQUE ∈ NPC***
    1) By Cook's Theorem and Cook's property, it was proven that CIRCUIT_SAT ∈ NPC and CIRCUIT_SAT <=p SAT <=p SAT-3-CNF.
-   2) Clique ∈ NP, we can easily write an exponential algorithm that checks whether an instance-yes is a clique, given a certificate.
+   2) Clique ∈ NP, we can easily write a polynomial algorithm that checks whether an instance-yes is a clique, given a certificate.
    3) To demonstrate SAT-3-CNF <=p CLIQUE (and CLIQUE <=p SAT-3-CNF)
       1) We can create a graph that satisfies the following condition from a SAT-3-CNF statement:
          * The count of literals is equal to |V|
