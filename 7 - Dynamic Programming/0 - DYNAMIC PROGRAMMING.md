@@ -1,6 +1,6 @@
 # Dynamic Programming
-It is an <mark>algorithm design technique</mark> used to recursively divide a 
-problem in smaller sub-problems.
+It is an <mark>algorithm design technique</mark> used to **recursively divide a 
+problem in smaller sub-problems**.
 
 Dynamic programming, like the divide-and-conquer method, solves problems by
 combining the solutions to subproblems. 
@@ -8,15 +8,15 @@ combining the solutions to subproblems.
 As we saw, divide-and-conquer algorithms partition the problem into disjoint subproblems, 
 solve the subproblems recursively, and then combine their solutions to solve the original problem. 
 
-In contrast, dynamic programming applies when the subproblems overlap that is, when subproblems share subsubproblems. 
-In this context, a divide-and-conquer algorithm **does more work than necessary**, <mark>repeatedly solving the common subsubproblems</mark>
+In contrast, **dynamic programming applies when the subproblems overlap** that is, when subproblems share subsubproblems. 
+In this context, a divide-and-conquer algorithm does more work than necessary, <mark>repeatedly solving the common subsubproblems</mark>
 
 We typically apply dynamic programming to <mark>optimization problems.</mark> 
 
 Such problems can have many possible solutions. Each solution has a value, and we wish to
 find a solution with the optimal (minimum or maximum) value. 
 
-We call such a solution an optimal solution to the problem, as opposed to the optimal solution,
+We call such a solution AN optimal solution to the problem, as opposed to THE optimal solution,
 since **there may be several solutions that achieve the optimal value**.
 
 ### Property of Optimal Substructure
@@ -30,8 +30,14 @@ When developing a dynamic-programming algorithm, we follow a sequence of
 four steps:
 1. Characterize the structure of an optimal solution.
 2. Recursively define the value of an optimal solution.
-3. Compute the value of an optimal solution, typically in a bottom-up fashion.
-4. Construct an optimal solution from computed information
+3. Find the state to memorize and choose an optimal data structure.
+   * Array, Matrix, or any other structure whose creation and retrieval of elements take O(1)
+4. Compute the value of an optimal solution.
+5. Construct an optimal solution from computed information 
+   1. Top-Down - Memoization: Start from destination state and recursively find the answer for its subproblems
+   2. Bottom-Up - Tabulation: Start from base state (0 to n) and possibly avoid recursion
+
+![Memoization vs Tabulation]()
 
 ---
 ## Time-Memory Trade-Off
@@ -101,3 +107,4 @@ We apply dynamic programming when
 
 ### Extra Credits
 * [1] Mainly take from Chapter 15 of Introduction to Algorithms (see main README.md)
+* [2] Geeks for Geeks [Tabulation vs Memoization](https://www.geeksforgeeks.org/tabulation-vs-memoization/)

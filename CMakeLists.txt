@@ -11,5 +11,5 @@ add_executable(second_assignment Assignment/second_assignment/main.cpp)
 
 add_executable(third_assignment Assignment/third_assignment/main.cpp)
 add_executable(insertionsort "3 - Sorting/insertionsort.cpp")
-add_executable(LeftChildRightSibling "2 - Tree/LeftChildRightSibling.h")
 add_executable(FibonacciDP "Exercises/Dynamic Progr/FibonacciDP.cpp")
+add_executable(PalindromeString "Exercises/Dynamic Progr/PalindromeString.cpp")
