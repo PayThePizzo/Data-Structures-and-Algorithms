@@ -81,7 +81,7 @@ int fib_bu(int n){
     return Fib[n];
 }
 
-int fib_bu_optimized(int n){
+int fib_optimized(int n){
     int result = 1, fib1 = 1 , fib2 = 1;
     for(int i = 3; i<=n; i++){
         result = fib1 + fib2;

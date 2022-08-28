@@ -37,14 +37,12 @@ four steps:
    1. Top-Down - Memoization: Start from destination state and recursively find the answer for its subproblems
    2. Bottom-Up - Tabulation: Start from base state (0 to n) and possibly avoid recursion
 
-![Memoization vs Tabulation]()
-
 ---
 ## Time-Memory Trade-Off
 
 The dynamic-programming method works as follows. 
 * Having observed that a naive recursive solution is inefficient because it solves the same subproblems 
-repeatedly, we arrange for each subproblem to be solved only once, saving its solution. 
+repeatedly, we **arrange for each subproblem to be solved only once, saving its solution**. 
 * If we need to refer to this subproblem’s solution again later, we can just look it 
 up, rather than recompute it. Dynamic programming thus uses additional memory
 to save computation time; it serves an example of a **time-memory trade-off**. 
@@ -61,7 +59,7 @@ each subproblem (usually in an array or hash table).
       1. We say that the recursive procedure has been **memorized**; it “remembers” what results it has computed previously.
    2. If not, the procedure computes the value in the usual manner. 
 
-### Bottom-Up Method
+### Bottom-Up Method with Tabulation
 This approach typically depends on some natural notion of the “size” of a subproblem, 
 such that solving any particular subproblem depends only on solving “smaller” subproblems. 
 
@@ -74,6 +72,8 @@ prerequisite subproblems
 These two approaches yield algorithms with the same asymptotic running time, except in unusual circumstances 
 where the top-down approach does not actually recurse to examine all possible subproblems. 
 The bottom-up approach often has much better constant factors, since it has less overhead for procedure calls
+
+![Memoization vs Tabulation](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/tabmem.png)
 
 ---
 ### Sub-problem Graphs

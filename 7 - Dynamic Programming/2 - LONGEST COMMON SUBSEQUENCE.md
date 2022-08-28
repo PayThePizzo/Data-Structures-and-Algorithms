@@ -63,7 +63,7 @@ Let's define an optimal sub-structure for LCS.
 
 ### Optimal Sub-Structure for LCS
 
-![Theroem 15.1](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/Resources/optimalstrLCS.png?raw=TRUE)
+![Theroem 15.1](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/optimalstrLCS.png?raw=TRUE)
 
 Let X, Y be two sequences such that:
 * X = [x1, x2, ..., xm]
