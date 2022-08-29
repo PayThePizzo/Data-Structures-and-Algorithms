@@ -121,6 +121,60 @@ int longest_palindrome_substring_td(std::string const str){
     return 0;
 }
 
+int lps_aux(string str, int i, int j, bool (*palind)[i][j]){
+    // TODO: check if it stops i,j in range (0, str.size()-1
+    // TODO: this does save well the state!!
+    int temp = 0;
+
+    if(i<=j && (i<str.size() && j>=0)){
+        // Returns 1 or 2, base cases
+        if ((*palind)[i][j]) {
+            temp = j - i + 1;
+        }
+        else{
+            if (str[i] == str[j]) {
+                temp = lps_aux(str, i + 1, j - 1, (*palind)[i + 1][j - 1]);
+                if(temp > 0){
+                    (*palind)[i][j] = true;
+                    temp+=2;
+                }else{
+                    (*palind)[i][j] = false;
+                }
+            }
+            else{
+                temp = max(lps_aux(str, i + 1, j, (*palind)[i + 1][j]),
+                           lps_aux(str, i, j - 1, (*palind)[i][j - 1]));
+                (*palind)[i][j] = temp > 0 ? true : false;
+            }
+
+        }
+    }
+    return temp;
+}
+
+int longest_palindrome_substring(string str){
+    //TODO: consider empty string, consider overflow;
+    int maxlen = 0;
+    bool palind[str.size()][str.size()];
+    memset(palind, false, sizeof(palind));
+    for(int i = 0; i<str.size();i++){
+        int temp = 0;
+        if(str[i]==str[i+1]){
+            palind[i][i+1]= true;
+            palind[i+1][i]= true;
+            temp = 2;
+        }
+        palind[i][i]= true;
+        temp = 1;
+
+        if(temp>maxlen){
+            maxlen = temp;
+        }
+    }
+
+    return str.size()>2 ? lps_aux(str, 0, str.size(), &palind[0][0]) : maxlen;
+}
+
 
 int main(){
     string str = "forgeeksskeegfor";

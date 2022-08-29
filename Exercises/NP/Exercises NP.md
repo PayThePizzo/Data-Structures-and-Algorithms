@@ -124,3 +124,12 @@ of the set P∩NPC, which would not be empty. Therefore `If  CLIQUE <=p NEG_CYCL
 ![Exercise 4](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Exercises/NP/Ex4.png?raw=TRUE)
 
 ## Solution
+
+---
+
+# Ex 5
+
+![Exercise 5](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Exercises/NP/Ex5.png?raw=TRUE)
+
+
+## Solution
