@@ -99,11 +99,50 @@ of the set P∩NPC, which would not be empty. Therefore `If  CLIQUE <=p NEG_CYCL
 
 # Ex 2
 
-![Exercise 2](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Exercises/NP/Ex2.png?raw=TRUE)
-
-## Solution
+![Exercise 2](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Exercises/NP/Ex5.jpg?raw=TRUE)
 
 
+## Solution - Part 1
+Polynomial Reducibility: a binary relation between two decision problems P(1), P(2).
+Given P(1) and P(2), we can say that P(1) is polynomially reducible to P(2), `P(1) <=p P(2)` i.f.f:
+1. There exists a polynomial algorithm A (such that T(A)=O(n^k))
+2. A "maps"/transforms the Instances of P(1) in equivalent Instances of P(2).
+
+NPC & "<=p" Properites:
+* Reflective property is valid between NPC problems? 
+  * _If every problem in NPC is in relation with itself_
+  * We can trivially use the identity function as our mapping algorithm!
+* Transitive property is valid between NPC problems?
+  * _Given three problems in NPC (p1, p2, p3), if there is a relation between (p1,p2) and one between (p2,p3) there must be one between (p1,p3)._
+  * We know, by definition of NPC, that all of them are in NP and all problems in NP must be polynomially reducible to each one of them.
+  * Then, if we have p1 <=p p2 and p2 <= p3, we surely have p1 <= p3.
+  * The transitive property is valid.
+* Symmetric property is valid between NPC problems 
+  * _If given two problems in NPC such that P(1) <=p P(2), it is true that P(2) <=p P(1)_
+  * We know, by Cook's property, that a problem P' is in NPC if it is in NP and there exist another problem P'' in NPC such that P''<=P'.
+  * By Transitivity
+
+
+## Solution - Part 2
+We know P' and Q are in NP, and P <=p Q:
+1. They are verifiable in polynomial time O(n^k)
+2. P is polynomially reducible to Q
+   1. There exists a mapping algorithm A:P'--> Q that maps all P instances to Q instances 
+   in polynomial time O(n^k).
+
+### If Q is solvable in O(n^2) --> P' is solvable in O(n^2)? - FALSE
+It is not sufficient to know that Q is solvable in O(n^2) for P' to be solvable in O(n^2).
+1. We have no clue whether the mapping algorithm A:P'-->Q has time complexity equal to O(n^2).
+2. We just know it has polynomial time O(n^k), so if k>2 this statement loses its validity.
+
+### If Q is solvable in O(k^n) --> P' is solvable in O(k^n)? - TRUE
+
+
+### If Q is in NPC --> P' is in NPC? - FALSE
+
+
+
+### If P' is in NPC --> Q is in NPC ? - TRUE
 
 
 ---
@@ -125,12 +164,3 @@ of the set P∩NPC, which would not be empty. Therefore `If  CLIQUE <=p NEG_CYCL
 
 ## Solution
 
----
-
-# Ex 5
-
-![Exercise 5](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Exercises/NP/Ex5.jpg?raw=TRUE)
-
-
-
-## Solution
