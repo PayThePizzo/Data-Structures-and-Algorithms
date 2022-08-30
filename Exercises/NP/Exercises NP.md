@@ -203,9 +203,93 @@ To demonstrate point number 2 of Cook's property:
 
 ![Exercise 3](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Exercises/NP/Ex3.png?raw=TRUE)
 
-## Solution
+## P, NP, NPC
+1. The **class P** consists of those decision problems that are **solvable in polynomial time O(n^k)**.
+2. The **class NP** consists of those decision problems that are **“verifiable” in polynomial time O(n^k)**.
+   1. Given an "Instance-Yes" `i` and a Certificate `c` of a solution for a problem A, If we can **verify through the 
+   Certificate c that `i` is an Instance-Yes** in polynomial time O(n^k), then that A ∈ NP.
+3. The **class NP** consists of those decision problems P1 such that:
+   * P1 ∈ NP 
+   * ∀ P2 ∈ NP : P2 <=p P1
 
+## F.T. of NPC: P∩NPC != Ø : P = NP
 
+### Demonstration
+Hypothesis: ∃P' ∈ P∩NPC, At least one problem for which this is true.
+* Implies P' ∈ P
+* Implies P' ∈ NPC --> ∀P''∈NP : P'' <=p P`
+
+Thesis: We want to demonstrate P = NP:
+1) Case 1: **P⊆NP**, trivially true!
+    * The verification algorithm mimics that solving algorithm.
+2) Case 2: NP⊆P? Only if we demonstrate that **∀Q ∈ NP : Q ∈ P**, for every problem Q, Q belongs to P too!
+    * **Q ∈ NP**, Let Q be a generic problem of NP
+    * **P' ∈ NPC**, by _hypothesis_
+    * **∀Q∈NP : Q <=p P'**, by _point 2 of NPC_, Q can be reduced to P'
+    * **Q <=p P' ∈ P**, by _hypothesis_
+    * **Q ∈ P**, by _transitivity_
+        * There is a polynomial algorithm that maps Q to P.
+        * There is another polynomial algorithm that solves P.
+        * There must be a polynomial algorithm that solves Q ∈ P
+        
+## CLIQUE 
+CLIQUE Problem: Is there a clique in G with k vertices?
+
+_CLIQUE ∈ NP?_ YES, it is easy to write a verification algorithm, basic verification of a clique of k vertices:
+* Input: `((Graph G, Integer k)` representing the Instance-Yes of CLIQUE, `(Clique C))` representing the Certificate c
+* Output: `Yes` or `No`
+
+Verification Steps:
+1. Check **|C| = k**
+   1. ∃(u,v) ∈ E | ∀u,v ∈ C AND u!=v
+   2. Check whether there is an edge in E for every couple of distinct vertices.
+      1. If condition stays true, return `Yes`
+2. Else return `No`.
+
+Complexity: T(Clique) = O(|C|^2)
+* Which means we are verifying the problem in polynomial time!
+
+Now for the definition of NPC we must check whether ∀ P2 ∈ NP : P2 <=p CLIQUE. 
+However, thanks to Cook's property we know that
+
+By Cook's property, Q ∈ NPC iff:
+1. Q ∈ NP, true
+2. ∃P2 ∈ NPC : P2 <=p Q, 
+
+Basically, we can say CLIQUE ∈ NPC only if we find one known problem in NPC and polynomially reduce it to NPC.
+This is basic application of the principle of polynomial reduction. 
+
+Thanks to Cook's theorem, we know that CIRCUIT_SAT ∈ NPC, and that it can be demonstrated that 
+CIRCUIT_SAT <=p SAT <=p SAT-3-CNF. So if we demonstrate SAT-3-CNF <=p CLIQUE, we demonstrate CLIQUE ∈ NPC.
+
+This is easy to show:
+1. We need an **Instance-Yes of SAT-3-CNF** `i(S)`, 
+   1. A boolean statement composed of 3 clauses `ϕ = C1 ^ C2 ^ C3`, that is satisfiable for a combination of 3 literals
+   2. Each clause Ci is represented by a disjunction of 3 literals X1, X2, X3
+2. We need to **convert it into a CLIQUE Instance-Yes** `i(C)` such that i(C) is **equivalent** to i(S). Therefore, applying the very concept of polynomial reducibility!
+   1. It can be demonstrated that the entry statement `ϕ = C1^ C2 ^ C3` **is satisfiable i.f.f.
+inside the graph there exists a clique with 3 vertices**, which will be the maximum clique.
+3. Locate a clique of 3 vertices and find the configuration of literals (X1, X2, X3) such that ϕ is satisfiable
+
+### 1 - i(S)
+![excliqueis](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/excliqueis.png?raw=True)
+
+### 2 - Conversion to i(C)
+The resulting undirected graph would have:
+* |V| = #literals
+* Groups of vertices = #clauses
+    * Only edges between **compatible** literals in **different groups**
+        * No edges in the same group
+        * No edge if one is the negation of the other
+
+![excliqueic](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/excliqueic.png?raw=True)
+
+### 3 - Locate a clique of 3 vertices and find the configuration of literals
+We just need to find a clique of 3 vertices, there are many of them!
+* C = ({X1, X2, X3}, {(X1,X2), (X2,X3), (X3, X1)}) is a clique!
+* Now, for those vertices belonging to one of the cliques, which is the configuration of values (X1, X2, X3)
+such that ϕ is satisfiable?
+  * (X1 = 1, X2 = 1, X3 = 1)!
 
 
 ---

@@ -53,7 +53,7 @@ If it was, then we would have **P=NP** which is yet to be proved.
 # Class NPC or NP-Complete
 A problem P belongs to NPC class if:
 1) `P∈NP`, **verifiable in polynomial time**
-   1) NPC ⊆ NP
+    1) NPC ⊆ NP
 2) `∀P'∈NP : P' <=p P`(polynomial), closed to the polynomial reducibility
    1) We need to **verify** that **all the problems in NP, are polynomially reducible to the problem P**.
    2) This means that all NPC problems can be reduced between them, by _point 2_. If we solve just one in polynomial time, then
