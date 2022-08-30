@@ -183,15 +183,19 @@ By **Applying the definition of NPC**:
   * Since this is a _tedious process_, Cook's property helps us!
 
 By Cook's property, Q ∈ NPC iff:
-1. Q ∈ NP, true by hypothesis
+1. Q ∈ NP, true by hypothesis!
 2. ∃P1 ∈ NPC : P1 <=p Q, yet to be demonstrated!
 
 We need to find a way to **polynomially reduce a known NPC problem, in this case P1, to Q**. This
 will prove that Q is an NPC problem by transitivity!
-* ∀P2 ∈ NP : P2 <=p Q, by definition of NPC
-* **P1 <=p Q**, by hypothesis P1 is polynomially reducible to a problem in NPC
-  * This means there exist a way to polynomially reduce P1 to Q!
-* P2 <= P1 <= Q --> **Q <=p P**, by transitivity
+
+To demonstrate point number 2 of Cook's property:
+* ∀P2 ∈ NP : P2 <=p Q, by definition of NPC (if we imply Q is in NPC)
+* **P1 ∈ NPC**, by hypothesis
+  * **P1 ∈ NP**, by hypothesis & definition of NPC
+  * ∀ P2 ∈ NP : P2 <=p P1, by definition of NPC
+* **P1 <=p Q**, by hypothesis, if asked for an example demonstrate CLIQUE (P2=CIRCUIT_SAT <=p P1=SAT-3-CNF <=p Q=CLIQUE)
+* P2 <=p P1 <=p Q --> **P2 <=p Q**, by transitivity Q is in NPC
 
 ---
 
