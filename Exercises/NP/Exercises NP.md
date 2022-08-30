@@ -120,30 +120,78 @@ NPC & "<=p" Properites:
 * Symmetric property is valid between NPC problems 
   * _If given two problems in NPC such that P(1) <=p P(2), it is true that P(2) <=p P(1)_
   * We know, by Cook's property, that a problem P' is in NPC if it is in NP and there exist another problem P'' in NPC such that P''<=P'.
-  * By Transitivity
+  * We can transform an instance of SAT_3_CNF in an instance of CLIQUE (with some constraints) and viceversa.
 
 
 ## Solution - Part 2
 We know P' and Q are in NP, and P <=p Q:
 1. They are verifiable in polynomial time O(n^k)
 2. P is polynomially reducible to Q
-   1. There exists a mapping algorithm A:P'--> Q that maps all P instances to Q instances 
+   * There exists a mapping algorithm A:P'--> Q that maps all P instances to Q instances 
    in polynomial time O(n^k).
 
-### If Q is solvable in O(n^2) --> P' is solvable in O(n^2)? - FALSE
+### If Q is solvable in O(n^2) --> P' is solvable in O(n^2)? - FALSE + COUNTEREXAMPLE
 It is not sufficient to know that Q is solvable in O(n^2) for P' to be solvable in O(n^2).
-1. We have no clue whether the mapping algorithm A:P'-->Q has time complexity equal to O(n^2).
-2. We just know it has polynomial time O(n^k), so if k>2 this statement loses its validity.
+* We have no clue whether the mapping algorithm A:P'-->Q has time complexity equal to O(n^k), with k<=2.
 
-### If Q is solvable in O(k^n) --> P' is solvable in O(k^n)? - TRUE
+If k>2 this statement loses its validity: We could construct an algorithm A for P'
 
-
-### If Q is in NPC --> P' is in NPC? - FALSE
-
+Counterexample:
+If the
 
 
-### If P' is in NPC --> Q is in NPC ? - TRUE
+### If Q is solvable in O(k^n) --> P' is solvable in O(k^n)? - TRUE + DEMONSTRATION
+We know that we can create an algorithm A for P' that is composed of:
+* The mapping algorithm in from P to Q, which is in O(n^k) by definition of polynomial reducibility;
+* The solving algorithm for Q's instances, which is in O(j^n) by hypothesis;
 
+The algorithm A would have T(A) = O(n^k) + O(j^n). However, asymptotically this equals to T(A) = O(j^n) 
+since it can be demonstrated that (j^n) grows more rapidly than (n^k)!
+
+
+
+### If Q is in NPC --> P' is in NPC? - FALSE + COUNTEREXAMPLE
+By definition of NPC, we know that a problem Q is in NPC if it is in NP and all problems in NP are polynomially
+reducible to Q.
+
+This means that given:
+* P' in NP
+* P' <=p Q
+* Q in NPC
+
+We can just confirm that Q is NPC, yet another problem P in NP is polynomially reducible to Q. However, the premise
+of the implication is not sufficient to demonstrate that P' is in NPC.
+
+Ad-Absurdum, By saying t
+
+
+### If P1 is in NPC --> Q is in NPC ? - TRUE + DEMONSTRATION
+The implication is true.
+
+**Demonstration: We need to prove that P1 <=q Q ∈ NPC, for this to be true!**
+
+By hypothesis and premise the following statements are true:
+* **Q is in NP**
+* **P1 is in NPC**, therefore by definition of NPC:
+    * P1 ∈ NP
+    * ∀ P2 ∈ NP : P2 <=p P1
+* **P1 <=q Q**;
+
+By **Applying the definition of NPC**:
+1. We need to show that Q is verifiable in polynomial time: **true by hypothesis**
+2. We need to demonstrated that all problems in NP are polynomially reducible to Q.
+  * Since this is a _tedious process_, Cook's property helps us!
+
+By Cook's property, Q ∈ NPC iff:
+1. Q ∈ NP, true by hypothesis
+2. ∃P1 ∈ NPC : P1 <=p Q, yet to be demonstrated!
+
+We need to find a way to **polynomially reduce a known NPC problem, in this case P1, to Q**. This
+will prove that Q is an NPC problem by transitivity!
+* ∀P2 ∈ NP : P2 <=p Q, by definition of NPC
+* **P1 <=p Q**, by hypothesis P1 is polynomially reducible to a problem in NPC
+  * This means there exist a way to polynomially reduce P1 to Q!
+* P2 <= P1 <= Q --> **Q <=p P**, by transitivity
 
 ---
 
