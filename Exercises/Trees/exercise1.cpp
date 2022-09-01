@@ -152,16 +152,39 @@ int k_limited_aux(Node *root, int k, int w){
     }
 }
 
-// Complessita = Theta(leaves) =
+bool is_leaf(Node *root){
+    return root->left && root->right;
+}
+
+// Complessita = Theta(Tutti i cammini da nodi interni alle foglie) =
 int k_limitato_rec(Node *root, int k){
-    return k_limited_aux(root, k, 0);
+    // Empty
+    if(!root){
+        return 0;
+    }else{
+        if(is_leaf(root)){
+            return root->key;
+        }else{
+            // If sub-sum of keys<= k && sub-sum + actual key
+            int left_subt = k_limitato_rec(root->left,  k);
+            int right_subt = k_limitato_rec(root->right, k);
+            int leftsum = root->key + left_subt;
+            int rightsum = root->key + left_subt;
+
+            if((left_subt>k || right_subt>k) || (leftsum>k || rightsum>k)){
+                return 0;
+            }else{
+                return 1;
+            }
+        }
+    }
 }
 
 
 
 int main()
 {
-    int arr[] = { -21, -20, 2, 14, -30, 10, 4, 1, 2, 1};
+    int arr[] = { -21, 20, 2, 14, -30, 10, 4, 1, 2, 1};
     int n = sizeof(arr) / sizeof(arr[0]);
     Node* root = createTree(arr, n);
     levelOrder(root);
@@ -171,7 +194,7 @@ int main()
     printBT(root);
     //cout<< "\n Il grado di squilibrio: "<< squil << "\n" << endl;
 
-    int k = 40;
+    int k = 14;
     if(k_limitato_rec(root, k)){
         cout<< "\nL'albero e' limitato per k = "<< k << "\n" << endl;
     }else{
