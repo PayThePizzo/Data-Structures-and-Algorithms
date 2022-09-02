@@ -94,7 +94,7 @@ void printBT(const std::string& prefix, const Node* node, bool isLeft)
     {
         std::cout << prefix;
 
-        std::cout << (isLeft ? "|--" : "L__" );
+        std::cout << (isLeft ? "|__" : "L__" );
 
         // print the value of the node
         std::cout << node->key << std::endl;
@@ -152,10 +152,6 @@ int gradosquil_tree(Tree *root){
 }
 
 
-bool is_leaf(Node *root){
-    return !root->left && !root->right;
-}
-
 int check_path(int path, int k, bool* flag){
     if(path>k){
         *flag = false;
@@ -167,25 +163,16 @@ int check_path(int path, int k, bool* flag){
 
 int k_limitato_aux(Node *root, int k, bool *flag){
     if(*flag){
-        int path = root->key;
+        int path;
         if(!root->left && root->right){
-            int r_sub_sum = k_limitato_aux(root->right, k, flag);
-            path += r_sub_sum;
-            return check_path(path, k, flag);
-
+            return check_path(root->key + k_limitato_aux(root->right, k, flag), k, flag);
         }else if(root->left && !root->right){
-            int l_sub_sum = k_limitato_aux(root->left, k, flag);
-            path += l_sub_sum;
-            return check_path(path, k, flag);
-
+            return check_path(root->key + k_limitato_aux(root->left, k, flag), k, flag);
         }else if (root->left && root->right){
-            int r_sub_sum = k_limitato_aux(root->right, k, flag);
-            int l_sub_sum = k_limitato_aux(root->left, k, flag);
-            path += max(r_sub_sum, l_sub_sum);
-            return check_path(path, k, flag);
-
-        }else if (is_leaf(root)){
-            return check_path(path, k, flag);
+            return check_path(root->key + max(k_limitato_aux(root->left, k, flag),
+                                              k_limitato_aux(root->left, k, flag)), k, flag);
+        }else if (!root->left && !root->right){
+            return check_path(root->key, k, flag);
         }
     }else{
         return 0;
@@ -193,7 +180,8 @@ int k_limitato_aux(Node *root, int k, bool *flag){
 }
 
 
-int k_limitato_v1(Node *root, int k){
+
+int k_limitato(Node *root, int k){
     bool flag = true;
     if (root){
         k_limitato_aux( root, k, &flag);
@@ -203,7 +191,7 @@ int k_limitato_v1(Node *root, int k){
 
 int main()
 {
-    int arr[] = { 1, -2, -3, -4, 5, 6,7};
+    int arr[] = { 1, -2, -3, -4, 5, 4,3};
     int arr1[] = {};
     int n = sizeof(arr) / sizeof(arr[0]);
     Node* root = createTree(arr, n);
@@ -215,7 +203,7 @@ int main()
     int i = 15;
 
     for(i = -5; i<10; i++){
-        if(k_limitato_v1(root, i)){
+        if(k_limitato(root, i)){
             cout<< "\nL'albero e' limitato per k = "<< i << "\n" << endl;
         }else{
             cout<< "\nL'albero NON e' limitato per k = "<< i << "\n" << endl;
