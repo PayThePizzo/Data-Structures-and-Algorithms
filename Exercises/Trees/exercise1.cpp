@@ -112,44 +112,32 @@ void printBT(const Node* node)
 
 //--- GeeksforGeeks Credits ---
 
-/**
- * Trova il grado di squilibrio di un nodo, ovvero il valore assoluto della differenza tra
- * la somma delle chiavi nel sotto albero sinistro e la somma delle chiavi nel sotto albero destro.
- *
- * @param u nodo
- * @return grado di squilbrio di un nodo
- */
- //TODO: FIX
-int gradosquil_node(Node *root){
-    //Empty
+bool is_leaf(Node *root){
+    return !root->left && !root->right;
+}
+
+
+int gradosquil_aux(Node *root, int *max_gs){
     if(!root){
         return 0;
-    }else {
-        // Leaf
+    }else{
         if(!root->left && !root->right){
             return root->key;
+        }else {
+            int gsn = abs(gradosquil_aux(root->left, max_gs)- gradosquil_aux(root->right, max_gs));
+            if(gsn > *max_gs){
+               *max_gs = gsn;
+            }
+            return gsn;
         }
-        return abs(gradosquil_node(root->left) - gradosquil_node(root->right));
     }
 }
 
-/**
- * Trova il massimo grado di squilibrio di un albero. Cio' si traduce nel massimo grado di squilibrio
- * dei suoi nodi.
- *
- * @param root radice dell'albero
- * @return grado di squilibrio dell'albero
- *
- */
- // TODO: FIX
-int gradosquil_tree(Tree *root){
-    //Empty
-    if(!root){
-        return 0;
-    }else {
-        return max(gradosquil_node(root->left), gradosquil_node(root->right));
-    }
+int gradosquil_tree(Node *root){
+    int max = 0;
+    return gradosquil_aux(root, &max);
 }
+
 
 
 int check_path(int path, int k, bool* flag){
@@ -163,7 +151,6 @@ int check_path(int path, int k, bool* flag){
 
 int k_limitato_aux(Node *root, int k, bool *flag){
     if(*flag){
-        int path;
         if(!root->left && root->right){
             return check_path(root->key + k_limitato_aux(root->right, k, flag), k, flag);
         }else if(root->left && !root->right){
@@ -179,8 +166,6 @@ int k_limitato_aux(Node *root, int k, bool *flag){
     }
 }
 
-
-
 int k_limitato(Node *root, int k){
     bool flag = true;
     if (root){
@@ -191,7 +176,7 @@ int k_limitato(Node *root, int k){
 
 int main()
 {
-    int arr[] = { 1, -2, -3, -4, 5, 4,3};
+    int arr[] = { 1, -2, 3};
     int arr1[] = {};
     int n = sizeof(arr) / sizeof(arr[0]);
     Node* root = createTree(arr, n);
@@ -200,14 +185,17 @@ int main()
     cout<< "\n"<<endl;
     printBT(root);
     //cout<< "\n Il grado di squilibrio: "<< squil << "\n" << endl;
-    int i = 15;
+//    int i = 15;
+//
+//    for(i = -5; i<10; i++){
+//        if(k_limitato(root, i)){
+//            cout<< "\nL'albero e' limitato per k = "<< i << "\n" << endl;
+//        }else{
+//            cout<< "\nL'albero NON e' limitato per k = "<< i << "\n" << endl;
+//        }
+//    }
+    cout<< "\n Il grado di squilibrio: "<< gradosquil_tree(root)<< "\n" << endl;
 
-    for(i = -5; i<10; i++){
-        if(k_limitato(root, i)){
-            cout<< "\nL'albero e' limitato per k = "<< i << "\n" << endl;
-        }else{
-            cout<< "\nL'albero NON e' limitato per k = "<< i << "\n" << endl;
-        }
-    }
+
     return 0;
 }
