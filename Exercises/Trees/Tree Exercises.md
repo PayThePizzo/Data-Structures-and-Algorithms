@@ -62,7 +62,7 @@ T(check_path) = O(1)
 
 T(k_limitato_aux) = O(n)
 * O(1), if flag is false it immediately fails
-* T(n) = max{ if-else block} = T(n) = Θ(n), flag is true --> tree is k-limited!
+* T(n) = max{ if-else block } = T(n) = Θ(n), else
   * The third block where we have two recursive calls on the left and the right subtree is the most expensive.
   * The function first gets to the leaves, and then returns the content.
   * We visit each node exactly once, in the worst case, since we do not have a pointer to the parent of a node
