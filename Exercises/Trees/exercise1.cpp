@@ -192,6 +192,7 @@ int k_limitato_aux(Node *root, int k, bool *flag){
     }
 }
 
+
 int k_limitato_v1(Node *root, int k){
     bool flag = true;
     if (root){
