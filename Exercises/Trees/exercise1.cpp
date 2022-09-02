@@ -14,6 +14,12 @@ struct Node{
     Node *right;
 };
 
+struct Tree{
+    Node *left;
+    Node *right;
+};
+
+// --- GeeksforGeeks Credits ---
 // Function to create a node with 'value' as the data
 // stored in it.
 // Both the children of this new Node are initially null.
@@ -104,8 +110,17 @@ void printBT(const Node* node)
     printBT("", node, false);
 }
 
-// Esercizio Alberi 1.png
-int gradosquil_rec(Node *root){
+//--- GeeksforGeeks Credits ---
+
+/**
+ * Trova il grado di squilibrio di un nodo, ovvero il valore assoluto della differenza tra
+ * la somma delle chiavi nel sotto albero sinistro e la somma delle chiavi nel sotto albero destro.
+ *
+ * @param u nodo
+ * @return grado di squilbrio di un nodo
+ */
+ //TODO: FIX
+int gradosquil_node(Node *root){
     //Empty
     if(!root){
         return 0;
@@ -114,92 +129,96 @@ int gradosquil_rec(Node *root){
         if(!root->left && !root->right){
             return root->key;
         }
-        return abs(gradosquil_rec(root->left) - gradosquil_rec(root->right));
+        return abs(gradosquil_node(root->left) - gradosquil_node(root->right));
     }
 }
 
-// Esercizio 5.png
-// Dobbiamo esplorare tutti i cammini dalla radice alle foglie, altrimenti rischiamo che ci siano pesi negativi.
-// TODO: Fix that subtrees are ignored if total sum from root to leaf <=k
-int k_limited_aux(Node *root, int k, int w){
-    // Empty Tree
+/**
+ * Trova il massimo grado di squilibrio di un albero. Cio' si traduce nel massimo grado di squilibrio
+ * dei suoi nodi.
+ *
+ * @param root radice dell'albero
+ * @return grado di squilibrio dell'albero
+ *
+ */
+ // TODO: FIX
+int gradosquil_tree(Tree *root){
+    //Empty
     if(!root){
         return 0;
     }else {
-        //Leaf
-        w +=root->key;
-        if(!root->left && !root->right){
-            // Consider path from leaf to itself
-            // Consider path to the leaf
-            if(root->key <= k && w <= k){
-                return 1;
-            }else{
-                std::cout<< "Il peso del cammino dalla foglia a se' stessa e' " << root->key << ", mentre il cammino"
-                                                                                                " dai suoi parenti e' "<< w << std::endl;
-                return 0;
-            }
-            //Subtree
-        }else {
-            // Return True if w(p)<=k & subpaths to leaf are <=k
-            if ((k_limited_aux(root->left, k, w)) && k_limited_aux(root->right, k, w)) {
-                return 1;
-            } else {
-                std::cout << "Il peso del cammino da " << root->key << " e' maggiore di k, infatti k<" << w
-                          << std::endl;
-                return 0;
-            }
-        }
+        return max(gradosquil_node(root->left), gradosquil_node(root->right));
     }
 }
+
 
 bool is_leaf(Node *root){
-    return root->left && root->right;
+    return !root->left && !root->right;
 }
 
-// Complessita = Theta(Tutti i cammini da nodi interni alle foglie) =
-int k_limitato_rec(Node *root, int k){
-    // Empty
-    if(!root){
+int check_path(int path, int k, bool* flag){
+    if(path>k){
+        *flag = false;
         return 0;
     }else{
-        if(is_leaf(root)){
-            return root->key;
-        }else{
-            // If sub-sum of keys<= k && sub-sum + actual key
-            int left_subt = k_limitato_rec(root->left,  k);
-            int right_subt = k_limitato_rec(root->right, k);
-            int leftsum = root->key + left_subt;
-            int rightsum = root->key + left_subt;
-
-            if((left_subt>k || right_subt>k) || (leftsum>k || rightsum>k)){
-                return 0;
-            }else{
-                return 1;
-            }
-        }
+        return path;
     }
 }
 
+int k_limitato_aux(Node *root, int k, bool *flag){
+    if(*flag){
+        int path = root->key;
+        if(!root->left && root->right){
+            int r_sub_sum = k_limitato_aux(root->right, k, flag);
+            path += r_sub_sum;
+            return check_path(path, k, flag);
 
+        }else if(root->left && !root->right){
+            int l_sub_sum = k_limitato_aux(root->left, k, flag);
+            path += l_sub_sum;
+            return check_path(path, k, flag);
+
+        }else if (root->left && root->right){
+            int r_sub_sum = k_limitato_aux(root->right, k, flag);
+            int l_sub_sum = k_limitato_aux(root->left, k, flag);
+            path += max(r_sub_sum, l_sub_sum);
+            return check_path(path, k, flag);
+
+        }else if (is_leaf(root)){
+            return check_path(path, k, flag);
+        }
+    }else{
+        return 0;
+    }
+}
+
+int k_limitato_v1(Node *root, int k){
+    bool flag = true;
+    if (root){
+        k_limitato_aux( root, k, &flag);
+    }
+    return flag == true ? 1:0;
+}
 
 int main()
 {
-    int arr[] = { -21, 20, 2, 14, -30, 10, 4, 1, 2, 1};
+    int arr[] = { 1, -2, -3, -4, 5, 6,7};
+    int arr1[] = {};
     int n = sizeof(arr) / sizeof(arr[0]);
     Node* root = createTree(arr, n);
     levelOrder(root);
-    int squil = gradosquil_rec(root);
 
     cout<< "\n"<<endl;
     printBT(root);
     //cout<< "\n Il grado di squilibrio: "<< squil << "\n" << endl;
+    int i = 15;
 
-    int k = 14;
-    if(k_limitato_rec(root, k)){
-        cout<< "\nL'albero e' limitato per k = "<< k << "\n" << endl;
-    }else{
-        cout<< "\nL'albero NON e' limitato per k = "<< k << "\n" << endl;
+    for(i = -5; i<10; i++){
+        if(k_limitato_v1(root, i)){
+            cout<< "\nL'albero e' limitato per k = "<< i << "\n" << endl;
+        }else{
+            cout<< "\nL'albero NON e' limitato per k = "<< i << "\n" << endl;
+        }
     }
-
     return 0;
 }
