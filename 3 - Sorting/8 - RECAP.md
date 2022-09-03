@@ -32,9 +32,9 @@ insertion_sort(Array A)
         key = A[j]
         i = j-1
         while i > 0 AND A[i] > key #Modify predecessor when we find a smaller element
-            A[i+1] = A[i]
+            A[i+1] = A[i] #Shifts forward
             i = i-1
-        A[i+1] = key 
+        A[i+1] = key # Finds position in the sorted array
 ```
 
 ---
