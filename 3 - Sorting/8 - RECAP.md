@@ -14,6 +14,15 @@
 ---
 
 ## Insertion sort
+The array is virtually split into a **sorted** and an **unsorted part**.
+* At beginning A[1] is sorted, by definition is like an array of one element
+* A[2..n] is unsorted, or at least know nothing a-priori
+
+At each array-position, it checks the value there against the largest value in the sorted list (which happens to be next
+to it, in the previous array-position checked). If larger, it leaves the element in place and moves to the next. 
+If smaller, it finds the correct position within the sorted list, shifts all the larger values up to make a space, 
+and inserts into that correct position.
+
 
 ![Insertion Sort Gif](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/insertionsortgif.gif)
 
@@ -172,4 +181,4 @@ radixsort(array A, int d)
 ---
 
 
-Check [this website](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html) for more algorithm visualization!
+Check out [this website](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html) for more algorithm visualization!
