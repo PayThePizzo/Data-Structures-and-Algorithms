@@ -8,13 +8,24 @@
 | Heap Sort      | Selection, Incremental |         O(n*log(n))        |     Y     |     Y     |    Y    |    N    |
 | Counting sort  | Non-Comparison         |   Θ(n)<= Θ(n+k)<= Θ(n^2)   |     N     |     N     |    N    |    N    |
 | Radix sort     | Non-Comparison         |         Θ(d*(n+k))         | **        | **        | **      | **      |
+
+**Depends on subroutine, `d` is the number of iterations in the function
+
 ---
 
-## Insertion Sort
+## Insertion sort
 
-### Characteristics
+![Insertion Sort Gif]()
 
-### Complexity
+## Merge sort
+
+## Quick sort
+
+## Heap sort
+
+## Counting sort
+
+## Radix sort
 
 
 
