@@ -39,3 +39,8 @@ Heap_sort(Array A)
 ```
 
 **Final Time Complexity** T(n) = O(n * log(n))
+* T(max_heapify()) = O(log(n))
+
+Theorem: Heapsort sorts in-place n elements, executing O(nlog(n)) comparisons
+in the worst case.
+* Quicksort is usually faster when optimized (not in the worst case).

@@ -151,7 +151,7 @@ Pro:
 Con:
 * Worst Case T(n) = O(n**2)
 * Not Stable
-* Slow when input is already sorted (asc/desc) or all the elements have equal values
+* Not adaptive: slow when input is already sorted (asc/desc) or all the elements have equal values
 
 ---
 
