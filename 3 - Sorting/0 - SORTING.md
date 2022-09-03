@@ -75,7 +75,6 @@ in the original list, R will appear before S in the sorted list**.
 The Stable sorting algorithms we will cover are:
 * Insertionsort
 * Mergesort
-* Quicksort
 * Heapsort
 
 ---
@@ -102,6 +101,8 @@ The NON-Comparison sorting algorithms we will cover are:
 * Countingsort 
   * It uses key values as indexes into an array and the Ω(n log n) lower bound for comparison sorting will not apply.
 * Radixsort (using Countingsort, but depends on subroutine)
+
+The latter ones do not follow any of the methods we will describe here, they operate in their own way.
 
 ---
 
