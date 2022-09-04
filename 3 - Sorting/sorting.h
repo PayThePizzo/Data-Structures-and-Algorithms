@@ -1,28 +1,40 @@
 #ifndef ASD_SORTING_H
 #define ASD_SORTING_H
-#include stdlib.h
-#include time.h
-#include math.h
-#include assert.h
-#include stdio.h
-#include string.h
+#include <cmath>
 
-void insertionSort(int arr[]);
+struct Node{
+    int key;
+    Node *left;
+    Node *right;
+};
 
-void mergesort(int arr[], int p, int r);
 
-void merge(int arr[], int p, int q, int r);
+void insertion_sort(int *arr, int size);
 
-void heapSort(int * arr);
+void merge(int arr[], int left, int center, int right);
 
-void countingsort(int arr1[], int arr2[], int n, int k);
+void merge_sort(int arr[], int left, int right);
 
-void radixsort(int arr[], int d);
+void heap_sort(int * arr);
 
-void partition(int arr[], int p, int r);
+void swap(int *a, int *b);
 
-void randomized_partition(int arr[], int p, int r);
+int partition(int arr[], int left, int right);
 
-void quicksort(int arr[], int p, int r);
+void quick_sort(int arr[], int left, int right);
+
+/***
+ * Implementation of Counting sort, can be modified for negative numbers
+ *
+ * @param input input array of integers
+ * @param output output array of integers, sorted in a non decreasing way
+ * @param n size of arr1 and arr2
+ * @param k upper bound of integer numbers range [0 to k]
+ */
+void counting_sort(int *input, int *output, int n, int k);
+
+void radix_sort(int arr[], int d);
+
+
 
 #endif //ASD_SORTING_H

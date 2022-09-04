@@ -56,6 +56,7 @@ void insertion_sort(int *arr, int size){
 
 ## Merge sort
 
+
 ![Merge Sort Gif](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/mergesortgif.gif)
 
 ```python
@@ -269,21 +270,29 @@ void countingsort(array A, array B, int n, int k) {
 ```c++
 void counting_sort(int *input, int *output, int n, int k){
     int aux[k+1];
-    for(int i = 0; i<=k; i++) aux[i]=0;
-    for(int i = 0; i<n; i++) aux[*(input+i)]++;
-    for(int i = 1; i<=k; i++) aux[i]+=aux[i-1];
-    for(int i = n-1; i>=0; i--) *(output+(--aux[(*(input+i))])) = *(input+i);
+    for(int i = 0; i<=k; i++) 
+        aux[i]=0;
+    for(int i = 0; i<n; i++) 
+        aux[*(input+i)]++;
+    for(int i = 1; i<=k; i++) 
+        aux[i]+=aux[i-1];
+    for(int i = n-1; i>=0; i--) 
+        *(output+(--aux[(*(input+i))])) = *(input+i);
 }
 ```
 
 ---
 
 ## Radix sort
+Sorts an array `A` of elements with `d` digits, from the less significant one.
+* Ex: A={31, 13, 22} 
+  * After sorting on last digit, A = {31, 22, 13}
+  * After sorting on the first digit, A = {13, 22, 31}
 
 ```python
 radixsort(array A, int d)
     for (i = 1 to d):
-        sort(A, i)
+        Apply to A, a stable sorting algorithm that sorts it on i-th digit
 ```
 
 ---
