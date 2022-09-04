@@ -3,6 +3,8 @@ Quick sort belongs to a class of algorithms which use a Divide-et-Impera approac
 
 ![Quick Sort](https://raw.githubusercontent.com/PayThePizzo/DataStrutucures-Algorithms/main/Resources/quicksort.png?raw=TRUE)
 
+
+
 ---
 
 ## Invariant
@@ -47,7 +49,7 @@ partition(Array A, int p, int r)
         if (A[j] <= x): #Swap if the invariant holds true
             i++;
             swap(A[i], A[j]);
-        swap(A[i+1], A[r]); #Put pivot back to the right position
+    swap(A[i+1], A[r]); #Put pivot back to the right position
     return i+1;
 
 ```

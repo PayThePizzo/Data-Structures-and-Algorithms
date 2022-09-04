@@ -6,8 +6,10 @@ Hypothesis: The number to sort are integers in a interval of `[0..k]`
 
 ---
 
-**Input**: A[1..n] where A[j] ∈ [0..k], for every j ∈ {1,..,n}
-* n, k are the parameters of the algorithm
+**Input**: 
+* A[1..n] where A[j] ∈ [0..k], for every j ∈ {1,..,n}
+* n is the size of the array
+* k is the upper bound integer of the range [0...k]
 
 **Output**: B[1..n] sorted in a non-decreasing manner
 * B is a different vector
@@ -15,6 +17,13 @@ Hypothesis: The number to sort are integers in a interval of `[0..k]`
 ---
 
 ## The Algorithm
+1. Allocation and Initialization of a vector C of lenght k
+2. Count the occurrences of elements in A.
+   1. Es: C[A[i]], with i=3 is the count of times A[] contains the number three.
+3. Cumulative sum of values in C
+   1. `i` represents the index of the element C[i] in the new sorted array
+4. Because an element might be repeated, we decrement the value of C[i] every time it is read.
+
 
 ```python
 void countingsort(array A, array B, int n, int k) {

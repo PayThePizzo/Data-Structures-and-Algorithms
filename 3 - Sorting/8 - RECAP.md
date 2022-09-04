@@ -70,7 +70,7 @@ int R[n2] = create_arrR(n2); # R = [1 .. n2+1] Aux Vector
 for (i = 1 to n1):
     L[i] = A[p+i-1];
 for (j = 1 to n2):
-    R[i] = A[q+j];
+    R[j] = A[q+j];
 
 # Guard condition
 L[n1+1] = infinity();
@@ -94,6 +94,53 @@ merge_sort(Array A, int p, int r)
         merge(A, p, q, r);
 ```
 
+```c++
+void merge(int arr[], int left, int center, int right){
+    // Initialize Aux Arrays
+    int left_size = center - left + 1, right_size = right - center;
+    int aux_l[left_size], aux_r[right_size];
+
+    for(int i = 0; i<left_size; i++)
+        aux_l[i] = arr[left+i];
+    for(int j = 0; j<right_size; j++)
+        aux_r[j] = arr[center+1+j];
+    
+    int i = 0, j = 0, k = left;
+    // Insert Smallest
+    while(i<left_size && j<right_size) {
+        if (aux_l[i] <= aux_r[j]) {
+            arr[k] = aux_l[i];
+            i++;
+        } else {
+            arr[k] = aux_r[j];
+            j++;
+        }
+        k++;
+    }
+    // Insert the rest
+    while (i < left_size) {
+        arr[k] = aux_l[i];
+        i++;
+        k++;
+    }
+    while (j < right_size) {
+        arr[k] = aux_r[j];
+        j++;
+        k++;
+    }
+}
+
+void merge_sort(int arr[], int left, int right){
+    if(left<right){
+        int center = left +((right-left)/2);
+        merge_sort(arr, left , center);
+        merge_sort(arr, center+1, right);
+        merge(arr, left, center , right);
+    }
+}
+```
+
+
 ---
 
 ## Quick sort
@@ -101,29 +148,60 @@ merge_sort(Array A, int p, int r)
 ![Quick Sort Gif](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/quicksortgif.gif)
 
 ```python
-partition(int * arr, int p, int r)
-    int x = arr[r];
-    int min = p, eq = p, max = r;
-    while(eq < max):
-        if(arr[eq] < x):
-            swap(arr, min, eq);
-            eq++;
-            min++;
-        else if(arr[eq] == x):
-            eq++;
-        else:
-            max--;
-            swap(arr, max, eq);
+partition(Array A, int p, int r)
+x = A[r];   #Last element
+i = p-1;
+for (j = p to r-1):
+    if (A[j] <= x): #Swap if the invariant holds true
+        i++;
+        swap(A[i], A[j]);
+swap(A[i+1], A[r]); #Put pivot back to the right position
+return i+1;
 
-    swap(arr, r, max);
-    return [min, max];
-
-    
-quicksort(int * arr, int p, int r)
+quick_sort(Array A, int p, int r)
     if(p < r):
-        int[] qt = partition(arr, p, r);
-        quicksort(arr, p, q - 1);
-        quicksort(arr, t + 1, r);
+        q = Partition(A, p, r);
+        quick_sort(A, p, q-1);
+        quick_sort(A, q+1, r);
+```
+
+```c++
+void swap(int *a, int *b){
+    int temp = *a;
+    *a =  *b;
+    *b = temp;
+}
+
+int partition(int arr[], int left, int right){
+    // pivot is the last element
+    int pivot = arr[right];
+    // i is the u
+    int i = left-1;
+    //stop before considering pivot
+    for(int j = left; j<right; j++) {
+        //only swap elements that <= pivot
+        if (arr[j] <= pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    //move pivot between subarrays
+    //arr[left ... i]<= pivot < arr[i+2...right]
+    swap(&arr[i+1], &arr[right]);
+    //return pivot index
+    return i+1;
+}
+
+void quicksort(int arr[], int left, int right){
+    if(left < right){
+        // Not included inside the sub arrays
+        int q = partition(arr, left, right);
+        //arr[p...q-1] contains arr[i]<=arr[q]
+        quicksort(arr, left, q-1);
+        //arr[p...q-1] contains arr[i]>arr[q]
+        quicksort(arr, q+1, right);
+    }
+}
 ```
 
 ---
@@ -165,9 +243,14 @@ Heap_sort(Array A)
 ---
 
 ## Counting sort
+1. Allocation and Initialization of a vector C of lenght k
+2. Count the occurrences of elements in A.
+    1. Es: C[A[i]], with i=3 is the count of times A[] contains the number three.
+3. Cumulative sum of values in C
+    1. `i` represents the index of the element C[i] in the new sorted array
+4. Because an element might be repeated, we decrement the value of C[i] every time it is read.
 
 ![Counting Sort Gif](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/countingsortgif.gif)
-
 
 ```python
 void countingsort(array A, array B, int n, int k) {
@@ -181,6 +264,16 @@ void countingsort(array A, array B, int n, int k) {
     for (i = n down to 1):
         B[C[A[i]]] = A[i]; #insert
         C[A[i]]--; #to avoid duplicates or insertion in same position
+```
+
+```c++
+void counting_sort(int *input, int *output, int n, int k){
+    int aux[k+1];
+    for(int i = 0; i<=k; i++) aux[i]=0;
+    for(int i = 0; i<n; i++) aux[*(input+i)]++;
+    for(int i = 1; i<=k; i++) aux[i]+=aux[i-1];
+    for(int i = n-1; i>=0; i--) *(output+(--aux[(*(input+i))])) = *(input+i);
+}
 ```
 
 ---
