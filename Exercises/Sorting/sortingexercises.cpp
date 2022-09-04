@@ -6,6 +6,14 @@
 #include <stdlib.h>
 #include <vector>
 
+/**
+ *
+ *
+ * @param arr
+ * @param p
+ * @param r
+ * @param q
+ */
 void quickSelect(int *arr, int p, int r, int q){
 
 }
