@@ -26,6 +26,7 @@ and inserts into that correct position.
 
 ![Insertion Sort Gif](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/insertionsortgif.gif)
 
+Pseudo Code:
 ```python
 insertion_sort(Array A)
     for j=2 TO A.length #Array starts from 1
@@ -35,6 +36,20 @@ insertion_sort(Array A)
             A[i+1] = A[i] #Shifts forward
             i = i-1
         A[i+1] = key # Finds position in the sorted array
+```
+
+In C/C++:
+```c++
+void insertion_sort(int *arr, int size){
+    for(int j = 1; j<size; j++){
+        int i = j-1, key = *(arr+j);
+        while(i>=0 && *(arr+i)> key){
+            *(arr+i+1)= *(arr+i);
+            i-=1;
+        }
+        *(arr+i+1)=key;
+    }
+}
 ```
 
 ---
@@ -49,7 +64,7 @@ merge(Array A, int p, int q, int r)
 n1 = q - p + 1; # Lower
 n2 = r - q; # Upper
 int L[n1] = create_arrL(n1); # L = [1 .. n1+1] Aux Vector
-int R[n1] = create_arrR(n2); # R = [1 .. n2+1] Aux Vector
+int R[n2] = create_arrR(n2); # R = [1 .. n2+1] Aux Vector
 
 # Copy in L & R, all the elements.
 for (i = 1 to n1):

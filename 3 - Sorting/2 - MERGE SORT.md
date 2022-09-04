@@ -83,7 +83,7 @@ Merge(Array A, int p, int q, int r)
     n1 = q - p + 1; # Lower
     n2 = r - q; # Upper
     int L[n1] = create_arrL(n1); # L = [1 .. n1+1] Aux Vector
-    int R[n1] = create_arrR(n2); # R = [1 .. n2+1] Aux Vector
+    int R[n2] = create_arrR(n2); # R = [1 .. n2+1] Aux Vector
     
     # Copy in L & R, all the elements.
     for (i = 1 to n1):
