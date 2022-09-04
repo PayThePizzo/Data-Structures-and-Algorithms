@@ -89,7 +89,7 @@ Merge(Array A, int p, int q, int r)
     for (i = 1 to n1):
         L[i] = A[p+i-1];
     for (j = 1 to n2):
-        R[i] = A[q+j];
+        R[j] = A[q+j];
     
     # Guard condition
     L[n1+1] = infinity();
