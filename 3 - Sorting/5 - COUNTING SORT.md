@@ -35,8 +35,7 @@ void countingsort(array A, array B, int n, int k) {
     for (i = 1 to k):
         C[i] = C[i] + C[i-1] #prefixed sums
     for (i = n down to 1):
-        B[C[A[i]]] = A[i]; #insert
-        C[A[i]]--; #to avoid duplicates or insertion in same position
+        B[--C[A[i]]] = A[i]; #insert and avoid duplicates or insertion in same position
 ```
 **Final Time Complexity**: T(n) = Θ(n+k) 
 * Usually best when k = O(n), then T(n) = Θ(n)
