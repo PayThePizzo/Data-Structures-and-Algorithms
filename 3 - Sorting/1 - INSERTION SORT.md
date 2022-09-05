@@ -58,13 +58,11 @@ insertion_sort(Array A)
             i = i-1
         A[i+1] = key 
 ```
-**Final Time Complexity** = <mark>Θ(n**2)</mark>
+**Final Time Complexity** = <mark>O(n**2)</mark>
 * Best =  Θ(n)
   * Array ascending order
 * Worst =  Θ(n**2)
   * Array decreasing order
-  * 
-* Average =  Θ(n**2) = (n-1 * )
 
 ---
 

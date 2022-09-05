@@ -2,7 +2,7 @@
 
 |                |         Method         |           T(n)            | Adaptive? | In-Place? | Stable? | Online? |
 |----------------|:----------------------:|:-------------------------:|-----------|-----------|---------|---------|
-| Insertion sort | Insertion, Incremental |          Θ(n^2)           |     Y     |     Y     |    Y    |    Y    |
+| Insertion sort | Insertion, Incremental |          O(n^2)           |     Y     |     Y     |    Y    |    Y    |
 | Merge sort     | Merging*               |        Θ(nlog(n))         |     N     |     N     |    Y    |    N    |
 | Quick sort     | Partitioning*          | avg:O(nlog(n)), w: O(n^2) |     N     |     Y     |    N    |    N    |
 | Heap Sort      | Selection, Incremental |        O(n*log(n))        |     Y     |     Y     |    Y    |    N    |
