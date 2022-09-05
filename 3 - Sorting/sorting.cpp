@@ -101,28 +101,3 @@ void counting_sort(int *input, int *output, int n, int k){
     for(int i = 1; i<=k; i++) aux[i]+=aux[i-1];
     for(int i = n-1; i>=0; i--) *(output+(--aux[(*(input+i))])) = *(input+i);
 }
-
-void radix_sort(int arr[], int d){
-    for(int i = 0; i<d; i++){
-        counting_sort(&arr[0], )
-    }
-}
-
-
-void_maxheapify(std::vector<int> heap, Node i){
-
-}
-
-std::vector<int> build_maxheap(std::vector<int> arr){
-
-}
-
-
-void heap_sort(std::vector<int> arr){
-    build_maxheap(arr);
-    for(int i = arr.size(); i>=2; i--){
-        swap(arr[i], arr[1]);
-        arr.size()-=1;
-        max_heapify(arr, 1);
-    }
-}

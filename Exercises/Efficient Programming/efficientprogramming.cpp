@@ -5,97 +5,109 @@
 #include "iostream"
 #include "cmath"
 #include "stdlib.h"
-#include "queue"
 #include "vector"
 #include <bits/stdc++.h>>
+#include <functional>
+#include <queue>
+#include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-int scarto(int arr[], int n){
-
-}
-
-int weight(int u, int v){
-    return abs(u-v);
-}
-
-/**
- * Returns binomial coefficient
+/***
+ * Returns the global min difference of all
  *
- * @param n
- * @param k
+ * @param punteggi array of integers
+ * @param n size of arr, must be even
  * @return
  */
-int binom(int n, int k) {
-    int C[k + 1];
-    memset(C, 0, sizeof(C));
-    C[0] = 1;
-    for (int i = 1; i <= n; i++) {
-        for (int j = min(i, k); j > 0; j--)
-            C[j] = C[j] + C[j - 1];
-    }
-    return C[k];
-}
-
-
-struct list{
-    int key;
-    list *predecessor;
-};
-
-/**
- * Returns the sum of minimum absolute differences between each couple arr_v[i], arr_v[j] such that
- * i != j, and that the sum is the minimum out of all permutations
- *
- * @param arr_v is an array[0..n-1] of positive integers, it is like an acyclic connected graph
- * @param n is an even integer
- * @param weight_foo function that returns absolute difference between x and y
- * @return integer representing the minimum
- */
-int scarto_pos(std::vector<int> arr_g, int n){
-    if(n>2){
-        // Compute all weights #w = binom(n,2);
-        // w(i,j) = abs(arr[i]-arr[j]), i!=j
-        std::priority_queue<int, std::vector<int>, greater<int>> minQ;
-        for(int i = 0; i < n; i++){
-            for(int j = i+1; j<n; j++){
-               minQ.push(abs(arr_g[i]-arr_g[j]));
-            }
+int scarto_cpp(std::vector<int> v, int n){
+    //Even by assumption
+    if(n>=2){
+        //Automatically sorts input
+        //Logarithmic insertion and extraction
+        priority_queue<int, vector<int>, greater<int>> minPQ(v.begin(), v.end());
+        int sum = 0;
+        while(!minPQ.empty()){
+            int first = minPQ.top();
+            minPQ.pop();
+            int second = minPQ.top();
+            minPQ.pop();
+            sum+=abs(first-second);
         }
+        return sum;
+    }
+    return 0;
+}
+// T(n) = O(nlog(n))
+// n< 2 --> O(1)
+// n>=2 --> Theta(nlog(n)) + Theta(n/2 * 2log(n)) = Theta(nlog(n))
+
+int scarto_c(int punteggi[], int n){
+    if(n>=2){
+        //Sort input non decreasing way
 
 
-        // #values to consider = binom(n, 2)
-        // if we consider w(i,j), we cannot consider i or j again
-        // #values composing the sum = n/2
-        std::vector<int>
-        std::priority_queue<int, std::vector<int>, greater<int>> minQ(arr_v.begin(), arr_v.end());
-
-    }else if(n==2){
-        return abs(arr_g[n-1]-arr_g[n-2]);
+        int sum = 0, i = 0;
+        while(i<n){
+            sum+= abs(punteggi[i]-punteggi[i+1]);
+            i+=2;
+        }
+        return sum;
     }
     return 0;
 }
 
 
-int ineff_scarto(int arr[], int n){
-    // n x n matrix representing the connected, acyclic graph
-    // each a[i,j] is the w((u,v)) = abs (u.k - v.k)
-    // the degree of each vertex is |V|-1
-    //n^2
-    int weights[n][n];
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j<n; j++){
-            if(i==j){
-                weights[i][j] = -1;
-            }else{
-                weights[i][j]= abs(arr_g[i]-arr_g[j]);
-                weights[j][i] = -1;
-            }
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int partition(int arr[], int left, int right){
+    // pivot is the last element
+    int pivot = arr[right];
+    // i is the u
+    int i = left-1;
+    //stop before considering pivot
+    for(int j = left; j<right; j++) {
+        //only swap elements that <= pivot
+        if (arr[j] <= pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
         }
     }
+    //move pivot between sub-arrays
+    //arr[left ... i]<= pivot < arr[i+2...right]
+    swap(&arr[i+1], &arr[right]);
+    //return pivot index
+    return i+1;
+}
 
+void quick_sort(int arr[], int left, int right){
+    if(left < right){
+        // Not included inside the sub arrays
+        int q = partition(arr, left, right);
+        //arr[p...q-1] contains arr[i]<=arr[q]
+        quick_sort(arr, left, q-1);
+        //arr[p...q-1] contains arr[i]>arr[q]
+        quick_sort(arr, q+1, right);
+    }
+}
 
+int main(){
+    int arr[] = {0, 2, 3, -4  };
+    std::vector<int>v = {0 , 2 , 3, -4};
+    int n = 4;
 
+//    quick_sort(arr, 0, n-1);
+//    for(int i = 0; i<n ; i++){
+//        cout<< arr[i] << endl;
+//    }
+
+    int minimo = scarto_cpp(v, n);
+    cout << "Minimo Scarto fra i giocatori: " << minimo << endl;
 
 
 }

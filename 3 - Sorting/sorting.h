@@ -8,7 +8,6 @@ struct Node{
     Node *right;
 };
 
-
 void insertion_sort(int *arr, int size);
 
 void merge(int arr[], int left, int center, int right);
