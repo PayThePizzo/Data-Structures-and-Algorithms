@@ -6,53 +6,43 @@
 
 using namespace std;
 
-class MaxHeap
-{
+class MaxHeap{
 private:
     vector<int> heap;
     size_t heapsize;
     const int rootindex = 1;
 
-    /// Funzioni di utility
-    void enlarge()
-    {
+    // Funzioni di utility
+    void enlarge(){
         if (heapsize >= heap.size() - 1)
             heap.resize(heapsize * 2, INT_MIN);
     }
 
-    void shrink()
-    {
+    void shrink(){
         if (heapsize < ((int)(heap.size() / 2)))
             heap.resize(heap.size() / 2);
     }
 
-    int parent(int index) const
-    {
+    int parent(int index) const{
         return index / 2;
     }
 
-    int left(int index) const
-    {
+    int left(int index) const{
         return index * 2;
     }
 
-    int right(int index) const
-    {
+    int right(int index) const{
         return left(index) + 1;
     }
 
-    int size() const
-    {
+    int size() const{
         return heap.size();
     }
-    /*Fine funzioni di utility*/
 
     /**
      * Funzione per sistemare la proprietà dell'heap scambiando l'elemento ad index con il più grande dei suoi due figli. 
     */
-    void maxheapify(int index)
-    {
-
+    void maxheapify(int index){
         if (index > size())
             return;
 
@@ -65,9 +55,7 @@ private:
         if (r < size() && heap[r] > heap[largest])
             largest = r;
 
-
-        if (largest != index)
-        {
+        if (largest != index){
             swap(heap[index], heap[largest]);
             maxheapify(largest);
         }
@@ -76,18 +64,12 @@ private:
     /**
      * Funzione custom per il float-up del figlio. Il figlio viene scambiato col parent solo se figlio.key > parent.key
     */
-    void reverse_maxheapify(int index)
-    {
-        int padre;
-        bool flag;
-
-        flag = true;
-        padre = parent(index);
-        while (padre != 0 && flag)
-        {
+    void reverse_maxheapify(int index){
+        bool flag = true;
+        int padre = parent(index);
+        while (padre != 0 && flag){
             flag = heap[index] > heap[padre];
-            if (flag)
-            {
+            if (flag){
                 swap(heap[index], heap[padre]);
                 index = padre;
                 padre = parent(padre);
@@ -96,38 +78,27 @@ private:
     }
 
 public:
-    MaxHeap()
-    {
+    MaxHeap(){
         MaxHeap(2);
     }
 
-    MaxHeap(size_t size)
-    {
+    MaxHeap(size_t size){
         heapsize = size;
         heap = vector<int>(size * 2);
     }
 
-    MaxHeap(vector<int> v)
-    {
+    MaxHeap(vector<int> v){
         heapsize = 1;
         heap = vector<int>(heapsize * 2);
-
-        for (auto integer : v) //O(n * log(n))
-        {
+        for (auto integer : v){ //O(n * log(n))
             heap_insert(integer); //O(log(n))
         }
     }
 
-    ~MaxHeap() {}
-
-    void heap_insert(int k)
-    {
-        if (heapsize == 0)
-        {
+    void heap_insert(int k){
+        if (heapsize == 0){
             heap[1] = k;
-        }
-        else
-        {
+        }else{
             heap[heapsize] = k;
             reverse_maxheapify(heapsize); //O(log(n))
         }
@@ -135,50 +106,39 @@ public:
         enlarge();
     }
 
-    void heap_delete(int k)
-    {
-        if (heapsize > 0)
-        {
+    void heap_delete(int k){
+        if (heapsize > 0){
             heap[k] = INT_MIN;
-            if (heapsize != 1)
-            {
+            if (heapsize != 1){
                 maxheapify(k); //O(log(n))
             }
             heapsize--;
         }
     }
 
-    int extract(int i)
-    {
+    int extract(int i){
         int h = heap[i];
         heap_delete(i);
         return h;
     }
 
-    int extractmax()
-    {
+    int extractmax(){
         int h = extract(rootindex);
         return h;
     }
 
-    bool isheapaux(int i)
-    {
-        if (i < heapsize)
-        {
+    bool isheapaux(int i){
+        if (i < heapsize){
             int p = parent(i);
-
             return heap[p] > heap[i] && isheapaux(left(i)) && isheapaux(right(i));
         }
         return true;
     }
 
-    bool isheap()
-    {
-        if (heapsize <= 1)
-        {
+    bool isheap(){
+        if (heapsize <= 1){
             return true;
         }
-
         return isheapaux(left(rootindex)) && isheapaux(right(rootindex));
     }
 };
