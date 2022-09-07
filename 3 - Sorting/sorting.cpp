@@ -235,53 +235,7 @@ void radix_sort(int arr[], int n){
     }
 }
 
-/**
- * Radix sort for array of integers
- *
- * @param arr array of n integers
- * @param n size of arr, n>0
- */
-void radix_sort_gen(int arr[], int n) {
-
-    int aux[n]; //Divides positive from negative
-    for(int i=0; i<n; i++){
-        int j = n-1-i;
-        if(arr[i]>=0){
-            aux[j]=arr[i];
-        }else{
-            aux[i]=arr[i];
-        }
-    }
-
-    int pos_begin = 0; //Find first positive value
-    while(aux[pos_begin]<0){
-        pos_begin++;
-    }
-
-    // Transform negative into positive
-    for(int i=0; i<pos_begin; i++){
-        aux[i] = abs(aux[i]);
-    }
-
-    //Apply radix_sort on first part
-
-
-
-    //Array of positive integers
-    if (min >= 0) {
-        //Traditional radix sort
-        radix_sort(arr, n);
-    } else {
-        // Split [min ... 0[ and [0 .. max]
-        int index = get_last_negative(arr[], n);
-        //Sort Positive
-        radix_sort(arr, n);
-        // Sort negative numbers, for their absolute values
-
-    }
-
-
-}
+// ++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 int main(){
