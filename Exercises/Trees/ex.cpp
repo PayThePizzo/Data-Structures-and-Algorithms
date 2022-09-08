@@ -49,6 +49,21 @@ PNodeList children(){
 
 }
 
+void depthfirstsearch(PTree tree){
+
+}
+
+void symmetric_visit(PTree tree){
+
+}
+
+void post_order_visit(PTree tree){
+
+}
+
+void breadfirstsearch(PTree tree){
+
+}
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
