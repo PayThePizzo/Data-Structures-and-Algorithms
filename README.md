@@ -1,64 +1,57 @@
-# Algoritmi e Strutture Dati
-Note del corso, per la versione inglese curata da @PayThePizzo [premere qui](https://github.com/PayThePizzo/DataStrutucures-Algorithms)
+# Data Structures and Algorithms
 
-Questa repository segue i contenuti del corso "Algoritmi e Strutture Dati"
-[Mod. 1](https://www.unive.it/data/insegnamento/339889) e
-[Mod. 2](https://www.unive.it/data/insegnamento/339890) per la
-[Laurea triennale in Informatica](https://www.unive.it/pag/3/) a
-[Università Ca' Foscari di Venezia](https://www.unive.it/).
+This repo follows the topics of the following courses for students of [Laurea triennale in Informatica](https://www.unive.it/pag/3/) at [Università Ca' Foscari di Venezia](https://www.unive.it/):
+* [Mod. 1](https://www.unive.it/data/insegnamento/339889) 
+* [Mod. 2](https://www.unive.it/data/insegnamento/339890)
 
-Tuttavia, ci sono dei contenuti aggiunti da me stesso per una migliore comprensione delle principali
-strutture dati usate nell'industria oggigiorno.
-Questo progetto verrà eventualmente esteso per includere più informazioni riguardo alla materia trattata in un secondo momento.
+Anyhow, I took the liberty of adding extra content for a better comprehension of the course.
+Eventually this project will be extended to include advanced data structures and algorithms.
 
 --- 
 
-## Strutture Dati
-Noi **non includiamo** alcune strutture dati basilari che devono essere incluse in un corso introduttorio, tra cui:
-* Insiemi(set);
-* Array;
-* Pile(stack);
-* Code;
-* Liste e le loro derivazioni.
+## General Theory
+* Asymptotic notions
+* Temporal and Spatial Complexity
+* Solving occurrences
+* Decision Problems and NP-Hardness
 
+## Data Structures
+I will include the following data structures, their primitives, and some of their declinations:
+* Trees
+* Heap
+* Priority Queues
+* Tables
+* Graphs
 
-## Algoritmi
-Cercheremo di implementare gli algoritmi in modo che siano prontamente eseguibili.
+I do not include (for now), some basilar data structures and their implementations such as:
+* Sets
+* Array
+* Stack
+* Queues
+* Lists and their declinations.
 
-Copriremo:
-* Complessità temporale
-* Risoluzione delle ricorsioni
-* Le operazioni primitive per le principali strutture dati
-* Ordinamento
-* Programmazione dinamica
-* Teoria dei grafi
-
----
-
-## Compilazione
-
-### C
-TBD
-
-### C++
-TBD
+## Algorithms
+I will try and implement the algorithms to make immediately runnable.
+* Sorting
+* Dynamic Programming
+* Greedy Algorithms
 
 ---
 
-### Crediti
-Tutto il contenuto è merito di:
-* Professoressa [Alessandra Raffaeta'](https://www.unive.it/data/persone/5591966) e [Marcello Pelillo](https://www.unive.it/data/persone/5592849)
+## Implementation
+
+The implementation technique will be done in C++/C
+
+---
+
+### Credits
+I do not take any credit for the contents, which are taken from my professors, the textbooks and external sources:
+* Professor [Alessandra Raffaeta'](https://www.unive.it/data/persone/5591966) and [Marcello Pelillo](https://www.unive.it/data/persone/5592849)
 * [DFI] C. Demetrescu, I. Finocchi, G.F. Italiano. Algoritmi e strutture dati. Seconda Edizione. McGraw-Hill, 2008.
 * [CLRS] T. H. Cormen, C. E. Leiserson, R. L. Rivest, C. Stein. Introduction to algorithms 3/ed. McGraw-Hill, 2010.
-* Studenti di laurea triennale in Informatica di Ca' Foscari.
+* Students of Ca' Foscari.
 
-Aggiungiamo commenti specifici a ogni file di markdown nel caso dovessimo ottenere più informazioni da fonti esterne.
-Raccomandiamo fortemente di comprare i libri sopracitati.
+We will add specific sections to give credit when due, but we recommend to buy the books and follow a university level course
+in order to understand these concepts better.
 
-### Ultimi messaggi
-Come studenti, riteniamo che la conoscenza e la cultura dovrebbero essere liberamente accessibili a chiunque sia interessato. Inoltre,
-l'educazione dovrebb essere libera. È per questo che cercheremo di strutturare queste note il meglio possibile, quindi se notate alcuni
-errori in qualsiasi punto, sentiteci liberi di contattarci a riguardo.
-
-
-TO BE TRANSLATED
+If you feel like any of the content is yours and/or should be removed, please contact me immediately.
