@@ -96,6 +96,25 @@ void quick_sort(int arr[], int left, int right){
     }
 }
 
+int triplo(int arr[], int n, int *x, int *y){
+    int i, j, stop;
+    quick_sort(arr, 0, n-1);
+    i = j = stop = 0;
+    while(!stop && j<n){
+        if(arr[j]<arr[i]*3){
+            j++;
+        }else if(arr[j]==arr[i]*3){
+            stop = 1;
+            *x = i;
+            *y = j;
+        }else{
+            i++;
+        }
+    }
+    return stop;
+}
+
+
 int main(){
     int arr[] = {0, 2, 3, -4  };
     std::vector<int>v = {0 , 2 , 3, -4};
