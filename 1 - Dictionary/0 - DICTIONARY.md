@@ -1,6 +1,6 @@
 # Dictionary
 A dictionary represents the mathematical concept of unique relation
-between a set *D* and a set *C*
+between a set $D$ and a set $C$
 
 `R:D --> C`
 * **Keys** represent the elements of D
