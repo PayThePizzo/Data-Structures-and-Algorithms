@@ -2,15 +2,16 @@
 A dictionary represents the mathematical concept of unique relation
 between a set $D$ and a set $C$
 
-`R:D --> C`
-* **Keys** represent the elements of D
-* **Values** represent the elements of C
+$$R:D \rightarrow C$$
+
+* **Keys** represent the elements of $D$
+* **Values** represent the elements of $C$
 
 
 ## Data
 The logical idea is to have a set of pairs *{key:value}*
 
-## Operations
+## Abstract Definition of Primitive Operations
 * **Search(Dictionary S, Key K)**
   * Pre: None
   * Post: Returns the value associated to the key K if it is present inside S. Else, it returns NULL
