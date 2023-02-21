@@ -84,8 +84,9 @@ $$T(n) = \text{ Weight of a level } \cdot \text { Total number of levels } = w_{
 
 In the second case we need to compute the cost of the nodes and the cost of the leaves.
 
-$$T(n) = \text{ Cost of internal nodes } + \text{ Cost of leaves } = \sum^{i-1}_{k=0}(d^{k} \cdot cf(n/a^{k})) + \theta(n^{log_{a}(d) * T(1))$$
+$$T(n) = \text{ Cost of internal nodes } + \text{ Cost of leaves } = \sum^{i-1}_{k=0}(d^{k} \cdot cf(n/a^{k})) + \theta(n^{log_{a}(d)} * T(1))$$
 
+We specify:
 * $h = log_{a}(n)$ is the height of the tree
 * $l = h+1$, the total number of levels
 * $f(T_{n}) = d^{h} = d^{log_{a}(n)} = n^{log_{a}(d)}$, the total number of leaves for the Tree $T$
