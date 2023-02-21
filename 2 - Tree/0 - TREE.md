@@ -3,12 +3,12 @@ _Recursive Definition_: <mark>A tree consists of a root,
 and zero or more subtrees</mark> T1, T2, … , Tk such that there is an edge 
 from the root of the tree to the root of each subtree.
 
-It is a couple `T = (N, A)`</mark>
-* N is a finite _set of nodes_
+It is a couple $T = (N, A)$ 
+* $N$ is a finite _set of nodes_
   * It contains `r` called Root Node
-* A⊆NxN is a finite _set of arches_
+* $A \subseteq N \times N$ is a finite _set of arches_
   * It is a set of pairs of nodes called **Arches** 
-  * The set of all Arches is called **A** 
+  * The set of all Arches is called $A$
 
 A tree is **non-linear** and a **hierarchical** data structure consisting of a collection of nodes such that each node 
 of the tree stores a value, a list of references to nodes.
