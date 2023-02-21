@@ -91,7 +91,7 @@ We specify:
 * $l = h+1$, the total number of levels
 * $f(T_{n}) = d^{h} = d^{log_{a}(n)} = n^{log_{a}(d)}$, the total number of leaves for the Tree $T$
 * $T(1)$, is a constant representing the single contribution of the leaves 
-* $\sum^{h-1}_{k=0} d^{k} \cdot cf(n/a^{i})$, The cost of the internal nodes
+* $\sum d^{k} \cdot cf(n/a^{i})$, with $k=0, \ldots, h-1$ is the cost of the internal nodes
 
 
 In the third case we need to try and find the maximum cost of a level and the length of the longest path, as some leaves
