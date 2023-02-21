@@ -75,30 +75,29 @@ The table has three parts:
 
 ### 5 - Solve
 In the first case we can directly solve it by multiplying a weight of one level by the number of levels. 
-
-$$T(n) = \text{ Weight of a level } \cdot \text { Total number of levels } = w_{i} \cdot l = \sum^{l}_{i=1} w_{i}$$
-
 * $w_{i}$ as the weight of a level $i$
 * $l$ as the total number of levels
 
+$$T(n) = \text{ Weight of a level } \cdot \text { Total number of levels } = w_{i} \cdot l = \sum^{l}_{i=1} w_{i}$$
+
 
 In the second case we need to compute the cost of the nodes and the cost of the leaves.
-
-$$T(n) = \text{ Cost of internal nodes } + \text{ Cost of leaves } = \sum^{i-1}_{k=0}(d^{k} \cdot cf(n/a^{k})) + \theta(n^{log_{a}(d)} * T(1))$$
-
-We specify:
 * $h = log_{a}(n)$ is the height of the tree
 * $l = h+1$, the total number of levels
 * $f(T_{n}) = d^{h} = d^{log_{a}(n)} = n^{log_{a}(d)}$, the total number of leaves for the Tree $T$
-* $T(1)$, is a constant representing the single contribution of the leaves 
+* $T(1)$, is a constant representing the single contribution of the leaves
 * $\sum d^{k} \cdot cf(n/a^{i})$, with $k=0, \ldots, h-1$ is the cost of the internal nodes
+
+$$T(n) = \text{ Cost of internal nodes } + \text{ Cost of leaves } = \sum^{i-1}_{k=0}(d^{k} \cdot cf(n/a^{k})) + \theta(n^{log_{a}(d)} * T(1))$$
 
 
 In the third case we need to try and find the maximum cost of a level and the length of the longest path, as some leaves
-are deeper than others. Case 3: 
+are deeper than others.
+* The **Max Cost of a level** is considered to be the maximum value such that $w_{i} \leq cf(n) \rightarrow w_{i} = O(f(n))$
+  * It can be required to show a demonstration, but it is not usually the case.
+* The **length of the longest path** is given by the branch which diminishes the slowest among all the other ones.
 
 $$T(n) = O(\text{Max Cost of a level}) \cdot O(\text{Length of the longest path})$$
-
 
 
 #### Example
