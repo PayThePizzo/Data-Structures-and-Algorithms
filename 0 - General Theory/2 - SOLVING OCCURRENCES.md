@@ -48,44 +48,26 @@ Start by drawing a tree where you apply the formula to the variable $n$
  [g(g(n))]  [h(g(n))]  [g(h(n))]  [h(h(n))]    // Level 2
 ```
 
-### 2 - Analyze the characteristics
-We want to focus on some characteristics before computing the complexity. We need to look at our tree and try to answer
-the following questions:
+### 2 - Analyze the balance of the tree
+We want to focus on some characteristics before computing the complexity. We need focus on our tree and its nodes 
+to try to answer the following questions:
+* Do the weights of nodes decrease homogeneously in between levels? Do the nodes have the same weight at a level $i$?
+  * If so, the weight is decreasing homogeneously. 
+    * **Identify the weight of a node at level $i$** 
+    * **Identify the decreasing factor**: How fast does the tree decrease in sub-problem size? What is the size at level $i=k$?
+  * Else, the tree will be **unbalanced**, and some branches are going to stop first. 
+    * **Identify the maximum possible weight of a level** 
+    * **Identify the longest path from the root**: How far from the root do we reach a boundary condition? What is the maximum height of the three?
 
-1. **Nodes**
-  * What is the weight of a node at a level $i$?
-  * Do the nodes differ in weight at a level $i$?
-    * If so, the tree will be unbalanced, and some branches are going to stop first. **Identify the longest path from the root**.
-    * Else, the weight is decreasing homogeneously
-  * How many nodes are there at a level $i$?
-2. **Balancing**
-   1. Branches
-   2. 
-3. Weight
-   1. What is the weight of the level $i$? How much does it differ from the level $i-1$ and $i+1$?
-   2. Internal Nodes $i(T_{n})$
-   3. Leaves $f(T_{n})$
-* **Balancing**: Look at the nodes!
-  * What is the weight of a node at a level $i$?
-  * Do the nodes differ in weight at a level $i$? 
-    * If so, the tree will be unbalanced, and some branches are going to stop first. **Identify the longest path from the root**.
-    * Else, the weight is decreasing homogeneously
-    * How many nodes are there at a level $i$?
-    * Is there a branch that stops first? 
-    * What's the maximum height? 
-* **Weight of a level** (sum of the nodes): 
-  * Does it change? 
-  * Does it decrease homogeneously? 
-  * What is the maximum weight it can reach?
 
 ### 3 - Create a table for the analysis
 The table has three parts:
-* The number of the level, $i \in [0, h+1]$ with $h$ as the height of the tree
+* _The number of the level_, $i \in [0, h+1]$ with $h$ as the height of the tree
   * $i = 0, \ldots, h+1$
-* **The total count of nodes for that level**, expressed as a power of the number of branches for each subtree. How many nodes can we see at a level $i$? 
+* _The total count of nodes for that level_, expressed as a power of the number of branches for each subtree. How many nodes can we see at a level $i$? 
   * ex: 2 for binary trees which are usually the case.
   * $2^0 = 1$, $2^1 = 2$, $2^2 = 4$, where $f(i) = i \text{  } \forall i=0,\ldots,h+1$
-* Weight of the level, the sum of the weight of each node expressed as a function of n.
+* _Weight of the level_, the sum of the weight of each node expressed as a function of n.
 
 | Level $i$ 	 | Total Nodes at level $i$ 	| Weight of level $i$ 	|
 |-------------|--------------------------	|---------------------	|
@@ -95,7 +77,6 @@ The table has three parts:
 | 3         	 |                          	|                     	|
 | ...       	 | ...                      	| ...                 	|
 | h+1       	 | $2^{f(i)}$               	| Cost of the leaves  	|
-
 
 
 ### 4 - Guess the case:
@@ -115,7 +96,7 @@ $$T(n) = \text{ Weight of a level } \cdot \text { Total number of levels } = w_{
 
 
 In the second case we need to compute the cost of the nodes and the cost of the leaves.
-* $h = log_{a}(n)$ is the height of the tree
+* $h = log_{a}(n) \rightarrow i \in [0, log_{a}(n)]$ is the height of the tree
 * $h+1$, the total number of levels
 * $f(T_{n}) = d^{h} = d^{log_{a}(n)} = n^{log_{a}(d)}$, the total number of leaves for the Tree $T$
 * $T(1)$, is the cost of the function when $n=1$ (_it can be discarded asymptotically_) and represents the contribution of each leaf node.
