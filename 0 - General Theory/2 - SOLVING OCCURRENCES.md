@@ -188,7 +188,9 @@ We want to find out:
 
 We can define the total complexity as the sum of the complexity of all levels, as we said before:
 
-$$T(n) = \text{Total complexity of all levels} = T_{level-1} + T_{level-2} + \ldots + T_{level-i} = \sum^{#levels}_{i=0} a^{i}f(n/b^{i})$$
+```math
+T(n) = \text{Total complexity of all levels} = T_{level-1} + T_{level-2} + \ldots + T_{level-i} = \sum^{#levels}_{i=0} a^{i}f(n/b^{i})
+```
 
 To reach the boundary condition, when the tree stops, we need to set $n/b^{i} = 1$ so that the summation also stops. 
 
