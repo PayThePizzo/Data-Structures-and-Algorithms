@@ -201,7 +201,7 @@ $$n/b^{i} = 1 \Longleftrightarrow b^{i} = n \Longleftrightarrow log_{b}(n) = i$$
 $i \in \mathbb{N}$, represents the levels of the tree and should be and integer (else, we can use the ceil integer value).
 We can now explicitly write $T(n)$ in a non recursive way:
 
-$$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i}) = \text{Complexity of internal nodes + (#Leaves \cdot Complexity of leaves) = Complexity of internal nodes + #Leaves } \cdot T(1)$$
+$$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i}) = \text{Complexity of internal nodes + (Count of Leaves \cdot Complexity of leaves) = Complexity of internal nodes +} \Theta(\text{Count of Leaves })$$
 
 ### 1.1 Find the count of leaves
 
