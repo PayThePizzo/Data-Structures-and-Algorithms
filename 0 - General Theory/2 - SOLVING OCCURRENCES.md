@@ -162,6 +162,7 @@ Through the theorem we asymptotically compare $g(n)$ and $f(n)$ to discover $T(n
 | _2_    	| $f(n) \approx n^{d}$ 	| $f(n) = \Theta(n^{d})$                                          	| None needed                                                                                                              	| $T(n) = \Theta(n^{d} \log(n))$ 	|
 | _3_    	| $f(n) \geq n^{d}$    	| $f(n) = \Omega(n^{d+ \varepsilon})$ with $\varepsilon > 0$      	| Find the **only** $\varepsilon$, then find the $c$ such that $\exists c<1 \ni'$ for n suffic. large $af(n/b) \leq cf(n)$ 	| $T(n) = \Theta(f(n))$          	|
 
+---
 
 ## Master Theorem Demonstration
 
@@ -193,13 +194,16 @@ We can define the total complexity as the sum of the complexity of all levels:
 T(n) = \text{Total complexity of all levels} = T_{\text{lvl 1}} + T_{\text{lvl 2}} + \ldots + T_{\text{lvl i}} = \sum_{i=0} a^{i}f(n/b^{i})
 ```
 
-The summation lacks a boundary condition. In order to reach it, when the tree stops, we need to set $n/b^{i} = 1$ 
-so that the summation also stops. When the sub-problem reaches the size of $1 \rightarrow T(1)$, there will be no more recursion.
+The summation lacks a boundary condition. We need to find it.
+* When does the summation stop?
+  * When the tree reaches its leaves
+* Then we need to set $n/b^{i} = 1$ since when sub-problem reaches the size of $1 \rightarrow T(1)$.
 
 $$n/b^{i} = 1 \Longleftrightarrow b^{i} = n \Longleftrightarrow log_{b}(n) = i$$
 
-$i \in \mathbb{N} \text{ or use the ceil integer value}$, represents the **levels of the tree**.
-We can now explicitly write $T(n)$ in a non recursive way:
+We assume that $n$ is a power of $b$, else we would need to use the ceil integer value of $i$
+
+$i \in \mathbb{N}$, represents the **levels of the tree**. We can now explicitly write $T(n)$ in a non recursive way:
 
 ```math
 T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i})
@@ -224,9 +228,9 @@ $$a^{log_{b}(n)} = a^{ log_{a}(n) \cdot log_{b}(a)} = (a^{log_{a}(n)})^{log_{b}(
 
 We conclude that
 
-$$a^{i} = n^{d}$$
+$$a^{i} = n^{d} \text{ is the number of leaves }$$
 
-Now, if use a geometric series to represent the total number of nodes/ recursive calls in the tree:
+Now, if we want to compute the total recursive calls/nodes, we can use a geometric series:
 
 $$\sum^{log_{b}(n)}_{i=0}a^{i}$$ 
 
@@ -243,6 +247,8 @@ we obtain
 We conclude that $n^{d}$ is not just the number of leaves, but is the factor that dictates the asymptotic growth of the
 total complexity, since it is also the total count of nodes/recursive calls.
 
+$$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i})$$
+
 This precisely why, through the master theorem we compare 
 * The number of recursive calls $n^{d} = g(n)$ 
 * And the time used for splitting and merging $T_{\text{split + merge}} = f(n)$
@@ -257,9 +263,10 @@ Hypothesis
 
 
 #### 2.2 - Case 2
+Hypothesis
 
 #### 2.3 - Case 3
-
+Hypothesis
 
 ### Example
 
