@@ -137,7 +137,7 @@ Where:
 * $T_{split}(n)$ and $T_{merge}(n)$ are not recursive.
   * $f(n) = T_{split}(n) + T_{merge}(n)$ and $f(n) \geq 0$
 * $T_{solve}(n)$ can be expressed as summation of the time needed to solve the sub-problems 
-  * $\sumT(n_{i}) \text{ for } i=1,\ldots, k$ which is equal to $a \cdot f(n/b)$
+  * $\sum T(n_{i}) \text{ for } i=1,\ldots, k$ which is equal to $a \cdot f(n/b)$
 
 ### Conditions
 We need to express the $T(n)$ of the algorithm we want to analyze through the following form:
@@ -187,13 +187,19 @@ $$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i})$$
 
 ### 1.1 Find the count of leaves
 
-Through the property of the logarithms for the change of the base 
+Through the property of the logarithms for the change of the base (prop 1) 
 
 $$log_{a}(b) = \frac{log_{c}(b)}{log_{c}(a)}$$
 
+and the property of inversion (prop 2)
+
+$$log_{a}(b) = \frac{1}{log_{b}(a)}$$
+
 We obtain
 
-$$log_{b}(n) = \frac{log_{a}(n)}{log_{a}(b)} = log_{a}(n) \cdot log_{b}(a)$$
+$$log_{b}(n) \stackrel{prop 1}\Longrightarrow \frac{log_{a}(n)}{log_{a}(b)} = log_{a}(n) \cdot \frac{1}{log_{a}(b)}$$
+
+$$ = log_{a}(n) \cdot \frac{1}{log_{a}(b)} \stackrel{prop 2}\Longrightarrow  log_{a}(n) \cdot log_{b}(a)$$
 
 Then 
 
