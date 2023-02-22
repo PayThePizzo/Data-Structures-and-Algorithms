@@ -138,12 +138,11 @@ Where:
   * $f(n) = T_{split}(n) + T_{merge}(n)$ and $f(n) \geq 0$
 * $T_{solve}(n)$ can be expressed as summation of the time needed to solve the sub-problems 
   * $\sum T(n_{i}) \text{ for } i=1,\ldots, k$ which is equal to $a \cdot f(n/b)$
-  
 
 ### Conditions
 We need to express the $T(n)$ of the algorithm we want to analyze through the following form:
 
-$$T(n) = a \cdot f(n/b) + f(n)$$
+$$T(n) = a \cdot T(n/b) + f(n)$$
 
 Plus, the following conditions must stand true:
 * $a \geq 1$, is a constant expressing the number of occurrences 
@@ -168,7 +167,7 @@ Through the theorem we asymptotically compare $g(n)$ and $f(n)$ to discover $T(n
 
 We know that for a divide-et-impera algorithm, we can rewrite its complexity as:
 
-$$T(n) = T_{split}(n) + T_{merge}(n) + T_{solve}(n) = f(n) + T_{solve}(n) = f(n) + af(n/b)$$
+$$T(n) = T_{split}(n) + T_{merge}(n) + T_{solve}(n) = f(n) + T_{solve}(n) = f(n) + aT(n/b)$$
 
 And if the conditions mentioned above are met, we can focus on comparing $f(n)$ with $g(n) = n^{d}$.
 
@@ -241,22 +240,21 @@ we obtain
 \sum^{log_{b}(n)}_{i=0}a^{i} \stackrel{prop}\Longrightarrow \frac{a^{log_{b}(n)+1}-1}{a-1} = \frac{a^{log_{b}(n)} \cdot a -1}{a-1} = \frac{n^{d} \cdot a -1}{a-1} \approx \Theta(n^{d})
 ```
 
-The number of total nodes in the tree, namely the occurrences/calls, grows asymptotically with $n^{d}$ which is also the
-exact number of leaves. 
+We conclude that $n^{d}$ is not just the number of leaves, but is the factor that dictates the asymptotic growth of the
+total complexity, since it is also the total count of nodes/recursive calls.
 
-This precisely why, through the master theorem we compare the dimension of the tree/number of 
-recursive calls $n^{d} = g(n)$ with the $T_{\text{split + merge}} = f(n)$: we want to check which one of the terms is 
-asymptotically dictating the complexity of the algorithm.
+This precisely why, through the master theorem we compare 
+* The number of recursive calls $n^{d} = g(n)$ 
+* And the time used for splitting and merging $T_{\text{split + merge}} = f(n)$
+
+**We want to check which one of the terms is asymptotically dictating the complexity of the algorithm**
 
 
 ### 2 - Find the right case
-In terms of the recursion tree, the three cases of the master theorem correspond to cases in which the total 
-cost of the tree is (1) dominated by the costs in the leaves, (2) evenly distributed among the levels of the tree, 
-or (3) dominated by the cost of the root
-
-Apply the right demonstration based on the case
 
 #### 2.1 - Case 1
+Hypothesis
+
 
 #### 2.2 - Case 2
 
