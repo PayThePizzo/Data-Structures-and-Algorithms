@@ -129,6 +129,65 @@ $$T(n) = O(\text{Max Cost of a level}) \cdot O(\text{Length of the longest path}
 ---
 
 ## Master Theorem
+The master theorem is a powerful way to solve the occurrences of **divide et impera** algorithms:
+
+$$T(n) = T_{split}(n) + T_{merge}(n) + T_{solve}(n) $$
+
+Where:
+* $T_{split}(n)$ and $T_{merge}(n)$ are not recursive.
+  * $f(n) = T_{split}(n) + T_{merge}(n) \wedge f(n) \geq 0$
+* $T_{solve}(n)$ can be expressed as summation of the time needed to solve the sub-problems 
+  * $\sum(T(n_{i})) \text{ for } i=1,\ldots, k$ = $a \cdot f(n/b)$
+
+### Conditions
+We need to express the $T(n)$ of the algorithm we want to analyze through the following form:
+
+$$T(n) = a \cdot T(n/b) + f(n)$$
+
+Plus, the following conditions must stand true:
+* $a \geq 1$, is a constant expressing the number of occurrences 
+* $n/b$, the dimension of the sub-problem is constant
+* $b > 1$
+* $f(n) \geq 0 $ for n sufficiently large
+
+If the conditions are met then we consider the following:
+* $d = \log_{b}(a)$
+* $g(n) = n^{d} = n^{log_{b}(a)}$
+
+Identify the right case:
+| _Case_ 	| **Condition**        	| Asymptotic Notation                                             	| Procedure                                                                                                                   	| **Solution**                 	|
+|--------	|----------------------	|-----------------------------------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------	|------------------------------	|
+| _1_    	| $f(n) \leq n^{d}$    	| $f(n) = \mathcal{O}(n^{d- \varepsilon})$ with $\varepsilon > 0$ 	| Find $\varepsilon$                                                                                                          	| T(n) = \Theta(n^{d})         	|
+| _2_    	| $f(n) \approx n^{d}$ 	| $f(n) = \Theta(n^{d})$                                          	| None needed                                                                                                                 	| T(n) = \Theta(n^{d} \log(n)) 	|
+| _3_    	| $f(n) \geq n^{d}$    	| $f(n) = \Omega(n^{d+ \varepsilon})$ with $varepsilon > 0$       	| Find the **only** $\varepsilon$, then find the $c$ that $\exists c<1 \| { for n suff. large such that } af(n/b) \leq cf(n)$ 	| T(n) = \Theta(f(n))          	|
+
+## Master Theorem Demonstration
+
+### 1 - Rewrite $T(n)$ 
+Through the occurrences tree we try to rewrite $T(n)$ in an explicit way, that is non-recursive.
+
+We want to find out
+* $a^{i}$, the number of nodes at a level $i$
+* $n/b^{i}$, the dimensionality of the sub-problems at a level $i$
+* $f(n/b^{i}) \text{  with } i \geq 0$, the contribution of the call at the level $i$
+
+$$T(n) = \text{Total complexity of all levels} = T_{level-1} + T_{level-2} + \ldots + T_{level-i} = \sum_{i=0}a^{i}f(n/b^{i})$$
+
+To reach the boundary condition we need to $n/b^{i} = 1 $ so that the summation stops.
+
+$$n/b^{i} = 1 \Longleftrightarrow b^{i} = n \Longleftrightarrow log_{b}(n) = i$$
+
+So
+
+$$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i})$$
+
+### 2 - Find the right case
+
+
+Apply the right demonstration based on the case
+
+
+
 
 ### Example
 
