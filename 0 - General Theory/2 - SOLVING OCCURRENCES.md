@@ -206,11 +206,15 @@ T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i}) = \text{ Total Complexity } = \tex
 ```
 
 Since we know that the internal nodes reach maximum depth at $log_{b}(n)-1$, and that all the leaves have complexity $T(1)$,
-we can rewrite the complexity as, the complexity of internal nodes and the count of leaves multiplied by $T(1)$.
+we can rewrite the complexity as, the complexity of internal nodes and the count of leaves multiplied by $T(1)$. 
 
 ```math
 T(n) = \sum^{log_{b}(n)-1}_{i=0}a^{i}f(n/b^{i}) + \text{ Count of Leaves } \cdot \text{ Complexity of leaves } = \sum^{log_{b}(n)-1}_{i=0}a^{i}f(n/b^{i}) + (\text{Count of leaves} \cdot T(1))
 ```
+
+Now, let's quickly proceed with two things
+* Finding the count of leaves
+* Finding the total count of nodes
 
 ### 1.1 Find the count of leaves
 
@@ -230,17 +234,38 @@ Then, by definition
 
 $$a^{log_{b}(n)} = a^{ log_{a}(n) \cdot log_{b}(a)} = (a^{log_{a}(n)})^{log_{b}(a)} \stackrel{def}\Longrightarrow  n^{log_{b}(a)} \stackrel{def}\Longrightarrow n^{d}$$
 
+### 1.2 Find the total count of nodes
+We can use a geometric series to represent the number of nodes in the tree:
 
-### 1.2 Find the count of internal nodes,
+$$\sum^{log_{b}(n)}_{i=0}a^{i}$$ 
 
+By the property of the geometric series:
+
+$$\sum^{k}_{i=0}q^{i} = \frac{q^{k+1}-1}{q-1}$$
+
+Then 
+
+```math
+\sum^{log_{b}(n)}_{i=0}a^{i} \stackrel{prop}\Longrightarrow \frac{a^{log_{b}(n)+1}-1}{a-1} = \frac{(a^{log_{b}(n)} \cdot a)-1}{a-1} = \frac{(n^{d} \cdot a)-1}{a-1} \approx \Theta(n^{d})
+```
+
+### 1.3 Conclusions
+The number of total nodes in the tree, namely the occurrences/calls, grow asymptotically with $n^{d}$. This precisely why, 
+through the master theorem we compare the dimension of the tree $n^{d} = g(n)$ with the $T_{\text{split + merge}} = f(n)$
 
 
 ### 2 - Find the right case
-
+In terms of the recursion tree, the three cases of the master theorem correspond to cases in which the total 
+cost of the tree is (1) dominated by the costs in the leaves, (2) evenly distributed among the levels of the tree, 
+or (3) dominated by the cost of the root
 
 Apply the right demonstration based on the case
 
+#### 2.1 - Case 1
 
+#### 2.2 - Case 2
+
+#### 2.3 - Case 3
 
 
 ### Example
