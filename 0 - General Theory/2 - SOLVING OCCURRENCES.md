@@ -135,9 +135,9 @@ $$T(n) = T_{split}(n) + T_{merge}(n) + T_{solve}(n) $$
 
 Where:
 * $T_{split}(n)$ and $T_{merge}(n)$ are not recursive.
-  * $f(n) = T_{split}(n) + T_{merge}(n) \wedge f(n) \geq 0$
+  * $f(n) = T_{split}(n) + T_{merge}(n)$ and $f(n) \geq 0$
 * $T_{solve}(n)$ can be expressed as summation of the time needed to solve the sub-problems 
-  * $\sum(T(n_{i})) \text{ for } i=1,\ldots, k$ = $a \cdot f(n/b)$
+  * $\sumT(n_{i}) \text{ for } i=1,\ldots, k$ which is equal to $a \cdot f(n/b)$
 
 ### Conditions
 We need to express the $T(n)$ of the algorithm we want to analyze through the following form:
@@ -148,7 +148,7 @@ Plus, the following conditions must stand true:
 * $a \geq 1$, is a constant expressing the number of occurrences 
 * $n/b$, the dimension of the sub-problem is constant
 * $b > 1$
-* $f(n) \geq 0 $ for n sufficiently large
+* $f(n) \geq 0$ for n sufficiently large
 
 If the conditions are met then we consider the following:
 * $d = \log_{b}(a)$
