@@ -203,7 +203,6 @@ We can now explicitly write $T(n)$ in a non recursive way:
 
 ```math
 T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i}) = \text{Complexity of internal nodes + (Count of Leaves \cdot Complexity of leaves) = Complexity of internal nodes +} \Theta(\text{Count of Leaves })
-
 ```
 
 ### 1.1 Find the count of leaves
