@@ -138,11 +138,12 @@ Where:
   * $f(n) = T_{split}(n) + T_{merge}(n)$ and $f(n) \geq 0$
 * $T_{solve}(n)$ can be expressed as summation of the time needed to solve the sub-problems 
   * $\sum T(n_{i}) \text{ for } i=1,\ldots, k$ which is equal to $a \cdot f(n/b)$
+  
 
 ### Conditions
 We need to express the $T(n)$ of the algorithm we want to analyze through the following form:
 
-$$T(n) = a \cdot T(n/b) + f(n)$$
+$$T(n) = a \cdot f(n/b) + f(n)$$
 
 Plus, the following conditions must stand true:
 * $a \geq 1$, is a constant expressing the number of occurrences 
@@ -154,7 +155,7 @@ If the conditions are met, then we can add the following notation:
 * $d = \log_{b}(a)$
 * $g(n) = n^{d} = n^{log_{b}(a)}$
 
-Identify the right case:
+Through the theorem we asymptotically compare $g(n)$ and $f(n)$ to discover $T(n)$. For this we identify the right case:
 
 | _Case_ 	| **Condition**        	| Asymptotic Notation                                             	| Procedure                                                                                                                	| **Solution**                   	|
 |--------	|----------------------	|-----------------------------------------------------------------	|--------------------------------------------------------------------------------------------------------------------------	|--------------------------------	|
@@ -162,12 +163,12 @@ Identify the right case:
 | _2_    	| $f(n) \approx n^{d}$ 	| $f(n) = \Theta(n^{d})$                                          	| None needed                                                                                                              	| $T(n) = \Theta(n^{d} \log(n))$ 	|
 | _3_    	| $f(n) \geq n^{d}$    	| $f(n) = \Omega(n^{d+ \varepsilon})$ with $\varepsilon > 0$      	| Find the **only** $\varepsilon$, then find the $c$ such that $\exists c<1 \ni'$ for n suffic. large $af(n/b) \leq cf(n)$ 	| $T(n) = \Theta(f(n))$          	|
 
+
 ## Master Theorem Demonstration
-Let's introduce briefly what we want to do.
 
 We know that for a divide-et-impera algorithm, we can rewrite its complexity as:
 
-$$T(n) = T_{split}(n) + T_{merge}(n) + T_{solve}(n) = f(n) + T_{solve}(n) = f(n) + aT(n/b)$$
+$$T(n) = T_{split}(n) + T_{merge}(n) + T_{solve}(n) = f(n) + T_{solve}(n) = f(n) + af(n/b)$$
 
 And if the conditions mentioned above are met, we can focus on comparing $f(n)$ with $g(n) = n^{d}$.
 
@@ -187,14 +188,14 @@ And we want to focus on finding out:
 * $f(n/b^{i}) \text{  with } i \geq 0$, the contribution of one call at a level $i$ to the total complexity
 * $a^{i} \cdot f(n/b^{i})$, the complexity of all internal nodes at a level $i$
 
-We can define the total complexity as the sum of the complexity of all levels, as we said before:
+We can define the total complexity as the sum of the complexity of all levels:
 
 ```math
-T(n) = \text{Total complexity of all levels} = T_{\text{lvl 1}} + T_{\text{lvl 2}} + \ldots + T_{\text{lvl i}} = \sum^{\text{tot lvl}}_{i=0} a^{i}f(n/b^{i})
+T(n) = \text{Total complexity of all levels} = T_{\text{lvl 1}} + T_{\text{lvl 2}} + \ldots + T_{\text{lvl i}} = \sum_{i=0} a^{i}f(n/b^{i})
 ```
 
-To reach the boundary condition, when the tree stops, we need to set $n/b^{i} = 1$ so that the summation also stops. 
-This represents the case where $n = 1 \rightarrow T(1)$ which stops the recursion (we reached the leaves).
+The summation lacks a boundary condition. In order to reach it, when the tree stops, we need to set $n/b^{i} = 1$ 
+so that the summation also stops. When the sub-problem reaches the size of $1 \rightarrow T(1)$, there will be no more recursion.
 
 $$n/b^{i} = 1 \Longleftrightarrow b^{i} = n \Longleftrightarrow log_{b}(n) = i$$
 
@@ -206,7 +207,7 @@ T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i})
 ```
 
 Since $a^{i}$ is the number of nodes at a level $i$, the number of leaves is exactly $a^{log_{b}(n)}$ which, 
-by the property of the logarithms for the change of the base (prop 1) 
+by the property of the logarithms for the change of the base (prop 1), 
 
 $$log_{a}(b) = log_{c}(b) \cdot \frac{1}{log_{c}(a)}$$
 
@@ -240,7 +241,8 @@ we obtain
 \sum^{log_{b}(n)}_{i=0}a^{i} \stackrel{prop}\Longrightarrow \frac{a^{log_{b}(n)+1}-1}{a-1} = \frac{a^{log_{b}(n)} \cdot a -1}{a-1} = \frac{n^{d} \cdot a -1}{a-1} \approx \Theta(n^{d})
 ```
 
-The number of total nodes in the tree, namely the occurrences/calls, grows asymptotically with $n^{d}$. 
+The number of total nodes in the tree, namely the occurrences/calls, grows asymptotically with $n^{d}$ which is also the
+exact number of leaves. 
 
 This precisely why, through the master theorem we compare the dimension of the tree/number of 
 recursive calls $n^{d} = g(n)$ with the $T_{\text{split + merge}} = f(n)$: we want to check which one of the terms is 
