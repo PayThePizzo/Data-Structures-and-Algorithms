@@ -150,23 +150,27 @@ Plus, the following conditions must stand true:
 * $b > 1$
 * $f(n) \geq 0$ for n sufficiently large
 
-If the conditions are met then we consider the following:
+If the conditions are met, then we can add the following notation:
 * $d = \log_{b}(a)$
 * $g(n) = n^{d} = n^{log_{b}(a)}$
 
 Identify the right case:
-| _Case_ 	| **Condition**        	| Asymptotic Notation                                             	| Procedure                                                                                                                   	| **Solution**                 	|
-|--------	|----------------------	|-----------------------------------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------	|------------------------------	|
-| _1_    	| $f(n) \leq n^{d}$    	| $f(n) = \mathcal{O}(n^{d- \varepsilon})$ with $\varepsilon > 0$ 	| Find $\varepsilon$                                                                                                          	| T(n) = \Theta(n^{d})         	|
-| _2_    	| $f(n) \approx n^{d}$ 	| $f(n) = \Theta(n^{d})$                                          	| None needed                                                                                                                 	| T(n) = \Theta(n^{d} \log(n)) 	|
-| _3_    	| $f(n) \geq n^{d}$    	| $f(n) = \Omega(n^{d+ \varepsilon})$ with $varepsilon > 0$       	| Find the **only** $\varepsilon$, then find the $c$ that $\exists c<1 \| { for n suff. large such that } af(n/b) \leq cf(n)$ 	| T(n) = \Theta(f(n))          	|
+
+| _Case_ 	| **Condition**        	| Asymptotic Notation                                             	| Procedure                                                                                                                	| **Solution**                   	|
+|--------	|----------------------	|-----------------------------------------------------------------	|--------------------------------------------------------------------------------------------------------------------------	|--------------------------------	|
+| _1_    	| $f(n) \leq n^{d}$    	| $f(n) = \mathcal{O}(n^{d- \varepsilon})$ with $\varepsilon > 0$ 	| Find $\varepsilon$                                                                                                       	| $T(n) = \Theta(n^{d})$         	|
+| _2_    	| $f(n) \approx n^{d}$ 	| $f(n) = \Theta(n^{d})$                                          	| None needed                                                                                                              	| $T(n) = \Theta(n^{d} \log(n))$ 	|
+| _3_    	| $f(n) \geq n^{d}$    	| $f(n) = \Omega(n^{d+ \varepsilon})$ with $\varepsilon > 0$      	| Find the **only** $\varepsilon$, then find the $c$ such that $\exists c<1 \ni'$ for n suffic. large $af(n/b) \leq cf(n)$ 	| $T(n) = \Theta(f(n))$          	|
 
 ## Master Theorem Demonstration
 
 ### 1 - Rewrite $T(n)$ 
 Through the occurrences tree we try to rewrite $T(n)$ in an explicit way, that is non-recursive.
 
-We want to find out
+![mastertheoremdem]()
+
+We want to find out:
+* $a$, the number of sub-problems of dimension $n/b$
 * $a^{i}$, the number of nodes at a level $i$
 * $n/b^{i}$, the dimensionality of the sub-problems at a level $i$
 * $f(n/b^{i}) \text{  with } i \geq 0$, the contribution of the call at the level $i$
@@ -175,11 +179,29 @@ $$T(n) = \text{Total complexity of all levels} = T_{level-1} + T_{level-2} + \ld
 
 To reach the boundary condition we need to $n/b^{i} = 1 $ so that the summation stops.
 
-$$n/b^{i} = 1 \Longleftrightarrow b^{i} = n \Longleftrightarrow log_{b}(n) = i$$
+$$n/b^{i} = 1 \Longleftrightarrow b^{i} = n \Longleftrightarrow log_{b}(n) = i $$
 
-So
+i, represents the levels of the tree. We can now explicitly write $T(n)$ in a non recursive way:
 
 $$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i})$$
+
+### 1.1 Find the count of leaves
+
+Through the property of the logarithms for the change of the base 
+
+$$log_{a}(b) = \frac{log_{c}(b)}{log_{c}(a)}$$
+
+We obtain
+
+$$log_{b}(n) = \frac{log_{a}(n)}{log_{a}(b)} = log_{a}(n) \cdot log_{b}(a)$$
+
+Then 
+
+$$a^{log_{b}(n)} = a^{ log_{a}(n) \cdot log_{b}(a)} = (a^{log_{a}(n)})^{log_{b}(a)} = n^{log_{b}(a)} = n^{d}$$
+
+
+* The number of internal nodes $i(T_{n})$
+
 
 ### 2 - Find the right case
 
