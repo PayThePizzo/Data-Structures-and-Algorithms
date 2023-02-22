@@ -171,7 +171,11 @@ $$T(n) = T_{split}(n) + T_{merge}(n) + T_{solve}(n) = f(n) + T_{solve}(n) = f(n)
 
 And if the conditions mentioned above are met, we can focus on comparing $f(n)$ with $g(n) = n^{d}$.
 
-We also know that $T(n)$ can be thought as:
+<b style='color:red;'> But why do we want to do this? </b>
+
+This is what the demonstration is for.
+
+We know that $T_{solve}(n)$ can be thought as:
 * The total complexity of all levels
 * $\text{ Complexity of internal nodes } + \text{ Complexity of the leaves }$
 * $\text{ Complexity of internal nodes } + \text{ Count of leaves } \cdot T(1)$, which is the best approach.
@@ -241,6 +245,8 @@ Then, by definition
 $$a^{log_{b}(n)} = a^{ log_{a}(n) \cdot log_{b}(a)} = (a^{log_{a}(n)})^{log_{b}(a)} \stackrel{def}\Longrightarrow  n^{log_{b}(a)} \stackrel{def}\Longrightarrow n^{d}$$
 
 ### 1.2 Find the total count of nodes
+Now, something curious happens when we find out what is the total count of nodes, namely the number of recursive calls
+
 We can use a geometric series to represent the number of nodes in the tree:
 
 $$\sum^{log_{b}(n)}_{i=0}a^{i}$$ 
@@ -256,8 +262,11 @@ Then
 ```
 
 ### 1.3 Conclusions
-The number of total nodes in the tree, namely the occurrences/calls, grow asymptotically with $n^{d}$. This precisely why, 
-through the master theorem we compare the dimension of the tree $n^{d} = g(n)$ with the $T_{\text{split + merge}} = f(n)$
+The number of total nodes in the tree, namely the occurrences/calls, grows asymptotically with $n^{d}$. 
+
+This precisely why, through the master theorem we compare the dimension of the tree/number of 
+recursive calls $n^{d} = g(n)$ with the $T_{\text{split + merge}} = f(n)$: we want to check which one of the terms is 
+asymptotically dictating the complexity of the algorithm.
 
 
 ### 2 - Find the right case
