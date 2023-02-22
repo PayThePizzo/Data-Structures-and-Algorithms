@@ -173,15 +173,20 @@ We want to find out:
 * $a$, the number of sub-problems of dimension $n/b$
 * $a^{i}$, the number of nodes at a level $i$
 * $n/b^{i}$, the dimensionality of the sub-problems at a level $i$
-* $f(n/b^{i}) \text{  with } i \geq 0$, the contribution of the call at the level $i$
+* $f(n/b^{i}) \text{  with } i \geq 0$, the contribution of one call at a level $i$ to the total complexity
+* $a^{i} \cdot f(n/b^{i})$, the complexity of a level $i$
+
+We can define the total complexity as the sum of the complexity of all levels:
 
 $$T(n) = \text{Total complexity of all levels} = T_{level-1} + T_{level-2} + \ldots + T_{level-i} = \sum_{i=0}a^{i}f(n/b^{i})$$
 
-To reach the boundary condition we need to $n/b^{i} = 1 $ so that the summation stops.
+To reach the boundary condition we need to set $n/b^{i} = 1 $ so that the summation stops. This also
+represents the case where $n = 1$, which results in $T(n=1) = 1$, and we stop with the recursion. So
 
 $$n/b^{i} = 1 \Longleftrightarrow b^{i} = n \Longleftrightarrow log_{b}(n) = i $$
 
-i, represents the levels of the tree. We can now explicitly write $T(n)$ in a non recursive way:
+i, represents the levels of the tree and should be and integer (or we use the ceil integer value).
+We can now explicitly write $T(n)$ in a non recursive way:
 
 $$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i})$$
 
@@ -197,16 +202,15 @@ $$log_{a}(b) = \frac{1}{log_{b}(a)}$$
 
 We obtain
 
-$$log_{b}(n) \stackrel{prop 1}\Longrightarrow log_{a}(n) \cdot \frac{1}{log_{a}(b)}$$
+$$log_{b}(n) \stackrel{prop 1}\Longrightarrow log_{a}(n) \cdot \frac{1}{log_{a}(b)} \stackrel{prop 2}\Longrightarrow  log_{a}(n) \cdot log_{b}(a)$$
 
-$$ = log_{a}(n) \cdot \frac{1}{log_{a}(b)} \stackrel{prop 2}\Longrightarrow  log_{a}(n) \cdot log_{b}(a)$$
+Then, by definition
 
-Then 
-
-$$a^{log_{b}(n)} = a^{ log_{a}(n) \cdot log_{b}(a)} = (a^{log_{a}(n)})^{log_{b}(a)} = n^{log_{b}(a)} = n^{d}$$
+$$a^{log_{b}(n)} = a^{ log_{a}(n) \cdot log_{b}(a)} = (a^{log_{a}(n)})^{log_{b}(a)} \stackrel{def}\Longrightarrow  n^{log_{b}(a)} \stackrel{def}\Longrightarrow n^{d}$$
 
 
-* The number of internal nodes $i(T_{n})$
+### 1.2 Find the count of internal nodes
+
 
 
 ### 2 - Find the right case
