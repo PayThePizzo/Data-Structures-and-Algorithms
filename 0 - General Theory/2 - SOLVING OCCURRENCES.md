@@ -202,7 +202,14 @@ $i \in \mathbb{N}$, represents the levels of the tree and should be and integer 
 We can now explicitly write $T(n)$ in a non recursive way:
 
 ```math
-T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i}) = \text{Complexity of internal nodes + (Count of Leaves } \cdot \text{ Complexity of leaves) = Complexity of internal nodes +} \Theta(\text{Count of Leaves })
+T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i}) = \text{ Total Complexity } = \text{Complexity of internal nodes} + \text{ Complexity of leaves }
+```
+
+Since we know that the internal nodes reach maximum depth at $log_{b}(n)-1$, and that all the leaves have complexity $T(1)$,
+we can rewrite the complexity as, the complexity of internal nodes and the count of leaves multiplied by $T(1)$.
+
+```math
+T(n) = \sum^{log_{b}(n)-1}_{i=0}a^{i}f(n/b^{i}) + \text{ Complexity of leaves } \cdot \text{ Count of Leaves } = \sum^{log_{b}(n)-1}_{i=0}a^{i}f(n/b^{i}) + \Theta(\text{ Complexity of leaves } \cdot T(1))
 ```
 
 ### 1.1 Find the count of leaves
