@@ -163,32 +163,43 @@ Identify the right case:
 | _3_    	| $f(n) \geq n^{d}$    	| $f(n) = \Omega(n^{d+ \varepsilon})$ with $\varepsilon > 0$      	| Find the **only** $\varepsilon$, then find the $c$ such that $\exists c<1 \ni'$ for n suffic. large $af(n/b) \leq cf(n)$ 	| $T(n) = \Theta(f(n))$          	|
 
 ## Master Theorem Demonstration
+Let's introduce briefly what we want to do.
+
+We know that $T(n)$ can be seen as:
+* The total complexity of all levels
+* $\text{ Complexity of internal nodes } + \text{ Complexity of the leaves }$
+* $\text{ Complexity of internal nodes } + \text{ Count of leaves } \cdot T(1)$, which is the best approach.
+  * This is because the leaves represent the case where the recursion ends: $T(n=1) = \Theta(1)$
+  * Since they all have the same known complexity, we can just multiply them by the number of leaves
+  * While for the internal nodes we need to sum their complexity from the level 0 to the second-last.
 
 ### 1 - Rewrite $T(n)$ 
-Through the occurrences tree we try to rewrite $T(n)$ in an explicit way, that is non-recursive.
+Through the occurrences tree we try to rewrite $T(n)$ in an explicit way, that is non-recursive. This is exactly, the 
+last approach we mentioned above.
 
 ![mastertheoremdem]()
 
 We want to find out:
-* $a$, the number of sub-problems of dimension $n/b$
+* $a \geq 1$, the number of sub-problems of dimension $n/b$ with $b > 1$
 * $a^{i}$, the number of nodes at a level $i$
 * $n/b^{i}$, the dimensionality of the sub-problems at a level $i$
 * $f(n/b^{i}) \text{  with } i \geq 0$, the contribution of one call at a level $i$ to the total complexity
-* $a^{i} \cdot f(n/b^{i})$, the complexity of a level $i$
+* $a^{i} \cdot f(n/b^{i})$, the complexity of all internal nodes at a level $i$
 
-We can define the total complexity as the sum of the complexity of all levels:
+We can define the total complexity as the sum of the complexity of all levels, as we said before:
 
 $$T(n) = \text{Total complexity of all levels} = T_{level-1} + T_{level-2} + \ldots + T_{level-i} = \sum_{i=0}a^{i}f(n/b^{i})$$
 
-To reach the boundary condition we need to set $n/b^{i} = 1 $ so that the summation stops. This also
-represents the case where $n = 1$, which results in $T(n=1) = 1$, and we stop with the recursion. So
+To reach the boundary condition, when the tree stops, we need to set $n/b^{i} = 1$ so that the summation also stops. 
 
-$$n/b^{i} = 1 \Longleftrightarrow b^{i} = n \Longleftrightarrow log_{b}(n) = i $$
+This represents the case where $n = 1$, which results in $T(n=1)$, and we stop with the recursion (we reached the leaves).
 
-i, represents the levels of the tree and should be and integer (or we use the ceil integer value).
+$$n/b^{i} = 1 \Longleftrightarrow b^{i} = n \Longleftrightarrow log_{b}(n) = i$$
+
+$i \in \mathbb{N}$, represents the levels of the tree and should be and integer (else, we can use the ceil integer value).
 We can now explicitly write $T(n)$ in a non recursive way:
 
-$$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i}) = \text{Complexity of internal nodes + Complexity of leaves}$$
+$$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i}) = \text{Complexity of internal nodes + (#Leaves \cdot Complexity of leaves) = Complexity of internal nodes + #Leaves } \cdot T(1)$$
 
 ### 1.1 Find the count of leaves
 
