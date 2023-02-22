@@ -209,7 +209,7 @@ Since we know that the internal nodes reach maximum depth at $log_{b}(n)-1$, and
 we can rewrite the complexity as, the complexity of internal nodes and the count of leaves multiplied by $T(1)$.
 
 ```math
-T(n) = \sum^{log_{b}(n)-1}_{i=0}a^{i}f(n/b^{i}) + \text{ Complexity of leaves } \cdot \text{ Count of Leaves } = \sum^{log_{b}(n)-1}_{i=0}a^{i}f(n/b^{i}) + \Theta(\text{ Complexity of leaves } \cdot T(1))
+T(n) = \sum^{log_{b}(n)-1}_{i=0}a^{i}f(n/b^{i}) + \text{ Count of Leaves } \cdot \text{ Complexity of leaves } = \sum^{log_{b}(n)-1}_{i=0}a^{i}f(n/b^{i}) + (\text{Count of leaves} \cdot T(1))
 ```
 
 ### 1.1 Find the count of leaves
