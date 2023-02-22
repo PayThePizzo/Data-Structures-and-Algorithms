@@ -189,7 +189,7 @@ $$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i})$$
 
 Through the property of the logarithms for the change of the base (prop 1) 
 
-$$log_{a}(b) = \frac{log_{c}(b)}{log_{c}(a)}$$
+$$log_{a}(b) = log_{c}(b) \cdot \frac{1}{log_{c}(a)}$$
 
 and the property of inversion (prop 2)
 
@@ -197,7 +197,7 @@ $$log_{a}(b) = \frac{1}{log_{b}(a)}$$
 
 We obtain
 
-$$log_{b}(n) \stackrel{prop 1}\Longrightarrow \frac{log_{a}(n)}{log_{a}(b)} = log_{a}(n) \cdot \frac{1}{log_{a}(b)}$$
+$$log_{b}(n) \stackrel{prop 1}\Longrightarrow log_{a}(n) \cdot \frac{1}{log_{a}(b)}$$
 
 $$ = log_{a}(n) \cdot \frac{1}{log_{a}(b)} \stackrel{prop 2}\Longrightarrow  log_{a}(n) \cdot log_{b}(a)$$
 
