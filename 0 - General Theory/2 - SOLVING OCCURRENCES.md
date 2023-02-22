@@ -188,7 +188,7 @@ $$n/b^{i} = 1 \Longleftrightarrow b^{i} = n \Longleftrightarrow log_{b}(n) = i $
 i, represents the levels of the tree and should be and integer (or we use the ceil integer value).
 We can now explicitly write $T(n)$ in a non recursive way:
 
-$$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i}) = text{ Complexity of internal nodes + Complexity of leaves}$$
+$$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i}) = \text{Complexity of internal nodes + Complexity of leaves}$$
 
 ### 1.1 Find the count of leaves
 
