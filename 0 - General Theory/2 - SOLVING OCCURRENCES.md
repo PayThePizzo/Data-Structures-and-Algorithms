@@ -174,15 +174,6 @@ And if the conditions mentioned above are met, we can focus on comparing $f(n)$ 
 <b style='color:red;'> But why do we want to do this? </b>
 
 This is what the demonstration is for.
-
-We know that $T_{solve}(n)$ can be thought as:
-* The total complexity of all levels
-* $\text{ Complexity of internal nodes } + \text{ Complexity of the leaves }$
-* $\text{ Complexity of internal nodes } + \text{ Count of leaves } \cdot T(1)$, which is the best approach.
-  * This is because the leaves represent the case where the recursion ends: $T(n=1) = \Theta(1)$
-  * Since they all have the same known complexity, we can just multiply them by the number of leaves
-  * While for the internal nodes we need to sum their complexity from the level 0 to the second-last.
-  
   
 ### 1 - Rewrite $T(n)$ 
 Through the occurrences tree we try to rewrite $T(n)$ in an **explicit way**, that is **non-recursive**.
@@ -203,32 +194,19 @@ T(n) = \text{Total complexity of all levels} = T_{\text{lvl 1}} + T_{\text{lvl 2
 ```
 
 To reach the boundary condition, when the tree stops, we need to set $n/b^{i} = 1$ so that the summation also stops. 
-
-This represents the case where $n = 1$, which results in $T(n=1)$, and we stop with the recursion (we reached the leaves).
+This represents the case where $n = 1 \rightarrow T(1)$ which stops the recursion (we reached the leaves).
 
 $$n/b^{i} = 1 \Longleftrightarrow b^{i} = n \Longleftrightarrow log_{b}(n) = i$$
 
-$i \in \mathbb{N} \text{ or use the ceil integer value}$, represents the levels of the tree.
+$i \in \mathbb{N} \text{ or use the ceil integer value}$, represents the **levels of the tree**.
 We can now explicitly write $T(n)$ in a non recursive way:
 
 ```math
-T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i}) = \text{ Total Complexity } = \text{Complexity of internal nodes} + \text{ Complexity of leaves }
+T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i})
 ```
 
-Since we know that the internal nodes reach maximum depth at $log_{b}(n)-1$, and that all the leaves have complexity $T(1)$,
-we can rewrite the complexity as, the complexity of internal nodes and the count of leaves multiplied by $T(1)$. 
-
-```math
-T(n) = \sum^{log_{b}(n)-1}_{i=0}a^{i}f(n/b^{i}) + \text{ Count of Leaves } \cdot \text{ Complexity of leaves } = \sum^{log_{b}(n)-1}_{i=0}a^{i}f(n/b^{i}) + (\text{Count of leaves} \cdot T(1))
-```
-
-Now, let's quickly proceed with two things
-* Finding the count of leaves
-* Finding the total count of nodes
-
-### 1.1 Find the count of leaves
-
-Through the property of the logarithms for the change of the base (prop 1) 
+Since $a^{i}$ is the number of nodes at a level $i$, the number of leaves is exactly $a^{log_{b}(n)}$ which, 
+by the property of the logarithms for the change of the base (prop 1) 
 
 $$log_{a}(b) = log_{c}(b) \cdot \frac{1}{log_{c}(a)}$$
 
@@ -236,32 +214,32 @@ and the property of inversion (prop 2)
 
 $$log_{a}(b) = \frac{1}{log_{b}(a)}$$
 
-We obtain
+changes its power
 
 $$log_{b}(n) \stackrel{prop 1}\Longrightarrow log_{a}(n) \cdot \frac{1}{log_{a}(b)} \stackrel{prop 2}\Longrightarrow  log_{a}(n) \cdot log_{b}(a)$$
 
-Then, by definition
+and becomes
 
 $$a^{log_{b}(n)} = a^{ log_{a}(n) \cdot log_{b}(a)} = (a^{log_{a}(n)})^{log_{b}(a)} \stackrel{def}\Longrightarrow  n^{log_{b}(a)} \stackrel{def}\Longrightarrow n^{d}$$
 
-### 1.2 Find the total count of nodes
-Now, something curious happens when we find out what is the total count of nodes, namely the number of recursive calls
+We conclude that
 
-We can use a geometric series to represent the number of nodes in the tree:
+$$a^{i} = n^{d}$$
+
+Now, if use a geometric series to represent the total number of nodes/ recursive calls in the tree:
 
 $$\sum^{log_{b}(n)}_{i=0}a^{i}$$ 
 
-By the property of the geometric series:
+by the property of the geometric series:
 
 $$\sum^{k}_{i=0}q^{i} = \frac{q^{k+1}-1}{q-1}$$
 
-Then 
+we obtain
 
 ```math
 \sum^{log_{b}(n)}_{i=0}a^{i} \stackrel{prop}\Longrightarrow \frac{a^{log_{b}(n)+1}-1}{a-1} = \frac{a^{log_{b}(n)} \cdot a -1}{a-1} = \frac{n^{d} \cdot a -1}{a-1} \approx \Theta(n^{d})
 ```
 
-### 1.3 Conclusions
 The number of total nodes in the tree, namely the occurrences/calls, grows asymptotically with $n^{d}$. 
 
 This precisely why, through the master theorem we compare the dimension of the tree/number of 
