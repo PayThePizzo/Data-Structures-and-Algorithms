@@ -7,6 +7,15 @@ The objective of solving occurrences is to find out what the $T_{worst}(n)$ is f
 
 ---
 
+## Iteration Method
+
+
+
+### Example
+
+
+
+---
 ## Substitution Method
 
 ### Example
@@ -32,6 +41,20 @@ T(n) = a \cdot T(g(n)) + b \cdot T(h(n)) + \ldots + c \cdot f(n) & \text{ if }n 
 where $g(n)$ and $h(n)$ are usually diminishing functions (i.e. division or subtractions), and $a,b,c \in \mathbb{R}$ 
 are constants.
 
+### 0 - Some notation first
+
+| **Notation**                                  	| **Meaning**                                       	| **Notes**                                                                 	|
+|-----------------------------------------------	|---------------------------------------------------	|---------------------------------------------------------------------------	|
+| $T(n)$                                        	| $T_{worst}(n)$, the total complexity              	|                                                                           	|
+| $i_{T(n)}$                                    	| Count of internal nodes for $T(n)$                	|                                                                           	|
+| $f_{T(n)}$                                    	| Count of leaf nodes for $T(n)$                    	|                                                                           	|
+| $i$                                           	| Some level $i$ of the tree                        	|                                                                           	|
+| $a^{f(i)}$                                    	| Count of nodes at a level $i$                     	| It can be written differently                                             	|
+| $w_{i}$                                       	| Weight of a level $i$                             	| Sum of the weights/complexity of the nodes of a level $i$                 	|
+| $n/b^{i}$                                     	| Dimension of a subproblem at level $i$            	| If not unique, use the one to achieve the longest path from root          	|
+| $cf(n/b^{i})$                                 	| Contribution of one call at a level $i$ to $T(n)$ 	| If not unique, find the maximum cost of a level $\mathcal{O}(Max(w_{i}))$ 	|
+| $n/b^{i} = 1 \leftrightarrow i = \log_{b}(n)$ 	| Total count of levels                             	| Can be replaced with $\mathcal{O}(\text{ longest path from root })$       	|
+| $a^{g(i)}\cdot cf(n/b^{i})$                   	| Cost of the nodes at a level $i$                  	| Only if tree is balanced and the terms are unique                         	|
 
 ### 1 - Construct a tree with $[0-2]$ levels
 Start by drawing a tree
@@ -54,50 +77,59 @@ Start by drawing a tree
         [g(n)]^2                 [h(n)]^2               // Level 1
         /      \                 /        \
 [g(g(n))]^2   [h(g(n))]^2   [g(h(n))]^2   [h(h(n))]^2    // Level 2
+
+T(1) T(1) ...                               T(1)        // Bottom level
 ```
 
-### 2 - Analyze the balance of the tree
-We want to focus on some characteristics before computing the complexity. We need focus on our tree and its nodes 
-to try to answer the following questions:
-* Do the weights of nodes decrease homogeneously in between levels? Do the nodes have the same weight at a level $i$?
-  * If so, the weight is decreasing homogeneously. 
-    * **Identify the weight of a node at level $i$** 
-    * **Identify the decreasing factor**: How fast does the tree decrease in sub-problem size? What is the size at level $i=k$?
-  * Else, the tree will be **unbalanced**, and some branches are going to stop first. 
-    * **Identify the maximum possible weight of a level** 
-    * **Identify the longest path from the root**: How far from the root do we reach a boundary condition? What is the maximum height of the three?
+### 2 - Create a table for the analysis
+We want to create a table for further analysis, such that we can try and guess th
 
-Find:
-* When will the tree stop? 
-
-### 3 - Create a table for the analysis
 The table has three parts:
-* _The number of the level_, $i \in [0, h+1]$ with $h$ as the height of the tree
-  * $i = 0, \ldots, h+1$
-* _The total count of nodes for that level_, expressed as a power of the number of branches for each subtree. How many nodes can we see at a level $i$? 
-  * ex: 2 for binary trees which are usually the case.
-  * $2^0 = 1$, $2^1 = 2$, $2^2 = 4$, where $f(i) = i \text{  } \forall i=0,\ldots,h+1$
+* _The number of the level_, $i$
+* _The total count of nodes for that level_: How many nodes can we see at a level $i$? 
+  * ex: 2 for binary trees (which are usually the case) $2^0 = 1$, $2^1 = 2$, $2^2 = 4, \ldots$
 * _Weight of the level_, the sum of the weight of each node expressed as a function of n.
 
-| Level $i$ 	 | Total Nodes at level $i$ 	| Weight of level $i$ 	|
-|-------------|--------------------------	|---------------------	|
-| 0         	 | $2^{f(i)}$               	| f(n)                	|
-| 1         	 |                          	|                     	|
-| 2         	 |                          	|                     	|
-| 3         	 |                          	|                     	|
-| ...       	 | ...                      	| ...                 	|
-| h+1       	 | $2^{f(i)}$               	| Cost of the leaves  	|
+| Level $i$ 	 | Total Nodes at level $i$ 	 | Weight of level $i$ 	        |
+|-------------|----------------------------|------------------------------|
+| 0         	 | $a^{f(i)}$               	 | some $f(n)$                	 |
+| 1         	 | 	                          | 	                            |
+| 2         	 | 	                          | 	                            |
+| 3         	 | 	                          | 	                            |
+| ...       	 | ...                      	 | ...                 	        |
+
+
+### 3 - Analyze the balance of the tree
+By now we should have noticed some aspects of our tree.
+* Look at the table: does the weight of a level change?
+  * Yes, the weight diminishes so we need to sum all the weights of the nodes to find our $T(n)$ (**Case 2**)
+  * No, we can identify the weight of one level and the number of levels to get our answer (**Case 1**).
+* Identify a diminishing factor $n/b^{i}$: does the weight of a sub-problem change homogeneously?
+  * Yes, the weight of a node is $n/b^{i}$ at some level $i$ (**Case 2**).
+  * No, we need to guess the maximum cost of a level (**Case 3**)
+* Find the height $i$: when is the tree going to reach its leaves?
+  * If there's a diminishing factor, then we can set $n/b^{i} = 1$ and find the count of levels $i$ (**Case 2**)
+  * Else we need to find the longest path from the root to the leaves (**Case 3**)
+
 
 
 ### 4 - Guess the case:
-| Case                                                        	| Weight                                                	| Formula                                                                 	|
-|-------------------------------------------------------------	|-------------------------------------------------------	|-------------------------------------------------------------------------	|
-| 1 - Balanced Tree, with non-changing weight                 	| Every level has the same weight                       	| $T(n) = d \cdot T() + c \cdot f(n)$                                     	|
-| 2 - Balanced Tree, with homogeneously decreasing weight     	| Every level decreases in weight                       	| $T(n) = d \cdot T(\frac{n}{a}) + c \cdot f(n)$                          	|
-| 3 - Unbalanced Tree, with heterogeneously decreasing weight 	| Like above, but every node can get a different weight 	| $T(n) = d \cdot T(\frac{n}{a}) + d \cdot T(\frac{n}{b}) + c \cdot f(n)$ 	|
+| Case                                                        	| Critical points                                     	| Formula                                                        	|
+|-------------------------------------------------------------	|-----------------------------------------------------	|----------------------------------------------------------------	|
+| 1 - Balanced Tree, with non-changing weight                 	| $f(n/b^{i})$ is the same, $w_{i}$ does not change   	| $T(n) = a \cdot T(n/b) + c \cdot f(n)$                         	|
+| 2 - Balanced Tree, with homogeneously decreasing weight     	| $f(n/b^{i})$ is the same, $w_{i}$ decreases         	| $T(n) = a \cdot T(n/b) + c \cdot f(n)$                         	|
+| 3 - Unbalanced Tree, with heterogeneously decreasing weight 	| $f(n/b^{i})$ is **NOT** the same, $w_{i}$ decreases 	| $T(n) = a \cdot T(n/b) + d\cdot T(\frac{n}{g}) + c \cdot f(n)$ 	|
 
+We can express the solution as
 
-### 5 - Solve
+$$T(n) = \text{ Sum of the complexity of level } = \text{  }$$
+
+### 5.1 Case 1
+
+### 5.2 Case 2
+
+### 5.3 Case 3
+
 In the first case we can directly solve it by multiplying a weight of one level by the number of levels. 
 * $w_{i}$ as the weight of a level $i$
 * $l$ as the total number of levels
@@ -131,12 +163,6 @@ $$T(n) = O(\text{Max Cost of a level}) \cdot O(\text{Length of the longest path}
 
 ---
 
-
-## Iteration Method
-
-### Example
-
----
 
 ## Master Theorem
 The master theorem is a powerful way to solve the occurrences of **divide et impera** algorithms:
