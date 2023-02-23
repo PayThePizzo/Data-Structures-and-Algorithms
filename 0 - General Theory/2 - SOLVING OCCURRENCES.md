@@ -173,7 +173,7 @@ $$\sum_{j=0}^{i}x^{i} = \frac{x^{i+1}-1}{x-1}$$
 
 and when the summation is infinite and $|x|<1$, we have the infinite decreasing geometric series:
 
-$$\sum_{j=0}^{\infinity}x^{j} = \frac{1}{1-x}$$
+$$\sum_{j=0}^{\inf}x^{j} = \frac{1}{1-x}$$
 
 Which we can use since we allow ourselves for a small amount of sloppiness
 
