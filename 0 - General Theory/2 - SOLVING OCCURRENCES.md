@@ -42,7 +42,7 @@ or
 ```math 
 T(n) = \left\{\begin{matrix}
 1 & \text{ if }n=1\\ 
-T(n) = aT(n/b) + jT(n/k) + \ldots + cf(n) & \text{ if }n > 1
+T(n) = aT(n/b) + jT(n/k) + cf(n) & \text{ if }n > 1
 \end{matrix}\right.
 ```
 
@@ -167,11 +167,13 @@ $$T(n)=\sum_{k=1}^{i+1}w_{i} = w_{i}\cdot i+1$$
 
 $$T(n)= \text{ Cost of internal nodes } + \text{ Cost of leaves }=\sum_{k=0}^{i-1}a^{k}cf(n/b^{k}) + \Theta(a^{i}\cdot T(1))$$
 
+
+
 ### 5.3 - Case 3
 1. Find the **maximum cost of a level**
 2. Find the **length of the longest path from the root** , which is given by the branch which diminishes the slowest among all the other ones.
 
-$$T(n)= \mathcal{O}(Max \left\{ \text{Cost of a level} \right\} \cdot \text{Length longest path}) $$
+$$T(n)= \mathcal{O}(Max \left\{ \text{Cost of a level} \right\} \cdot \text{Length longest path})$$
 
 
 #### Example
