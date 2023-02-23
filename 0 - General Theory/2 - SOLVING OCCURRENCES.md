@@ -22,24 +22,33 @@ The objective of solving occurrences is to find out what the $T_{worst}(n)$ is f
 
 ---
 ## Recursion Tree
-Although you can use the substitution method to provide a succinct proof that 
-a solution to a recurrence is correct, you might have trouble coming up with a good guess. 
-In a recursion tree, each node represents the cost of a single sub-problem  
-somewhere in the set of recursive function invocations. We sum the costs within 
-each level of the tree to obtain a set of per-level costs, and then we sum all the 
-per-level costs to determine the total cost of all levels of the recursion. [1]
+Although you can use the substitution method to provide a succinct proof that a solution to a recurrence is correct, 
+you might have trouble coming up with a good guess. In a recursion tree, each node represents the cost of a single 
+sub-problem somewhere in the set of recursive function invocations. We sum the costs within each level of the tree 
+to obtain a set of per-level costs, and then we sum all the  per-level costs to determine the total cost of all levels 
+of the recursion. [1]
 
 We focus on formulas such as:
 
 ```math 
 T(n) = \left\{\begin{matrix}
 1 & \text{ if }n=1\\ 
-T(n) = a \cdot T(g(n)) + b \cdot T(h(n)) + \ldots + c \cdot f(n) & \text{ if }n > 1
+T(n) = aT(n/b) + cf(n) & \text{ if }n > 1
 \end{matrix}\right.
 ```
 
-where $g(n)$ and $h(n)$ are usually diminishing functions (i.e. division or subtractions), and $a,b,c \in \mathbb{R}$ 
-are constants.
+or 
+
+```math 
+T(n) = \left\{\begin{matrix}
+1 & \text{ if }n=1\\ 
+T(n) = aT(n/b) + jT(n/k) + \ldots + cf(n) & \text{ if }n > 1
+\end{matrix}\right.
+```
+
+Where
+* Inside the occurrences $T()$ we have diminishing functions (i.e. division or subtractions)
+* $a,b,c,j,k \in \mathbb{R}$ are constants.
 
 ### 0 - Some notation first
 
@@ -56,9 +65,11 @@ are constants.
 | $n/b^{i} = 1 \leftrightarrow i = \log_{b}(n)$ 	| Total count of levels                             	| Can be replaced with $\mathcal{O}(\text{ longest path from root })$       	|
 | $a^{g(i)}\cdot cf(n/b^{i})$                   	| Cost of the nodes at a level $i$                  	| Only if tree is balanced and the terms are unique                         	|
 
+Do not get confused with the formulas above, we change variables based on the case.
+
 ### 1 - Construct a tree with $[0-2]$ levels
 Start by drawing a tree
-* Draw the root as $cf(n)$ (remember that $f(n)$ can be seen as everything that is not some $kT(j(n))$)
+* Draw the root as $cf(n)$ (remember that $f(n)$ can be seen as everything that is not some occurrence $kT(j(n))$)
   * Ex: $f(n) = n^{2}$ and $c=3$, would be $3(n^{2})$ is the root
 * Draw the branches
   * Depending on what the constants $a$ and $b$ are, we need to draw $a+b$ sub-branches for each internal node
@@ -82,21 +93,24 @@ T(1) T(1) ...                               T(1)        // Bottom level
 ```
 
 ### 2 - Create a table for the analysis
-We want to create a table for further analysis, such that we can try and guess th
-
-The table has three parts:
+We want to create a table for further analysis:
 * _The number of the level_, $i$
+  * Just enumerate the levels
 * _The total count of nodes for that level_: How many nodes can we see at a level $i$? 
+  * Try to find a pattern and express it as a function of the level with the constant preceding the occurrence, i.e. $a^{i}$ 
+  * if it is not possible we might need to look at the height later
   * ex: 2 for binary trees (which are usually the case) $2^0 = 1$, $2^1 = 2$, $2^2 = 4, \ldots$
-* _Weight of the level_, the sum of the weight of each node expressed as a function of n.
-
-| Level $i$ 	 | Total Nodes at level $i$ 	 | Weight of level $i$ 	        |
-|-------------|----------------------------|------------------------------|
-| 0         	 | $a^{f(i)}$               	 | some $f(n)$                	 |
-| 1         	 | 	                          | 	                            |
-| 2         	 | 	                          | 	                            |
-| 3         	 | 	                          | 	                            |
-| ...       	 | ...                      	 | ...                 	        |
+* _Weight of the level_, the sum of the weight of each node at a level $i$
+  * Just sum the weight of the nodes and express it a function of the level multiplied by $f(n)$, $h(i)*f(n)$
+  * This is important since we discover how fast the tree goes to base case.
+  
+| Level $i$ 	 | Total Nodes at level $i$ 	 | Weight of level $i$ 	                              |
+|-------------|----------------------------|----------------------------------------------------|
+| 0         	 | 	      $a^{i}$             | sum the weights on the same level                	 |
+| 1         	 | 	                          | 	                                                  |
+| 2         	 | 	                          | 	                                                  |
+| 3         	 | 	                          | 	                                                  |
+| ...       	 | ...                      	 | ...                 	                              |
 
 
 ### 3 - Analyze the balance of the tree
@@ -110,56 +124,57 @@ By now we should have noticed some aspects of our tree.
 * Find the height $i$: when is the tree going to reach its leaves?
   * If there's a diminishing factor, then we can set $n/b^{i} = 1$ and find the count of levels $i$ (**Case 2**)
   * Else we need to find the longest path from the root to the leaves (**Case 3**)
-
-
+  
 
 ### 4 - Guess the case:
-| Case                                                        	| Critical points                                     	| Formula                                                        	|
-|-------------------------------------------------------------	|-----------------------------------------------------	|----------------------------------------------------------------	|
-| 1 - Balanced Tree, with non-changing weight                 	| $f(n/b^{i})$ is the same, $w_{i}$ does not change   	| $T(n) = a \cdot T(n/b) + c \cdot f(n)$                         	|
-| 2 - Balanced Tree, with homogeneously decreasing weight     	| $f(n/b^{i})$ is the same, $w_{i}$ decreases         	| $T(n) = a \cdot T(n/b) + c \cdot f(n)$                         	|
-| 3 - Unbalanced Tree, with heterogeneously decreasing weight 	| $f(n/b^{i})$ is **NOT** the same, $w_{i}$ decreases 	| $T(n) = a \cdot T(n/b) + d\cdot T(\frac{n}{g}) + c \cdot f(n)$ 	|
+| Case                                                        	| Critical points                                     	| Formula                                                        	 |
+|-------------------------------------------------------------	|-----------------------------------------------------	|------------------------------------------------------------------|
+| 1 - Balanced Tree, with non-changing weight                 	| $f(n/b^{i})$ is the same, $w_{i}$ does not change   	| $T(n) = a \cdot T(n/b) + c \cdot f(n)$                         	 |
+| 2 - Balanced Tree, with homogeneously decreasing weight     	| $f(n/b^{i})$ is the same, $w_{i}$ decreases         	| $T(n) = a \cdot T(n/b) + c \cdot f(n)$                         	 |
+| 3 - Unbalanced Tree, with heterogeneously decreasing weight 	| $f(n/b^{i})$ is **NOT** the same, $w_{i}$ decreases 	| $T(n) = a \cdot T(n/b) + j\cdot T(\frac{n}{k}) + c \cdot f(n)$ 	 |
 
-We can express the solution as
+And the follow the instructions
 
-$$T(n) = \text{ Sum of the complexity of level } = \text{  }$$
+```math
+\left\{\begin{matrix}
+\text{Case 1} & T(n)=\sum_{k=0}^{i}w_{i} = w_{i}\cdot i \\
+& \\
+\text{Case 2} & T(n)=\sum_{k=0}^{i-1}a^{k}cf(n/b^{k}) + \Theta(a^{i}\cdot T(1))\\
+& \\
+\text{Case 3} & T(n)= \mathcal{O}(Max \left\{ \text{Cost of a level} \right\} \cdot \text{Length longest path}) \\
+\end{matrix}\right.
+```
 
-### 5.1 Case 1
+### 5.1 - Case 1
+1. Find the diminishing factor 
+   1. $n/b^{i}$
+2. Set it to 1 and find $i$ 
+   1. $n/b^{i} = 1 \leftrightarrow i = log_{b}(n)$
+3. Find the number of levels 
+   1. $i+1$, since the levels start from $0, 1, \ldots, log_{b}(n)$
+4. Find the weight of a level $w_{i}$
+   1. Sum the single contributions to the total complexity, for a level 
 
-### 5.2 Case 2
+$$T(n)=\sum_{k=1}^{i+1}w_{i} = w_{i}\cdot i+1$$
 
-### 5.3 Case 3
+### 5.2 - Case 2
+1. Find the diminishing factor
+   1. $n/b^{i}$
+2. Set it to 1 and find $i$
+   1. $n/b^{i} = 1 \leftrightarrow i = log_{b}(n)$
+3. Find the number of leaves 
+   1. $a^{i}$
 
-In the first case we can directly solve it by multiplying a weight of one level by the number of levels. 
-* $w_{i}$ as the weight of a level $i$
-* $l$ as the total number of levels
+$$T(n)= \text{ Cost of internal nodes } + \text{ Cost of leaves }=\sum_{k=0}^{i-1}a^{k}cf(n/b^{k}) + \Theta(a^{i}\cdot T(1))$$
 
-$$T(n) = \text{ Weight of a level } \cdot \text { Total number of levels } = w_{i} \cdot l = \sum^{l}_{i=1} w_{i}$$
+### 5.3 - Case 3
+1. Find the **maximum cost of a level**
+2. Find the **length of the longest path from the root** , which is given by the branch which diminishes the slowest among all the other ones.
 
-
-In the second case we need to compute the cost of the nodes and the cost of the leaves.
-* $h = log_{a}(n) \rightarrow i \in [0, log_{a}(n)]$ is the height of the tree
-* $h+1$, the total number of levels
-* $f(T_{n}) = d^{h} = d^{log_{a}(n)} = n^{log_{a}(d)}$, the total number of leaves for the Tree $T$
-* $T(1)$, is the cost of the function when $n=1$ (_it can be discarded asymptotically_) and represents the contribution of each leaf node.
-* $\sum d^{k} \cdot cf(n/a^{i})$, with $k=0, \ldots, h-1$ is the cost of the internal nodes
-
-$$T(n) = \text{ Cost of internal nodes } + \text{ Cost of leaves } = \sum^{h-1}_{k=0}(w_{k}) + \theta(n^{log_{a}(d)} * T(1))$$
-
-$$T(n) = \sum^{h-1}_{k=0}(d^{k} \cdot cf(n/a^{k})) + \theta(n^{log_{a}(d)} * T(1))$$
-
-
-In the third case we need to try and find the maximum cost of a level and the length of the longest path, as some leaves
-are deeper than others.
-* The **Max Cost of a level** is considered to be the maximum value such that $w_{i} \leq cf(n) \rightarrow w_{i} = O(f(n))$
-  * It can be required to show a demonstration, but it is not usually the case.
-* The **length of the longest path** is given by the branch which diminishes the slowest among all the other ones.
-
-$$T(n) = O(\text{Max Cost of a level}) \cdot O(\text{Length of the longest path})$$
+$$T(n)= \mathcal{O}(Max \left\{ \text{Cost of a level} \right\} \cdot \text{Length longest path}) $$
 
 
 #### Example
-
 
 ---
 
