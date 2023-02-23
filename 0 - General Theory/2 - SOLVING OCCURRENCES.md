@@ -181,7 +181,7 @@ Which we can use since we allow ourselves for a small amount of sloppiness
 1. Find the **maximum cost of a level**
 2. Find the **length of the longest path from the root** , which is given by the branch which diminishes the slowest among all the other ones.
 
-$$T(n)= \mathcal{O}(Max \left\{ \text{Cost of a level} \right\} \cdot \text{Length longest path})$$
+$$T(n)= \mathcal{O}(Max(\text{Cost of a level}) \cdot \text{Length longest path})$$
 
 #### Example
 
