@@ -165,16 +165,21 @@ $$T(n)=\sum_{k=1}^{i+1}w_{i} = w_{i}\cdot i+1$$
 3. Find the number of leaves 
    1. $a^{i}$
 
-$$T(n)= \text{ Cost of internal nodes } + \text{ Cost of leaves }=\sum_{k=0}^{i-1}a^{k}cf(n/b^{k}) + \Theta(a^{i}\cdot T(1))$$
+$$T(n)= \text{ Cost of internal nodes } + \text{ Cost of leaves } = \sum_{k=0}^{i-1}a^{k}cf(n/b^{k}) + \Theta(a^{i}\cdot T(1))$$
 
+Remember that, for geometric series:
 
+$$\sum_{j=0}^{i}x^{i} = \frac{x^{i+1}-1}{x-1}$$
+
+and when the summation is infinite and $|x|<1$, we have the infinite decreasing geometric series:
+
+$$\sum_{j=0}^{\infinity}x^{j} = \frac{1}{1-x}$$
 
 ### 5.3 - Case 3
 1. Find the **maximum cost of a level**
 2. Find the **length of the longest path from the root** , which is given by the branch which diminishes the slowest among all the other ones.
 
 $$T(n)= \mathcal{O}(Max \left\{ \text{Cost of a level} \right\} \cdot \text{Length longest path})$$
-
 
 #### Example
 
