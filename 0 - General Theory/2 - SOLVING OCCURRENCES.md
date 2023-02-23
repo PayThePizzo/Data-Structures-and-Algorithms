@@ -22,30 +22,38 @@ per-level costs to determine the total cost of all levels of the recursion. [1]
 
 We focus on formulas such as:
 
-$$T(n) = d \cdot T(g(n)) + d \cdot T(h(n)) + c \cdot f(n)$$
-
-or
-
 ```math 
 T(n) = \left\{\begin{matrix}
 1 & \text{ if }n=1\\ 
-T(n) = d \cdot T(g(n)) + d \cdot T(h(n)) + \ldots + c \cdot f(n) & \text{ if }n > 1
+T(n) = a \cdot T(g(n)) + b \cdot T(h(n)) + \ldots + c \cdot f(n) & \text{ if }n > 1
 \end{matrix}\right.
 ```
 
-where $g(n)$ and $h(n)$ are usually diminishing functions (i.e. division or subtractions), and $d,c \in \mathbb{R}$ 
+where $g(n)$ and $h(n)$ are usually diminishing functions (i.e. division or subtractions), and $a,b,c \in \mathbb{R}$ 
 are constants.
 
 
 ### 1 - Construct a tree with $[0-2]$ levels
-Start by drawing a tree where you apply the formula to the variable $n$
-
+Start by drawing a tree
+* Draw the root as $cf(n)$ (remember that $f(n)$ can be seen as everything that is not some $kT(j(n))$)
+  * Ex: $f(n) = n^{2}$ and $c=3$, would be $3(n^{2})$ is the root
+* Draw the branches
+  * Depending on what the constants $a$ and $b$ are, we need to draw $a+b$ sub-branches for each internal node
+  * Obviously we need to apply the functions $g(n)$ and $h(n)$ respectively.
+    * ex: $a=2$ and $g(n) = n/2$ would result in 2 sub-nodes $c(f(g(n))) = 3((n/2)^{2})$
+    * ex: $a=3$ and $h(n) = n/4$ would result in 3 sub-nodes $c(f(h(n))) = 3((n/4)^{2})$ 
+    * We would have 5 branches for each node, until we reach the case $n=1$
+ 
 ```c++
-                    [n]                        // Level 0
-            /               \
-        [g(n)]                [h(n)]           // Level 1
-      /       \             /        \
- [g(g(n))]  [h(g(n))]  [g(h(n))]  [h(h(n))]    // Level 2
+// Case T(n) = g(n) + h(n) + n^2
+// f(n) = n^2
+// Only a+b=1+1 sub-nodes
+
+                      [n]^2                             // Level 0
+                /               \
+        [g(n)]^2                 [h(n)]^2               // Level 1
+        /      \                 /        \
+[g(g(n))]^2   [h(g(n))]^2   [g(h(n))]^2   [h(h(n))]^2    // Level 2
 ```
 
 ### 2 - Analyze the balance of the tree
@@ -59,6 +67,8 @@ to try to answer the following questions:
     * **Identify the maximum possible weight of a level** 
     * **Identify the longest path from the root**: How far from the root do we reach a boundary condition? What is the maximum height of the three?
 
+Find:
+* When will the tree stop? 
 
 ### 3 - Create a table for the analysis
 The table has three parts:
@@ -186,7 +196,7 @@ And we want to focus on finding out:
 * $a^{i}$, the number of nodes at a level $i$
 * $n/b^{i}$, the dimensionality of the sub-problems at a level $i$
 * $f(n/b^{i}) \text{  with } i \geq 0$, the contribution of one call at a level $i$ to the total complexity
-* $a^{i} \cdot f(n/b^{i})$, the complexity of all internal nodes at a level $i$
+* $a^{i} \cdot f(n/b^{i})$, the complexity of all nodes at a level $i$
 
 We can define the total complexity as the sum of the complexity of all levels:
 
@@ -247,16 +257,16 @@ we obtain
 We conclude that $n^{d}$ is not just the number of leaves, but is the factor that dictates the asymptotic growth of the
 total complexity, since it is also the total count of nodes/recursive calls.
 
-$$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i})$$
-
 This precisely why, through the master theorem we compare 
 * The number of recursive calls $n^{d} = g(n)$ 
 * And the time used for splitting and merging $T_{\text{split + merge}} = f(n)$
 
 **We want to check which one of the terms is asymptotically dictating the complexity of the algorithm**
 
-
 ### 2 - Find the right case
+Remember that we found the following:
+
+$$T(n) = \sum^{log_{b}(n)}_{i=0}a^{i}f(n/b^{i})$$
 
 #### 2.1 - Case 1
 Hypothesis
