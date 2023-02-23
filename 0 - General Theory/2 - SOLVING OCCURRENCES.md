@@ -175,6 +175,8 @@ and when the summation is infinite and $|x|<1$, we have the infinite decreasing 
 
 $$\sum_{j=0}^{\infinity}x^{j} = \frac{1}{1-x}$$
 
+Which we can use since we allow ourselves for a small amount of sloppiness
+
 ### 5.3 - Case 3
 1. Find the **maximum cost of a level**
 2. Find the **length of the longest path from the root** , which is given by the branch which diminishes the slowest among all the other ones.
