@@ -3,14 +3,14 @@ When we talk about graphs we make a fundamental distinction between
 directed and undirected graphs.
 
 Also, when dealing with graphs we assume:
-* V is always finite (|V| = n)
-* We use sets {3,4}, rather than pairs (3,4)
+* $V$ is always finite ($|V| = n$)
+* We use sets $\{ 3,4 \}$, rather than pairs $(3,4)$
 
 ---
 
 ## Directed Graph
-<mark>A directed graph **G** is a pair **(V, E)** </mark> where
-* **V** is vertex (node) set, which we assume is **finite** (|V| = n)
+A directed graph **G** is a pair $G = (V, E)$ where:
+* **V** is vertex (node) set, which we assume is **finite** ($|V| = n$)
   * A vertex is represented by a circle
 * **E** is edge (arch) set, which is a binary relation on V
   * An edge is represented by an arrow
@@ -20,27 +20,25 @@ Also, when dealing with graphs we assume:
 
 At high level, a graph is a binary relation between a certain number of objects (vertices).
 Furthermore, a binary relation on a certain set A, is the **sub-set of the cartesian product** of that same set A.
-* `E ⊆ V x V`
+* $E \subseteq V \times V$
 
-This means the maximum number of edges can be found when `E = V x V = V^2`. 
-If we say that `|V| = n`, then `|E| = n^2`
+This means the maximum number of edges can be found when $E \subseteq V \times V = V^{2}$. 
+If we say that $|V| = n$, then $|E| = n^{2}$
 
 ---
 
 ## Undirected Graph
-<mark>A directed graph **G** is a pair **(V, E)** </mark> where
-* **V** is vertex (node) set, which we assume is **finite** (|V| = n)
+A directed graph **G** is a pair $G=(V, E)$ where
+* **V** is vertex (node) set, which we assume is **finite** ($|V| = n$)
 * **E** is edge (arch) set, which consists of **unordered pairs of vertices**
-  * An edge between `(u,v) ∈ E <=> (v,u) ∈ E`
-    * It is like there is a symmetric relation between the vertices u,v
-    * If this was a directed graph, there must be one arrow that goes `u->v` and one `u<-v`
-  * An edge is a set {u,v} where `v ∈ V` and `u != v`
-    * Self-loops are not allowed, this is why `u!=v`
+  * An edge between $(u,v) \in E \leftrightarrow (v,u) \in E$
+    * It is like there is a symmetric relation between the vertices $u$ and $v$
+    * If this was a directed graph, there must be one arrow that goes $u \rightarrow v$ and one $u \leftarrow v$
+  * An edge is a set ${u,v}$ where $v \in V$ and $u \neq v$
+    * Self-loops **are not allowed**, this is why $u \neq v$
+  * $|E| \in [0, n^{2}-\frac{n}{2}$
 
 ![undirected graph ex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/undirectedgex.png?raw=TRUE)
-
-The minimum number of edges is 0.
-The maximum number of edges can be found as `(n^2)-n/2`
 
 ---
 
