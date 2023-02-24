@@ -5,20 +5,6 @@ The objective of solving occurrences is to find out what the $T_{worst}(n)$ is f
 
 ### Example
 
----
-
-## Iteration Method
-
-
-
-### Example
-
-
-
----
-## Substitution Method
-
-### Example
 
 ---
 ## Recursion Tree
@@ -184,6 +170,21 @@ Which we can use since we allow ourselves for a small amount of sloppiness
 $$T(n)= \mathcal{O}(Max(\text{Cost of a level}) \cdot \text{Length longest path})$$
 
 #### Example
+
+---
+
+## Iteration Method
+
+
+### Example
+
+---
+
+## Substitution Method
+
+
+### Example
+
 
 ---
 
