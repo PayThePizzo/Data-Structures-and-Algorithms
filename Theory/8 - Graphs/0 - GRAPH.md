@@ -15,6 +15,7 @@ A directed graph **G** is a pair $G = (V, E)$ where:
 * **E** is edge (arch) set, which is a binary relation on V
   * An edge is represented by an arrow
   * Self-loops are allowed
+  * $|E| \in \[ 0,n^{2} \]$
 
 ![directed graph ex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/directedgex.png?raw=TRUE)
 
@@ -36,7 +37,7 @@ A directed graph **G** is a pair $G=(V, E)$ where
     * If this was a directed graph, there must be one arrow that goes $u \rightarrow v$ and one $u \leftarrow v$
   * An edge is a set ${u,v}$ where $v \in V$ and $u \neq v$
     * Self-loops **are not allowed**, this is why $u \neq v$
-  * $|E| \in [0, n^{2}-\frac{n}{2}$
+  * $|E| \in \[ 0, n^{2}-\frac{n}{2} \]$
 
 ![undirected graph ex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/undirectedgex.png?raw=TRUE)
 
