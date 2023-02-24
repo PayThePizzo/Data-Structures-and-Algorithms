@@ -205,11 +205,11 @@ on the non-negative integers by the recurrence ($n \in \mathbb{N}$)
 $$T(n) = aT(n/b) + f(n)$$
 
 where we interpret $n/b$ to mean either $\lfloor n/b \rfloor$ or $\lceil n/b \rceil$. Then $T(n)$ has the following asymptotic bounds:
-* If $f(n) = \mathcal{O}(n^{log_{b}a-\epsilon})$, for some constant $\epsilon > 0$, then $T(n) = \Theta(n^{log_{b}a)$
-* If $f(n) = \Theta(n^{log_{b}a-\epsilon})$, then $T(n) = \Theta(n^{log_{b}a} \log(n))$
+* If $f(n) = \mathcal{O}(n^{log_{b}a-\epsilon})$, for some constant $\epsilon > 0$, then $T(n) = \Theta(n^{log_{b}a})$
+* If $f(n) = \Theta(n^{log_{b}a})$, then $T(n) = \Theta(n^{log_{b}a} \log(n))$
 * If $f(n) = \Omega(n^{log_{b}a+\epsilon})$, for some constant $\epsilon > 0$, and if $af(n/b) \leq cf(n)$ for some constant $c<1$ and all sufficiently large $n$, then $T(n) = \Theta(f(n))$
 
-### Conditions
+#### Explaining the conditions
 We need to express the $T(n)$ of the algorithm we want to analyze through the following form:
 
 $$T(n) = a \cdot T(n/b) + f(n)$$
@@ -227,10 +227,10 @@ If the conditions are met, then we can add the following notation:
 Through the theorem we asymptotically compare $g(n)$ and $f(n)$ to discover $T(n)$. For this we identify the right case:
 
 | _Case_ 	| **Condition**        	| Asymptotic Notation                                             	| Procedure                                                                                                                	| **Solution**                   	|
-|--------	|----------------------	|-----------------------------------------------------------------	|--------------------------------------------------------------------------------------------------------------------------	|--------------------------------	|
-| _1_    	| $f(n) \leq n^{d}$    	| $f(n) = \mathcal{O}(n^{d- \varepsilon})$ with $\varepsilon > 0$ 	| Find $\varepsilon$                                                                                                       	| $T(n) = \Theta(n^{d})$         	|
+|--------	|----------------------	|-----------------------------------------------------------	|-----------------------------------------------------------------------------------------------------------------------	|--------------------------------	|
+| _1_    	| $f(n) \leq n^{d}$    	| $f(n) = \mathcal{O}(n^{d- \epsilon})$ with $\epsilon > 0$ 	| Find $\epsilon$                                                                                                       	| $T(n) = \Theta(n^{d})$         	|
 | _2_    	| $f(n) \approx n^{d}$ 	| $f(n) = \Theta(n^{d})$                                          	| None needed                                                                                                              	| $T(n) = \Theta(n^{d} \log(n))$ 	|
-| _3_    	| $f(n) \geq n^{d}$    	| $f(n) = \Omega(n^{d+ \varepsilon})$ with $\varepsilon > 0$      	| Find the **only** $\varepsilon$, then find the $c$ such that $\exists c<1 \ni'$ for n suffic. large $af(n/b) \leq cf(n)$ 	| $T(n) = \Theta(f(n))$          	|
+| _3_    	| $f(n) \geq n^{d}$    	| $f(n) = \Omega(n^{d+ \epsilon})$ with $\epsilon > 0$      	| Find the **only** $\epsilon$, then find the $c$ such that $\exists c<1 \ni'$ for n suffic. large $af(n/b) \leq cf(n)$ 	| $T(n) = \Theta(f(n))$          	|
 
 ---
 
