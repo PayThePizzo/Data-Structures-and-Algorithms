@@ -7,7 +7,7 @@ This repo follows the topics of the following courses for students of [Laurea tr
 Anyhow, I took the liberty of adding extra content for a better comprehension of the course.
 Eventually this project will be extended to include advanced data structures and algorithms.
 
---- 
+---
 
 ## General Theory
 * Asymptotic notions
