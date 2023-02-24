@@ -187,7 +187,6 @@ $$T(n)= \mathcal{O}(Max(\text{Cost of a level}) \cdot \text{Length longest path}
 
 ---
 
-
 ## Master Theorem
 The master theorem is a powerful way to solve the occurrences of **divide et impera** algorithms:
 
@@ -198,6 +197,17 @@ Where:
   * $f(n) = T_{split}(n) + T_{merge}(n)$ and $f(n) \geq 0$
 * $T_{solve}(n)$ can be expressed as summation of the time needed to solve the sub-problems 
   * $\sum T(n_{i}) \text{ for } i=1,\ldots, k$ which is equal to $a \cdot f(n/b)$
+
+### Theorem 4.1 - Master Theorem
+Let $a \geq 1$ and $b>1$ be constants, let $f(n)$ be a function, and let $T(n)$ be defined
+on the non-negative integers by the recurrence ($n \in \mathbb{N}$)
+
+$$T(n) = aT(n/b) + f(n)$$
+
+where we interpret $n/b$ to mean either $\lfloor n/b \rfloor$ or $\lceil n/b \rceil$. Then $T(n)$ has the following asymptotic bounds:
+* If $f(n) = \mathcal{O}(n^{log_{b}a-\epsilon})$, for some constant $\epsilon > 0$, then $T(n) = \Theta(n^{log_{b}a)$
+* If $f(n) = \Theta(n^{log_{b}a-\epsilon})$, then $T(n) = \Theta(n^{log_{b}a} \log(n))$
+* If $f(n) = \Omega(n^{log_{b}a+\epsilon})$, for some constant $\epsilon > 0$, and if $af(n/b) \leq cf(n)$ for some constant $c<1$ and all sufficiently large $n$, then $T(n) = \Theta(f(n))$
 
 ### Conditions
 We need to express the $T(n)$ of the algorithm we want to analyze through the following form:
