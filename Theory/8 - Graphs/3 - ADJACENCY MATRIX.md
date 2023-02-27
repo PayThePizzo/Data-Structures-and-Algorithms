@@ -1,38 +1,32 @@
 # Adjacency Matrix
-For this implementation we use a **matrix** $A_{G}$, with $n^{2} = |V| x |V|$ elements $a_{i,j}$
-
-Every element a(i,j):
-* 0 if between i and j there is NO edge
-* 1 if between i and j there is an edge
+For this implementation we use a $|V| \times |V| = n \times n$ **matrix** $A_{G} = a_{i,j}$, where:
 
 ```math
 a_{i,j} = 
 \left\{\begin{matrix}
 0 & (i,j) \notin E & \text{ No edge between i and j} \\
 1 & (i,j) \in E & \text{Edge between i and j} \\
-\end{matrix}\right
+\end{matrix}\right.
 ```
 
+Example for directed and undirected graphs:
 
-Example: this directed graph right here, would be implemented like this
+![adjmat](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/adjmat.png?raw=TRUE)
 
-![ex graph AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exgraphAL.png?raw=TRUE)
+As we can see, for undirected graphs:
+* $a_{i,j} = 0$ when $i = j$ 
+  * Since self-loops are absent
+* $A^{T} = A$, the matrix is symmetric 
+  * Because edges do not have a direction. 
+* $a_{i,j} = a_{j,i} \forall i,j = 1,2, \ldots, n$.
 
-![ex matrix AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exmatrixAM.png?raw=TRUE)
+Example for weighted graphs:
 
-Example: this undirected graph right here, would be implemented like this
-
-![ex un graph AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exUngraphAM.png?raw=TRUE)
-
-![ex un matrix AM](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exUnmatrixAM.png?raw=TRUE)
-
-We can easily that self-loops are absent since all the elements where i = j, are represented by 0.
-* It also a symmetric matrix because edges do not have a direction. 
-* a(i,j) = a(j,i) for every i,j = 1...n.
+![wadjmat](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/wadjmat.png?raw=TRUE)
 
 ---
 
-## Matrix manipulation and graph properties - Undirected
+## Matrix manipulation and graph properties - Undirected Graphs
 Let G be an undirected graph G=(V,E), let's consider its Adjacency Matrix A and see if we can find 
 any properties 
 
@@ -70,10 +64,12 @@ between the vertex i and j.</mark>
 ---
 
 ### Conclusions
+We may prefer an adjacency-matrix representation, when the graph is dense or when we need to be able to tell quickly
+if there is an edge connecting two given vertices
 
 Pros: 
 * Works best with dense graphs
-* Verifying adjacency, regardless of the graph's density, takes T(n) = O(1)
+* Verifying adjacency, regardless of the graph's density, takes $T(n) = \mathcal{O}(1)$ 
 
 Cons:
-* May occupy more space if the graph is sparse 
+* May occupy more space if the graph is sparse, as it will always require $S(n) = \mathcal{O}(n^{2})$

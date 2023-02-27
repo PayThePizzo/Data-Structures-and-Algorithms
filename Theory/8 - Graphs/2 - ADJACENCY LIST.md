@@ -27,6 +27,7 @@ Verifying adjacency in the case of a long linked-list, takes more time.
 
 
 ### Conclusions
+Because the adjacency-list representation provides a compact way to represent sparse graphs, it is usually the method of choice
 
 Pros:
 * Works best with sparse graphs 
