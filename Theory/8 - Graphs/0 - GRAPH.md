@@ -64,5 +64,6 @@ the most common implementations to represent these data structures are:
 2. Adjacency Matrix
    1. Best for tight/dense graphs
 3. Incidence Matrix
+   1. Best for sparse graphs
 
 ![Example implementation](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/eximplem.png?raw=TRUE)

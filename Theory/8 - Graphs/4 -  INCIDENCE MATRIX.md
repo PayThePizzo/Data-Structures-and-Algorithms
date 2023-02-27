@@ -1,7 +1,7 @@
 # Incidence Matrix
-For this implementation we use a **matrix** `n x m = |V| x |E|` 
-* n rows, representing the vertices
-* m columns, representing the edges
+For this implementation we use a **matrix** $n \times m = |V| \times |E|$ 
+* $n$ rows, representing the vertices
+* $m$ columns, representing the edges
   * For every column j, we put a 1 in the row i corresponding to the vertices
   connected by edge represented by the column j (ex: e1)
 
@@ -18,3 +18,7 @@ In the case we face a directed graph:
 * -1 if the edge is **incident** from/ leaves vertex u, 
 * +1 if the edge is **incident** to/ enters vertex v.
 
+---
+
+### Conclusions
+Best for sparse graphs

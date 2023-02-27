@@ -15,10 +15,12 @@ Example for directed and undirected graphs:
 
 As we can see, for undirected graphs:
 * $a_{i,j} = 0$ when $i = j$ 
-  * Since self-loops are absent
+  * Since self-loops are absent, the main diagonal is filled with 0
 * $A^{T} = A$, the matrix is symmetric 
   * Because edges do not have a direction. 
 * $a_{i,j} = a_{j,i} \forall i,j = 1,2, \ldots, n$.
+* $deg(a_{i,j}) = \sum_{j=1, \ldots, n}a_{i,j}$
+  * The degree of a vertex is given by the sum of the i-th row
 
 Example for weighted graphs:
 
@@ -26,12 +28,23 @@ Example for weighted graphs:
 
 ---
 
+### Matrix Multiplication
+Given two matrices $A = n \times m$ and $B = m \times k$, $A \times B = C = n \times k$ since $m = m$
+
+$$c_{i,j} = \sum_{l=1}^{m}a_{i,l} \cdot b_{l,j}$$
+
+with $i = 1, \ldots, n$ and $j = 1, \ldots, k$ 
+
+---
+
 ## Matrix manipulation and graph properties - Undirected Graphs
-Let G be an undirected graph G=(V,E), let's consider its Adjacency Matrix A and see if we can find 
+Let G be an undirected graph $G=(V,E)$, let's consider its Adjacency Matrix A and see if we can find 
 any properties 
 
-### A x A
+### $A^{2} = A \times A$
 We can do AxA which is product of two matrices.
+
+$$$$
 
 ```python
 A = [   [0,1,1,1],
@@ -58,8 +71,18 @@ between the vertex i and j.</mark>
   * a(i,j)∈(AxA) = sum(a(i,l)*a(l,j), l = 1 to n), mind that the product is 1 when both are not 0.
   * This is only possible when there exist two edges a(i,l) and a(l,j) 
   
-### A^k
+### $A^{k}$
 1. ∀i = 1 to n, with i!=j: <mark>a(i,j)∈(A^k)</mark> is the count of path of length **k**, between i and j.
+
+---
+
+## Matrix manipulation and graph properties - Directed Graphs
+
+### $A^{2}$
+The elements represent
+
+### $A^{k}$
+The elements represent
 
 ---
 
