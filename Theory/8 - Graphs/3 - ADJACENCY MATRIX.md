@@ -1,9 +1,17 @@
 # Adjacency Matrix
-For this implementation we use a **matrix**, with `n x n = |V| x |V|` elements a(i,j)
+For this implementation we use a **matrix** $A_{G}$, with $n^{2} = |V| x |V|$ elements $a_{i,j}$
 
 Every element a(i,j):
 * 0 if between i and j there is NO edge
 * 1 if between i and j there is an edge
+
+```math
+a_{i,j} = 
+\left\{\begin{matrix}
+0 & (i,j) \notin E & \text{ No edge between i and j} \\
+1 & (i,j) \in E & \text{Edge between i and j} \\
+\end{matrix}\right.
+```
 
 
 Example: this directed graph right here, would be implemented like this

@@ -11,18 +11,26 @@ Every cell:
 
 Example: this graph right here, would be implemented like this
 
-![ex graph AL](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exgraphAL.png?raw=TRUE)
+![adj list](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exgraphAL.png?raw=TRUE)
 
+## Space
 
-![ex list AL](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exlistAL.png?raw=TRUE)
+| Case         	| Space $S(n)$                                           	|
+|--------------	|-------------------------------------------------------	|
+| Sparse Graph 	| $S(n) = \mathcal{O} (|V|+|E|) = \mathcal{O} (n+m)$ 	|
+| Dense Graph  	| $S(n) = \mathcal{O} (n^{2})$                           	|
 
+## Time
+Verifying adjacency in the case of a long linked-list, takes more time.
 
 ---
+
 
 ### Conclusions
 
 Pros:
-* Works best with sparse graphs since S(n) = O(n+m) = O(|V| + |E|)
+* Works best with sparse graphs 
 
 Cons:
-* Dense graphs might require very large space and verifying adjacency in case of a long linked list, takes more time
+* Dense graphs might require very large space 
+* Verifying adjacency in case of a long linked list, takes more time

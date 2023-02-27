@@ -12,8 +12,8 @@ Also, when dealing with graphs we assume:
 A directed graph **G** is a pair $G = (V, E)$ where:
 * **V** is vertex (node) set, which we assume is **finite** ($|V| = n$)
   * A vertex is represented by a circle
-* **E** is edge (arch) set, which is a binary relation on V
-  * An edge is represented by an arrow
+* **E \subseteq V \times V** is edge (arch) set
+  * An edge is a binary relation on V and is represented by an arrow
   * Self-loops are allowed
   * $|E| \in \[ 0,n^{2} \]$
 
@@ -37,7 +37,7 @@ A directed graph **G** is a pair $G=(V, E)$ where
     * If this was a directed graph, there must be one arrow that goes $u \rightarrow v$ and one $u \leftarrow v$
   * An edge is a set ${u,v}$ where $v \in V$ and $u \neq v$
     * Self-loops **are not allowed**, this is why $u \neq v$
-  * $|E| \in \[ 0, n^{2}-\frac{n}{2} \]$
+  * $|E| \in \[ 0, \frac{n^{2}-n}{2} \]$
 
 ![undirected graph ex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/undirectedgex.png?raw=TRUE)
 
