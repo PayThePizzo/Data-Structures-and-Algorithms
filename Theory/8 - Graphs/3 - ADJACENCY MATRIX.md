@@ -10,7 +10,7 @@ a_{i,j} =
 \left\{\begin{matrix}
 0 & (i,j) \notin E & \text{ No edge between i and j} \\
 1 & (i,j) \in E & \text{Edge between i and j} \\
-\end{matrix}\right.
+\end{matrix}\right
 ```
 
 
