@@ -3,7 +3,7 @@ When we talk about graphs we make a fundamental distinction between
 directed and undirected graphs.
 
 Also, when dealing with graphs we assume:
-* $V$ is always finite ($|V| = n$)
+* $V$ is always finite ($|V| = n < \infty$)
 * We use sets $\{ 3,4 \}$, rather than pairs $(3,4)$
 
 ---
@@ -12,7 +12,7 @@ Also, when dealing with graphs we assume:
 A directed graph **G** is a pair $G = (V, E)$ where:
 * **V** is vertex (node) set, which we assume is **finite** ($|V| = n$)
   * A vertex is represented by a circle
-* **E \subseteq V \times V** is edge (arch) set
+* $E \subseteq V \times V$ is edge (arch) set
   * An edge is a binary relation on V and is represented by an arrow
   * Self-loops are allowed
   * $|E| \in \[ 0,n^{2} \]$
