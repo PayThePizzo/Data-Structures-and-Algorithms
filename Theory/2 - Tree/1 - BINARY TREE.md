@@ -1,17 +1,22 @@
 # Binary Tree
 
 ## Recursive Definition
-* Base Case: an empty tree is a binary tree
-* Definition: A tree having a root node and two binary subtrees (respectively left subtree and right subtree, which can be empty) is a binary tree.
 
-Trees nodes can have zero or more children. However, when a tree has at most two children, then it’s called binary tree.
-* A BT's node *x* is said to **Central** when the count of its subtree's leaves is equal to the sum of the nodes' keys belonging to the path(Root, x).
+|              	| **Binary Tree**                                                                                                                       	| **Notes**          	|
+|--------------	|---------------------------------------------------------------------------------------------------------------------------------------	|--------------------	|
+| _Base Case_  	| An empty tree is a binary tree                                                                                                        	|                    	|
+| _Definition_ 	| A tree having a root node and two binary subtrees (respectively left subtree and right subtree, which can be empty) is a binary tree. 	| At most 2 children 	|
+| Height       	| $\mathcal{O}(log(n)) \leq h \leq \mathcal{O}(n)$                                                                                      	|                    	|
+
+### Central node
+> A BT's node *x* is said to **Central** when the count of its subtree's leaves is equal to the sum of the nodes' keys belonging to the $path(root, x)$.
 
 ### Full, Complete, and Perfect binary trees
 Depending on how nodes are arranged in a binary tree, it can be full, complete and perfect:
 * Full binary tree: each node has exactly 0 or 2 children (but never 1).
 * Complete binary tree: when all levels except the last oneare full of nodes.
 * Perfect binary tree: when all the levels (including the last one) are full of nodes.
+
 
 ---
 
@@ -27,21 +32,31 @@ It is a K-ary tree where
 1. All the leaves have the same depth
 2. All the internal nodes $u$ have $deg(u) = k = #children$.
 
-Let us call
+Let us call $f(T)$ the count of leaves, and $i(T)$ the count of internal nodes of a tree with height $h = h(T)$ 
 
 It can be demonstrated that for a Complete K-ary Tree:
-* Count of leaves $f(h_{k})$ at height h for k-ary tree, $f(h_{k}) = k^{h}$
-* Count of internal nodes $i(h)$  at height h for k-ary tree, $f(h_{k}) = k^{h}-1/k-1$
-* Height, **$h = log(k,n)$**
 
-#
+| Tree                                	| Count of leaves $f(T)$ 	| Count of internal nodes $i(T)$ 	| Height $h(T)$       	|
+|-------------------------------------	|------------------------	|--------------------------------	|---------------------	|
+| Complete K-Ary Tree with height $h$ 	| $f(T) = k^{h}$         	| $i(T) = k^{h}-1/k-1$           	| $h(T) = log_{k}(n)$ 	|
+
+### Demonstration $f(h) = k^{h}$
+
+### Demonstration $f(h) = k^{h}-1/k-1$
+
+### Conclusion $h(T) = log_{k}(n)$
+
+### Extra: $f(T) = (n+1)/2$ for a non-empty 2-ary complete tree with n nodes
+
 
 ---
 
 ## Balanced Binary Tree
-A balanced tree is a tree if its height is such that: <mark>h = O(log(n))</mark>
+> A tree is a balanced tree if its height is: $h(T) = \mathcal{O}(log(n))$
 
 A Complete Binary Tree is a Balanced Binary Tree (but the opposite is not always true)
+
+It is important to keep binary tree's height as close to $\mathcal{O}(log(n))$
 
 ---
 

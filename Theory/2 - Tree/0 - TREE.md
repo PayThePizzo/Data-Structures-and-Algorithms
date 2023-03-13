@@ -6,7 +6,7 @@ There are many ways to define trees as a data structure
 > an edge from the root of the tree $T$ to the root of each subtree.
 
 ### Traditional Definition
-It is a pair $T = (N, A)$ 
+It is a pair
 
 $$T = (N, A) $$
 
@@ -34,22 +34,25 @@ of the tree stores a value, a list of references to nodes.
 
 ![Tree example](https://github.com/PayThePizzo/DataStrutucures-Algorithms//blob/main/Resources/tree-parts.jpg?raw=TRUE)
 
-* **Root Node**: The topmost node of a tree or the node which **does not have any parent node** is called the root node.
-  * A non-empty tree must contain exactly one root node and exactly one path from the root to all other nodes of the tree.
-* **Parent Node**: The node which is a predecessor of a node is called the parent node of that node. 
-  * Every node has a parent node, unless it is the Root Node
-  * Usually noted as $u$
-* **Child Node**: The node which is the immediate successor of a node is called the child node of that node.
-  * Usually noted as $v$
-  * A node $u$ can have $0+$ children $v$ such that $(u,v) \in A$
-* **Siblings**: Children of the same parent node are called siblings.
+**Root Node**: The topmost node of a tree or the node which **does not have any parent node** is called the root node.
+* A non-empty tree must contain exactly one root node and exactly one path from the root to all other nodes of the tree.
+
+**Parent Node**: The node which is a predecessor of a node is called the parent node of that node. 
+* Every node has a parent node, unless it is the Root Node
+* Usually noted as $u$
+
+**Child Node**: The node which is the immediate successor of a node is called the child node of that node.
+* Usually noted as $v$
+* A node $u$ can have $0+$ children $v$ such that $(u,v) \in A$
+
+**Siblings**: Children of the same parent node are called siblings.
 
 ### Path
 
-* A **Path** from a node $u$ to a node $u'$ is a sequence of nodes $p = < n_{0}, n_{1}, \ldots, n_{k} >$ such that:
-  * $u = n_{0}$
-  * $u' = n_{k}$ 
-  * Each pair of consecutive nodes $< n_{i-1}, n_{i} > \Rightarrow (n_{i-1}, n_{i}) \in A$ with $i = 1, \ldots, k$
+A **Path** from a node $u$ to a node $u'$ is a sequence of nodes $p = < n_{0}, n_{1}, \ldots, n_{k} >$ such that:
+* $u = n_{0}$
+* $u' = n_{k}$ 
+* Each pair of consecutive nodes $< n_{i-1}, n_{i} > \Rightarrow (n_{i-1}, n_{i}) \in A$ with $i = 1, \ldots, k$
 
 ```math
 p(u, u') = \text{ } < n_{0}, n_{1}, \ldots, n_{k} > \quad \text { where} \left\{\begin{matrix}
@@ -60,7 +63,7 @@ p(u, u') = \text{ } < n_{0}, n_{1}, \ldots, n_{k} > \quad \text { where} \left\{
 ```
 
 **Length of a path**: is the count of arches of the path or the count of the nodes composing the path $-1$.
-  * There is always a path from *u* to *u* of length 0
+* There is always a path from *u* to *u* of length 0
 
 ```math
 length(p(u, u')) = 
@@ -102,9 +105,9 @@ h(u \in N) = max(length(p(u, leaf)))
 ```
 
 **Height of a tree**: The count of edges/branches from the root to the deepest node or the height of its root.
-    * The longest path from the root to a leaf node of the tree T.
-    * An empty tree has height equal to -1.
-    * A tree with one node has height 0.
+* The longest path from the root to a leaf node of the tree T.
+* An empty tree has height equal to -1.
+* A tree with one node has height 0.
 
 ```math
 h(T) = 
@@ -119,7 +122,7 @@ h(r \in N) & else \\
 
 * **Ancestor of a Node**: Any predecessor nodes on the path of the root to that node are called Ancestors of that node. 
   * If x is a node in a tree T (with T having nodes from its root r), any node y in a path (r,x) is an ancestor.
-* **Descendant**: <mark>Any successor</mark> node on the path from the leaf node to that node.
+* **Descendant**: Any successor node on the path from the leaf node to that node.
   * If y is ancestor of x, x must be descendant of y.
 * **Proper** Ancestor/Descendant: Since every node is ancestor and descendant of itself, we must imply that the node x does not coincide with y
 * **Subtree**: Any node of the tree along with its descendant

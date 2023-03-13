@@ -1,6 +1,5 @@
 # Tree
 
----
 
 ## Terminology
 
@@ -28,18 +27,20 @@
 | _Leaf/external node_                      	|                                                                                                	|                                                	|
 | _Terminal node_                           	|                                                                                                	|                                                	|
 | _Neighbour of anode_                      	|                                                                                                	|                                                	|
+
+
 ---
 
 ## Trees
 
-| **Tree**               	| **Defintion** 	| **Notes** 	|
-|------------------------	|---------------	|-----------	|
-| _Rooted tree_          	|               	|           	|
-| _Binary tree_          	|               	|           	|
-| _K-ary tree_           	|               	|           	|
-| _Complete k-ary tree_  	|               	|           	|
-| _Balanced binary tree_ 	|               	|           	|
-| _Binary search tree_   	|               	|           	|
+| **Tree**               	| **Defintion**                                                                                                                                                           	| **Notes**                                                 	|
+|------------------------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|-----------------------------------------------------------	|
+| _Rooted tree_          	| It is a pair $T = (N, A)$ with $\|N\| < \infty$ a finite set of nodes and $A \subseteq N \times N$ is a finite set of edges                                             	|                                                           	|
+| _Binary tree_          	| An empty tree is a binary tree. A tree having a root node and two binary subtrees (respectively left subtree and right subtree) is a binary tree                        	|                                                           	|
+| _K-ary tree_           	| A tree where the children of a node are labeled with **distinct** positive integers $i \in \mathbb{N}^{+} \wedge i \in [1,k]$ and no labels larger than $k$ are present 	| Binary tree is a 2-ary tree                               	|
+| _Complete k-ary tree_  	| A k-ary where all the leaves have the same depth and all the internal nodes $u$ have exactly $deg(u) = k$                                                               	| $f(h=k) = k^{h}$, $i(h=k)= k^{h}-1/k-1$, $h = log_{k}(n)$ 	|
+| _Balanced binary tree_ 	|                                                                                                                                                                         	|                                                           	|
+| _Binary search tree_   	|                                                                                                                                                                         	|                                                           	|
 
 ---
 
