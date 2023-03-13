@@ -49,7 +49,7 @@ of the tree stores a value, a list of references to nodes.
 * **Length of a path**: is the count of arches of the path or the count of the nodes composing the path $-1$.
   * There is always a path from *u* to *u* of length 0
 
----
+
 ### Level, Degree, Depth and Height
 
 * **Level of a node**: The count of edges on the path from the root node to that node.
@@ -66,7 +66,7 @@ of the tree stores a value, a list of references to nodes.
   * An empty tree has height equal to -1.
   * A tree with one node has height 0.
 
----
+
 ### Generalizing
 
 * **Ancestor of a Node**: <mark>Any predecessor</mark> nodes on the path of the root to that node are called Ancestors of that node. 
@@ -81,6 +81,8 @@ of the tree stores a value, a list of references to nodes.
 * **Neighbour of a Node**: Parent or child nodes of that node are called neighbors of that node. 
   * Any node connected to u through a direct edge.
 
+
+
 ---
 
 ## Data
@@ -90,21 +92,12 @@ Tree, a set of nodes and a set of arches
 
 ## Operations
 
-NewTree():
-* Pre: //
-* Post: Returns a Tree.
-
-Treempty(Tree t):
-* Pre: //
-* Post: Returns true if t is empty, else false.
-
-Father(Tree t, Node u):
-* Pre: $u \in T$
-* Post: Returns father of 𝑢.
-  
-Children(Tree t, Node u):
-* Pre: $u \in T$ 
-* Post: Returns a list of the children of $u$.
+| **Operation**              	| **Pre-Condition** 	| **Post-Condition**                      	|
+|----------------------------	|-------------------	|-----------------------------------------	|
+| `NewTree()`                	| -                 	| Returns a Tree                          	|
+| `Treempty(Tree t)`         	| -                 	| Returns true if t is empty, else false. 	|
+| `Father(Tree t, Node u)`   	| $u \in T$         	| Returns father of $u$                   	|
+| `Children(Tree t, Node u)` 	| $u \in T$         	| Returns a list of the children of $u$   	|
 
 ---
 ## Implementation Type

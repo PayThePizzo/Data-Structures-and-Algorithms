@@ -1,6 +1,5 @@
 # Binary Tree
 
-
 ## Recursive Definition
 * Base Case: an empty tree is a binary tree
 * Definition: A tree having a root node and two binary subtrees (respectively left subtree and right subtree) is a binary tree.
@@ -11,7 +10,7 @@ Trees nodes can have zero or more children. However, when a tree has at most two
 ### Full, Complete, and Perfect binary trees
 Depending on how nodes are arranged in a binary tree, it can be full, complete and perfect:
 * Full binary tree: each node has exactly 0 or 2 children (but never 1).
-* Complete binary tree: when all levels <mark>except the last one</mark> are full of nodes.
+* Complete binary tree: when all levels except the last oneare full of nodes.
 * Perfect binary tree: when all the levels (including the last one) are full of nodes.
 
 ---
