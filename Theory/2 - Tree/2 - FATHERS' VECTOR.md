@@ -51,6 +51,7 @@ Final Time Complexity: <mark>T(n) = O(1)</mark>
 1. Iterate through the WHOLE array
 2. Verify the condition of being the child of v.
 3. Insert inside the list
+
 ```python
 tree(Tree P, Node v)
     l = create_list()

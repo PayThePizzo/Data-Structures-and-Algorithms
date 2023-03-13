@@ -45,26 +45,37 @@ of the tree stores a value, a list of references to nodes.
 * A **Path** from a node $u$ to a node $u'$ is a sequence of nodes $p = < n_{0}, n_{1}, \ldots, n_{k} >$ such that:
   * $u = n_{0}$
   * $u' = n_{k}$ 
-  * $< n_{i-1}, n_{i} >$ with $i = 1, \ldots, k$ belong to A
+  * $< n_{i-1}, n_{i} > \in A$ with $i = 1, \ldots, k$
 * **Length of a path**: is the count of arches of the path or the count of the nodes composing the path $-1$.
   * There is always a path from *u* to *u* of length 0
 
-
 ### Level, Degree, Depth and Height
 
-* **Level of a node**: The count of edges on the path from the root node to that node.
-  * The root node has level 0.
+**Level of a node**: The count of edges on the path from the root node to that node.
+* The root node has level 0.
 * Level $n$ inside of a tree $T$: All the nodes in $T$ at level $n$
-* **Degree of a Node**: The total count of subtrees/children attached to that node is called the degree of the node. 
-  * The degree of a leaf node must be 0. 
-  * The degree of a tree is the degree of its root.
-* **Depth of a node**: The count of edges/branches from the root to the node.
-  * The length of the path from the root to the node x.
-* **Height of a node**: The number of edges/branches on the **longest path** from that node to a leaf.
-* **Height of a tree**: The count of edges/branches from the root to the deepest node or the height of its root.
-  * The longest path from the root to a leaf node of the tree T.
-  * An empty tree has height equal to -1.
-  * A tree with one node has height 0.
+
+
+**Degree of a Node**: The total count of subtrees/children attached to that node is called the degree of the node. 
+* The degree of a leaf node must be 0. 
+* The degree of a tree is the degree of its root.
+
+```math
+deg(u \in T) = \begin{Bmatrix}
+\text{count of children} & \text{ if u is not a leaf } \\
+0 & \text{ else } \\
+\end{Bmatrix}
+```
+
+**Depth of a node**: The length of the path from the root to the node x.
+* The count of edges/branches from the root to the node.
+
+**Height of a node**: The number of edges/branches on the **longest path** from that node to a leaf.
+
+**Height of a tree**: The count of edges/branches from the root to the deepest node or the height of its root.
+    * The longest path from the root to a leaf node of the tree T.
+    * An empty tree has height equal to -1.
+    * A tree with one node has height 0.
 
 
 ### Generalizing
@@ -80,6 +91,10 @@ of the tree stores a value, a list of references to nodes.
 * **Leaf Node or External Node**: The nodes which do not have any child nodes are called leaf nodes.
 * **Neighbour of a Node**: Parent or child nodes of that node are called neighbors of that node. 
   * Any node connected to u through a direct edge.
+
+### Some Notation
+
+$$\text{ Degree of a node } = $$
 
 
 

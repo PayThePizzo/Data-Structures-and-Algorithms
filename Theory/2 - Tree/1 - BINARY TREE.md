@@ -2,7 +2,7 @@
 
 ## Recursive Definition
 * Base Case: an empty tree is a binary tree
-* Definition: A tree having a root node and two binary subtrees (respectively left subtree and right subtree) is a binary tree.
+* Definition: A tree having a root node and two binary subtrees (respectively left subtree and right subtree, which can be empty) is a binary tree.
 
 Trees nodes can have zero or more children. However, when a tree has at most two children, then it’s called binary tree.
 * A BT's node *x* is said to **Central** when the count of its subtree's leaves is equal to the sum of the nodes' keys belonging to the path(Root, x).
@@ -16,22 +16,26 @@ Depending on how nodes are arranged in a binary tree, it can be full, complete a
 ---
 
 ## K-ary Tree
-It is a generalization of a Binary Tree.
+It is the generalization of a Binary Tree.
 
-It is a Tree where the children of a node are labeled with positive integers $i \in \mathbb{N}^{+} \wedge i \in [1,k]$.
-No labels larger than **k** are present.
-
+A k-ary tree is a tree where the children of a node are labeled with distinct positive integers $i \in \mathbb{N}^{+} \wedge i \in [1,k]$.
+* No labels larger than **k** are present.
 * A binary tree is a K-ary tree with k = 2.
 
 ## Complete K-ary Tree
 It is a K-ary tree where 
-1. all the leaves have the same depth
-2. All the internal nodes have _degree = k_.
+1. All the leaves have the same depth
+2. All the internal nodes $u$ have $deg(u) = k = #children$.
+
+Let us call
 
 It can be demonstrated that for a Complete K-ary Tree:
-* Count of leaves at height h, **k^h**
-* Count of internal at height h, **(k^h)-1/(k-1)**
-* Height, **h = log(k,n)**
+* Count of leaves $f(h_{k})$ at height h for k-ary tree, $f(h_{k}) = k^{h}$
+* Count of internal nodes $i(h)$  at height h for k-ary tree, $f(h_{k}) = k^{h}-1/k-1$
+* Height, **$h = log(k,n)$**
+
+#
+
 ---
 
 ## Balanced Binary Tree
