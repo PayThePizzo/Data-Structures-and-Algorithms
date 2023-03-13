@@ -54,9 +54,12 @@ It can be demonstrated that for a Complete K-ary Tree:
 ## Balanced Binary Tree
 > A tree is a balanced tree if its height is: $h(T) = \mathcal{O}(log(n))$
 
+### Complete Binary Tree is balanced
 A Complete Binary Tree is a Balanced Binary Tree (but the opposite is not always true)
 
-It is important to keep binary tree's height as close to $\mathcal{O}(log(n))$
+### Performances
+It is important to keep binary tree's height as close to $\mathcal{O}(log(n))$ when performing operations on it as it will
+improve the performances.
 
 ---
 

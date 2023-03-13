@@ -44,6 +44,17 @@
 
 ---
 
+## Data Structures
+
+| Data Structure                               	| S(n)         	| `Parent(Tree t, Node v)` 	| `Children(Tree t, Node v)` 	|
+|----------------------------------------------	|--------------	|--------------------------	|----------------------------	|
+| _Father's Vector_                            	| $\Theta(n)$  	| $T(n) = \mathcal{O}(1)$  	| $T(n) = \Theta(n)$         	|
+| _Positional Vector_ with complete k-ary tree 	| $\Theta(n)$  	| $T(n) = \mathcal{O}(1)$  	| $T(n) = \mathcal{O}(k)$    	|
+| _Pointers to Children_ with binary tree      	| $\Theta(nk)$ 	| $T(n) = \mathcal{O}(1)$  	| $T(n) = \mathcal{O}(1)$    	|
+| _List of Pointers to Children_               	| -            	| -                        	| -                          	|
+| _Left Child Right Sibling_                   	| $\Theta(n)$  	| $T(n) = \mathcal{O}(1)$  	| $T(n) = \Theta(deg(v))$    	|
+---
+
 ## Visits
 
 
@@ -67,6 +78,41 @@
 |            	|        	|   	|
 |            	|        	|   	|
 
+### Decompose and Recombine
+For divide-et-impera algorithms where we need to evaluate or verify some properties of the trees we have a blueprint
+
+```c++
+
+int recomb(Node u, Node v){
+    // Combine answers
+    // Return
+}
+
+int decomp(Node u){
+    // BASE CASES: Empty Tree or Leaf, or any other given case...
+    if(u == nullptr){
+        // immediate answer
+    }
+    // DIVIDE ET IMPERA
+    else{
+        result_sx = decomp(u->left);     
+        result_dx = decomp(u->right);
+        // evaluate some more more conditions...
+        
+        //COMBINE
+        return recomb(result_sx, result_dx);
+    }
+}
+```
+
+```math
+T(n)= \left\{\begin{matrix}
+ T(k)+T(n-k-1)+d & n>0 \\
+ c & n=0 \\
+\end{matrix}\right.
+```
+
+### Demonstration 
 
 
 ---
