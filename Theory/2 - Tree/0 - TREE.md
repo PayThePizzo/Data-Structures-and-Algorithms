@@ -6,7 +6,7 @@ from the root of the tree to the root of each subtree.
 It is a couple $T = (N, A)$ 
 * $N$ is a finite _set of nodes_
   * It contains `r` called Root Node
-* $A \subseteq N \times N$ is a finite _set of arches_
+* $A \subseteq N \times N$ is a finite _set of arches or edges_
   * It is a set of pairs of nodes called **Arches** 
   * The set of all Arches is called $A$
 
