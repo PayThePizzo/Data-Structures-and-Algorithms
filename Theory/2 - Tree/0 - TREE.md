@@ -16,7 +16,7 @@ In a tree every node (except for the root $r$) $v \in N$ has exactly 1 parent or
 such that $(u,v) \in A$ 
 
 ### Graph Theory Definition 
-In graph theory, a tree is an undirected, connected and acyclic ***graph***. 
+> A tree is an undirected, connected and acyclic graph.
 * In other words, a connected graph that does not contain even a single cycle is called a tree. 
 * A tree represents hierarchical structure in a graphical form
 
@@ -40,10 +40,10 @@ of the tree stores a value, a list of references to nodes.
 
 ---
 ### Path
-A Path from a node $u$ to a node $u'$ is a sequence of nodes $p = <n_{0}, n_{1}, \ldots, n_{k}>$ such that:
+A Path from a node $u$ to a node $u'$ is a sequence of nodes $p = < n_{0}, n_{1}, \ldots, n_{k} >$ such that:
 1. $u = n_{0}$
 2. $u' = n_{k}$
-3. $<n_{i-1}, n_{i}>$ belong to A  (with i from 1 to k) 
+3. $< n_{i-1}, n_{i} >$ belong to A (with i from 1 to k) 
 
 * **Length**: the number of arches of the path or the count total of the nodes composing the path minus one.
   * There is always a path from *u* to *u* of length 0
