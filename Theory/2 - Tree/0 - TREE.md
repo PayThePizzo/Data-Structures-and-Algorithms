@@ -1,24 +1,31 @@
-# Tree
-_Recursive Definition_: <mark>A tree consists of a root, 
-and zero or more subtrees</mark> T1, T2, … , Tk such that there is an edge 
-from the root of the tree to the root of each subtree.
+# (Rooted) Tree
+There are many ways to define trees as a data structure
 
-It is a couple $T = (N, A)$ 
-* $N$ is a finite _set of nodes_
-  * It contains `r` called Root Node
-* $A \subseteq N \times N$ is a finite _set of arches or edges_
-  * It is a set of pairs of nodes called **Arches** 
-  * The set of all Arches is called $A$
+### Recursive Definition
+> A (rooted) tree $T$ consists of a root, and zero or more subtrees $T_{1}, T_{2}, \ldots , T_{k}$ such that there is 
+> an edge from the root of the tree $T$ to the root of each subtree.
 
-A tree is **non-linear** and a **hierarchical** data structure consisting of a collection of nodes such that each node 
+### Traditional Definition
+It is a pair $T = (N, A)$ where
+* $N$ is a finite _set of nodes_, $|N| < \infty$
+  * In particular, we identify $r \in N$ as the **root node**
+* $A \subseteq N \times N$ is a finite _set of arches or edges_, $|A| \leq |N|^{2}$
+  * Where arches or edges are pairs of nodes $(u,v) \in A$ where $u,v \in N$, which represent a link between two nodes.
+
+In a tree every node (except for the root $r$) $v \in N$ has exactly 1 parent or father node $u \in N$, 
+such that $(u,v) \in A$ 
+
+### Graph Theory Definition 
+In graph theory, a tree is an undirected, connected and acyclic ***graph***. 
+* In other words, a connected graph that does not contain even a single cycle is called a tree. 
+* A tree represents hierarchical structure in a graphical form
+
+### Data Structure Definition
+A tree is **non-linear** and a **hierarchical** data structure consisting of a collection of nodes such that each node
 of the tree stores a value, a list of references to nodes.
 
-In graph theory, a tree is an undirected, connected and acyclic ***graph***
-
-In other words, a connected graph that does not contain even a single cycle is called a tree. 
-A tree represents hierarchical structure in a graphical form
-
 ![Tree example](https://github.com/PayThePizzo/DataStrutucures-Algorithms//blob/main/Resources/tree-parts.jpg?raw=TRUE)
+
 
 ## Terminology
 
@@ -33,10 +40,10 @@ A tree represents hierarchical structure in a graphical form
 
 ---
 ### Path
-A Path from a node *u* to a node *u'* is a sequence of nodes <n0, n1,...nk> such that:
-1. u = n0 
-2. u' = nk
-3. <n(i-1), n(i)> belong to A  (with i from 1 to k) 
+A Path from a node $u$ to a node $u'$ is a sequence of nodes $p = <n_{0}, n_{1}, \ldots, n_{k}>$ such that:
+1. $u = n_{0}$
+2. $u' = n_{k}$
+3. $<n_{i-1}, n_{i}>$ belong to A  (with i from 1 to k) 
 
 * **Length**: the number of arches of the path or the count total of the nodes composing the path minus one.
   * There is always a path from *u* to *u* of length 0
