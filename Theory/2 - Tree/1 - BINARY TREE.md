@@ -35,7 +35,7 @@ A k-ary tree is a tree where the children of a node are labeled with distinct po
 ## Complete K-ary Tree
 It is a K-ary tree where 
 1. All the leaves have the same depth
-2. All the internal nodes $u$ have $deg(u) = k = #children$.
+2. All the internal nodes $u$ have $deg(u) = k = count(children)$.
 
 Let us call $f(T)$ the count of leaves, and $i(T)$ the count of internal nodes of a tree with height $h = h(T)$ 
 
