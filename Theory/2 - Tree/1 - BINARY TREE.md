@@ -117,10 +117,22 @@ In this case we only consider the second case: $n > 0$. We start by using induct
 | **Inductive Hypothesis** 	| true $\forall k \in [1,n[$ 	| $f(T_{n}) = (k+1)/2 $    	| -                                    	|
 | **Inductive Step**       	| true for any $n$           	| -                        	| -                                    	|
 
-Inductive step: we need to demonstrate for any n
-* We exclude $n=0$ because, by the
+Inductive step: we need to demonstrate for any $n>0$
+* We exclude $n=0$ by definition
+
+The total count of nodes, for a binary tree can be written as 
+
+$$nodes(T_{n}) = nodes(T_{left}) + nodes(T_{right}) + root = \frac{n-1}{2} + \frac{n-1}{2} + 1$$
+
+Since the two subtrees are complete and have less nodes than $T_{n}$, we can apply the inductive hypothesis
+* Trivially, $f(T_{left}) = \frac{(n-1)/2}{2}< n$
+* Trivially, $f(T_{right}) = \frac{(n-1)/2}{2} < n$
+* Trivially $f(T_{left})= f(T_{right})$ and $f(T_{left}) + f(T_{right}) < n$
+
+$$f(T_{n}) = f(T_{left}) + f(T_{right}) = 2 \cdot \frac{((n-1)/2)+1}{2} = \frac{n-1+2}{2} = \frac{n+1}{2}$$
 
 ---
+
 
 ## Balanced Binary Tree
 > A tree is a balanced tree if its height is: $h(T) = \mathcal{O}(log(n))$
