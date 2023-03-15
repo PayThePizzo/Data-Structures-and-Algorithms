@@ -45,7 +45,7 @@ It can be demonstrated that for a Complete K-ary Tree:
 |-------------------------------------	|------------------------	|--------------------------------	|---------------------	|
 | Complete K-Ary Tree with height $h$ 	| $f(T) = k^{h}$         	| $i(T) = k^{h}-1/k-1$           	| $h(T) = log_{k}(n)$ 	|
 
-### Demonstration $f(h) = k^{h}$
+### Demonstration $f(h) = k^{h}$ 
 
 By definition, a complete k-ary tree has exactly $k$ children per internal node
 
@@ -56,6 +56,8 @@ By definition, a complete k-ary tree has exactly $k$ children per internal node
 | 2         	| $k \cdot k= k^{2}$       	 |
 | $\ldots$  	| $k \cdot k \cdot \ldots$ 	 |
 | h         	| $k^{h}$                  	 |
+
+![demcompkt-f]()
 
 The root has exactly $k$ children, and each one of the will have exactly $k$ children, unless we reach the leaves.
 
@@ -69,6 +71,11 @@ Demonstration by induction: $f(h) = k^{h}$ for a complete k-ary tree
 
 ### Demonstration $i(h) = k^{h}-1/k-1$
 
+Given the previous result we can think of the same tree with one more level, which means this last level only has leaves.
+
+
+![demcompkt-i]()
+
 To compute count of internal nodes we can use the geometric series
 
 ```math
@@ -77,10 +84,34 @@ To compute count of internal nodes we can use the geometric series
 
 ### Demonstrate $h(T) = log_{k}(n)$
 
+We know that $f(h) = k^{h}$ for a complete k-ary tree
+
+Then if the we have $n = f(h)$ leaves, we find $n = k^{h} \Leftrightarrow h = log_{k}(n)$ 
 
 
 ### Extra: $f(T) = (n+1)/2$ for a non-empty 2-ary complete tree with n nodes
 
+Demonstration that, for a non-empty 2-ary complete tree with n nodes, the count of leaves is exactly $\frac{n+1}{2}$
+
+A binary tree by definition can be
+
+```math
+\text{cases} \left\{\begin{matrix}
+n=0 & \text{empty tree}  \\
+n>0 & \text{ root} + \text{left-subtree} + \text{right-subtree}   \\
+\end{matrix}\right.
+```
+
+In this case we only consider the second case: $n > 0$. We start by using induction on the hypothesis $f(T) = (n+1)/2$
+
+| -                        	| _Case_                     	| _Count of leaves _       	| _Why?_                               	|
+|--------------------------	|----------------------------	|--------------------------	|--------------------------------------	|
+| **Base Case**            	| $n = 1$                    	| $f(T_{n}) = (1+1)/2 = 1$ 	| 1 node, means there is only one leaf 	|
+| **Inductive Hypothesis** 	| true $\forall k \in [1,n[$ 	| $f(T_{n}) = (k+1)/2 $    	| -                                    	|
+| **Inductive Step**       	| true for any $n$           	| -                        	| -                                    	|
+
+Inductive step: we need to demonstrate for any n
+* We exclude $n=0$ because, by the
 
 ---
 
