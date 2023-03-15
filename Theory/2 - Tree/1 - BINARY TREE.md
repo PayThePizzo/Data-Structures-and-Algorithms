@@ -98,35 +98,25 @@ Then if the we have $n = f(h)$ leaves, we find $n = k^{h} \Leftrightarrow h = lo
 
 ### Extra: $f(T) = (n+1)/2$ for a non-empty 2-ary complete tree with n nodes
 
-Demonstration that, for a non-empty 2-ary complete tree with n nodes, the count of leaves is exactly $\frac{n+1}{2}$
+Demonstration that, for a non-empty 2-ary complete tree with n nodes, the count of leaves is exactly $\frac{n+1}{2}$.
+In this case we only consider the second case: $n > 0$. We start by using induction on the hypothesis $f(T_{n}) = \frac{n+1}{2}$
 
-A binary tree by definition can be
+Induction
+1. Base Case: $n = 1 \Longrightarrow f(T_{n}) = (1+1)/2 = 1$
+   1. Only the root is present, trivially true
+2. Inductive Hypothesis:
+   1. We suppose that $f(T_{n}) = \frac{n+1}{2}$ is true at step $n=h-1 \Longrightarrow f(T_{n}) = \frac{n(h-1)+1}{2}$
+   2. We assume that $\forall k$ with $1 \leq k <n$, the property is true. 
+3. Inductive step: we need to demonstrate for any $n>0$ 
+   1. We exclude $n=0$ by definition
 
-```math
-\text{cases} \left\{\begin{matrix}
-n=0 & \text{empty tree}  \\
-n>0 & \text{ root} + \text{left-subtree} + \text{right-subtree}   \\
-\end{matrix}\right.
-```
-
-In this case we only consider the second case: $n > 0$. We start by using induction on the hypothesis $f(T) = (n+1)/2$
-
-| -                        	| _Case_                     	| _Count of leaves _       	| _Why?_                               	|
-|--------------------------	|----------------------------	|--------------------------	|--------------------------------------	|
-| **Base Case**            	| $n = 1$                    	| $f(T_{n}) = (1+1)/2 = 1$ 	| 1 node, means there is only one leaf 	|
-| **Inductive Hypothesis** 	| true $\forall k \in [1,n[$ 	| $f(T_{n}) = (k+1)/2 $    	| -                                    	|
-| **Inductive Step**       	| true for any $n$           	| -                        	| -                                    	|
-
-Inductive step: we need to demonstrate for any $n>0$
-* We exclude $n=0$ by definition
-
-The total count of nodes, for a binary tree can be written as 
+For a non-empty complete binary tree $f(T_{k}) = \frac{k+1}{2}$ and the total count of nodes, can be written as 
 
 $$nodes(T_{n}) = nodes(T_{left}) + nodes(T_{right}) + root = \frac{n-1}{2} + \frac{n-1}{2} + 1$$
 
 Since the two subtrees are complete and have less nodes than $T_{n}$, we can apply the inductive hypothesis
-* Trivially, $f(T_{left}) = \frac{(n-1)/2}{2}< n$
-* Trivially, $f(T_{right}) = \frac{(n-1)/2}{2} < n$
+* Trivially, $f(T_{left}) = \frac{((n-1)/2)+1}{2}< n$
+* Trivially, $f(T_{right}) = \frac{((n-1)/2)+1}{2} < n$
 * Trivially $f(T_{left})= f(T_{right})$ and $f(T_{left}) + f(T_{right}) < n$
 
 $$f(T_{n}) = f(T_{left}) + f(T_{right}) = 2 \cdot \frac{((n-1)/2)+1}{2} = \frac{n-1+2}{2} = \frac{n+1}{2}$$
