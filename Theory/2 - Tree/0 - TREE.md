@@ -49,10 +49,14 @@ of the tree stores a value, a list of references to nodes.
 
 ### Path
 
-A **Path** from a node $u$ to a node $u'$ is a sequence of nodes $p = < n_{0}, n_{1}, \ldots, n_{k} >$ such that:
+A **Path** from a node $u \in N$ to a node $u' \in N$ is a sequence of nodes 
+
+$$p = < n_{0}, n_{1}, \ldots, n_{k} >$$ 
+
+Such that:
 * $u = n_{0}$
 * $u' = n_{k}$ 
-* Each pair of consecutive nodes $< n_{i-1}, n_{i} > \Rightarrow (n_{i-1}, n_{i}) \in A$ with $i = 1, \ldots, k$
+* Each pair of consecutive nodes $\forall < n_{i-1}, n_{i} > \in N \Rightarrow (n_{i-1}, n_{i}) \in A$ with $i = 1, \ldots, k$
 
 ```math
 p(u, u') = \text{ } < n_{0}, n_{1}, \ldots, n_{k} > \quad \text { where} \left\{\begin{matrix}

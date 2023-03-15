@@ -1,11 +1,18 @@
 # Binary Search Tree
-It is a tree that satisfies the following <mark>search property</mark>:
+It is a tree that satisfies the following search property:
 Let **x** be a node in a BST
 * If *y* is a node in the **LEFT-subtree** of x, then `y.key <= x.key`
 * If *y* is a node in the **RIGHT-subtree** of x, then `y.key >= x.key`
 
-This ensures that symmetric visit the order of the returned key 
-will not be decreasing.
+```math
+\forall x \in N = 
+\left\{\begin{matrix}
+y\in N \text{ is in the left-subtree} & \Leftrightarrow y.key \leq x.key 
+\\y\in N \text{ is in the right-subtree} & \Leftrightarrow y.key \geq x.key
+\\\end{matrix}\right. 
+```
+
+This ensures that symmetric visit the order of the returned key will not be decreasing.
 
 Example:
 
