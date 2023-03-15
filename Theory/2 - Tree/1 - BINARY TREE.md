@@ -49,37 +49,44 @@ It can be demonstrated that for a Complete K-ary Tree:
 
 By definition, a complete k-ary tree has exactly $k$ children per internal node
 
-| **Level** 	| **Children**             	 |
-|-----------	|----------------------------|
-| 0         	| $1 = k^{0}$              	 |
-| 1         	| $k = k^{1}$              	 |
-| 2         	| $k \cdot k= k^{2}$       	 |
-| $\ldots$  	| $k \cdot k \cdot \ldots$ 	 |
-| h         	| $k^{h}$                  	 |
+| **Level** 	   | **Children**             	 |
+|---------------|----------------------------|
+| $0$         	 | $1 = k^{0}$              	 |
+| $1$         	 | $k = k^{1}$              	 |
+| $2$         	 | $k \cdot k= k^{2}$       	 |
+| $\ldots$  	   | $k \cdot k \cdot \ldots$ 	 |
+| $h$         	 | $k^{h}$                  	 |
 
 ![demcompkt-f](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/demcompkt-f.png?raw=TRUE)
 
 The root has exactly $k$ children, and each one of the will have exactly $k$ children, unless we reach the leaves.
 
-Demonstration by induction: $f(h) = k^{h}$ for a complete k-ary tree
-* Base case: $h=0 \rightarrow k^{0}=1$, trivially true since we have the root in a non-empty complete k-ary tree
-* Inductive Hypothesis: We assume that this is true for a complete k-ary tree of height $h$, namely that $f(h) = k^{h}$
-* Inductive Step: 
-  * At step $h$ we have $f(h) = k^{h}$, by inductive hypothesis
-  * Since the tree is a complete k-ary tree, at step $h+1$ we have that each internal node at level $h$ has exactly $k$ children
-  * This means that $f(h+1) = k^{h+1} = k^{h} \cdot k$ 
+#### Demonstration by induction: $f(h) = k^{h}$ for a complete k-ary tree
+
+Base case: $h=0 \rightarrow k^{0}=1$, trivially true since we have the root in a non-empty complete k-ary tree
+
+Inductive Hypothesis: We assume that $f(h) = k^{h}$ is true for a complete k-ary tree of height $h$
+
+Inductive Step: By inductive hypothesis a tree with $h+1$
+
+![demcompkt-i](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/demcompkt-i.png?raw=TRUE)
+
+Since the tree is a complete k-ary tree, 
+* At step $h$, $f(h) = k^{h}$
+* At step $h+1$, $f(h+1) = k^{h} \cdot k = k^{h+1}$ as each internal node at level $h$ has exactly $k$ children.
 
 ### Demonstration $i(h) = k^{h}-1/k-1$
 
 Given the previous result we can think of the same tree with one more level, which means this last level only has leaves.
 
-
-![demcompkt-i](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/demcompkt-i.png?raw=TRUE)
+```math
+T_{n} = i(h) + f(h) = \sum_{i=0}^{h-1}k^{i} + k^{h}
+```
 
 To compute count of internal nodes we can use the geometric series
 
 ```math
-\sum_{i=0}^{h-1}k^{i} = \frac{k^{h-1+1}-1}{k-1} = \frac{k^{h}-1}{k-1}, \text{ }k \neq 1
+\sum_{i=0}^{h-1}k^{i} < \sum^{\infty}k^{i} \Rightarrow \sum_{i=0}^{h-1}k^{i}= \frac{k^{h-1+1}-1}{k-1} = \frac{k^{h}-1}{k-1}, \text{ }k \neq 1
 ```
 
 ### Demonstrate $h(T) = log_{k}(n)$
