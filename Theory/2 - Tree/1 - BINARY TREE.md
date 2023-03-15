@@ -57,7 +57,7 @@ By definition, a complete k-ary tree has exactly $k$ children per internal node
 | $\ldots$  	| $k \cdot k \cdot \ldots$ 	 |
 | h         	| $k^{h}$                  	 |
 
-![demcompkt-f]()
+![demcompkt-f](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/demcompkt-f.png?raw=TRUE)
 
 The root has exactly $k$ children, and each one of the will have exactly $k$ children, unless we reach the leaves.
 
@@ -74,7 +74,7 @@ Demonstration by induction: $f(h) = k^{h}$ for a complete k-ary tree
 Given the previous result we can think of the same tree with one more level, which means this last level only has leaves.
 
 
-![demcompkt-i]()
+![demcompkt-i](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/demcompkt-i.png?raw=TRUE)
 
 To compute count of internal nodes we can use the geometric series
 
