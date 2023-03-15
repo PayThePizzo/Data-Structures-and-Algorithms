@@ -157,11 +157,14 @@ Tree, a set of nodes and a set of arches
 ## Implementation Type
 1. Fathers' Vector
 2. Positional Vector
-3. Pointers to Children - CS
+3. **Pointers to Children** - CS
+   1. For binary trees
 4. Children List - CS
-5. Left Child, Right Sibling - CS
+5. **Left Child, Right Sibling** - CS
+   1. For general trees
 
 ---
+
 ### Credits
 * [Geeks for Geeks - Trees](https://www.geeksforgeeks.org/)
 * [Adrian Mejia - Trees](https://adrianmejia.com/data-structures-for-beginners-trees-binary-search-tree-tutorial/)
