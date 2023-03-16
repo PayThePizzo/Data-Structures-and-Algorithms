@@ -164,6 +164,7 @@ The Online sorting algorithms we will cover are:
 * Insertionsort
 
 ---
+
 ## 8 - Totality 
 
 ### 8.1 - Total Sorting
