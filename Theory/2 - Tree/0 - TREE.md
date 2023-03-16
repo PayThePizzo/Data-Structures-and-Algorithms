@@ -122,6 +122,8 @@ h(r \in N) & else \\
 \end{matrix}\right.
 ```
 
+**Balanced tree**: A tree with $h = \mathcal{O}(log(n))$
+
 ### Generalizing
 
 * **Ancestor of a Node**: Any predecessor nodes on the path of the root to that node are called Ancestors of that node. 
