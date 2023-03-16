@@ -24,7 +24,7 @@ be larger than 3.
 
 ### Balancing Trees
 They are not necessarily balanced, the **balancing principle** (as we stated before)
-implies that the height of the tree is such that: <mark>h = O(log(n))</mark>
+implies that the height of the tree is such that: $h = \mathcal{O}(log(n))$
 
 This is very important since it will help us optimize our algorithms.
 
