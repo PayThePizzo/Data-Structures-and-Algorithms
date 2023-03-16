@@ -164,9 +164,9 @@ The Online sorting algorithms we will cover are:
 * Insertionsort
 
 ---
-### 8 - Totality 
+## 8 - Totality 
 
-## 8.1 - Total Sorting
+### 8.1 - Total Sorting
 Total sorting is the problem of returning a list of items such that its elements all appear in order.
 
 ### 8.2 - Partial Sorting
