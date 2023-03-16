@@ -22,6 +22,13 @@ For the second one the property does not stand, in fact all the keys in the righ
 
 ## Operations
 
+The clue aspect of a BST is the efficiency, as the tree can improve its perfomance when balanced
+* If balanced $h = \mathcal{O}(log(n))$
+* If not $h = \Theta(n)$
+
+$$\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$$
+
+
 | Operation                                  	| **Pre-Condition**                             	| **Post-Condition**                                                             	| **Time**                                       	| Notes                                                                                	|
 |--------------------------------------------	|-----------------------------------------------	|--------------------------------------------------------------------------------	|------------------------------------------------	|--------------------------------------------------------------------------------------	|
 | `tree_search_rec(Node x, Elem k) -> Node`  	| -                                             	| Returns a node $u$ with $u.key = k$ or $NIL$ if none is present                	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	| Depends if the tree is balanced                                                      	|
@@ -339,7 +346,7 @@ Node buildAux_optim(int v[], int start, int end, Node parent)
         x.right = tree_buildBST_optim(v, med + 1, end, x);
     return x;
 ```
-**Final Time Complexity**: T(n) = Θ(n log(n))
+**Final Time Complexity**: $T(n) = \Theta(n log(n))$
 1. Sort the vector -> Θ(n log(n))
 2. Apply the tree_buildBST_optim() function -> Θ(n)
 
@@ -349,7 +356,7 @@ The tree is kept balanced!
 
 ## Conclusion
 
-The implementation through dynamic sets can perform most operations in T(n) = O(h):
+The implementation through dynamic sets can perform most operations in $T(n) = O(h)$:
 * Min
 * Max
 * Successor
