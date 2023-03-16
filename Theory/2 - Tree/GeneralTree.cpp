@@ -70,7 +70,6 @@ void visit_PostOrder(PNode t){
     }
 }
 
-
 std::pair<int, bool> k_compreso_aux(PNode t, int k, int sum){
     if(t == nullptr){
         std::pair<int,bool> p = {0, true};
@@ -99,8 +98,30 @@ int k_compreso(PNode t, int k){
     }
 }
 
+int gradosquil_aux(PNode t){
+    if(t == nullptr){
+        return 0;
+    }else{
+        int l = gradosquil_aux(t->left);
+        int r = gradosquil_aux(t->right);
+        int grado = abs(l-r);
 
+        if()
+    }
 
+}
+
+int gradosquil(PNode t){
+    if (t== nullptr){
+        return 0;
+    }else{
+        return gradosquil_aux(t);
+    }
+}
+
+int k_limitato(PNode t){
+
+}
 
 PNode test_tree_1(){
     PNode tree = newTree(0);
@@ -143,6 +164,7 @@ struct NodeG {
             : key{k}, left_child{sx}, right_sib{dx} {}
 
 };
+
 typedef NodeG* PNodeG;
 
 PNodeG newTree2(int key){
@@ -172,14 +194,23 @@ void insert_right_sibling(PNodeG tree, int key){
     }
 }
 
-int count_leaves_aux(PNodeG tree, int n){
+//Theta(n)
+int count_leaves_aux(PNodeG tree){
+    if(tree != nullptr){
+        if(tree->left_child == nullptr){
+            return 1 + count_leaves_aux(tree->right_sib);
+        }else{
+            return count_leaves_aux(tree->left_child) + count_leaves_aux(tree->right_sib);
+        }
+    }
+    return 0;
 }
 
 int count_leaves(PNodeG tree){
     if(tree == nullptr){
         return 0;
     }else{
-        return count_leaves_aux(tree, 0);
+        return count_leaves_aux(tree);
     }
 }
 
@@ -191,12 +222,26 @@ PNodeG test_tree4(){
     insert_right_sibling(tree->left_child->left_child, 4);
     insert_left_child(tree->left_child->right_sib, 5);
     insert_right_sibling(tree->left_child->right_sib->left_child, 6);
+    return tree;
+}
+
+PNodeG test_tree5(){
+    PNodeG tree = newTree2(0);
+    insert_left_child(tree, 1);
+    insert_right_sibling(tree->left_child, 2);
+    insert_right_sibling(tree->left_child->right_sib, 7);
+    insert_left_child(tree->left_child, 3);
+    insert_right_sibling(tree->left_child->left_child, 4);
+    insert_right_sibling(tree->left_child->left_child->right_sib, 9);
+    insert_left_child(tree->left_child->right_sib, 5);
+    insert_right_sibling(tree->left_child->right_sib->left_child, 6);
+    insert_left_child(tree->left_child->right_sib->left_child, 10);
+    return tree;
 }
 
 int main ()
 {
-    PNodeG t = test_tree4();
+    PNodeG t = test_tree5();
     cout << count_leaves(t);
-
     return 0;
 }
