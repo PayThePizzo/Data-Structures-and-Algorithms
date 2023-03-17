@@ -431,4 +431,4 @@ $$T(n) = \Theta(n)$$
 
 But if the input it is not sorted we need to sort the vector and then build the tree!
 
-$$T(n) = T(sort) + T(build) = \Theta(nlog(n)) + \Theta(n) = \Theta(nlog(n))$$
+$$T(n) = T_{best}(sort) + T(build) = \Theta(nlog(n)) + \Theta(n) = \Theta(nlog(n))$$

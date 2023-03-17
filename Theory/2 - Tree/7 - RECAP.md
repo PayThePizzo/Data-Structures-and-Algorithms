@@ -53,6 +53,25 @@
 | _Pointers to Children_ with binary tree      	| $\Theta(nk)$ 	| $T(n) = \mathcal{O}(1)$  	| $T(n) = \mathcal{O}(1)$    	|
 | _List of Pointers to Children_               	| -            	| -                        	| -                          	|
 | _Left Child Right Sibling_                   	| $\Theta(n)$  	| $T(n) = \mathcal{O}(1)$  	| $T(n) = \Theta(deg(v))$    	|
+
+### General Tree
+
+```c++
+
+```
+
+### Binary Tree
+
+```c++
+
+```
+
+### BST
+
+```c++
+    
+```
+
 ---
 
 ## Visits
@@ -112,13 +131,9 @@ T(n)= \left\{\begin{matrix}
 \end{matrix}\right.
 ```
 
-### Demonstration 
-
-
 ---
 
 ## Exam:
 The implicit implementations for the exams are the following ones:
 * General Trees, [Left Child, Right Sibling](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/2%20-%20Tree/4.3%20-%20CONNECTED%20STRUCTURES.md)
 * Binary Trees, [Pointers to Children](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/2%20-%20Tree/4.1%20-%20CONNECTED%20STRUCTURES%20.md)
-* 
