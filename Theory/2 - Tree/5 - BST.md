@@ -66,7 +66,7 @@ T(n=h)= \mathcal{O}(h) =
 For the search operation we keep comparing the given key to the ones present in the tree and switching of branch until
 we reach a target or the leaves.
 
-| Operation                                  	| **Pre-Condition** 	| **Post-Condition**                                              	| **Time**                                                 	|
+| Operation                                  	| **Pre-Condition** 	| **Post-Condition**                                              	| **Time** $T(n) = T(h)$                                                	|
 |--------------------------------------------	|-------------------	|-----------------------------------------------------------------	|----------------------------------------------------------	|
 | `tree_search_rec(Node x, Elem k) -> Node`  	| -                 	| Returns a node $u$ with $u.key = k$ or $NIL$ if none is present 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|
 | `tree_search_iter(Node x, Elem k) -> Node` 	| -                 	| (As above)                                                      	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|
@@ -104,7 +104,7 @@ If we want to find the largest key in a BST, by the search property it is the ri
 * Else, we can find larger keys in the right subtree;
     * The maximum must be in this subtree.
 
-| Operation                  	| **Pre-Condition** 	| **Post-Condition**                                                                              	| **Time**                                                 	|
+| Operation                  	| **Pre-Condition** 	| **Post-Condition**                                                                              	| **Time** $T(n) = T(h)$                                                 	|
 |----------------------------	|-------------------	|-------------------------------------------------------------------------------------------------	|----------------------------------------------------------	|
 | `tree_max(Node x) -> Node` 	| $x \in T$         	| Returns a node $x$ with $x.key$ as the largest key inside the BST or $NIL$ if the tree is empty 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|
 
@@ -142,7 +142,7 @@ If we want to find the smallest key in a BST, by the search property it is the l
 * Else, we can find smaller keys in the left subtree;
   * The minimum must be in this subtree.
 
-| Operation                  	| **Pre-Condition** 	| **Post-Condition**                                                                               	| **Time**                                                 	|
+| Operation                  	| **Pre-Condition** 	| **Post-Condition**                                                                               	| **Time** $T(n) = T(h)$                                                 	|
 |----------------------------	|-------------------	|--------------------------------------------------------------------------------------------------	|----------------------------------------------------------	|
 | `tree_min(Node x) -> Node` 	| $x \in T$         	| Returns a node $x$ with $x.key$ as the smallest key inside the BST or $NIL$ if the tree is empty 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|
 
@@ -193,7 +193,7 @@ We distinguish two cases here:
 2. Else, the successor is the minimum ancestor of $x$, whose left child is also an ancestor of $x$
    1. To find it we proceed upwards towards the root, and take the first node to the right.
 
-| Operation                        	| **Pre-Condition** 	| **Post-Condition**                                                           	| **Time**                                       	           | Notes                                                                             	|
+| Operation                        	| **Pre-Condition** 	| **Post-Condition**                                                           	| **Time** $T(n) = T(h)$                                       	           | Notes                                                                             	|
 |----------------------------------	|-------------------	|------------------------------------------------------------------------------	|------------------------------------------------------------|-----------------------------------------------------------------------------------	|
 | `tree_successor(Node x) -> Node` 	| $x \in T$         	| Returns a successor node $y$ with $y.key>=x.key$ or $NIL$ if none is present 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	 | Given $x \in T$ the successor is the node which succeeds $x$ in a Symmetric visit 	|
 
@@ -230,7 +230,7 @@ We distinguish two cases here:
     1. To find it we proceed upwards towards the root, and take the first node to the left.
 
 
-| Operation                        	| **Pre-Condition** 	| **Post-Condition**                                                           	| **Time**                                       	           | Notes                                                                             	|
+| Operation                        	| **Pre-Condition** 	| **Post-Condition**                                                           	| **Time** $T(n) = T(h)$                                       	           | Notes                                                                             	|
 |----------------------------------	|-------------------	|------------------------------------------------------------------------------	|------------------------------------------------------------|-----------------------------------------------------------------------------------	|
 | `tree_successor(Node x) -> Node` 	| $x \in T$         	| Returns a successor node $y$ with $y.key>=x.key$ or $NIL$ if none is present 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	 | Given $x \in T$ the successor is the node which succeeds $x$ in a Symmetric visit 	|
 
