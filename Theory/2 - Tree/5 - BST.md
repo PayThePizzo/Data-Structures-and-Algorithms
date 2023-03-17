@@ -22,32 +22,57 @@ For the second one the property does not stand, in fact all the keys in the righ
 
 ## Operations
 
-The clue aspect of a BST is the efficiency, as the tree can improve its perfomance when balanced
-* If balanced $h = \mathcal{O}(log(n))$
-* If not $h = \Theta(n)$
+The clue aspect of a BST is the efficiency, as the tree can improve its performance when balanced.
 
-$$\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$$
+The idea here is to exploit the search property (which is universal) as most of the time we will compare the given value 
+to all the keys in order to find our answers. Thus, it is like going down the path starting from the root and stopping 
+when we find the right node, or we reach the leaves. This implies that the worst case is getting on the longest path 
+from the root to the leaves, which is the exact definition of **height of a tree**.
 
+The latter depends on how the leaves are distributed, which means we might find a tree where all the nodes only have 
+a left-child, which implies it is very unbalanced. Verifying a universal condition under these circumstances would 
+require visiting the whole tree (namely covering all the nodes) which takes $T(n=h) = \Theta(n=h) = \Theta(n)$ 
+(keep in mind we allow some slight abuse of notation).
 
-| Operation                                  	| **Pre-Condition**                             	| **Post-Condition**                                                             	| **Time**                                       	| Notes                                                                                	|
-|--------------------------------------------	|-----------------------------------------------	|--------------------------------------------------------------------------------	|------------------------------------------------	|--------------------------------------------------------------------------------------	|
-| `tree_search_rec(Node x, Elem k) -> Node`  	| -                                             	| Returns a node $u$ with $u.key = k$ or $NIL$ if none is present                	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	| Depends if the tree is balanced                                                      	|
-| `tree_search_iter(Node x, Elem k) -> Node` 	| -                                             	| (As above)                                                                     	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	|                                                                                      	|
-| `tree_max(Node x) -> Node`                 	| $x \in T$                                     	| Returns a node $x$ with $x.key$ as the largest key inside the BST              	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	| $x$ is the rightmost node                                                            	|
-| `tree_min(Node x) -> Node`                 	| $x \in T$                                     	| Returns a node $x$ with $x.key$ as the smallest key inside the BST             	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	| $x$ is the leftmost node                                                             	|
-| `tree_predecessor(Node x) -> Node`         	| $x \in T$                                     	| Returns a predecessor node $y$ with $y.key<=x.key$ or $NIL$ if none is present 	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	| Given $x \in T$ the predecessor is the node which precedes $x$ in a Symmetric visit  	|
-| `tree_successor(Node x) -> Node`           	| $x \in T$                                     	| Returns a successor node $y$ with $y.key>=x.key$ or $NIL$ if none is present   	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	| Given $x \in T$ the successor is the node which succeeds $x$ in a Symmetric visit    	|
-| `tree_insert(Tree t, Node z)`              	| $z.key = value \wedge z.left = z.right = NIL$ 	| Inserts z in the Tree t, $z \in T$                                             	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	|                                                                                      	|
-| `tree_transplant(Tree t, Node u, Node v)`  	| t is a BST                                    	| Substitutes the subtree having $root = u$ with the subtree having $root = v$   	| $\mathcal{O}(1)$                               	|                                                                                      	|
-| `tree_delete(Tree t, Node z)`              	| $z \in T$                                     	| $z \notin T$                                                                   	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	| Three cases: z is a leaf, z has only one child, z has two children                   	|
+The good news is that we can also define a lower bound, for the case where the tree is balanced, and we just need to 
+explore $\frac{1}{2}$ of the tree. As we know from the fact that the nodes are not infinite, and that for each internal 
+node we have at most $2$ children, we can define the best case as $T(n=h) = \mathcal{O}(log(n))$ when the tree is balanced. 
+This is possible when we split all the nodes into two subtrees which are also balanced.
+
+We conclude that for most operations of BST:
+
+```math
+T(n=h)= \mathcal{O}(h) = 
+\left\{\begin{matrix}
+\mathcal{O}(log(n)) & \text{ if tree is balanced } \\
+\Theta(n) &  \text{ else }\\
+\end{matrix}\right.
+```
+
+| **Operation**                             	| **Pre-Condition**                             	| **Post-Condition**                                                                               	| **Time** $T(n) = T(h)$                                   	| _Notes_                                                                                              	|
+|-------------------------------------------	|-----------------------------------------------	|--------------------------------------------------------------------------------------------------	|----------------------------------------------------------	|------------------------------------------------------------------------------------------------------	|
+| `tree_search(Node x, Elem k) -> Node`     	| -                                             	| Returns a node $u$ with $u.key = k$ or $NIL$ if none is present (or the tree is empty)           	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	| Depends if the tree is balanced                                                                      	|
+| `tree_max(Node x) -> Node`                	| $x \in T$                                     	| Returns a node $x$ with $x.key$ as the largest key inside the BST or $NIL$ if the tree is empty  	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	| $x$ is the rightmost node                                                                            	|
+| `tree_min(Node x) -> Node`                	| $x \in T$                                     	| Returns a node $x$ with $x.key$ as the smallest key inside the BST or $NIL$ if the tree is empty 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	| $x$ is the leftmost node                                                                             	|
+| `tree_predecessor(Node x) -> Node`        	| $x \in T$                                     	| Returns a predecessor node $y$ with $y.key<=x.key$ or $NIL$ if none is present                   	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	| Given $x \in T$ the predecessor of $x$ is the node $y \in T$ which precedes $x$ in a Symmetric visit 	|
+| `tree_successor(Node x) -> Node`          	| $x \in T$                                     	| Returns a successor node $y$ with $y.key>=x.key$ or $NIL$ if none is present                     	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	| Given $x \in T$ the successor of $x$ is the node $y \in T$ which succeeds $x$ in a Symmetric visit   	|
+| `tree_insert(Tree t, Node z)`             	| $z.key = value \wedge z.left = z.right = NIL$ 	| Inserts z in the Tree t, $z \in T$                                                               	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|                                                                                                      	|
+| `tree_transplant(Tree t, Node u, Node v)` 	| t is a BST                                    	| Substitutes the subtree having $root = u$ with the subtree having $root = v$                     	| $\mathcal{O}(1)$                                         	|                                                                                                      	|
+| `tree_delete(Tree t, Node z)`             	| $z \in T$                                     	| $z \notin T$, $z$ is removed from $T$                                                            	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	| Three cases: z is a leaf, z has only one child, z has two children                                   	|
 
 ---
 
 ## Tree Search
-* Pre: //
-* Post: Returns node $u$ with the key k if present (starting from the Node $x$). Else, returns NULL.
+For the search operation we keep comparing the given key to the ones present in the tree and switching of branch until
+we reach a target or the leaves.
+
+| Operation                                  	| **Pre-Condition** 	| **Post-Condition**                                              	| **Time**                                                 	|
+|--------------------------------------------	|-------------------	|-----------------------------------------------------------------	|----------------------------------------------------------	|
+| `tree_search_rec(Node x, Elem k) -> Node`  	| -                 	| Returns a node $u$ with $u.key = k$ or $NIL$ if none is present 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|
+| `tree_search_iter(Node x, Elem k) -> Node` 	| -                 	| (As above)                                                      	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|
 
 ### Recursive
+
 ```python
 tree_search_rec(Node x, Key k)
     if(x == NULL || x.key == k):
@@ -57,10 +82,6 @@ tree_search_rec(Node x, Key k)
     else:
         return search(x.right, k);
 ```
-**Final Time Complexity**: T(n) = O(h)
-* h being the height of the tree
-* If it is a balanced tree, it will be more likely to be O(log(n))
-* If it is highly unbalanced, it will be more likely to be Θ(n)
 
 ### Iterative
 ```python
@@ -72,92 +93,98 @@ tree_search_iter(Node x, Key k)
             x = x.right;
     return x;
 ```
-**Final Time Complexity**: T(n) = O(h)
-* Basically, it is like we are walking down a path from the root of the tree and as we know,
-the longest path is equal to the tree's height.
 
 ---
 
 ## Tree Max
-* Pre: x can be found in T
-* Post: Returns node 𝑢 with the largest key k (if present & tree is NOT empty). 
-Else, returns NULL.
 
-Idea:
+If we want to find the largest key in a BST, by the search property it is the rightmost node's key.
 * If x.right == NULL, every key k in the right subtree is such that: `k <= x.key`;
     * So x.key must be the maximum.
 * Else, we can find larger keys in the right subtree;
     * The maximum must be in this subtree.
 
+| Operation                  	| **Pre-Condition** 	| **Post-Condition**                                                                              	| **Time**                                                 	|
+|----------------------------	|-------------------	|-------------------------------------------------------------------------------------------------	|----------------------------------------------------------	|
+| `tree_max(Node x) -> Node` 	| $x \in T$         	| Returns a node $x$ with $x.key$ as the largest key inside the BST or $NIL$ if the tree is empty 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|
+
 ### Recursive
+
 ```python
 tree_maximum_rec(Node x)
-    if(x != NULL && x.right != NULL): #Max can be found on the right-subtree
-        x = x.right;
-    return x;
+    if(x.right == NULL):
+        return x;
+    else:
+        return tree_maximum_rec(x.right); 
 ```
-**Final Time Complexity**: T(n) = O(h)
 
 ### Iterative
+
 ```python
 tree_maximum_iter(Node x)
     while(x.right != NULL):
         x = x.right;
     return x;
 ```
-**Final Time Complexity**: T(n) = O(h)
+
+#### Demonstration
+This is true since
+* if $x.right = NIL$, then every key in the left subtree is less or equal than $x.key$ which is the maximum, by the search property.
+* if $x.right \neq NIL$, then there must be a larger key in that right subtree.
 
 ---
 
 ## Tree Minimum
-* Pre: x can be found in T
-* Post: Returns node 𝑢 with the smallest key k (if present & tree is NOT empty).
-Else, returns NULL.
 
-Idea:
+If we want to find the smallest key in a BST, by the search property it is the leftmost node's key.
 * If x.left == NULL, every key k in the left subtree is such that: `k >= x.key`;
   * So x.key must be the minimum.
 * Else, we can find smaller keys in the left subtree;
   * The minimum must be in this subtree.
 
+| Operation                  	| **Pre-Condition** 	| **Post-Condition**                                                 	| **Time**                                                 	|
+|----------------------------	|-------------------	|--------------------------------------------------------------------	|----------------------------------------------------------	|
+| `tree_min(Node x) -> Node` 	| $x \in T$         	| Returns a node $x$ with $x.key$ as the smallest key inside the BST 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|
+
 ### Recursive
+
 ```python
-tree_ minimum_rec(Node x)
-    if(x != NULL && x.left != NULL): #Min can be found on the left-subtree
-        x = x.left;
-    return x;
+tree_minimum_rec(Node x)
+    if(x.left == NULL):
+        return x;
+    else:
+        return tree_minimum_rec(x.left);    
 ```
-**Final Time Complexity**: T(n) = O(h)
 
 ### Iterative
+
 ```python
 tree_minimum_iter(Node x)
     while(x.left != NULL): 
         x = x.left;
     return x;
 ```
-**Final Time Complexity**: T(n) = O(h)
+
+#### Demonstration
+This is true since
+* if $x.left = NIL$, then every key in the right subtree is greater or equal than $x.key$ which is the minimum, by the search property.
+* if $x.left \neq NIL$, then there must be a smaller key in that left subtree.
 
 ---
 
-## Intro
-Given a Node x of BST, we want to find the successor and the predecessor by following
-the order of a <mark>Symmetric Visit</mark>
-
 ## Symmetric Visit
 A Symmetric visit for a BST of n nodes can be implemented by
-1. Finding the tree_minimum()
-2. n-1 calls to tree_successor()
+1. Finding the $tree_minimum()$
+2. n-1 calls to $tree_successor()$
 
 **Final Time Complexity**: T(n) = Θ(n)
 * n calls to the procedures, which requires T(n) = Ω(n)
 * Iterating through every n-1 arch two times at most, which requires T(n) = O(n)
 
+---
 
 ## Successor
-A successor for a node x in a BST, is the node who follows x in a symmetric visit
-* Pre: Node 𝑢 can be found in T
-* Post: Returns the successor through a symmetric visit of the node 𝑢
+Given $x \in T$ the successor of $x$ is the node $y \in T$ which precedes $x$ in a Symmetric visit
 
 If all the keys are distinct the successor of u is the node v with the smallest key
 such that `v.key > u.key`
@@ -167,6 +194,10 @@ We distinguish two cases here:
    1. The successor is the minimum of the RIGHT-SubT
 2. Else, the successor is the minimum ancestor of x, whose left child is also
 an ancestor of x
+
+| Operation                        	| **Pre-Condition** 	| **Post-Condition**                                                           	| **Time**                                       	| Notes                                                                             	|
+|----------------------------------	|-------------------	|------------------------------------------------------------------------------	|------------------------------------------------	|-----------------------------------------------------------------------------------	|
+| `tree_successor(Node x) -> Node` 	| $x \in T$         	| Returns a successor node $y$ with $y.key>=x.key$ or $NIL$ if none is present 	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	| Given $x \in T$ the successor is the node which succeeds $x$ in a Symmetric visit 	|
 
 
 ![Succ](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/Succ.jpg?raw=TRUE)
@@ -192,12 +223,13 @@ tree_successor_iter(Node x){
 ---
 
 ## Predecessor
-A predecessor for a node x in a BST, is the node who precedes x in a symmetric visit
-
-* Pre: Node 𝑢 belongs to the tree T
-* Post: Returns the predecessor through a symmetric visit of the node 𝑢
+Given $x \in T$ the predecessor of $x$ is the node $y \in T$ which precedes $x$ in a Symmetric visit
 
 The procedure is specular to the one of the successor.
+
+| Operation                        	| **Pre-Condition** 	| **Post-Condition**                                                           	| **Time**                                       	| Notes                                                                             	|
+|----------------------------------	|-------------------	|------------------------------------------------------------------------------	|------------------------------------------------	|-----------------------------------------------------------------------------------	|
+| `tree_successor(Node x) -> Node` 	| $x \in T$         	| Returns a successor node $y$ with $y.key>=x.key$ or $NIL$ if none is present 	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	| Given $x \in T$ the successor is the node which succeeds $x$ in a Symmetric visit 	|
 
 ```python
 predecessor(Node x)
