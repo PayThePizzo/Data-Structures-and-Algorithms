@@ -214,8 +214,6 @@ tree_successor_iter(Node x){
         return y;
 ```
 
-
-
 ---
 
 ## Predecessor
@@ -316,104 +314,121 @@ transplant(Tree t, Node u, Node v)
 
 ## Tree Delete Node
 When deleting a node, we can encounter three cases:
-1. Node z is **childless**
-   1. We need to modify the father by transplanting z with NULL;
-   2. z.p = NULL
-2. Node z has **only one** child
-   1. We remove z and we connect z.child with z.parent
-   2. z.parent = z.child.parent 
-3. Node z has two children
-   1. We need to look for a successor `y`, such that `successor(z): y`, and we replace z with y
-   2. y does not have a left-child
+1. Node $z$ is **childless**, a **leaf**
+   1. We need to modify the father by transplanting $z$ with $NULL$
+   2. $z.parent = NULL$
+2. Node $z$ has **only one** child
+   1. We remove $z$ and we connect $z.child$ with $z.parent$
+   2. $z.parent = z.child.parent$ 
+3. Node $z$ has **two children**
+   1. We need to look for a successor $y$ , such that $successor(z) = y$, and we replace $z$ with $y$ which must be in the right subtree of $z$
+   2. $y$ does not have a left-child
+
+![treedelete](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/treedelete.png?raw=TRUE)
 
 | **Operation**                 	| **Pre-Condition** 	| **Post-Condition**                    	| **Time** $T(n) = T(h)$                                   	|
 |-------------------------------	|-------------------	|---------------------------------------	|----------------------------------------------------------	|
 | `tree_delete(Tree t, Node z)` 	| $z \in T$         	| $z \notin T$, $z$ is removed from $T$ 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|
 
 ```python
-remove(Tree t, Node z){
-    if(z.left == NULL): # No left child/ z is leaf -> Replace z with its right child
-        transplant(t, z, z.right); 
-    else if(z.right == NULL): # No right child/ z is leaf -> Replace  z with its left child
-        transplant(t, z, z.left); 
+tree_delete(Tree t, Node z){
+    if(z.left == NULL): # No left child/ z is leaf
+        transplant(t, z, z.right); # Replace z with its right child
+    else if(z.right == NULL): # No right child/ z is leaf 
+        transplant(t, z, z.left); # Replace  z with its left child
     else: # Both children > find successor
         Node y = tree_minimum(z.right); 
         if(y.parent != z):  # z successor's parent != z
-            transplant(t, y, y.right);  # Now y right child is z's right child
+            transplant(t, y, y.right);  # Substitute y with its right child, the left child is null
             y.right = z.right; 
             z.right.parent = y;
         transplant(t, z, y);    # Change z with y (z's successor)
         y.left = z.left;  # Now left child of y is z's leftchild
         y.left.parent = y;   
 ```
-**Final Time Complexity**: T(n) = O(h)
+
+### Theorem 
+The operations `search, minimum, maximum, predecessor, successor, insert, delete` on dynamic sets can take $T(n) = \mathcal{O}(h)$
+in a BST of height $h$. This is why we want to keep the BST balanced, as we improve the performances of all the operations.
 
 ---
 
 ## BST Tree Build
-Using a vector v. which contains the key we want to insert in T
+
+| Operation                           	| **Pre-Condition**           	| **Post-Condition** 	| **Time** T(n)        	 |
+|-------------------------------------	|-----------------------------	|--------------------	|------------------------|
+| `bst_build(int v[]) -> Tree` 	| $v$ is a vector of $n$ keys 	| Returns a BST      	| $\Theta(n^{2})$ 	      |
 
 ### Iterative
 ```python
-bst_build(int v[], int dim)
+bst_build(int v[])
     Tree t = newtree();
+    # t.root = NIL
     for(i=0 to v.length):
-        u = newnode(v[i]);
+        u = new_node(v[i]); # u.key = v[i]
+        # u.parent = u.left = u.right = NIL
         tree_insert(t, u);
     return t;
 ```
-**Final Time Complexity**: T(n) = O(n**2)
-* If input is unordered we have a very time consuming algorithm
 
-This is too expensive, but we can do better.
+This is too expensive since if the input vector is sorted in a decreasing or increasing way, we would need a lot of time.
 
-### Divide et Impera - Vector
+```math
+T(n) = \sum_{i=0}^{n-1}(c+di) = \sum_{i=0}^{n-1}c + \sum_{i=0}^{n-1}di = cn + d\sum_{i=0}^{n-1}i = cn+d \cdot \frac{n(n+1)}{2} = \Theta(n^{2})
+```
+
+## Optimized BST Tree Build - Divide et Impera 
 Using a **sorted** vector v and a Divide-et-Impera algorithm.
 
 Idea: If v is sorted, we can start from the half of the array and take the element in the middle.
 * Left Side: elements that we find at the left of the central element
 * Right Side: the rest
 
+| Operation                        	| **Pre-Condition**                      	| **Post-Condition** 	| **Time** T(n) 	|
+|----------------------------------	|----------------------------------------	|--------------------	|---------------	|
+| `bst_build_opt(int v[]) -> Tree` 	| $v$ is a **sorted** vector of $n$ keys 	| Returns a BST      	| $\Theta(n)$   	|
+
 ```python
-tree_buildBST_optim(int v[], int dim)
+Tree bst_build_opt(int v[])
     Tree t = newtree();
-    t.root = buildAux_optim(v, 0, dim - 1, NULL);
+    t.root = bst_build_opt_aux(v, 1, v.length, NULL);
     return t;
 
-Node buildAux_optim(int v[], int start, int end, Node parent)
+Node bst_build_opt_aux(int v[], int start, int end, Node parent)
     if(start > end):
         return NULL;
     else:
         int med = ⌊(start + end)/2⌋ ;
-        Node x = newnode(v[med]);
+        Node x = new_node(v[med]);
         x.parent = parent;
-        x.left = tree_buildBST_optim(v, start, med - 1, x);
-        x.right = tree_buildBST_optim(v, med + 1, end, x);
+        x.left = bst_build_opt(v, start, med - 1, x);
+        x.right = bst_build_opt(v, med + 1, end, x);
     return x;
 ```
-**Final Time Complexity**: $T(n) = \Theta(n log(n))$
-1. Sort the vector -> Θ(n log(n))
-2. Apply the tree_buildBST_optim() function -> Θ(n)
 
-The tree is kept balanced!
+### Theorem - The resulting tree is balanced and $h = \Theta(log(n))$
+By hypothesis this is a balanced since half of the nodes are in the left subtree and the other half is in
+the right subtree. Since it is balanced we can use the Master Theorem to find its complexity:
 
----
+```math
+T(n) = \left\{\begin{matrix}
+c & n = 0 \\
+2T(n/2)+d & n > 0\\
+\end{matrix}\right.
+```
 
-## Conclusion
+Let's define
 
-The implementation through dynamic sets can perform most operations in $T(n) = O(h)$:
-* Min
-* Max
-* Successor
-* Predecessor
+$$a = 2, b = 2, f(n) = d, g(n) = n^{log_{b}(a)} = n$$
 
-However:
-* If the tree is unbalanced **h -> n** 
-* If the tree is kept balanced **h -> log(n)**
+Let's see if it is the first case:
 
-So what we ought to do is to keep the tree we are working with, balanced.
-_But how do we do just that?_ There are some implementations of trees that might be interesting to cover
-in order to discover it:
-1. AVL Trees
-2. B-Trees
-3. RB-Trees
+$$f(n) = \mathcal{O}(n^{1-\epsilon}), \epsilon > 0 \Leftrightarrow \epsilon = 1$$
+
+Then 
+
+$$T(n) = \Theta(n)$$
+
+But if the input it is not sorted we need to sort the vector and then build the tree!
+
+$$T(n) = T(sort) + T(build) = \Theta(nlog(n)) + \Theta(n) = \Theta(nlog(n))$$
