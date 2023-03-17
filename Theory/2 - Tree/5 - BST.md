@@ -36,7 +36,7 @@ require visiting the whole tree (namely covering all the nodes) which takes $T(n
 
 The good news is that we can also define a lower bound, for the case where the tree is balanced, and we just need to 
 explore $\frac{1}{2}$ of the tree. As we know from the fact that the nodes are not infinite, and that for each internal 
-node we have at most $2$ children, we can define the best case as $T(n=h) = \mathcal{O}(log(n))$ when the tree is balanced. 
+node we have at most $2$ children, we can define the best case as $T(n=h) = \mathcal{O}(h) = \mathcal{O}(log(n))$ when the tree is balanced. 
 This is possible when we split all the nodes into two subtrees which are also balanced.
 
 We conclude that for most operations of BST:
@@ -142,9 +142,9 @@ If we want to find the smallest key in a BST, by the search property it is the l
 * Else, we can find smaller keys in the left subtree;
   * The minimum must be in this subtree.
 
-| Operation                  	| **Pre-Condition** 	| **Post-Condition**                                                 	| **Time**                                                 	|
-|----------------------------	|-------------------	|--------------------------------------------------------------------	|----------------------------------------------------------	|
-| `tree_min(Node x) -> Node` 	| $x \in T$         	| Returns a node $x$ with $x.key$ as the smallest key inside the BST 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|
+| Operation                  	| **Pre-Condition** 	| **Post-Condition**                                                                               	| **Time**                                                 	|
+|----------------------------	|-------------------	|--------------------------------------------------------------------------------------------------	|----------------------------------------------------------	|
+| `tree_min(Node x) -> Node` 	| $x \in T$         	| Returns a node $x$ with $x.key$ as the smallest key inside the BST or $NIL$ if the tree is empty 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	|
 
 ### Recursive
 
@@ -185,28 +185,25 @@ A Symmetric visit for a BST of n nodes can be implemented by
 
 ## Successor
 Given $x \in T$ the successor of $x$ is the node $y \in T$ which precedes $x$ in a Symmetric visit
-
-If all the keys are distinct the successor of u is the node v with the smallest key
-such that `v.key > u.key`
+* Remember: if all the keys are distinct the successor of u is the node v with the **smallest key** such that `v.key > u.key`
 
 We distinguish two cases here:
-1. If x has a right child
-   1. The successor is the minimum of the RIGHT-SubT
-2. Else, the successor is the minimum ancestor of x, whose left child is also
-an ancestor of x
+1. $x.right \neq NIL \Longrightarrow successor(x) = minimum(x.right)$, 
+   1. If $x$ has a right child, the successor is the minimum of the right subtree
+2. Else, the successor is the minimum ancestor of $x$, whose left child is also an ancestor of $x$
+   1. To find it we proceed upwards towards the root, and take the first node to the right.
 
-| Operation                        	| **Pre-Condition** 	| **Post-Condition**                                                           	| **Time**                                       	| Notes                                                                             	|
-|----------------------------------	|-------------------	|------------------------------------------------------------------------------	|------------------------------------------------	|-----------------------------------------------------------------------------------	|
-| `tree_successor(Node x) -> Node` 	| $x \in T$         	| Returns a successor node $y$ with $y.key>=x.key$ or $NIL$ if none is present 	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	| Given $x \in T$ the successor is the node which succeeds $x$ in a Symmetric visit 	|
+| Operation                        	| **Pre-Condition** 	| **Post-Condition**                                                           	| **Time**                                       	           | Notes                                                                             	|
+|----------------------------------	|-------------------	|------------------------------------------------------------------------------	|------------------------------------------------------------|-----------------------------------------------------------------------------------	|
+| `tree_successor(Node x) -> Node` 	| $x \in T$         	| Returns a successor node $y$ with $y.key>=x.key$ or $NIL$ if none is present 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	 | Given $x \in T$ the successor is the node which succeeds $x$ in a Symmetric visit 	|
 
 
 ![Succ](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/Succ.jpg?raw=TRUE)
 
-
 ```python
 tree_successor_iter(Node x){
-    if(x != NULL && x.right != NULL):
-        return tree_minimum(x.right);
+    if(x.right != NULL):
+        return tree_minimum(x.right); # O(h)
     else:
         Node y = x.parent;
         # x is right child of x.parent 
@@ -216,9 +213,8 @@ tree_successor_iter(Node x){
             y = y.parent;
         return y;
 ```
-**Final Time Complexity**: T(n) = O(h)
-* becomes O(n) if T is a highly unbalanced tree
-* becomes O(log(n)) if T is balance
+
+
 
 ---
 
@@ -227,29 +223,30 @@ Given $x \in T$ the predecessor of $x$ is the node $y \in T$ which precedes $x$ 
 
 The procedure is specular to the one of the successor.
 
-| Operation                        	| **Pre-Condition** 	| **Post-Condition**                                                           	| **Time**                                       	| Notes                                                                             	|
-|----------------------------------	|-------------------	|------------------------------------------------------------------------------	|------------------------------------------------	|-----------------------------------------------------------------------------------	|
-| `tree_successor(Node x) -> Node` 	| $x \in T$         	| Returns a successor node $y$ with $y.key>=x.key$ or $NIL$ if none is present 	| $\mathcal{O}(log(n)) \leq T(h) \leq \Theta(n)$ 	| Given $x \in T$ the successor is the node which succeeds $x$ in a Symmetric visit 	|
+We distinguish two cases here:
+1. $x.left \neq NIL \Longrightarrow predecessor(x) = maximum(x.left)$,
+    1. If $x$ has a left child, the successor is the maximum of the left subtree
+2. Else, the predecessor is the minimum ancestor of $x$, whose right child is also an ancestor of $x$
+    1. To find it we proceed upwards towards the root, and take the first node to the left.
+
+
+| Operation                        	| **Pre-Condition** 	| **Post-Condition**                                                           	| **Time**                                       	           | Notes                                                                             	|
+|----------------------------------	|-------------------	|------------------------------------------------------------------------------	|------------------------------------------------------------|-----------------------------------------------------------------------------------	|
+| `tree_successor(Node x) -> Node` 	| $x \in T$         	| Returns a successor node $y$ with $y.key>=x.key$ or $NIL$ if none is present 	| $\mathcal{O}(log(n)) \leq \mathcal{O}(h) \leq \Theta(n)$ 	 | Given $x \in T$ the successor is the node which succeeds $x$ in a Symmetric visit 	|
 
 ```python
 predecessor(Node x)
-    if(x != NULL && x.left != NULL):
-        return maximum(x.left);
+    if(x.left != NULL):
+        return tree_maximum(x.left);
     else:
         # If x is left child of
-        Node y = x.p;
+        Node y = x.parent;
         while(y != NULL && x == y.left):
             # Keep going up
             x = y;
             y = y.parent;
         return y;
-
-
 ```
-**Final Time Complexity**: T(n) = O(h)
-* h as the height
-* becomes O(n) if T is a highly unbalanced tree
-* becomes O(log(n)) if T is balanced
 
 ---
 
