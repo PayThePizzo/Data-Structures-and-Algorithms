@@ -2,8 +2,12 @@
 Sorting is one of the fundamental problems of Computer Science.
 
 Formally, the output of any sorting algorithm must satisfy two conditions:
-1. The output is in monotonic order (each element is no smaller/larger than the previous element, according to the required order).
-2. The output is a permutation (a reordering, yet retaining all of the original elements) of the input.
+1. The output is in **monotonic order**.
+   1. Non-decreasing or Non-increasing based on the requirements. Normally the output is sorted in a non-decreasing way
+2. The output is a **permutation**
+   1. A reordering, yet retaining all of the original elements of the input.
+
+## Concepts
 
 Here we will introduce some main concepts and characteristics of the sorting algorithms we are going to
 study in this section [3]:
@@ -34,8 +38,8 @@ We know an algorithm has a best, an average and a worst time. Here we focus on t
 details regarding the average case, and the best case when considering adaptive algorithms.
 
 ## 1.1 - Adaptability
-The algorithm's sensitivity to the "pre-sortedness" of the input. An **adaptive** algorithm's T(n) is **visibly reduced when** its
-**input** is already partly or totally **sorted**.
+> The algorithm's sensitivity to the "pre-sortedness" of the input. 
+> An **adaptive** algorithm's $T(n)$ is **visibly reduced when** its **input** is already partly or totally **sorted**.
 
 A sorting algorithm falls into the adaptive sort family if it takes advantage of existing order in its input. 
 It benefits from the presortedness in the input sequence – or a limited amount of disorder for various definitions 
@@ -49,11 +53,11 @@ The Adaptive sorting algorithms we will cover are:
 
 ## 2 - Space Complexity
 
-## 2.1 - In-Place
-**(Strict) Definition**: An In-Place sorting algorithm is an algorithm which transforms input using **no auxiliary data structure**. [1]
+## 2.1 - In-Place $S(n) = O(1)$
+> **(Strict) Definition**: An In-Place sorting algorithm is an algorithm which transforms input using **no auxiliary data structure**. [1]
 
 However, a small amount of extra storage space is allowed for auxiliary variables. In this case, **at all times**, 
-a space **S(n) = O(1)** (constant) is the **upper bound** for the space that can be used 
+a space $S(n) = O(1)$ (constant) is the **upper bound** for the space that can be used 
 **for variables that are external to the input data structure**.
 
 The In-Place sorting algorithms we will cover are:
@@ -64,13 +68,13 @@ The In-Place sorting algorithms we will cover are:
 ---
 
 ## 4 - Stability
-Stable sort algorithms sort equal elements in the same order that they appear in the input.
+> Stable sort algorithms sort equal elements in the same order that they appear in the input.
 
 More formally, the data being sorted can be represented as a record of values, 
 and the part of the data that is used for sorting is called the key.
 
-A sorting algorithm is **stable** if **whenever there are two records R and S with the same key and with R appearing before S
-in the original list, R will appear before S in the sorted list**.
+A sorting algorithm is **stable** if **whenever there are two records $R$ and $S$ with the same key and with $R$ appearing before $S$
+in the original list, $R$ will appear before $S$ in the sorted list**.
 
 The Stable sorting algorithms we will cover are:
 * Insertionsort
@@ -80,16 +84,17 @@ The Stable sorting algorithms we will cover are:
 ---
 
 ## 5 - Comparison Sort
-A comparison sort is a type of **sorting algorithm** that **only reads the list elements through** a single abstract **comparison** 
+
+> A comparison sort is a type of **sorting algorithm** that **only reads the list elements through** a single abstract **comparison** 
 operation (often a "less than or equal to" operator or a three-way comparison) that determines which of 
 two elements should occur first in the final sorted list. 
 
-The only requirement is that the operator forms a total preorder over the data, with:
-1. If a ≤ b and b ≤ c then a ≤ c (transitivity)
-2. For all a and b, a ≤ b or b ≤ a (connexity).
-
-It is possible that both a ≤ b and b ≤ a; in this case either may come first in the sorted list.
-In a stable sort, the input order determines the sorted order in this case.
+The only requirement is that the operator forms a total preorder over the data, with the following properties:
+1. **Transitivity** 
+   1. $a \leq b \wedge b \leq c \Rightarrow a \leq c$ 
+2. **Connexity**
+   1. $\forall a,b \ni' a \leq b \vee b \leq a$
+   2. $\forall a,b \ni' a \leq b \wedge b \leq a$ is possible too. In this case either may come first in the sorted list. In a stable sort, the input order determines the sorted order in this case.
 
 The Comparison sorting algorithms we will cover are:
 * Insertionsort
@@ -109,9 +114,9 @@ The latter ones do not follow any of the methods we will describe here, they ope
 ## 6 - Method
 
 ### 6.1 - Divide et Impera, Merging, Partitioning
-A divide-and-conquer algorithm recursively breaks down a problem into two or more sub-problems 
-of the same or related type, until these become simple enough to be solved directly. 
-The solutions to the sub-problems are then combined to give a solution to the original problem.
+> A divide-and-conquer algorithm recursively breaks down a problem into two or more sub-problems 
+> of the same or related type, until these become simple enough to be solved directly. 
+> The solutions to the sub-problems are then combined to give a solution to the original problem.
 
 1. Divide/ **Partitioning**: recursively divides the main input in smaller sub-problems
 2. **Impera**: recursively solve the sub-problems.

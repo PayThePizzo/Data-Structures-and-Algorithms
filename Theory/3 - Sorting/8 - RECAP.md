@@ -1,13 +1,13 @@
    # Sorting Recap
 
-|                |         Method         |           T(n)            | Adaptive? | In-Place? | Stable? | Online? |
-|----------------|:----------------------:|:-------------------------:|-----------|-----------|---------|---------|
-| Insertion sort | Insertion, Incremental |          O(n^2)           |     Y     |     Y     | Y       |    Y    |
-| Merge sort     | Merging*               |        Θ(nlog(n))         |     N     |     N     | Y       |    N    |
-| Quick sort     | Partitioning*          | avg:O(nlog(n)), w: O(n^2) |     N     |     Y     | N       |    N    |
-| Heap Sort      | Selection, Incremental |        O(n*log(n))        |     Y     |     Y     | Y       |    N    |
-| Counting sort  | Non-Comparison         |  Θ(n)<= Θ(n+k)<= Θ(n^2)   |     N     |     N     | Y       |    N    |
-| Radix sort     | Non-Comparison         |        Θ(d*(n+k))         | **        | **        | **      | **      |
+| **Operation**    	| **Method**             	| **Time**                                                   	| **Adaptive?** 	| **In-Place?** 	| **Stable?** 	| **Online?** 	|
+|------------------	|------------------------	|------------------------------------------------------------	|---------------	|---------------	|-------------	|-------------	|
+| _Insertion sort_ 	| Insertion, Incremental 	| $\mathcal{O}(n^{2})$                                       	| **Y**         	| **Y**         	| **Y**       	| **Y**       	|
+| _Merge sort_     	| Merging*               	| $\Theta(nlog(n))$                                          	| N             	| N             	| **Y**       	| N           	|
+| _Quick sort_     	| Partitioning*          	| $T_{avg} = \mathcal{O}(nlog(n)), T_{w} = \mathcal{O}(n^2)$ 	| N             	| **Y**         	| N           	| N           	|
+| _Heap sort_      	| Selection, Incremental 	| $\mathcal{O}(n*log(n))$                                    	| **Y**         	| **Y**         	| **Y**       	| N           	|
+| _Counting sort_  	| Non-Comparison         	| $\Theta(n) \leq \Theta(n+k) \leq \Theta(n^{2})$            	| N             	| N             	| **Y**       	| N           	|
+| _Radix sort_     	| Non-Comparison         	| $\Theta(d(n+k))$                                           	| **            	| **            	| **          	| **          	|
 
 **Depends on subroutine, `d` is the number of iterations in the function
 
