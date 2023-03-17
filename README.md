@@ -50,6 +50,15 @@ I do not take any credit for the contents, which are taken from my professors, t
 * [DFI] C. Demetrescu, I. Finocchi, G.F. Italiano. Algoritmi e strutture dati. Seconda Edizione. McGraw-Hill, 2008.
 * [CLRS] T. H. Cormen, C. E. Leiserson, R. L. Rivest, C. Stein. Introduction to algorithms 3/ed. McGraw-Hill, 2010.
 * Students of Ca' Foscari.
+  * Pareschi Chiara
+  * Femia Bertacco Giacomo
+  * Grazioso Matteo
+  * D'Attero Andrea
+  * Bertazzon Alice
+  * Simonato Niccolo'
+  * Scapin Filippo
+  * Campanelli Alessio
+  * Zanin Alessandro
 
 We will add specific sections to give credit when due, but we recommend to buy the books and follow a university level course
 in order to understand these concepts better.
