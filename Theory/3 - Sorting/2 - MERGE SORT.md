@@ -1,8 +1,8 @@
 # Merge Sort
 
 | **Operation** 	| **Method** 	| **Time**                 	| **Adaptive?** 	| **In-Place?** 	| **Stable?** 	| **Online?** 	|
-|---------------	|------------	|--------------------------	|---------------	|---------------	|-------------	|-------------	|
-| _Merge sort_  	| Merging*   	| $T(n) = \Theta(nlog(n))$ 	| N             	| N             	| **Y**       	| N           	|
+|---------------	|-----------	|--------------------------	|---------------	|---------------	|-------------	|-------------	|
+| _Merge sort_  	| Merging   	| $T(n) = \Theta(nlog(n))$ 	| N             	| N             	| **Y**       	| N           	|
 
 ---
 
@@ -44,9 +44,9 @@ Let's see the algorithm now.
 
 ### Mergesort
 
-| **Operation**                       	| **Pre-Condition**                                                                 	| **Post-Condition**  	|
-|-------------------------------------	|-----------------------------------------------------------------------------------	|---------------------	|
-| `merge_sort(Array A, int p, int r)` 	| p,r are valid indexes of $A$, $p,r \in \mathbb{Z}^{+} \ni' p,r \in [1, A.length]$ 	| Sorts $A$ correctly 	|
+| **Operation**                       	| **Pre-Condition**                  | **Post-Condition**  	|
+|-------------------------------------	|------------------------------------|---------------------	|
+| `merge_sort(Array A, int p, int r)` 	| $p,r$ are valid indexes of $A$  	 | Sorts $A$ correctly 	|
 
 ```python
 merge_sort(Array A, int p, int r)
@@ -165,10 +165,11 @@ Pros:
 * It is a **stable** method, numbers with the same value have the same order in the array of output and input.
 
 Cons:
-* Not In-Place
-* Not sensitive to order of the input 
-  * If the input vector is already sorted, T(n)=Θ(n * log(n)) still.
-* Depends on the number of keys to sort
+* **Not In-Place**: $S(n) = \mathcal{O}(n)$
+  * It always requires additional auxiliary data structures.
+* The algorithm is not sensitive to order of the input, **not adaptive**
+  * If the input vector is already sorted, $T(n)=\Theta(nlog(n))$ still.
+  * Depends on the number of keys to sort
 
 We can optimize it by combining it with different algorithms, in order to handle a large variety of input.
 
