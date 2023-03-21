@@ -11,8 +11,6 @@ Characteristics:
 * Incremental technique
 * In-Loco Sorting
 
---- 
-
 ## Incremental Technique 
 The array is virtually split into a $k$ **sorted** and an $A.length-k$ **unsorted part**.
 
@@ -26,23 +24,15 @@ A[j+1, \ldots, A.length]& \text{A.length-k elements to sort} \\
 Initially,`k = 1`. Our goal is to extend the sorted part of the array from k to k+1 
 by placing in the correct position an element from the unsorted section at each iteration.
 
----
 
 ## In-Loco sorting
 This algorithm sorts in-place, namely with an external additional space $S(n)= \mathcal{O}(1)$.
 
----
-
-## Invariant
-The sub-array A[1 .. j-1] is made of the **sorted elements** which were unordered in A[1...j-1] originally.
-1) _Initialization:_ This is trivially true before the *for block*
-2) _Preservation_: It is respected
-3) _Conclusion_: After the for block, j stops at **j = A.length-1** 
-
-**INV[(A.length+1)/j]** ≡ The subarray A[1... A.length+1-1] is composed of sorted elements which were originally in
-A[1...A.length+1-1]
+## Adaptive
+The algorithm is sensitive about the input's order, or better it is **adaptive**.
 
 ---
+
 ## The Algorithm
 
 Idea: 
@@ -96,15 +86,15 @@ void insertion_sort_cpp(std::vector<int> &array){
 
 
 ### Invariant of the for-cycle
-$$INV  = \text{The subarray } A[1 \ldots j-1] \text{ is composed of the sorted elements which were originally in } A[1 \ldots j-1]$$
+$$INV  = \text{The subarray } A[1 \ldots j-1] \text{ is made of the sorted elements which were originally in } A[1 \ldots j-1]$$
 
 This is true:
-* Before the for-block by construction, $j=2 \rightarrow A[1]$ 
-* Before any iteration 
-* After the for block, $j = A.length + 1$ and the invariant is true! $INV = []$
-  * Then $A[1 \ldots j-1]$ is sorted
-  * Which means $A[1 \ldots A.length + 1-1]$ is made of the sorted elements which were originally in $A[1 \ldots A.length+1-1]$
-  
+1) _Initialization:_ This is trivially true before the *for block*
+   1) By construction, $j=2 \rightarrow A[1]$
+2) _Preservation_: It is respected before any iteration
+3) _Conclusion_: After the for block, j stops at **j = A.length+1**
+   1) Then $A[1 \ldots j-1]$ is sorted
+   2) Which means $A[1 \ldots A.length + 1-1]$ is made of the sorted elements which were originally in $A[1 \ldots A.length+1-1]$
 
 ### Theorem - $T(n) = \Theta(n^{2}) \wedge S(n) = \mathcal{O}(1)$
 The insertion sort algorithm sorts in-place $S(n) = \mathcal{O}(1)$, and executes $\Theta(n^{2}) comparisons in 
@@ -131,12 +121,9 @@ We conclude that the algorithm is sensitive about the input's order, or better i
 
 ---
 
-
-
 ### Conclusion
 Pros: 
-* Works well with small vectors 
-* It is sensitive to unordered input
+* Works well with small vectors
 
 --- 
 
