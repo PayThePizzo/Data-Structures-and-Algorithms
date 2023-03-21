@@ -55,26 +55,83 @@ To sort an array of size n in ascending order:
 * 3: If the key element is smaller than its predecessor, compare it to the elements before. 
 Move the greater elements one position up to make space for the swapped element.
 
+Pseudocode:
 ```python
 insertion_sort(Array A)
     for j=2 TO A.length #Array starts from 1
-        key = A[j];
-        i = j-1;
+        key = A[j]; 
+        i = j-1; 
         while i > 0 AND A[i] > key #Modify predecessor when we find a smaller element
             A[i+1] = A[i];
             i = i-1;
         A[i+1] = key;
 ```
-**Final Time Complexity** = <mark>O(n**2)</mark>
-* Best =  Θ(n)
-  * Array ascending order
-* Worst =  Θ(n**2)
-  * Array decreasing order
 
-### Theorem 
+Implementation in C and C++:
+```c++
+void insertion_sort_c(int *arr, int size){
+    for(int j = 1; j<size; j++){
+        int i = j-1;
+        int key = *(arr+j);
+        while(i>=0 && *(arr+i)> key){
+            *(arr+i+1)= *(arr+i);
+            i-=1;
+        }
+        *(arr+i+1)=key;
+    }
+}
 
+void insertion_sort_cpp(std::vector<int> &array){
+    for(int j = 1; j<array.size(); j++){
+        int i = j-1;
+        int key = array.at(j);
+        while(i>=0 && array.at(i)>key){
+            array.at(i+1) = array.at(i);
+            i-=1;
+        }
+        array.at(i+1)=key;
+    }
+}
+```
+
+
+### Invariant of the for-cycle
+$$INV  = \text{The subarray } A[1 \ldots j-1] \text{ is composed of the sorted elements which were originally in } A[1 \ldots j-1]$$
+
+This is true:
+* Before the for-block by construction, $j=2 \rightarrow A[1]$ 
+* Before any iteration 
+* After the for block, $j = A.length + 1$ and the invariant is true! $INV = []$
+  * Then $A[1 \ldots j-1]$ is sorted
+  * Which means $A[1 \ldots A.length + 1-1]$ is made of the sorted elements which were originally in $A[1 \ldots A.length+1-1]$
+  
+
+### Theorem - $T(n) = \Theta(n^{2}) \wedge S(n) = \mathcal{O}(1)$
+The insertion sort algorithm sorts in-place $S(n) = \mathcal{O}(1)$, and executes $\Theta(n^{2}) comparisons in 
+the worst case. 
+
+#### Demonstration
+The algorithm sorts **in-place** as it only requires one additional variable aside from the input array.
+
+The for cycle is executed exactly $n-1$ times and the number of comparisons executed in the inner cycle (while),
+is $j-1$ in the worst case.
+* We assume the comparisons to be the fundamental operation in this algorithm.
+
+$$\sum_{j=2}^{n}(j-1) \stackrel{k=j-1} \Longrightarrow \sum_{k=1}^{n+1}k = \frac{(n-1)(n-1+1)}{2} = \frac{(n-1)n}{2} = \Theta(n^{2})$$
+
+Where $n = A.length$
+
+**Final Time Complexity** = $T(n) = \Theta(n^{2})$
+* $T_{best}(n) =  \Theta(n)$
+  * Array sorted in a non-decreasing manner 
+* $T_{worst}(n) =  \Theta(n^{2})$
+  * Array sorted in a non-increasing manner
+
+We conclude that the algorithm is sensitive about the input's order, or better it is **adaptive**.
 
 ---
+
+
 
 ### Conclusion
 Pros: 

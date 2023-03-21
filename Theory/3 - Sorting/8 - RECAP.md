@@ -1,13 +1,13 @@
    # Sorting Recap
 
-| **Operation**    	| **Method**             	| **Time**                                                   	| **Adaptive?** 	| **In-Place?** 	| **Stable?** 	| **Online?** 	|
-|------------------	|------------------------	|------------------------------------------------------------	|---------------	|---------------	|-------------	|-------------	|
-| _Insertion sort_ 	| Insertion, Incremental 	| $\mathcal{O}(n^{2})$                                       	| **Y**         	| **Y**         	| **Y**       	| **Y**       	|
-| _Merge sort_     	| Merging*               	| $\Theta(nlog(n))$                                          	| N             	| N             	| **Y**       	| N           	|
-| _Quick sort_     	| Partitioning*          	| $T_{avg} = \mathcal{O}(nlog(n)), T_{w} = \mathcal{O}(n^2)$ 	| N             	| **Y**         	| N           	| N           	|
-| _Heap sort_      	| Selection, Incremental 	| $\mathcal{O}(n*log(n))$                                    	| **Y**         	| **Y**         	| **Y**       	| N           	|
-| _Counting sort_  	| Non-Comparison         	| $\Theta(n) \leq \Theta(n+k) \leq \Theta(n^{2})$            	| N             	| N             	| **Y**       	| N           	|
-| _Radix sort_     	| Non-Comparison         	| $\Theta(d(n+k))$                                           	| **            	| **            	| **          	| **          	|
+| **Operation**    	| **Method**             	| **Time**                                                   	 | **Adaptive?** 	| **In-Place?** 	| **Stable?** 	| **Online?** 	|
+|------------------	|------------------------	|--------------------------------------------------------------|---------------	|---------------	|-------------	|-------------	|
+| _Insertion sort_ 	| Insertion, Incremental 	| $\Theta(n^{2})$                                       	      | **Y**         	| **Y**         	| **Y**       	| **Y**       	|
+| _Merge sort_     	| Merging*               	| $\Theta(nlog(n))$                                          	 | N             	| N             	| **Y**       	| N           	|
+| _Quick sort_     	| Partitioning*          	| $T_{avg} = \mathcal{O}(nlog(n)), T_{w} = \mathcal{O}(n^2)$ 	 | N             	| **Y**         	| N           	| N           	|
+| _Heap sort_      	| Selection, Incremental 	| $\mathcal{O}(n*log(n))$                                    	 | **Y**         	| **Y**         	| **Y**       	| N           	|
+| _Counting sort_  	| Non-Comparison         	| $\Theta(n) \leq \Theta(n+k) \leq \Theta(n^{2})$            	 | N             	| N             	| **Y**       	| N           	|
+| _Radix sort_     	| Non-Comparison         	| $\Theta(d(n+k))$                                           	 | **            	| **            	| **          	| **          	|
 
 **Depends on subroutine, `d` is the number of iterations in the function
 
