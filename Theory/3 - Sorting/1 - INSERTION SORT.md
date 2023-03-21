@@ -89,7 +89,8 @@ void insertion_sort_cpp(std::vector<int> &array){
 ```
 
 ### Invariant of the for-cycle
-$$INV  = \text{The subarray } A[1 \ldots j-1] \text{ is made of the sorted elements which were originally in } A[1 \ldots j-1]$$
+
+$$INV \equiv \text{The subarray } A[1 \ldots j-1] \text{ is made of the sorted elements which were originally in } A[1 \ldots j-1]$$
 
 This is true:
 1) _Initialization:_ This is trivially true before the *for block*
