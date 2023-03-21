@@ -1,4 +1,11 @@
 # Merge Sort
+
+
+
+---
+
+## Idea 
+
 Merge sort belongs to a class of algorithms which use a Divide-et-Impera approach.
 
 The MergeSort function repeatedly divides the array into two halves until 
@@ -15,7 +22,7 @@ arrays until the whole array is merged.[1]
 It sorts a vector limited by two indexes *p*, representing the starting index, and *r*,
 representing the ending index.
 
-1. **Divide/Split**: recursively divides the main vector into two sub-vectors A[p .. q] with `q = (p+r)/2` and A[q+1 .. r]
+1. **Divide/Split**: recursively divides the main vector into two sub-vectors $A[p \ldots q]$ with $q = (p+r)/2$ and $A[q+1 \ldots r]$
 2. **Impera**: recursively sorts the sub-vectors through mergesort. 
    1. If the problem is sufficiently small (0/1 elements), we can compute the result immediately
    2. Else if one of the vectors is empty, we put in the queue the remaining subsequence of the vector.

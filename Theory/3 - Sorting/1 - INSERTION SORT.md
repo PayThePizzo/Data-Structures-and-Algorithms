@@ -25,7 +25,7 @@ A[j+1, \ldots, A.length]& \text{A.length-k elements to sort} \\
 \end{matrix}\right.
 ```
 
-Initially,`k = 1`. Our goal is to extend the sorted part of the array from k to k+1 
+Initially, $k = 1$. Our goal is to extend the sorted part of the array from $k$ to $k+1$
 by placing in the correct position an element from the unsorted section at each iteration.
 
 
@@ -41,10 +41,10 @@ The algorithm is sensitive about the input's order, or better it is **adaptive**
 
 Idea: 
 * A first cycle to go through all the cards, a second one to 
-* We start from an index i = 2, since the first card is sorted for definition.
+* We start from an index $i = 2$, since the first card is sorted for definition.
 
 To sort an array of size n in ascending order:
-* 1: Iterate from arr[1] to arr[n] over the array.
+* 1: Iterate from $arr[1]$ to $arr[n]$ over the array.
 * 2: Compare the current element (key) to its predecessor.
 * 3: If the key element is smaller than its predecessor, compare it to the elements before. 
 Move the greater elements one position up to make space for the swapped element.
@@ -100,12 +100,13 @@ This is true:
    2) Which means $A[1 \ldots A.length + 1-1]$ is made of the sorted elements which were originally in $A[1 \ldots A.length+1-1]$
 
 ### Complexity: Theorem - $T(n) = \Theta(n^{2}) \wedge S(n) = \mathcal{O}(1)$
-The insertion sort algorithm sorts in-place $S(n) = \mathcal{O}(1)$, and executes $\Theta(n^{2}) comparisons in 
+The insertion sort algorithm sorts in-place $S(n) = \mathcal{O}(1)$, and executes $\Theta(n^{2})$ comparisons in 
 the worst case. 
 
-#### Demonstration
+#### Demonstration - In loco
 The algorithm sorts **in-place** as it only requires one additional variable aside from the input array.
 
+#### Demonstration - Time complexity
 The for cycle is executed exactly $n-1$ times and the number of comparisons executed in the inner cycle (while),
 is $j-1$ in the worst case.
 * We assume the comparisons to be the fundamental operation in this algorithm.
@@ -125,12 +126,12 @@ We conclude that the algorithm is sensitive about the input's order, or better i
 
 ---
 
-### Conclusion
+### Conclusions
 Pros: 
 * Works well with small vectors
 
 --- 
 
-### Extra Credits
+#### Extra Credits
 
 * [GfG - Insertion Sort](https://www.geeksforgeeks.org/insertion-sort/)
