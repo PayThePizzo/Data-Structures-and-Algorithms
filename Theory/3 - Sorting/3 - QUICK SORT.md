@@ -1,27 +1,16 @@
 # Quick Sort
-Quick sort belongs to a class of algorithms which use a Divide-et-Impera approach.
 
-![Quick Sort](https://raw.githubusercontent.com/PayThePizzo/DataStrutucures-Algorithms/main/Resources/quicksort.png?raw=TRUE)
-
-
+| **Operation** 	| **Method**                     	| **Time**                                                                             	| **Adaptive?** 	| **In-Place?** 	| **Stable?** 	| **Online?** 	|
+|---------------	|--------------------------------	|-------------------------------------------------------------------------------------	|---------------	|---------------	|-------------	|-------------	|
+| _Quick sort_  	| Divide et Impera, Partitioning 	| $T_{b}(n) = \Theta(n), T_{avg}(n) = \mathcal{O}(nlog(n)), T_{w}(n) = \Theta(n^{2})$ 	| N             	| **Y**         	| N           	| N           	|
 
 ---
 
-## Invariant
-INV ≡
-* x = A[r] is always true at all times
-* For every k ∈ [p..i], A[k]<= x
-* For every k ∈ [i+1..r], A[k]>= x
-* `p <= j <= r`
-* `p-1 <= i <= j-1`
+## Idea
 
-We can confirm this is holds true at all times:
-1) Initialization
-2) Preservation
-3) Conclusion: 
-   * At the end of the for block `j = r`
-   * This means: `p ≤ j ≤ r` and `p − 1 < j < r − 1`.
-   * Furthermore, the last two lines of code in the partition function, insert the pivot in the right position.
+Quick sort belongs to a class of algorithms which use a Divide-et-Impera approach.
+
+![Quick Sort](https://raw.githubusercontent.com/PayThePizzo/DataStrutucures-Algorithms/main/Resources/quicksort.png?raw=TRUE)
 
 ---
 
@@ -51,11 +40,40 @@ partition(Array A, int p, int r)
             swap(A[i], A[j]);
     swap(A[i+1], A[r]); #Put pivot back to the right position
     return i+1;
-
 ```
+
+### Invariant
+INV ≡
+* x = A[r] is always true at all times
+* For every k ∈ [p..i], A[k]<= x
+* For every k ∈ [i+1..r], A[k]>= x
+* `p <= j <= r`
+* `p-1 <= i <= j-1`
+
+We can confirm this is holds true at all times:
+1) Initialization
+2) Preservation
+3) Conclusion:
+   * At the end of the for block `j = r`
+   * This means: `p ≤ j ≤ r` and `p − 1 < j < r − 1`.
+   * Furthermore, the last two lines of code in the partition function, insert the pivot in the right position.
+
+![invariantquicksort](https://raw.githubusercontent.com/PayThePizzo/DataStrutucures-Algorithms/main/Resources/invariantquicksort.png?raw=TRUE)
+
+### Time Complexity
+
 **Final Time Complexity** T(n) = O(n**2)
 * Highly depends on the type of partitions created 
 * If sub-vectors are balanced: T(n) = O(n * log(n)) which is the average case
+
+### Theorem
+
+#### Demonstration - Worst Case
+
+#### Demonstration - Best Case
+
+#### Demonstration - Average Case
+
 
 ---
 
