@@ -11,27 +11,6 @@ arrays until the whole array is merged.[1]
 
 ---
 
-## Invariant
-As we know, the study of the invariant must be completed by analyzing all the iteration cycles.
-Here, we will only focus on the third one.
-
-**INV**:
-* The sub-vector A[p..k-1] contains the smallest sorted `k-p` elements present in L[1.. n1+1] and
-R[1.. n2+1].
-* Moreover, L[i] and R[j] are the smallest elements of their vectors respectively (not yet copied into A).
-
-1) Initialization: Respected
-2) Preservation: Respected
-3) Conclusion: When the for block stops, `k = r+1`
-
-INV[(r+1)/k] ≡
-* The sub-vector A[p..r+1-1] contains the smallest sorted `r+1-p` elements present in L[1.. n1+1] and
-  R[1.. n2+1].
-* Moreover, L[i] and R[j] are the smallest elements of their vectors respectively (not yet copied into A).
-* In conclusion, L & R contain `n1+n2+n3 = r-p+3` elements. This means, we copied all the elements into A
-and the guards have not been copied.
-
----
 ## The Algorithm - Divide et Impera
 It sorts a vector limited by two indexes *p*, representing the starting index, and *r*,
 representing the ending index.
@@ -104,6 +83,28 @@ Merge(Array A, int p, int q, int r)
             A[k] = R[j];
             j++;
 ```
+
+### Invariant
+As we know, the study of the invariant must be completed by analyzing all the iteration cycles.
+Here, we will only focus on the third one.
+
+**INV**:
+* The sub-vector A[p..k-1] contains the smallest sorted `k-p` elements present in L[1.. n1+1] and
+  R[1.. n2+1].
+* Moreover, L[i] and R[j] are the smallest elements of their vectors respectively (not yet copied into A).
+
+1) Initialization: Respected
+2) Preservation: Respected
+3) Conclusion: When the for block stops, `k = r+1`
+
+INV[(r+1)/k] ≡
+* The sub-vector A[p..r+1-1] contains the smallest sorted `r+1-p` elements present in L[1.. n1+1] and
+  R[1.. n2+1].
+* Moreover, L[i] and R[j] are the smallest elements of their vectors respectively (not yet copied into A).
+* In conclusion, L & R contain `n1+n2+n3 = r-p+3` elements. This means, we copied all the elements into A
+  and the guards have not been copied.
+
+
 **Final Time Complexity** T(n) = <mark>Θ(n * log(n))</mark>
 * Merge: T(n) = Θ(n)
   1) variable initialization: O(1)

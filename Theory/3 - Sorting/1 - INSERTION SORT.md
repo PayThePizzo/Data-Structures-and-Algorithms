@@ -1,15 +1,19 @@
 # Insertion Sort
-Insertion sort is a simple sorting algorithm that works similar to the way you sort playing 
-cards in your hands. 
 
-The array is virtually split into a **sorted** and an **unsorted part**. 
-Values from the unsorted part are picked and placed at the correct position in the sorted part
+| **Operation**    	| **Method**             	| **Time**                   	| **Adaptive?** 	| **In-Place?** 	| **Stable?** 	| **Online?** 	|
+|------------------	|------------------------	|----------------------------	|---------------	|---------------	|-------------	|-------------	|
+| _Insertion sort_ 	| Insertion, Incremental 	| $T_{w}(n) = \Theta(n^{2})$ 	| **Y**         	| **Y**         	| **Y**       	| **Y**       	|
+
+---
+
+## Idea
+
+Insertion sort is a simple sorting algorithm that works similar to the way you sort playing 
+cards in your hands. The array is virtually split into a **sorted** and an **unsorted part**. 
+Values from the unsorted part are picked and placed at the correct position in the sorted part.
 
 ![Insertion Sort](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/insertionsort.png?raw=TRUE)
 
-Characteristics:
-* Incremental technique
-* In-Loco Sorting
 
 ## Incremental Technique 
 The array is virtually split into a $k$ **sorted** and an $A.length-k$ **unsorted part**.
@@ -26,7 +30,7 @@ by placing in the correct position an element from the unsorted section at each 
 
 
 ## In-Loco sorting
-This algorithm sorts in-place, namely with an external additional space $S(n)= \mathcal{O}(1)$.
+This algorithm sorts in-place, namely with an external additional space $S(n) = \mathcal{O}(1)$.
 
 ## Adaptive
 The algorithm is sensitive about the input's order, or better it is **adaptive**.
@@ -84,7 +88,6 @@ void insertion_sort_cpp(std::vector<int> &array){
 }
 ```
 
-
 ### Invariant of the for-cycle
 $$INV  = \text{The subarray } A[1 \ldots j-1] \text{ is made of the sorted elements which were originally in } A[1 \ldots j-1]$$
 
@@ -96,7 +99,7 @@ This is true:
    1) Then $A[1 \ldots j-1]$ is sorted
    2) Which means $A[1 \ldots A.length + 1-1]$ is made of the sorted elements which were originally in $A[1 \ldots A.length+1-1]$
 
-### Theorem - $T(n) = \Theta(n^{2}) \wedge S(n) = \mathcal{O}(1)$
+### Complexity: Theorem - $T(n) = \Theta(n^{2}) \wedge S(n) = \mathcal{O}(1)$
 The insertion sort algorithm sorts in-place $S(n) = \mathcal{O}(1)$, and executes $\Theta(n^{2}) comparisons in 
 the worst case. 
 
@@ -114,6 +117,7 @@ Where $n = A.length$
 **Final Time Complexity** = $T(n) = \Theta(n^{2})$
 * $T_{best}(n) =  \Theta(n)$
   * Array sorted in a non-decreasing manner 
+* $T_{avg}(n) = \Theta(j/2)$
 * $T_{worst}(n) =  \Theta(n^{2})$
   * Array sorted in a non-increasing manner
 
