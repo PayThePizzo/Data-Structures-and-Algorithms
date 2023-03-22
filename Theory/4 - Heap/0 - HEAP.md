@@ -1,8 +1,9 @@
 # Heap
-Put it simply, a heap is an almost-complete binary tree. 
-Given a height `h` for a heap: 
-* at **h-1** the heap is a complete binary tree
-* at h, is almost-complete BT with all the leaves on the **left side**.
+> Put it simply, a heap is an almost-complete binary tree. 
+
+Given a height $h$ for a heap: 
+* at $h-1$ the heap is a complete binary tree
+* at $h$, is almost-complete BT with all the leaves on the **left side**.
 
 [1] ![Heap](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/heap.png?raw=TRUE)
 

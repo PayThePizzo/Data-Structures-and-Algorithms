@@ -19,3 +19,4 @@ add_executable(efficientprogramming "Exercises/Efficient Programming/efficientpr
 add_executable(sorting "Theory/3 - Sorting/sorting.cpp")
 add_executable(ex1 "Assignment/Ass22_23/1 - First/ex1.cpp")
 add_executable(GeneralTree "Theory/2 - Tree/GeneralTree.cpp")
+add_executable(bst "Theory/2 - Tree/bst.cpp")
