@@ -15,14 +15,12 @@ Quick sort belongs to a class of algorithms which use a Divide-et-Impera approac
 ---
 
 ## The Algorithm - Divide et Impera
-1. Divide: After choosing a pivot element from A such that `pivot = A[q]`, the vector is partitioned in two sub-vectors 
-A[p..q-1] & A[q+1..r] (can be empty), such that:
-   1. Every element in A[i] ∈ A[p..q-1] <= A[q]
-   2. Every element in A[j] ∈ A[q+1..r] >= A[q]
-   3. A[q] is the *pivot*, the element used to create the partitions and every element that is smaller or larger,
-   is shifted to one of the sub-arrays (so that the conditions are respected)
-3. Impera: sorts the sub-vectors recursively through quicksort, unless the input is trivially small (0/1 element).
-4. Merge: in this case there is no merge phase, because the algorithm sorts in place
+1. **Divide**: After choosing a pivot element from $A$ such that $pivot(A) = A[q]$, the vector is partitioned in two sub-vectors $A[p \ldots q-1]$ and $A[q+1 \ldots r]$ (can be empty), such that 
+   1. $\forall A[i] \in A[p \ldots q-1] \ni' A[i] \leq A[q]$
+   2. $\forall A[j] \in A[q+1 \ldots r] \ni' A[j] \geq A[q]$
+   3. $A[q]$ is the *pivot*, the element used to create the partitions and every element that is smaller or larger, is shifted to one of the sub-arrays (so that the conditions are respected).
+2. **Impera**: sorts the sub-vectors recursively through quicksort, unless the input is trivially small ($0 \vee 1$ element).
+3. **Merge**: in this case there is no merge phase, because the algorithm sorts in place
 
 ```python
 quick_sort(Array A, int p, int r)
@@ -43,41 +41,136 @@ partition(Array A, int p, int r)
 ```
 
 ### Invariant
-INV ≡
-* x = A[r] is always true at all times
-* For every k ∈ [p..i], A[k]<= x
-* For every k ∈ [i+1..r], A[k]>= x
-* `p <= j <= r`
-* `p-1 <= i <= j-1`
+
+```math
+INV \equiv \left\{\begin{matrix}
+x=A[r] \text{ is always true}& \wedge \\
+\forall k \in [p \ldots i] \ni' A[k] \leq x & \wedge \\
+\forall k \in [i+1 \ldots j-1] \ni' A[k] > x& \wedge \\
+p \leq j \leq r & \wedge \\
+p-1 \leq i \leq j-1 \\
+\end{matrix}\right.
+```
 
 We can confirm this is holds true at all times:
-1) Initialization
-2) Preservation
-3) Conclusion:
-   * At the end of the for block `j = r`
-   * This means: `p ≤ j ≤ r` and `p − 1 < j < r − 1`.
-   * Furthermore, the last two lines of code in the partition function, insert the pivot in the right position.
+1. Initialization 
+2. Preservation 
+3. Conclusion:
+   * At the end of the for block $j = r$
+   * This means: $p \leq r \leq r$ and $p − 1 \leq r \leq r − 1$.
+   * Furthermore, the last two lines of code in the partition function, insert the pivot in the right position by changing it with the leftmost element larger than x.
+
+```math
+INV[r/j] \equiv \left\{\begin{matrix}
+x=A[r] \text{ is always true}& \wedge \\
+\forall k \in [p \ldots i] \ni' A[k] \leq x & \wedge \\
+\forall k \in [i+1 \ldots j-1] \ni' A[k] > x& \wedge \\
+p \leq r \leq r & \wedge \\
+p-1 \leq i \leq r-1 \\
+\end{matrix}\right.
+```
 
 ![invariantquicksort](https://raw.githubusercontent.com/PayThePizzo/DataStrutucures-Algorithms/main/Resources/invariantquicksort.png?raw=TRUE)
 
 ### Time Complexity
 
-**Final Time Complexity** T(n) = O(n**2)
-* Highly depends on the type of partitions created 
-* If sub-vectors are balanced: T(n) = O(n * log(n)) which is the average case
+```math
+T_{partition}(n) = \Theta(n) = \left\{\begin{matrix}
+\mathcal{O}(1) & \text{ assignments }\\
+\Theta(n) & \text{ for block } r-p-1=n  \\
+\end{matrix}\right.
+```
 
-### Theorem
+```math
+T_{quicksort}(n) = \left\{\begin{matrix}
+c & n \leq 1\\
+T(k)+T(n-k-1)+ \Theta(n) & n>1  \\
+\end{matrix}\right.
+```
+
+Where 
+* $k$ is the count of elements of the first sub-array
+* $n-k-1$ is the count of elements of the second sub-array (excluding the pivot $-1$)
+
+$T_{quicksort}(n)$ depends on the partitioning method of the subarray
+
+```math
+T_{quicksort}(n) = \left\{\begin{matrix}
+T_{worst}(n)& \Theta(n^{2}) \\
+T_{best}(n) &\Theta(nlog(n))  \\
+T_{average-constant}(n) & \mathcal{O}(nlog(n))  \\
+T_{average-non-constant}(n)& \Theta(nlog(n))  \\
+\end{matrix}\right.
+```
 
 #### Demonstration - Worst Case
+In the worst case the sub-arrays are highly unbalanced
+
+$$T_{worst}(n) = T(n-1) + T(0) + \Theta(n), \text{ since } |sub_{1}|=n-1 \wedge |sub_{2}|=0$$
+
+![wcquicksort](https://raw.githubusercontent.com/PayThePizzo/DataStrutucures-Algorithms/main/Resources/wcquicksort.png?raw=TRUE)
+
+$$T_{worst}(n) = T(n-1) + c + \Theta(n) \Rightarrow T_{worst}(n) = T(n-1) + \Theta(n) = T(n-1)+cn $$
+
+$$T_{worst}(n) = T(0) + \sum_{i=1}^{n}ci = T(0) + c\sum_{i=1}^{n}i = T(0)+c \frac{(n+1)n}{2} = \Theta(n^{2})$$
 
 #### Demonstration - Best Case
+In the best case the sub-arrays contain exactly almost half of the total elements respectively 
 
-#### Demonstration - Average Case
+$$T_{best}(n) = 2T(n/2) + \Theta(n), \text{ since } |sub_{1}|=n/2 \wedge |sub_{2}|=(n/2)-1$$
 
+By the Master Theorem
+
+$$f(n) = \Theta(n^{log_{b}(a)}) = \Theta(n) \stackrel{2_{nd}} \Longrightarrow T_{best} = \Theta(nlog(n))$$
+
+#### Demonstration - Average Case (constant)
+In the average case, we find a constant repartition of the subarrays for example $9:1$ :
+
+$$T_{average-constant}(n) = T(n/10) + T(9n/10) + cn$$
+
+By the Occurrences Tree method we find that:
+
+![avg1quicksort](https://raw.githubusercontent.com/PayThePizzo/DataStrutucures-Algorithms/main/Resources/avg1quicksort.png?raw=TRUE)
+
+So:
+1. The height of the tree is $h = log_{10}(n)$
+2. The longest path from the root, to a leaf here is found by keep going right, $log_{10/9}(n)$
+   1. Which is where the recursion stops
+3. The maximum cost of a level is $cn$
+   1. Every level has cost $cn$ until we reach the depth $log_{10}(n)$ where it becomes the upperbound for the cost of a level
+
+Then:
+
+$$T_{average-constant}(n) \leq cn \cdot log_{10/9}(n) \Rightarrow T_{average-constant}(n) = \mathcal{O}(nlog(n)) $$
+
+From this we can generalize that:
+
+```math 
+T(n) = T(\alpha n) + T(n(1- \alpha)) + cn \text{, where } 0 < \alpha < 1 \wedge c > 0 \text{ } \Longrightarrow T(n) = \Theta(nlog(n))
+```
+
+#### Demonstration - Average Case (non-constant)
+In the average case where there are two options that keep repeating:
+* We assume that the input's permutations are i.i.d
+
+```math 
+T_{average-non-constant}(n) = \left\{\begin{matrix}
+T_{lucky}(n)\rightarrow L(n) = 2U(n/2)+\Theta(n) \\
+T_{unlucky}(n)\rightarrow U(n)=L(n-1)+\Theta(n)  \\
+\end{matrix}\right.
+```
+
+Then:
+
+$$L(n) = 2( L(\frac{n}{2}-1) + \Theta(\frac{n}{2})) + \Theta(n) =  2L(\frac{n}{2}-1) + 2\Theta(\frac{n}{2})) + \Theta(n)$$
+
+$$L(n) =  2L(\frac{n}{2}-1) + 2\Theta(\frac{n}{2})) + \Theta(n) =  2L(\frac{n}{2}-1)+ \Theta(n)$$
+
+$$$L(n) =  2L(\frac{n}{2}-1)+ \Theta(n) = \Theta(nlog(n))$$
 
 ---
 
-### Randomized Version
+## Avoiding Worst Case: Randomized Version
 
 ```python
 randomized_partition(int arr[], int p, int r)
@@ -94,7 +187,7 @@ randomized_quicksort(int arr[], int p, int r)
 
 ---
 
-### Optimization 1 - Insertion Sort on small vectors
+## Optimization 1 - Insertion Sort on small vectors
 By using a value m `5 <= m <= 25` to have a range of cases where the insertion sort overrides the main algorithm
 can help to improve the average case scenario.
 
@@ -116,14 +209,14 @@ sort(int * arr, int p, int r)
     insertionsort(arr);
 ```
 
-### Optimization 2 - Median as pivot
+## Optimization 2 - Median as pivot
 Using a value m as the pivot for the quick sort means, choosing the median of three elements inside an unsorted vector:
 * A leftmost element
 * A rightmost element
 * A center element
 
 
-### Optimization 3 - Dutch Flag (Tri-Partition)
+## Optimization 3 - Dutch Flag (Tri-Partition)
 When we find duplicates, not even randomizing the choice of the pivot can help much.
 Instead, of dividing the vector in 2 parts we divide it in 3 part:
 1) Partition with elements < x

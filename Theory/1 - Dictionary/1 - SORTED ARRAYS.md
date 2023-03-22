@@ -53,6 +53,9 @@ search(Dictionary A, Key k)
     else
         return A[i].info
 ```
+
+
+
 Final Time Complexity: <mark>T(n) = O(log(n))</mark>
 * T(**search_index**) = <mark>O(log(n)))</mark>
     * Since we do not have any lower limit, we might find immediately what we are looking for!
