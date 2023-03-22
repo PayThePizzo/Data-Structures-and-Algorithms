@@ -38,6 +38,53 @@ Heap_sort(Array A)
         max_heapify(A, 1);
 ```
 
+```c++
+
+
+
+max_heapify(Heap a, Node i){
+    Node left = left(i);
+    Node right = right(i);
+    Node max;
+    if(left <= a.heap_size && a[l] > a[i]){
+        max = left;
+    } else {
+        max = i;
+    }
+
+    if(r <= a.heap_size && a[r] > a[massimo]){
+        max = r;
+    }
+
+    if(i != max){
+        swap(a, i, max);
+        max_heapify(a, max);
+    }
+}
+
+build_max_heap(A){
+    A.heap_size = A.length;
+    for(int i = A.length / 2; i > 0; i--){
+        max_heapify(A, i);
+    }
+}
+
+heapSort(int * arr){
+    build_max_heap(arr);
+// sapendo che la radice è sempre l’elemento massimo
+// possiamo andare ad estrarre la radice e inserirla in un nuovo array
+// in modo da ordinarlo
+    for(int i = 0; i < arr.length; i++){
+// inseriamo la radice nell’array ordinato
+        swap(arr, i, 0);
+// andiamo a rimuovere la radice dell'heap
+        arr.heap_size = arr.heap_size - 1;
+        max_heapify(arr, 0);
+    }
+}
+
+```
+
 **Final Time Complexity** T(n) = O(n * log(n))
 * T(max_heapify()) = O(log(n))
 

@@ -81,6 +81,8 @@ T_{partition}(n) = \Theta(n) = \left\{\begin{matrix}
 \end{matrix}\right.
 ```
 
+And
+
 ```math
 T_{quicksort}(n) = \left\{\begin{matrix}
 c & n \leq 1\\
@@ -171,11 +173,14 @@ $$$L(n) =  2L(\frac{n}{2}-1)+ \Theta(n) = \Theta(nlog(n))$$
 ---
 
 ## Avoiding Worst Case: Randomized Version
+Instead of choosing $A[r]$ as pivot, we use a random pivot in $A[p \ldots r]$
+* We assume all the keys are distinct
 
 ```python
-randomized_partition(int arr[], int p, int r)
-    int i = random(p,r); #returns random integer between p and r
-    swap(&arr, i, r);
+#returns random integer between p and r
+int randomized_partition(int arr[], int p, int r)
+    int i = random(p,r); 
+    swap(&arr, i, r); #swap arr[i] and arr[j]
     return partition(arr, p, r);
 
 randomized_quicksort(int arr[], int p, int r)
@@ -185,50 +190,73 @@ randomized_quicksort(int arr[], int p, int r)
         randomized_quicksort(arr, q + 1, r);
 ```
 
+$$T_{avg}(n) = \Theta(nlog(n)) \wedge T_{w}(n) = \Theta(n^{2})$$
+
+Pros:
+1. $T(n)$ does not depend on the input's order
+2. No assumption on the input's distribution.
+3. No specific input can define the worst case 
+4. The random number generator defines the worst case
+5. It is 3 to 4 times faster than the normal version.
+
 ---
 
-## Optimization 1 - Insertion Sort on small vectors
+## Optimization - Insertionsort on small vectors
 By using a value m `5 <= m <= 25` to have a range of cases where the insertion sort overrides the main algorithm
 can help to improve the average case scenario.
 
-Case 1: 
+Case 1: We can either sort it only if the input is in range
 ```python
 quicksort(int * arr, int p, int r)
    if(r - p <= M):
       insertionsort(arr);
 ```
 
-Case 2:
+Case 2: 
 ```python
 quicksort(int * arr, int p, int r)
    if(r - p <= M):
       return;
 
 sort(int * arr, int p, int r)
-    quicksort(arr, p, r);
-    insertionsort(arr);
+    quicksort(arr, p, r); # partially sorted vectors
+    insertionsort(arr); # we sort the rest with insertion sort
 ```
 
 ## Optimization 2 - Median as pivot
-Using a value m as the pivot for the quick sort means, choosing the median of three elements inside an unsorted vector:
-* A leftmost element
-* A rightmost element
-* A center element
+Using a value $m$ the pivot for the quicksort means, 
+1. Choosing the median out of three elements inside an unsorted vector:
+   * A leftmost element
+   * A rightmost element
+   * A center element
+2. Swapping it with $A[r]$
+3. Applying the algorithm
 
 
 ## Optimization 3 - Dutch Flag (Tri-Partition)
 When we find duplicates, not even randomizing the choice of the pivot can help much.
-Instead, of dividing the vector in 2 parts we divide it in 3 part:
-1) Partition with elements < x
-2) Partition with elements = x
-3) Partition with elements > x
+
+Instead, of dividing the vector in 2 parts we divide it in 3 parts:
+1) Partition with elements $i < x$
+2) Partition with elements $i > x$
+3) Partition with elements $i = x$
 
 This slightly changes the invariant, but the main idea stays the same.
+
+Partition:
+1. Permutation of the elements in $A[p \ldots r]$
+2. Returns $q$ and $t$, $p \leq q \leq t \leq r$
+   1. $\forall A[i] \in A[q \ldots t] \ni' A[i=q] = A[i+1] = \ldots = A[t=i+n]$
+   2. $\forall A[i] \in A[p \ldots q-1] \ni' A[i] < A[q]$
+   3. $\forall A[i] \in A[q+1 \ldots r] \ni' A[i] > A[q]$
+3. $T(n) = \Theta(r-p)$
 
 ```python
 partition(int * arr, int p, int r)
     int x = arr[r];
     int min = p, eq = p, max = r;
+
+    # Theta(r-p)
     while(eq < max):
         if(arr[eq] < x):
             swap(arr, min, eq);
@@ -241,7 +269,7 @@ partition(int * arr, int p, int r)
             swap(arr, max, eq);
 
     swap(arr, r, max);
-    return [min, max];
+    return [min, max]; #pair
 
     
 quicksort(int * arr, int p, int r)
@@ -250,6 +278,52 @@ quicksort(int * arr, int p, int r)
         quicksort(arr, p, q - 1);
         quicksort(arr, t + 1, r);
 ```
+
+### Invariant
+
+```math
+INV \equiv 
+\left\{ \begin{matrix}
+x=A[r] \text{ is always true} & \wedge \\
+\forall k \in [p \ldots min) \ni' A[k] \leq x & \wedge \\
+\forall k \in [min \ldots eq) \ni' A[k] = x & \wedge \\
+\forall k \in [max \ldots r) \ni' A[k] > x & \wedge \\
+p \leq min \leq eq \leq max \leq r & \wedge \\
+\end{matrix}\right.
+```
+
+We obtain something like this: 
+
+`| < x | = x | ? | > x | x |`
+`|p    |min  | eq| max | r |`
+
+We can confirm this is holds true at all times:
+1. Initialization
+2. Preservation
+3. Conclusion: When the execution ends, we have $eq = max$
+   1. The last two lines swap the pivot $A[r]$ with the first element larger than $x$
+   2. We obtain the desired partition
+
+```math
+INV[max/eq]\equiv 
+\left\{ \begin{matrix}
+x=A[r] \text{ is always true} & \wedge \\
+\forall k \in [p \ldots min) \ni' A[k] \leq x & \wedge \\
+\forall k \in [min \ldots max) \ni' A[k] = x & \wedge \\
+\forall k \in [max \ldots r) \ni' A[k] > x & \wedge \\
+p \leq min  \leq max \leq r & \wedge \\
+\end{matrix}\right.
+```
+
+The result is: 
+
+`| < x | = x | > x | x |`
+`|p    |min  | max | r |`
+
+### Complexity
+If all the elements are equal
+
+$$T(n) = \Theta(n=r-p+1)$$
 
 ---
 
