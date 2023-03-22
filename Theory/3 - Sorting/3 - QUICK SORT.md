@@ -295,6 +295,7 @@ p \leq min \leq eq \leq max \leq r & \wedge \\
 We obtain something like this: 
 
 `| < x | = x | ? | > x | x |`
+
 `|p    |min  | eq| max | r |`
 
 We can confirm this is holds true at all times:
@@ -318,6 +319,7 @@ p \leq min  \leq max \leq r & \wedge \\
 The result is: 
 
 `| < x | = x | > x | x |`
+
 `|p    |min  | max | r |`
 
 ### Complexity
