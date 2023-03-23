@@ -1,50 +1,42 @@
 # Priority Queues
 
-This version is based on the heap data structure, 
-which is not rare since data access is relatively efficient.
+> A priority queue is a data structure for maintaining a dynamic set $S$ of elements, each with an associated value called a 
+> $key$ or weight which follow a policy of total order
 
-It is a data structure that maintains a _dynamic set_ in which each element is a record 
-**{key:weight}**
-* These keys follow a policy of total order
+Priority queues are based on the heap data structure, which is not rare since data access is relatively efficient.
 
-Types:
-1. Maximum Priority Queue (MaxPQ)
-2. Minimum Priority Queue (MinPQ)
+There are mainly two types of Priority Queue, depending on the underling type of heap used:
+1. Maximum Priority Queue (Max PQ), which is based on Max Heap
+2. Minimum Priority Queue (Min PQ), which is based on Min Heap
 
-Their primitive operations are specular. Their common precondition is that S, the 
-dynamic set, must be priority queue
-
----
-## Max PQ
-* insert(Queue S, Elem x)
-  * Inserts x in S: _S = S U {x}_
-* delete(Queue S, Key k)
-  * Removes the first element x with x.key = k
-* maximum(Queue S)
-  * Returns the element with the **largest key** in S
-* extract_max(QueueS)
-  * Returns and **removes** the element with the **largest key** in S
-* increase_key(Queue S, Elem x, Key k)
-  * Substitutes x.key with the new value of k.
-  * x.key = k, with _k >= x.key_ usually
-
-It is best suited as scheduler of processes
+Their primitive operations are specular and their common precondition is that $S$, the 
+dynamic set, **must be priority queue**.
 
 ---
 
-## Min PQ
-* insert(S, x)
-  * x.key = k, with _k <= x.key_ usually
-* delete(S, k)
-    * Removes the first element x with x.key = k
-* minimum(S)
-  *  Returns the element with the **smallest key** in S
-* extract_min(S)
-  * Returns and **removes** the element with the **smallest key** in S
-* decrease_key(S, x, k)
-  * Substitutes x.key with the new value of k.
-  * x.key = k, with _k <= x.key_ usually
+## Max PQ - Operations
 
-It is best suited for algorithm design
+> It is best suited as scheduler of processes
 
+| **Operation**                                  	| **Pre-Condition**                                         	 | **Post-Condition**                                             	|
+|------------------------------------------------	|-------------------------------------------------------------|----------------------------------------------------------------	|
+| `Insert(MaxPQ S, Elem x) -> void`              	| $S$ is Max PQ and $\                                        |S\| \geq 1$                          	| $S = S \cup \lbrace x \rbrace$                                 	|
+| `Delete(MaxPQ S, Key k) -> void`               	| $S$ is Max PQ, $\                                           |S\| \geq 1$                             	| Removes the first element $x$ with $x.key = k$                 	|
+| `Maximum(MaxPQ S) -> Elem x`                   	| $S$ is Max PQ and $\                                        |S\| \geq 1$                          	| Returns the first element $x$ with the  largest key in $S$        |
+| `Extract_Max(MaxPQ S) -> Elem x`               	| $S$ is Max PQ and $\                                        |S\| \geq 1$                          	| Returns and removes the first element $x$ with the largest key 	|
+| `Increase_Key(MaxPQ S, Elem x, Key k) -> void` 	| $S$ is Max PQ, $\                                           |S\| \geq 1$, $x \in S$ , $x.key \leq k$ 	| Substitutes the old key of $x$ with $x.key = k$                	|
+
+---
+
+## Min PQ - Operations
+
+> It is best suited for algorithm design
+
+| **Operation**                                  	| **Pre-Condition**                                         	| **Post-Condition**                                              	|
+|------------------------------------------------	|-----------------------------------------------------------	|-----------------------------------------------------------------	|
+| `Insert(MaxPQ S, Elem x) -> void`              	| $S$ is Max PQ and $\|S\| \geq 1$                          	| $S = S \cup \lbrace x \rbrace$                                  	|
+| `Delete(MaxPQ S, Key k) -> void`               	| $S$ is Max PQ, $\|S\| \geq 1$                             	| Removes the first element $x$ with $x.key = k$                  	|
+| `Minimum(MaxPQ S) -> Elem x`                   	| $S$ is Max PQ and $\|S\| \geq 1$                          	| Returns the first element $x$ with the smallest key in $S$      	|
+| `Extract_Min(MaxPQ S) -> Elem x`               	| $S$ is Max PQ and $\|S\| \geq 1$                          	| Returns and removes the first element $x$ with the smallest key 	|
+| `Decrease_Key(MaxPQ S, Elem x, Key k) -> void` 	| $S$ is Max PQ, $\|S\| \geq 1$, $x \in S$ , $x.key \geq k$ 	| Substitutes the old key of $x$ with $x.key = k$                 	|
 
