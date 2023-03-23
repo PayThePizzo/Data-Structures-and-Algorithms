@@ -18,13 +18,13 @@ dynamic set, **must be priority queue**.
 
 > It is best suited as scheduler of processes
 
-| **Operation**                                  	| **Pre-Condition**                                         	 | **Post-Condition**                                             	|
-|------------------------------------------------	|-------------------------------------------------------------|----------------------------------------------------------------	|
-| `Insert(MaxPQ S, Elem x) -> void`              	| $S$ is Max PQ and $\                                        |S\| \geq 1$                          	| $S = S \cup \lbrace x \rbrace$                                 	|
-| `Delete(MaxPQ S, Key k) -> void`               	| $S$ is Max PQ, $\                                           |S\| \geq 1$                             	| Removes the first element $x$ with $x.key = k$                 	|
-| `Maximum(MaxPQ S) -> Elem x`                   	| $S$ is Max PQ and $\                                        |S\| \geq 1$                          	| Returns the first element $x$ with the  largest key in $S$        |
-| `Extract_Max(MaxPQ S) -> Elem x`               	| $S$ is Max PQ and $\                                        |S\| \geq 1$                          	| Returns and removes the first element $x$ with the largest key 	|
-| `Increase_Key(MaxPQ S, Elem x, Key k) -> void` 	| $S$ is Max PQ, $\                                           |S\| \geq 1$, $x \in S$ , $x.key \leq k$ 	| Substitutes the old key of $x$ with $x.key = k$                	|
+| **Operation**                                  	| **Pre-Condition**                                         	| **Post-Condition**                                             	|
+|------------------------------------------------	|-----------------------------------------------------------	|----------------------------------------------------------------	|
+| `Insert(MaxPQ S, Elem x) -> void`              	| $S$ is Max PQ and $\|S\| \geq 1$                          	| $S = S \cup \lbrace x \rbrace$                                 	|
+| `Delete(MaxPQ S, Key k) -> void`               	| $S$ is Max PQ, $\|S\| \geq 1$                             	| Removes the first element $x$ with $x.key = k$                 	|
+| `Maximum(MaxPQ S) -> Elem x`                   	| $S$ is Max PQ and $\|S\| \geq 1$                          	| Returns the first element $x$ with the largest key in $S$      	|
+| `Extract_Max(MaxPQ S) -> Elem x`               	| $S$ is Max PQ and $\|S\| \geq 1$                          	| Returns and removes the first element $x$ with the largest key 	|
+| `Increase_Key(MaxPQ S, Elem x, Key k) -> void` 	| $S$ is Max PQ, $\|S\| \geq 1$, $x \in S$ , $x.key \leq k$ 	| Substitutes the old key of $x$ with $x.key = k$                	|
 
 ---
 
