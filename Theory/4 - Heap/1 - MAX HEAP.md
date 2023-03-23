@@ -17,10 +17,10 @@ By induction, through the property of transitivity of $\leq$, it is possible to 
 
 ## Operations
 
-| **Operation**                               	| **Time**                     	| **Pre-Condition**                                                                             	| **Post-Condition**                   	|
-|---------------------------------------------	|------------------------------	|-----------------------------------------------------------------------------------------------	|--------------------------------------	|
-| `Max_Heapify(Array A[], int i) -> Max_Heap` 	| $T(n) = \mathcal{O}(log(n))$ 	| $i \in A$ and the binary trees with root in $left_child(i)$ and $right_child(i)$ are Max Heap 	| The tree rooted in $i$ is a Max Heap 	|
-| `Build_Max_Heap(Array A[]) -> Max_Heap`     	| $T(n) = \mathcal{O}(n)$      	| $A$ is an array                                                                               	| $A$ is a Max Heap                    	|
+| **Operation**                               	| **Time**                     	| **Pre-Condition**                                                                             | **Post-Condition**                   	|
+|---------------------------------------------	|------------------------------	|-----------------------------------------------------------------------------------------------|--------------------------------------	|
+| `Max_Heapify(Array A[], int i) -> Max_Heap` 	| $T(n) = \mathcal{O}(log(n))$ 	| $i \in A$ and the binary trees with root in $left-child(i)$ and $right-child(i)$ are Max Heap | The tree rooted in $i$ is a Max Heap 	|
+| `Build_Max_Heap(Array A[]) -> Max_Heap`     	| $T(n) = \mathcal{O}(n)$      	| $A$ is an array                                                                               | $A$ is a Max Heap                    	|
 
 ---
 
@@ -95,7 +95,7 @@ by $\lfloor log(n) \rfloor$
 ### Process 
 
 We can use the procedure `Max_Heapify` in a bottom-up manner to convert an array $A[1 \ldots n]$, where $n = A.length$,
-into a max-heap. By Lemma 2, half of the nodes are leaves so each is a 1-element heap to begin with. The procedure
+into a max-heap. By Lemma 2, half of the nodes are leaves so each is a 1-element max-heap to begin with. The procedure
 `Build_Max_Heap` goes through the remaining nodes of the tree and runs `Max_Heapify`on each one.
 
 ```python
@@ -112,21 +112,53 @@ Example:
 
 ### Invariant
 
-INV: every node in `i+1, i+2, ... n` is root of a max_heap with n = A.length. In particular
-`i=n/2` is the first node that is not a leaf. So we start from there since `i=(n/2)+1` is
-already a leaf (like the following nodes).
+$$INV \equiv \text{ every node in } i+1, i+2, \ldots, n=A.length \text{ is root of a max-heap }$$
+
+In particular:
+* $i=n/2$ is the first node that is not a leaf. 
+* So we start from there since $i=(n/2)+1$ is already a leaf and trivially max-heap (like the following nodes).
 
 This is true since:
 * Initialization: checked
 * Preservation: checked
-* Conclusion: At the end of the for block `i = 0`. The invariant tells us that every not is
-  a root of max_heap, in particular the node A[i] with `i=1` (the root node) is a max_heap.
+* Conclusion: At the end of the for block $i = 0$.
+  * The invariant tells us that every node is a root of max_heap
+  * Specifically, the node $A[i]$ with $i=1$, the root node, is a max-heap.
+
+$$INV[0/i] \equiv \text{ every node in } i=1 \ldots n \text{ is the root of a max-heap} \wedge i=1 \Rightarrow root $$
+
+The root is also a max-heap.
 
 ### Time Complexity
 
-**Final Time Complexity** T(n) = O(n * log(n))
-* Simple analysis
-* More specifically T(n) = O(n)
+From a simple analysis we can derive 
 
-## Heap Sort
-We will face this algorithm under the [sorting section](https://github.com/PayThePizzo/DataStrutucures-Algorithms/tree/main/3%20-%20Sorting)
+$$T(n) = T_{for} \cdot T_{calls} = \mathcal{O}(nlog(n))$$
+
+But this is not a very asymptotically tight upperbound. We can derive a tighter bound by observing that the time 
+for `Max_Heapify` to run at a node **varies with the height of the node** in the tree, and the heights of most
+nodes are small. Our tighter analysis relies on the properties that an $n$ element heap has height 
+$\lfloor log(n) \rfloor$ and at most nodes $\lceil \frac{n}{2^{h+1}} \rceil$ of any height $h$
+
+The time required by `Max_Heapify` when called on a node of height $h$ is $\mathcal{O}(h)$, and so we can express 
+the total cost of `Build_Max_Heap` as being bounded from above by (thanks to Lemma 3):
+
+```math
+\sum_{h=0}^{\lfloor log(n) \rfloor} \lceil (n/2^{h+1}) \rceil \mathcal{O}(h) = \mathcal{O}(n \sum_{h=0}^{\lfloor log(n) \rfloor} h/2^{h})
+```
+
+We evaluate the last summation by substituting $x = 1/2$ in the formula, yielding
+
+```math
+\sum_{h=0}^{\infty}  h/2^{h} = 1/2 \cdot \frac{1}{(1-\frac{1}{2})^{2}} = 4/2 = 2
+```
+
+Thus, we can bound the running time of `Build_Max_Heap` as
+
+```math
+T(n) = \mathcal{O}(n \sum_{h=0}^{\lfloor log(n) \rfloor} h/2^{h}) \leq = \mathcal{O}(n \sum_{h=0}^{\infty} h/2^{h}) \leq \mathcal{O}(2n) \leq \mathcal{O}(n)
+```
+
+**Final Time Complexity** $T(n) = \mathcal{O}(n)$
+
+---
