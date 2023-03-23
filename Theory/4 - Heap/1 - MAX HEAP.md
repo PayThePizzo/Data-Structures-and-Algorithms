@@ -156,7 +156,7 @@ We evaluate the last summation by substituting $x = 1/2$ in the formula, yieldin
 Thus, we can bound the running time of `Build_Max_Heap` as
 
 ```math
-T(n) = \mathcal{O}(n \sum_{h=0}^{\lfloor log(n) \rfloor} h/2^{h}) \leq = \mathcal{O}(n \sum_{h=0}^{\infty} h/2^{h}) \leq \mathcal{O}(2n) \leq \mathcal{O}(n)
+T(n) = \mathcal{O}(n \sum_{h=0}^{\lfloor log(n) \rfloor} h/2^{h}) \leq  \mathcal{O}(n \sum_{h=0}^{\infty} h/2^{h}) \leq \mathcal{O}(2n) \leq \mathcal{O}(n)
 ```
 
 **Final Time Complexity** $T(n) = \mathcal{O}(n)$

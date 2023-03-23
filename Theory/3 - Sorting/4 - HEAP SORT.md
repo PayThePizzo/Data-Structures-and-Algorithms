@@ -1,10 +1,8 @@
 # Heap Sort
 
-
-Characteristics:
-* In-Loco
-* Based on Heap
-* Efficient
+| **Operation** 	| **Method**             	| **Time**               	| **Adaptive?** 	| **In-Place?** 	| **Stable?** 	| **Online?** 	|
+|---------------	|------------------------	|------------------------	|---------------	|---------------	|-------------	|-------------	|
+| _Heap sort_   	| Selection, Incremental 	| $\mathcal{O}(nlog(n))$ 	| **Y**         	| **Y**         	| **Y**       	| N           	|
 
 ---
 
@@ -15,24 +13,18 @@ in order to simplify the sorting problem. In this case, the data structure is ca
 
 ---
 
-## Invariant
-* The sub-array A[1..i] is a max_heap containing the `i` smallest values of the vector of
-start
-* The sub-array A[i+1..n] contains `n-i` largest elements of the vector of start, sorted
-by value
-  
-INV:
-* Initialization: checked
-* Preservation: checked
-* Conclusion: `i=1` at the end of the for block
-  * A[1] is a max_heap, and is the smallest element of the starting vector
-  * A[2..n] is a vector containing the `n-1`largest elements of the vector of start, sorted
-  by value 
-  * This means, the vector is sorted
-  
----
+## The Algorithm
+Steps:
+1. The heapsort algorithm starts by using `Build_Max_Heap` to build a max-heap on the input array $A[1 \ldots n]$, 
+where $n = A.length$. 
+2. Since the maximum element of the array is stored at the root $A[1]$, we can put it into its correct final position
+by exchanging it with $A[n]$. If we now discard node $n$ from the heap (and we can do so by simply decrementing 
+$A.heapsize$) we observe that the children of the root remain max-heaps, but the new root element might violate 
+the max-heap property. 
+3. All we need to do to restore the max-heap property, however, is call `Max_Heapify(A,1)`, which leaves a max-heap 
+in $A[1 \ldots n-1]$. 
+4. The heapsort algorithm then repeats this process for the max-heap of size $n-1$ down to a heap of size $2$
 
-## The algorithm
 
 ```python
 Heap_sort(Array A)
@@ -53,11 +45,9 @@ max_heapify(Heap a, Node i){
     } else {
         max = i;
     }
-
     if(r <= a.heap_size && a[r] > a[max]){
         max = r;
     }
-
     if(i != max){
         swap(a, i, max);
         max_heapify(a, max);
@@ -73,13 +63,8 @@ build_max_heap(A){
 
 heapSort(int * arr){
     build_max_heap(arr);
-// sapendo che la radice è sempre l’elemento massimo
-// possiamo andare ad estrarre la radice e inserirla in un nuovo array
-// in modo da ordinarlo
     for(int i = 0; i < arr.length; i++){
-// inseriamo la radice nell’array ordinato
         swap(arr, i, 0);
-// andiamo a rimuovere la radice dell'heap
         arr.heap_size = arr.heap_size - 1;
         max_heapify(arr, 0);
     }
@@ -87,15 +72,46 @@ heapSort(int * arr){
 
 ```
 
+Example:
+
+![heapsortex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/heapsortex.png?raw=TRUE)
+
 ### Invariant
 
+```math 
+INV \equiv \left\{\begin{matrix}
+\text{The subarray } A[1 \ldots i] \text{ is a max-heap }& \wedge \\
+\text{The subarray } A[1 \ldots i] \text{ contains the smallest } i \text{ elements of the starting vector }& \wedge \\
+\text{The subarray } A[i+1 \ldots n] \text{ contains the largest } n-i \text{ sorted elements of the starting vector } & \\
+\end{matrix}\right.
+```
 
+This is true since:
+* Initialization: checked
+* Preservation: checked
+* Conclusion: $i=1$ at the end of the for block
+  * $A[1]$ is a max_heap and  the smallest element of the starting vector
+  * $A[2 \ldots n]$ is a vector containing the $n-1$ largest elements of the starting vector, sorted
+  by value. 
+  * This means, the vector is sorted.
+
+```math
+INV[1/i] \equiv \left\{\begin{matrix}
+\text{The subarray } A[1 \ldots i]=A[1] \text{ is a max-heap }& \wedge \\
+\text{The subarray } A[1 \ldots i]=A[1] \text{ contains the smallest element of the starting vector } A[1 \ldots n] & \wedge \\
+\text{The subarray } A[i+1 \ldots n]=A[2 \ldots n] \text{ contains the largest } n-1 \text{ sorted elements of the starting vector } A[1 \ldots n] & \wedge \\
+\text{The resulting vector is correctly sorted } & \\
+\end{matrix}\right.
+```
 
 ### Time Complexity 
 
-**Final Time Complexity** T(n) = O(n * log(n))
-* T(max_heapify()) = O(log(n))
+$$T(n) = T_{build} + T_{for}(n-1) \cdot T_{heapify} = \mathcal{O}(n) + \mathcal{O}(nlog(n)) =  \mathcal{O}(nlog(n))$$
 
-Theorem: Heapsort sorts in-place n elements, executing O(nlog(n)) comparisons
-in the worst case.
-* Quicksort is usually faster when optimized (not in the worst case).
+> Theorem: Heapsort sorts in-place $n$ elements, executing $\mathcal{O}(nlog(n))$ comparisons in the worst case.
+
+---
+
+### Conclusions
+
+Quicksort is usually faster when optimized (except the worst case).
