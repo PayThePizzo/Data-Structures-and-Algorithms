@@ -32,10 +32,10 @@ dynamic set, **must be priority queue**.
 
 > It is best suited for algorithm design
 
-| **Operation**                                  	| **Pre-Condition**                                         	| **Post-Condition**                                              	|
-|------------------------------------------------	|-----------------------------------------------------------	|-----------------------------------------------------------------	|
-| `Insert(MinPQ S, Elem x) -> void`              	| $S$ is Min PQ and $\|S\| \geq 1$                          	| $S = S \cup \lbrace x \rbrace$                                  	|
-| `Delete(MinPQ S, Key k) -> void`               	| $S$ is Min PQ, $\|S\| \geq 1$                             	| Removes the first element $x$ with $x.key = k$                  	|
-| `Minimum(MinPQ S) -> Elem x`                   	| $S$ is Min PQ and $\|S\| \geq 1$                          	| Returns the first element $x$ with the smallest key in $S$      	|
-| `Extract_Min(MinPQ S) -> Elem x`               	| $S$ is Min PQ and $\|S\| \geq 1$                          	| Returns and removes the first element $x$ with the smallest key 	|
-| `Decrease_Key(MaxPQ S, Elem x, Key k) -> void` 	| $S$ is Min PQ, $\|S\| \geq 1$, $x \in S$ , $x.key \geq k$ 	| Substitutes the old key of $x$ with $x.key = k$                 	|
+| **Operation**                                  	 | **Pre-Condition**                                         	| **Post-Condition**                                              	|
+|--------------------------------------------------|-----------------------------------------------------------	|-----------------------------------------------------------------	|
+| `Insert(MinPQ S, Elem x) -> void`              	 | $S$ is Min PQ and $\|S\| \geq 1$                          	| $S = S \cup \lbrace x \rbrace$                                  	|
+| `Delete(MinPQ S, Key k) -> void`               	 | $S$ is Min PQ, $\|S\| \geq 1$                             	| Removes the first element $x$ with $x.key = k$                  	|
+| `Minimum(MinPQ S) -> Elem x`                   	 | $S$ is Min PQ and $\|S\| \geq 1$                          	| Returns the first element $x$ with the smallest key in $S$      	|
+| `Extract_Min(MinPQ S) -> Elem x`               	 | $S$ is Min PQ and $\|S\| \geq 1$                          	| Returns and removes the first element $x$ with the smallest key 	|
+| `Decrease_Key(MinPQ S, Elem x, Key k) -> void` 	 | $S$ is Min PQ, $\|S\| \geq 1$, $x \in S$ , $x.key \geq k$ 	| Substitutes the old key of $x$ with $x.key = k$                 	|
