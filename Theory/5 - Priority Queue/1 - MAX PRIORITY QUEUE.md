@@ -12,6 +12,9 @@ All the following operations are described inside the Priority Queue section
 ---
 
 ## Heap Maximum
+Max(A):
+* Pre: A is a Heap
+* Post: Returns the largest element of A (The root if it is a Max Heap)
 
 ```python
 heap_maximum(Heap A)
@@ -55,6 +58,10 @@ heap_increase_key(Heap A, Node x, Elem k)
 ---
 
 ## Max Heap Insert
+Insert(A,k):
+* Pre: A is an Heap
+* Post: k is inserted in A, in a way that the condition of heap is not violated
+
 
 ```python
 max_heap_insert(Heap A, Elem k)

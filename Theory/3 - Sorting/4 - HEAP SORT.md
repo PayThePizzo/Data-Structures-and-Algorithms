@@ -1,12 +1,17 @@
 # Heap Sort
-Heap sort belongs to a particular category of algorithms where
-some data structure were precisely thought in order to simplify
-the sorting problem. In this case, the data structure is called [Heap](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/4%20-%20Heap/0%20-%20HEAP.md)
+
 
 Characteristics:
 * In-Loco
 * Based on Heap
 * Efficient
+
+---
+
+## Idea
+
+Heap sort belongs to a particular category of algorithms where some data structure were precisely thought 
+in order to simplify the sorting problem. In this case, the data structure is called [Heap](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/4%20-%20Heap/0%20-%20HEAP.md)
 
 ---
 
@@ -39,9 +44,6 @@ Heap_sort(Array A)
 ```
 
 ```c++
-
-
-
 max_heapify(Heap a, Node i){
     Node left = left(i);
     Node right = right(i);
@@ -52,7 +54,7 @@ max_heapify(Heap a, Node i){
         max = i;
     }
 
-    if(r <= a.heap_size && a[r] > a[massimo]){
+    if(r <= a.heap_size && a[r] > a[max]){
         max = r;
     }
 
@@ -84,6 +86,12 @@ heapSort(int * arr){
 }
 
 ```
+
+### Invariant
+
+
+
+### Time Complexity 
 
 **Final Time Complexity** T(n) = O(n * log(n))
 * T(max_heapify()) = O(log(n))

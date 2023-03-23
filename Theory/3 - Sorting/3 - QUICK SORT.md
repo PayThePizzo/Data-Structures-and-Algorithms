@@ -168,7 +168,7 @@ $$L(n) = 2( L(\frac{n}{2}-1) + \Theta(\frac{n}{2})) + \Theta(n) =  2L(\frac{n}{2
 
 $$L(n) =  2L(\frac{n}{2}-1) + 2\Theta(\frac{n}{2})) + \Theta(n) =  2L(\frac{n}{2}-1)+ \Theta(n)$$
 
-$$$L(n) =  2L(\frac{n}{2}-1)+ \Theta(n) = \Theta(nlog(n))$$
+$$L(n) =  2L(\frac{n}{2}-1)+ \Theta(n) = \Theta(nlog(n))$$
 
 ---
 
