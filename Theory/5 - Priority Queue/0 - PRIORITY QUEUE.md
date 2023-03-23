@@ -1,4 +1,5 @@
 # Priority Queues
+
 This version is based on the heap data structure, 
 which is not rare since data access is relatively efficient.
 
