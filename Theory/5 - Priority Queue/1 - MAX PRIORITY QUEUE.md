@@ -1,4 +1,4 @@
-# Max Priority Queue
+# Max Priority Queue (Max Heap)
 
 This version is based on max_heap. This is the reason why the implementation of PQ's primitive
 functions will be named as "heap_+[operation name]".
