@@ -1,5 +1,132 @@
 # Max Heap
 
+---
+
+## Max Heap in a nutshell - Let's ask ChatGPT!
+
+> "Explain the max heap data structure"
+
+A max heap is a complete binary tree in which every node has a value greater than or equal to the values of its children.
+This means that the root node has the largest value in the heap.
+
+Max heaps are commonly used to implement priority queues, where the highest-priority item is always at the front
+of the queue.
+
+The most common implementation of a max heap is an array, where the parent-child relationship of the tree
+is defined as follows:
+* The **parent** of the node at index i is located at index $floor(\frac{i-1}{2})$
+* The **left child** of the node at index i is located at index $2*i + 1$
+* The **right child** of the node at index i is located at index $2*i + 2$
+
+To **insert** a new element into the max heap, it is added to the end of the array and then
+"bubbled up" by swapping it with its parent until the parent is larger or until the new
+element reaches the root node.
+
+To **remove** the largest element from the max heap (i.e., the root node), it is replaced with
+the last element in the array and then "bubbled down" by swapping it with its larger child until
+it is greater than or equal to both of its children or until it reaches a leaf node.
+
+The time complexity of insert and remove operations in a max heap is O(log n), where n is the number
+of elements in the heap. The time complexity of finding the maximum element is O(1).
+
+> Implement Max Heap Data Structure in C++
+
+Here's an example implementation of a max heap data structure in C++ using an array to store the elements:
+
+```c++
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class MaxHeap {
+private:
+    vector<int> heap;
+
+    // Helper functions
+    int parent(int i) { return (i-1)/2; }
+    int leftChild(int i) { return 2*i+1; }
+    int rightChild(int i) { return 2*i+2; }
+
+    void siftUp(int i) {
+        while (i > 0 && heap[parent(i)] < heap[i]) {
+            swap(heap[parent(i)], heap[i]);
+            i = parent(i);
+        }
+    }
+
+    void siftDown(int i) {
+        int maxIndex = i;
+        int l = leftChild(i);
+        if (l < heap.size() && heap[l] > heap[maxIndex])
+            maxIndex = l;
+        int r = rightChild(i);
+        if (r < heap.size() && heap[r] > heap[maxIndex])
+            maxIndex = r;
+        if (i != maxIndex) {
+            swap(heap[i], heap[maxIndex]);
+            siftDown(maxIndex);
+        }
+    }
+
+public:
+    // Constructor
+    MaxHeap() {}
+
+    // Heap operations
+    void insert(int value) {
+        heap.push_back(value);
+        siftUp(heap.size()-1);
+    }
+
+    int extractMax() {
+        int result = heap.front();
+        heap[0] = heap.back();
+        heap.pop_back();
+        siftDown(0);
+        return result;
+    }
+
+    int size() {
+        return heap.size();
+    }
+
+    bool isEmpty() {
+        return heap.empty();
+    }
+
+    void printHeap() {
+        for (int i = 0; i < heap.size(); i++) {
+            cout << heap[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    MaxHeap maxHeap;
+    maxHeap.insert(10);
+    maxHeap.insert(5);
+    maxHeap.insert(30);
+    maxHeap.insert(20);
+    maxHeap.printHeap(); // Output: 30 20 5 10
+    cout << maxHeap.extractMax() << endl; // Output: 30
+    maxHeap.printHeap(); // Output: 20 10 5
+    return 0;
+}
+```
+
+In this implementation, the `MaxHeap` class has a private vector to store the heap elements. 
+The `siftUp` function is used to move a new element up the heap after it is inserted, and the `siftDown` function 
+is used to move an element down the heap after the maximum element is extracted.
+
+The `insert`, `extractMax`, `size`, and `isEmpty` functions are used to perform basic heap operations. 
+The `printHeap` function is used to print the heap elements for debugging purposes.
+
+The main function shows an example usage of the `MaxHeap` class.
+
+---
+
 ## Max Heap Property
 
 > For every node i, except the root, we have $A[parent(i)] \geq A[i]$ (as the root is the largest element)
