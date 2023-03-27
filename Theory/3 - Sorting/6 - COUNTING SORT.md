@@ -59,7 +59,7 @@ void countingsort(array A, array B, int n, int k) {
 
 Example: 
 
-![countingsortex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/countingsortex.png?raw=TRUE)
+![countingsortex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/countisortex.png?raw=TRUE)
 
 **Final Time Complexity**: $T(n) = \Theta(n+k)$
 * Usually best when $k = \mathcal{O}(n) \Rightarrow T(n) = \Theta(n+k)$
