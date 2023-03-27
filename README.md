@@ -49,6 +49,9 @@ I do not take any credit for the contents, which are taken from my professors, t
 * Professor [Alessandra Raffaeta'](https://www.unive.it/data/persone/5591966) and [Marcello Pelillo](https://www.unive.it/data/persone/5592849)
 * [DFI] C. Demetrescu, I. Finocchi, G.F. Italiano. Algoritmi e strutture dati. Seconda Edizione. McGraw-Hill, 2008.
 * [CLRS] T. H. Cormen, C. E. Leiserson, R. L. Rivest, C. Stein. Introduction to algorithms 3/ed. McGraw-Hill, 2010.
+  * Solutions to CLRS exercise:
+    * [Solutions to Introduction to Algorithms Third Edition](https://walkccc.me/CLRS/)
+    * [Andrew Lohr's Solutions to CLRS](https://sites.math.rutgers.edu/~ajl213/CLRS/CLRS.html)
 * Students of Ca' Foscari.
   * Pareschi Chiara
   * Femia Bertacco Giacomo
