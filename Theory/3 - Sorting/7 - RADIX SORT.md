@@ -1,4 +1,11 @@
 # Radix Sort
+
+| **Operation** 	| **Method**     	| **Time**         	| **Adaptive?** 	| **In-Place?** 	| **Stable?** 	| **Online?** 	|
+|---------------	|----------------	|------------------	|---------------	|---------------	|-------------	|-------------	|
+| _Radix sort_  	| Non-Comparison 	| $\Theta(d(n+k))$ 	| **            	| **            	| **          	| **          	|
+
+## Idea
+
 The main idea is to sort **n** elements with **d** figures, which range (0-**k**) , where:
 * 1 is less significant (rightmost)
 * d-ary are more significant (leftmost)
