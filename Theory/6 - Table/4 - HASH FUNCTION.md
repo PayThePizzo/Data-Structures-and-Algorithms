@@ -10,7 +10,8 @@ Use of a hash function to index a hash table is called _hashing_ or scatter stor
 We will face the properties and the logic between hash functions.
 
 ---
-## Properties
+
+## Properties we covered
 
 
 ### Uniformity
@@ -138,9 +139,8 @@ mathematical property.
 This guarantees a low number of collisions in expectation, even if the data is chosen by an adversary.[4]
 
 ---
-## How do we hash? - Open Addressing
 
-### Open
+## How do we hash? - Open Addressing
 
 The hash function is now different from the one we faced before
 * Input: `U x {0,1,...,m-1}`
@@ -154,9 +154,9 @@ So `h(K,i)` <mark>represents the position of the key k after **i** failed inspec
 hash table's indexes. This means we use our table exhaustively.
 * The permutation must let every cell, be considered like a possible cell for an insertion of a key (using the tables' indexes)
 
----
 
-## Probe
+
+### Probe
 In our analysis, we assume **uniform hashing** at every iteration: the probe sequence of each key
 is equally likely to be any of the _m!_ permutations of <0, 1, ..., m-1> of our hash table.
 * h(k,0) distributes the keys uniformly on the *m* cells
