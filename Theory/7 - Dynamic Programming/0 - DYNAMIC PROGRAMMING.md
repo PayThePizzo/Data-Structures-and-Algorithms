@@ -11,17 +11,18 @@ solve the subproblems recursively, and then combine their solutions to solve the
 In contrast, **dynamic programming applies when the subproblems overlap** that is, when subproblems share subsubproblems. 
 In this context, a divide-and-conquer algorithm does more work than necessary, <mark>repeatedly solving the common subsubproblems</mark>
 
-We typically apply dynamic programming to <mark>optimization problems.</mark> 
+We typically apply dynamic programming to optimization problems.
 
 Such problems can have many possible solutions. Each solution has a value, and we wish to
 find a solution with the optimal (minimum or maximum) value. 
 
-We call such a solution AN optimal solution to the problem, as opposed to THE optimal solution,
+We call such a solution **AN** optimal solution to the problem, as opposed to **THE** optimal solution,
 since **there may be several solutions that achieve the optimal value**.
 
 ### Property of Optimal Substructure
-Optimal solutions to a problem incorporate optimal solutions to related sub-problems,
-which we may solve independently.
+
+> Optimal solutions to a problem incorporate optimal solutions to related sub-problems, 
+> which we may solve independently.
 
 ---
 ### Steps of Dynamic Programming
@@ -34,8 +35,8 @@ four steps:
    * Array, Matrix, or any other structure whose creation and retrieval of elements take O(1)
 4. Compute the value of an optimal solution.
 5. Construct an optimal solution from computed information 
-   1. Top-Down - Memoization: Start from destination state and recursively find the answer for its subproblems
-   2. Bottom-Up - Tabulation: Start from base state (0 to n) and possibly avoid recursion
+   1. Top-Down - **Memoization**: Start from destination state and recursively find the answer for its subproblems
+   2. Bottom-Up - **Tabulation**: Start from base state (0 to n) and possibly avoid recursion
 
 ---
 ## Time-Memory Trade-Off
@@ -48,7 +49,7 @@ up, rather than recompute it. Dynamic programming thus uses additional memory
 to save computation time; it serves an example of a **time-memory trade-off**. 
 * The savings may be dramatic: an exponential-time solution may be transformed into a
 polynomial-time solution. A dynamic-programming approach runs in polynomial
-time when the number of distinct subproblems involved is polynomial in the input
+time when the number of distinct subproblems involved is **polynomial** in the input
 size and we can solve each such subproblem in polynomial time
 
 ### Top-Down with Memorization
@@ -76,13 +77,14 @@ The bottom-up approach often has much better constant factors, since it has less
 ![Memoization vs Tabulation](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/tabmem.png)
 
 ---
+
 ### Sub-problem Graphs
 
 We can think of the subproblem graph as a “reduced” or “collapsed” version of the 
 recursion tree for the top-down recursive method, in which we coalesce all nodes for 
 the same subproblem into a single vertex and direct all edges from parent to child
 
-The size of the subproblem graph G = (V, E) can help us determine the running
+The size of the subproblem graph $G = (V, E)$ can help us determine the running
 time of the dynamic programming algorithm. 
 
 Since we solve each subproblem just once, the running time is the sum of the times 
