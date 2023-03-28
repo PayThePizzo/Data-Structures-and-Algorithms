@@ -50,6 +50,21 @@ public:
     }
 };
 
+// Struct Version
+
+struct NodeG{
+    int key;
+    char col;
+    NodeG* left_child;
+    NodeG* right_sib;
+    NodeG(int k, NodeG* sx = nullptr, NodeG* dx = nullptr)
+            : key{k}, left_child{sx}, right_sib{dx} {}
+};
+
+typedef NodeG* PNodeG;
+
+
+
 // Main function
 int main() {
     return 0;
