@@ -50,7 +50,7 @@ These keys are randomly and uniformly distributed (like i.i.d. random variables)
 Usually, hash functions assume the keys are natural numbers belonging to *N*. When
 they are not natural numbers we need to interpret them as numbers (i.e. char to int)
 
-$$h(k) = \lfloor k*m \rfloor$$
+$$h(k) = \lfloor k \cdot m \rfloor$$
 
 Example: for a string "CLRS", we encode it through the ASCII values (128 total values):
 * $C=67$
@@ -65,7 +65,7 @@ $$CLRS \rightarrow 67 \cdot 128^{3} + 76 \cdot 128^{2} + 82 \cdot 128^{1} + 83  
 
 ### Division Hashing
 
-$$h(k) = k mod m \in \lbrace 0 \ldots m-1 \rbrace$$
+$$h(k) = k \text{ mod } m \in \lbrace 0 \ldots m-1 \rbrace$$
 
 A standard technique is to use a modulo function on the key, by selecting a divisor $m$: a **prime** number close to 
 the table size (which is usually a power of 2), and that is not close to a power of 2 or 10
