@@ -79,7 +79,7 @@ Cons:
 * One drawback is that it won't break up clustered keys. 
   * For example, the keys 123000, 456000, 789000, etc. modulo 1000 all map to the same address.
 * We need to choose carefully $m$ 
-  * **Avoid choosing** $m$ as a power of 2, $m \neq 2^{p} \wedge p \in \mathbb{R}$
+  * **Avoid choosing** $m$ as a power of $2$, $m \neq 2^{p} \wedge p \in \mathbb{R}$
     * The result would be considering just a portion of the key
     * It is best for the hash function to depend on all the bits of the key
   * If $k$ is a string, interpreted on the base $2^{p}$, it is a bad idea to choose $m = (2^{p})-1$
@@ -89,12 +89,12 @@ Cons:
 
 ### Multiplicative Hashing
 
-$$h(k) = \lfloor m \cdot (kA mod 1) \rfloor =  \lfloor 2^{p} \cdot (kA mod 1) \rfloor  $$
+$$h(k) = \lfloor m \cdot (kA \text{ mod } 1) \rfloor =  \lfloor 2^{p} \cdot (kA \text{ mod } 1) \rfloor  $$
 
 Given an integer key $k$ belonging to $U$, and a hash function $h(k) = mk$, we transform it in a real number in $[0,1)$
 * We get a constant $A$ such that $0 < A < 1$
 * We calculate $k \cdot A$
-* We extract the fractional part $k \cdot A mod 1 = kA - \lfloor kA \rfloor  \in [0,1)$
+* We extract the fractional part $k \cdot A \text{ mod } 1 = kA - \lfloor kA \rfloor  \in [0,1)$
 
 Pros:
 * $m$ is not a critical value anymore, it works well with any value $A$ can take
@@ -115,12 +115,12 @@ Now
    1. Where $r_{0}$ is the fractional part
 3. We get that  
    1. $r_{1} = \lfloor \frac{kq}{2^{w}} \rfloor = \lfloor kA \rfloor$
-   2. $r_{0} = \frac{kq}{2^{w}} mod 1 = kA mod 1$
+   2. $r_{0} = \frac{kq}{2^{w}} \text{ mod } 1 = kA \text{ mod } 1$
       1.  The less significant part of the word created by $kq$
 
 ![multiplicativehashing](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/multiplicativehashing.png?raw=TRUE)
 
-So, this justifies $h(k) = \lfloor m \cdot (kA mod 1) \rfloor =  \lfloor 2^{p} \cdot (kA mod 1) \rfloor  $
+So, this justifies $h(k) = \lfloor m \cdot (kA \text{ mod } 1) \rfloor =  \lfloor 2^{p} \cdot (kA \text{ mod } 1) \rfloor  $
 * Our hash function returns, indeed, the p-bits more significant of the less significant part of
 the product between $kq$ 
 * It means we take the p-bits significant bits of $r_{0}$
