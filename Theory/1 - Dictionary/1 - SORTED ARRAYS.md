@@ -1,7 +1,6 @@
-
 # Sorted Arrays
 
-### Data
+## Data
 
 Array of length *n* containing records with two fields
 (key, info).
@@ -9,7 +8,7 @@ Array of length *n* containing records with two fields
 The array is sorted on the **keys**
 
 
-### Attributes
+## Attributes
 
 A.length contains the dimension of the array.
 
