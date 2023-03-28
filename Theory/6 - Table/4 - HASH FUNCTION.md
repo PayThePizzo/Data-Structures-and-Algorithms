@@ -12,16 +12,17 @@ We will face the properties and the logic between hash functions.
 ---
 ## Properties
 
+
 ### Uniformity
 
 A good hash function should map the expected inputs as evenly as possible over its output range.
 
-That is, every hash value in the output range should be generated with roughly the <mark>same probability!</mark>
+That is, every hash value in the output range should be generated with roughly the same probability!
 
-If a typical set of m records is hashed to n table slots, the probability of a bucket receiving many 
-more than m/n records should be vanishingly small. In particular, if m is less than n, 
+If a typical set of $m$ records is hashed to $n$ table slots, the probability of a bucket receiving many 
+more than $m/n$ records should be vanishingly small. In particular, if $m$ is less than $n$, 
 very few buckets should have more than one or two records. 
-A small number of collisions is virtually inevitable, even if n is much larger than m. [2]
+A small number of collisions is virtually inevitable, even if $n$ is much larger than $m$. [2]
 
 
 ### SUHA - Simple Uniform Hashing Assumption
@@ -31,86 +32,104 @@ It is a basic assumption that facilitates the mathematical analysis of hash tabl
 about the stochastic system.
 
 The assumption states that a hypothetical hashing function will evenly distribute items into the slots of a 
-hash table. Moreover, <mark>each item to be hashed has an equal probability of being placed into a slot, 
-regardless of the other elements already placed</mark>. 
+hash table. Moreover, each item to be hashed has an equal probability of being placed into a slot, 
+regardless of the other elements already placed. 
 
-This means the assumption of uniform hashing, given a hash function h, and a hash table of size m, 
-the probability that two non-equal elements will hash to the same slot is: `P[h(a) = h(b)] = 1/m` [3]
+This means the assumption of uniform hashing, given a hash function $h$, and a hash table of size $m$, 
+the probability that two non-equal elements will hash to the same slot is: $P[h(a) = h(b)] = 1/m$ [3]
 
 ---
 
 ## How do we hash? - Closed Addressing
 
 Let's consider a lucky case:
-* There are k real numbers which represent the keys and hash table of size m. 
-These keys are randomly and uniformly distributed (like i.i.d. random variables) inside the interval `0 <= k < 1`
-* The hash function **h(k) = ⌊k * m⌋** satisfies the SUHA.
+* There are $k$ real numbers which represent the keys and hash table of size $m$. 
+These keys are randomly and uniformly distributed (like i.i.d. random variables) inside the interval $0 \leq k \leq 1$
+* The hash function $h(k) = \lfloor k * m \rfloor$ satisfies the SUHA.
 
 Usually, hash functions assume the keys are natural numbers belonging to *N*. When
 they are not natural numbers we need to interpret them as numbers (i.e. char to int)
 
-Here we present some options of the many you can find.
+$$h(k) = \lfloor k*m \rfloor$$
+
+Example: for a string "CLRS", we encode it through the ASCII values (128 total values):
+* $C=67$
+* $L=76$
+* $R=82$
+* $S=83$
+
+The resulting positional notation would be:
+
+$$CLRS \rightarrow 67 \cdot 128^{3} + 76 \cdot 128^{2} + 82 \cdot 128^{1} + 83  \cdot 128^{0} = 141764947$$
+
 
 ### Division Hashing
 
-A standard technique is to use a modulo function on the key, by selecting a divisor M: `h(K) = K mod M`
-* M is a **prime** number close to the table size (which is usually a power of 2)
-  * Not a number that is a power of 2 or 10, ex: 701
+$$h(k) = k mod m \in \lbrace 0 \ldots m-1 \rbrace$$
 
-Pro: 
+A standard technique is to use a modulo function on the key, by selecting a divisor $m$: a **prime** number close to 
+the table size (which is usually a power of 2), and that is not close to a power of 2 or 10
+
+Pros: 
 * It is easy to analyze
 * This technique works well in practice because many key sets are sufficiently random already, a
 and the probability that a key set will be cyclical by a large prime number is small.
 
-Con: 
+Cons: 
 * One drawback is that it won't break up clustered keys. 
-For example, the keys 123000, 456000, 789000, etc. modulo 1000 all map to the same address.
-* We need to choose carefully M
-  * Avoid choosing M as a power of 2, `M != 2**p` with p a real number
-  * If k is a string, interpreted on the base 2**p, it is a bad idea to choose `M = (2**p)-1`
+  * For example, the keys 123000, 456000, 789000, etc. modulo 1000 all map to the same address.
+* We need to choose carefully $m$ 
+  * **Avoid choosing** $m$ as a power of 2, $m \neq 2^{p} \wedge p \in \mathbb{R}$
+    * The result would be considering just a portion of the key
+    * It is best for the hash function to depend on all the bits of the key
+  * If $k$ is a string, interpreted on the base $2^{p}$, it is a bad idea to choose $m = (2^{p})-1$
+    * The permutation of the characters in $k$ does not change the value of the hash function
+    * $h(amor) = h(roma)$
 
 
 ### Multiplicative Hashing
 
-Another standard technique is using ⌊m * (k*A mod 1)⌋
+$$h(k) = \lfloor m \cdot (kA mod 1) \rfloor =  \lfloor 2^{p} \cdot (kA mod 1) \rfloor  $$
 
-This come from the idea of using `h(k) = m * k`, k belongs to [0,1)
-
-Given an integer key belonging to U, we transform it in a number in this range [0,1)
-* We get a constant A such that `0 < A < 1`
-* We calculate `k*A`
-* We extract the rest `k*A mod 1` in the range, which is equal to k*A - ⌊k*A⌋
+Given an integer key $k$ belonging to $U$, and a hash function $h(k) = mk$, we transform it in a real number in $[0,1)$
+* We get a constant $A$ such that $0 < A < 1$
+* We calculate $k \cdot A$
+* We extract the fractional part $k \cdot A mod 1 = kA - \lfloor kA \rfloor  \in [0,1)$
 
 Pros:
-* M is not a critical value anymore
-* Works well with any value A can take
-* Knuth saw that it works well with `A = (sqrt(5)-1)/2`
+* $m$ is not a critical value anymore, it works well with any value $A$ can take
+  * Typically $m$ is a power of $2$, $m \neq 2^{p} \wedge p \in \mathbb{R}$
+* Knuth saw that it works well with $A = \frac{\sqrt{5}-1}{2} \approx 0.6180$
 
 To simplify the computing of the function
-* **w**: the length of a memory word
-* **k**, must be of the length of memory word
-* **q**, must be `0 < q < 2**w`
-* **m**, must be `m = 2**p`
-* **A**, a constant,must be `q/(2**w)`
+* $w$: the length of a memory word
+* $k$, must be of the length of memory word
+* $q$, is an arbitrary integer that must be in $0 < q < 2^{w}$
+* $m$, must be $m = 2^{p}$
+  * $p = h(k)$
+* $A$, a constant, must be $A = q/(2^{w}) \Rightarrow q = A2^{w}$
 
 Now
-1. `k*A = k * q/(2**w)`
-2. Since `k*q = r1*(2**w) + r0`
+1. $kA = k \frac{q}{2^{w}}$
+2. Since $kq = r_{1}2^{w} + r_{0}$
+   1. Where $r_{0}$ is the fractional part
 3. We get that  
-   1. `r1 = ⌊(k*q)/(2**w)⌋`
-   2. `r2 = (k*q)/(2**w) mod 1`
+   1. $r_{1} = \lfloor \frac{kq}{2^{w}} \rfloor = \lfloor kA \rfloor$
+   2. $r_{0} = \frac{kq}{2^{w}} mod 1 = kA mod 1$
+      1.  The less significant part of the word created by $kq$
 
-![Calc HT](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/calcht.png?raw=TRUE)
+![multiplicativehashing](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/multiplicativehashing.png?raw=TRUE)
 
-This all means that `k * A` is r0, the less significant part of the word created by `k*q` 
-
-So, this justifies `h(K) = ⌊m * (k*A mod 1)⌋` which is equal to `⌊(2**p) * (k*A mod 1)⌋` 
-* Our hash function returns, indeed, <mark>the p-bits more significant of the less significant part of
-the product between `k*q` </mark>
-* It means we take the p-bits significant bits of r0
+So, this justifies $h(k) = \lfloor m \cdot (kA mod 1) \rfloor =  \lfloor 2^{p} \cdot (kA mod 1) \rfloor  $
+* Our hash function returns, indeed, the p-bits more significant of the less significant part of
+the product between $kq$ 
+* It means we take the p-bits significant bits of $r_{0}$
 
 The problem is, if we receive many keys mapped to the same cell, our performances heavily drop.
-* It is the case with n keys where `h(k1) = h(k2) = ... = h(kn)`
+* It is the case with $n$ keys where $h(k_{1}) = h(k_{2}) = \ldots = h(k_{n})$
+
+We can avoid this through universal hashing
+
 
 ### Universal Hashing 
 Universal Hashing refers to **selecting a hash function at _random_ from a family of hash functions** with a certain 
