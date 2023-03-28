@@ -56,7 +56,7 @@ Now let's consider $K$ as the set containing the keys we want to save.
 Instead of saving the elements with key $k$, into $A[k]$, we use a function $h()$ and we save the element
 in the cell $A[h(k)]$
 
-![hashtablemap](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/hashtablemap.png?raw=TRUE)
+![hashtablemap2](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/hashtablemap2.png?raw=TRUE)
 
 ---
 
