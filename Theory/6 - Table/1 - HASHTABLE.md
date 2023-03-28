@@ -19,6 +19,9 @@ We could use an array $T$, whose indices go from $0 \ldots \omega-1$, where $\om
   * Then, $T[k]$ contains a pointer to $x$
   * Else, $T[k] = NIL$
 
+![diraddtable](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/diraddtable.png?raw=TRUE)
+
+
 The operations would look like 
 
 ```python
