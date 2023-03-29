@@ -261,7 +261,7 @@ If we consider the number of inspections at each iteration:
 Then, we can find the total inspections as the geometric series
 
 ```math
-1 + \alpha + \alpha^{2} + \ldots \leq \sum_{i=0}^{\infty} \alpha^{i} \stackrel{|\alpha|<1} \Rightarrow \sum_{i=0}^{\infty} \alpha^{i} = \frac{1}{1-\alpha}
+1 + \alpha + \alpha^{2} + \ldots \leq \sum_{i=0}^{\infty} \alpha^{i} \stackrel{|\alpha|<1} \Longrightarrow \sum_{i=0}^{\infty} \alpha^{i} = \frac{1}{1-\alpha}
 ```
 
 #### Interpretation
