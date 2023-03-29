@@ -26,16 +26,25 @@ Example:
 
 ## Step 1 - Characterize the structure of an optimal solution.
 
-How many ways can be used to cut a rod of length `n` (in pieces > 0)? `2**(n-1)`
-* Since from i = 1 to i = n-1, we can either cut or not (two choices). 
-* This means a brute force approach will imply an exponential T(n).
+How many ways can be used to cut a rod of length $n$ (in pieces $> 0$)? $2^{n-1}$
+* Since from $i = 1 \ldots n-1$, we can either cut or not (two choices). 
+* This means a brute force approach will imply an exponential $T(n)$.
 
-The maximum return for a rod of length n can be expressed in the following way:
-* r0 = 0
-* <mark>rn = `max{pn, r(1) + r(n-1), r(2) + r(n-2), ... , rn-1 + r1}` </mark>
-  * pn is the price of not cutting it.
+The maximum return for a rod of length $n$ can be expressed in the following way:
 
-The optimal solution can be defined as the combination of optimal sub-solutions. Here we find the **property of the optimal substructure**.
+```math
+\text{ Maximum Revenue } = 
+\left\{\begin{matrix}
+r_{0} = 0 \\
+r_{n} = max \lbrace p_{n}, r_{1}, r_{2} + r_{n-2}, \ldots, r_{n-1} + r_{1} \rbrace  \\
+\end{matrix}\right.
+```
+
+Where $p_{n}$ is the price of not cutting the rod.
+
+The optimal solution can be defined as the combination of optimal sub-solutions. 
+Here we find the **property of the optimal substructure**.
+
 
 ---
 
@@ -43,30 +52,37 @@ The optimal solution can be defined as the combination of optimal sub-solutions.
 
 Change of perspective!
 * In a related, but slightly simpler, way to arrange a recursive structure for the 
-rod-cutting problem, we view a decomposition as consisting of a **first piece of length i**
-cut off the left-hand end, and then a right-hand **remainder** of length n = i.
+rod-cutting problem, we view a decomposition as consisting of a **first piece of length** $i$
+cut off the left-hand end, and then a right-hand **remainder** of length $n-i$.
 * **Only the remainder**, and not the first piece, **may be further divided**
 
-We may view every decomposition of a length-n rod in this way: <mark>as a first piece followed by some
-decomposition of the remainder</mark>
+We may view every decomposition of a length $n$ rod in this way: as a first piece followed by some
+decomposition of the remainder. So $r_{n}$, the maximum revenue can be re-designed:
+
+```math
+r_{i} = 
+\left\{\begin{matrix}
+r_{0} = 0 & i=0 \\
+r_{n} = max \lbrace p_{i} + r_{n-i} \rbrace & 1 \leq i \leq n \\
+\end{matrix}\right.
+```
+
+Where:
+* $p_{i}$, the first piece of length $i$
+* $r_{n-i}$, the remainder to be further divided
+* $i$, the position of the cut
+  * $i=n$, there is no cut.
 
 ---
 
-## Step 3 - Compute the value of an optimal solution.
+## Step 3 - Find the state to memorize and choose an optimal data structure.
 
-We may view every decomposition of a length-n rod in this way: <mark>as a first piece followed by some
-decomposition of the remainder</mark>. So rn, the maximum revenue can be re-designed:
-* rn
-  * r0 = 0
-  * rn = `max{pi + r(n-i)}`, with `1<=i<=n`
-    * pi, the first piece of length i
-    * r(n-i), the remainder to be further divided.
-    * i, the position of the cut. When **i = n, there is no cut**
+We already have a vector $p[i]$ where all the prices by length are memorized.
 
 ---
 
 ## Step 4 - pt.1 Sub-Optimal Solution
-Construct an optimal solution from computed information.
+Compute the value of an optimal solution.
 
 Cut_Rod(p,n):
 * Input: 
@@ -83,10 +99,14 @@ cut_rod(p,n)
     else:
         q = -1; #or MIN_INT of neg_infinity()
         for(i=1 to n):
+            # T(n-i)
             q = max(q, p[i] + cut_rod(p, n-i));  
         return q;
 ```
-**Final Time Complexity** T(n) = Θ(2**n)
+
+### Final Time Complexity 
+
+**Final Time Complexity** $T(n) = \Theta(2^{n})$
 * T(n) as the count of cut_rod calls. n, as the second parameter in cut_rod
   * n = 0, then 1
   * n > 0, then `1 + sum(T(j), j=0 to j=n-1)`
@@ -97,7 +117,9 @@ Why is CUT-ROD so inefficient?
 * The problem is that CUT-ROD calls itself recursively over and over again with the same parameter values
 * It solves the same sub-problems repeatedly.
 
-## Step 4 - pt.2 Optimal Solution
+---
+
+## Step 5 - pt.2 Top Down Optimal Solution
 
 If we <mark>save the solution of n sub-problems we can improve the complexity</mark> from exponential to polynomial.
 * We avoid repeated computations by saving the solution
@@ -105,8 +127,6 @@ If we <mark>save the solution of n sub-problems we can improve the complexity</m
   * p[i] >= 0 
 * Distinct sub-problems are very rare (usually are #n)
   * If the count of sub-problems is polynomial, then each one of them can be solved in a polynomial time.
-
-### Top-Down
 
 ```python
 MCR_Aux (p, j, r)
@@ -127,11 +147,16 @@ TD_Cut_Rod(p, n)
         r[i] = -1 #initialize the array so that the cells are negative
     return MCR_Aux(p, n, r)
 ```
+
+### Final Time Complexity
+
 **Final Time Complexity**: T(n) = `sum(j, j=1 to n)` = `(n*(n+1))/2` = θ(n**2)
 * A call for a problem that has already been solved has constant time.
 * Plus, we only need to compute the result once for each problem.
 
-### Bottom-Up
+---
+
+## Step 5 - pt.3 Bottom-Up Optimal Solution
 
 ```python
 BU_Cut_Rod(p, n)
@@ -146,9 +171,12 @@ BU_Cut_Rod(p, n)
         r[j] = q;
     return r[n];
 ```
+
+### Final Time Complexity
+
 **Final Time Complexity**: T(n) = θ(n**2)
 
-### Bottom-Up v2
+## Step 5 - pt.4 Bottom-Up Optimized Optimal Solution
 Here is an extended version of BOTTOM-UP-CUT-ROD that computes, for each
 rod size j*
 * Not only the maximum revenue rj
@@ -179,4 +207,7 @@ Print_Cut_Rod_Sol(p,n)
         print(s[n]);
         n -= s[n];
 ```
+
+### Final Time Complexity
+
 **Final Time Complexity**: T(n) = θ(n**2)

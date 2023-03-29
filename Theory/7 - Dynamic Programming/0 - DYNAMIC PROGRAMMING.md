@@ -38,6 +38,8 @@ four steps:
    1. Top-Down - **Memoization**: Start from destination state and recursively find the answer for its subproblems
    2. Bottom-Up - **Tabulation**: Start from base state (0 to n) and possibly avoid recursion
 
+Sometimes we can omit step 4.
+
 ---
 ## Time-Memory Trade-Off
 
