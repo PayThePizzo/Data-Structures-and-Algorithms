@@ -74,7 +74,7 @@ These two approaches yield algorithms with the same asymptotic running time, exc
 where the top-down approach does not actually recurse to examine all possible subproblems. 
 The bottom-up approach often has much better constant factors, since it has less overhead for procedure calls
 
-![Memoization vs Tabulation](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/tabmem.png)
+![Memoization vs Tabulation](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/tabmem.png?raw=TRUE)
 
 ---
 

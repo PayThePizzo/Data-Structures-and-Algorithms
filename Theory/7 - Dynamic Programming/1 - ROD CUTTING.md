@@ -1,26 +1,30 @@
 # Rod Cutting
 
-Serling Enterprises buys long steel rods and cuts them
-into shorter rods, which it then sells. Each cut is free (not relevant) and the cost of the rods is directly proportional 
-to its length. 
+Serling Enterprises buys long steel rods and cuts them into shorter rods, which it then sells. 
+Each cut is free (not relevant) and the cost of the rods is directly proportional to its length. 
 
 The management of Serling Enterprises wants to know **the best way to cut up the rods**.
 
-
-### Problem Statement
+## Problem Statement
 
 Input: 
-* A rod **j** of length `n` inches 
-* A table of prices `pi` with `1 <= i <= n`
+* A rod $j$ of length $n$ inches 
+* A table of prices $p[i]$ with $1 \leq i \leq n$
 
 Output:
-* <mark>Determine the maximum revenue **rn** obtainable </mark>by cutting up the rod and selling the pieces. 
-  * Note that if the price pn for a rod of length n is large enough, 
+* Determine the maximum revenue $r_{n}$ obtainable by cutting up the rod and selling the pieces. 
+  * Note that if the price $p[n]$ for a rod of length $n$ is large enough,
   an optimal solution may require no cutting at all.
   
+Example:
+
+![rodcuttingexample]()
+
+![rodcuttingexample2]()
+
 ---
-## Step 1
-Characterize the structure of an optimal solution.
+
+## Step 1 - Characterize the structure of an optimal solution.
 
 How many ways can be used to cut a rod of length `n` (in pieces > 0)? `2**(n-1)`
 * Since from i = 1 to i = n-1, we can either cut or not (two choices). 
@@ -33,9 +37,9 @@ The maximum return for a rod of length n can be expressed in the following way:
 
 The optimal solution can be defined as the combination of optimal sub-solutions. Here we find the **property of the optimal substructure**.
 
+---
 
-## Step 2
-Recursively define the value of an optimal solution.
+## Step 2 - Recursively define the value of an optimal solution.
 
 Change of perspective!
 * In a related, but slightly simpler, way to arrange a recursive structure for the 
@@ -46,8 +50,9 @@ cut off the left-hand end, and then a right-hand **remainder** of length n = i.
 We may view every decomposition of a length-n rod in this way: <mark>as a first piece followed by some
 decomposition of the remainder</mark>
 
-## Step 3
-Compute the value of an optimal solution.
+---
+
+## Step 3 - Compute the value of an optimal solution.
 
 We may view every decomposition of a length-n rod in this way: <mark>as a first piece followed by some
 decomposition of the remainder</mark>. So rn, the maximum revenue can be re-designed:
@@ -57,6 +62,8 @@ decomposition of the remainder</mark>. So rn, the maximum revenue can be re-desi
     * pi, the first piece of length i
     * r(n-i), the remainder to be further divided.
     * i, the position of the cut. When **i = n, there is no cut**
+
+---
 
 ## Step 4 - pt.1 Sub-Optimal Solution
 Construct an optimal solution from computed information.
@@ -89,8 +96,6 @@ cut_rod(p,n)
 Why is CUT-ROD so inefficient? 
 * The problem is that CUT-ROD calls itself recursively over and over again with the same parameter values
 * It solves the same sub-problems repeatedly.
-
----
 
 ## Step 4 - pt.2 Optimal Solution
 
