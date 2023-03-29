@@ -168,7 +168,7 @@ the table is being used exhaustively.
 
 > So $h(k,i)$ represents the position of the key $k$ after $i$ failed inspections.
 
-### Uniform Hashing 
+### UHA - Uniform Hashing Assumption
 
 > In our analysis, we assume **uniform hashing** at every iteration: at each iteration, every key $k$ has the same probability 
 > to return as a probe sequence any of the $m!$ permutations of the indices $\langle 0, 1, \ldots , m-1 \rangle $ of our hash table.
@@ -193,7 +193,7 @@ seems to give the best results.
 
 Given an auxiliary ordinary hash function $h'$ which maps the keys into possible indices
 
-$$h'`: U \rightarrow \lbrace 0,1, \ldots , m-1 \rbrace$$
+$$h' : U \rightarrow \lbrace 0,1, \ldots , m-1 \rbrace$$
 
 The method of linear probing uses the hash function: `
 
