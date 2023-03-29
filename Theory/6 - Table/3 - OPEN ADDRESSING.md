@@ -240,14 +240,50 @@ We will use the following assumptions:
 1. Simple Uniform Hashing 
 2. No deletions
 
-The analysis will be done in terms of load factor $0 \leq alpha \leq 1$ because we only have the cells in our table. Otherwise,
+The analysis will be done in terms of load factor $0 < alpha \leq 1$ because we only have the cells in our table. Otherwise,
 we would have an overflow.
 
 ### Theorem - Unsuccessful Search
-Given an open addressing hash table, with `alpha < 1`, the average count of probes is `1/(1-alpha)`
+Given an open-address hash table with load factor $\alpha = n/m < 1$, the expected
+number of probes in an **unsuccessful search** is at most $1/(1-\alpha)$, assuming uniform hashing
+
+#### Demonstration
+
+$$\alpha < 1 \Rightarrow \text{ There are some empty cells } \Rightarrow \text{ Search stops when we find one }$$
+
+If we consider the number of inspections at each iteration:
+1. First one, $1$
+2. Second one, $\frac{n}{m} = \alpha$
+3. Third one, $\frac{n}{m} \cdot \frac{n-1}{m-1} \leq \alpha^{2}$
+   1. Where $\frac{n-1}{m-1} \leq \alpha$
+4. n-th one,  $\frac{n}{m} \cdot \frac{n-1}{m-1}$
+
+Then, we can find the total inspections as the geometric series
+
+$1 + \alpha + \alpha^{2} + \ldots  \leq \sum_{i=0}^{\infty} \alpha^{i} stackrel{|\alpha|<1} \Rightarrow \sum_{i=0}^{\infty} \alpha^{i} = \frac{1}{1-\alpha}$
+
+#### Interpretation
+If $\alpha$ is constant an unsuccessful search is executed $T_{avg}(n)= \Theta(1)$
+* If the table is half full, $\alpha = 0.5 = 1/2 \Rightarrow \text{ Average Inspections } = 1/(1-(1/2)) = 2$
+* If the table is $90%$ full, $\alpha = 0.9 = 9/10 \Rightarrow \text{ Average Inspections } = 1/(1-(9/10)) = 10$
+
+#### Corollary 11.7
+Inserting an element into an open-address hash table with load factor $\alpha$ requires at most $1/(1-\alpha)$ 
+probes on average, assuming uniform hashing.
+
+Demonstration: An element is inserted only if there is room in the table, and thus $\alpha < 1$. Inserting a key 
+requires an unsuccessful search followed by placing the key into the first empty slot found. 
+Thus, the expected number of probes is at most $1/(1-\alpha)$ as the previous theorem states.
 
 ### Theorem - Successful Search
-Given an open addressing hash table, with `alpha < 1`, the average count of probes `(1/alpha)* ln(1/(1-alpha))`
+Given an open-address hash table with load factor $\alpha = n/m < 1$, the expected
+number of probes in an **unsuccessful search** is at most $\frac{1}{\alpha} \cdot ln(\frac{1}{1-\alpha})$, assuming 
+uniform hashing and assuming that each key in the table is equally likely to be searched for.
+
+#### Interpretation
+If $\alpha$ is constant a successful search is executed $T_{avg}(n)= \Theta(1)$
+* If the table is half full, $\alpha = 0.5 = 1/2 \Rightarrow \text{ Average Inspections } \leq 1.387$
+* If the table is $90%$ full, $\alpha = 0.9 = 9/10 \Rightarrow \text{ Average Inspections } \leq 2.559$
 
 ---
 
