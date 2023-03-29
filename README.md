@@ -44,6 +44,12 @@ The implementation technique will be done in C++/C
 
 ---
 
+### TODO:
+* Retouch:
+  * 
+
+---
+
 ### Credits
 I do not take any credit for the contents, which are taken from my professors, the textbooks and external sources:
 * Professor [Alessandra Raffaeta'](https://www.unive.it/data/persone/5591966) and [Marcello Pelillo](https://www.unive.it/data/persone/5592849)
