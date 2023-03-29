@@ -185,7 +185,7 @@ $$\text{if } n = \mathcal{O}(m) \Rightarrow \alpha = \frac{n}{m} = \frac{\mathca
 
 ---
 
-## Hashing
+### Hashing
 Check out the following methods at [Hash Function](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Theory/6%20-%20Table/4%20-%20HASH%20FUNCTION.md):
 1. Closed Addressing - Division Hashing
 2. Closed Addressing - Multiplicative Hashing
@@ -193,11 +193,15 @@ Check out the following methods at [Hash Function](https://github.com/PayThePizz
 
 ---
 
-## Conclusion
+## Restructuring
+
+We double the dimension of the hash table when $\alpha > 2$
+
+---
+
+### Conclusions
 
 Pros:
 * Easier removal (no need for deleted markings)
 * Typically, performs better with high load factor. 
 * No issues with clustering.
-
-Cons:

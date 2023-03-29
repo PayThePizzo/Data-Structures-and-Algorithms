@@ -168,8 +168,8 @@ the table is being used exhaustively.
 
 > So $h(k,i)$ represents the position of the key $k$ after $i$ failed inspections.
 
+### Hash functions with Probe method
 
-### Probe
 In our analysis, we assume **uniform hashing** at every iteration: the probe sequence of each key
 is equally likely to be any of the _m!_ permutations of <0, 1, ..., m-1> of our hash table.
 * h(k,0) distributes the keys uniformly on the *m* cells

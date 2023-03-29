@@ -236,11 +236,12 @@ hash_insert_v2(T, k)
 
 ## Analysis of Open Addressing 
 
-We will utilize some assumptions:
-* Uniform hashing
-* No deletions
+We will use the following assumptions:
+1. Simple Uniform Hashing 
+2. No deletions
 
-The load factor `0 <= alpha <= 1` because we only have the cells in our table.
+The analysis will be done in terms of load factor $0 \leq alpha \leq 1$ because we only have the cells in our table. Otherwise,
+we would have an overflow.
 
 ### Theorem - Unsuccessful Search
 Given an open addressing hash table, with `alpha < 1`, the average count of probes is `1/(1-alpha)`
@@ -249,22 +250,22 @@ Given an open addressing hash table, with `alpha < 1`, the average count of prob
 Given an open addressing hash table, with `alpha < 1`, the average count of probes `(1/alpha)* ln(1/(1-alpha))`
 
 ---
-## Restructuring a hashtable
-When a hash table has a large number of entries (alpha > 0.5), the average time for operations can become 
-quite substantial.
 
-In such a case, the currently existing elements will have to be inserted into the new table. 
+## Restructuring
+
+When $\alpha > 0.5$ we double its size, and proceed with inserting the currently existing elements into the new table. 
 This may call for:
 * Rehashing of all these key values
 * Transferring all the records
 
-Subsequent dictionary operations will be more efficient and 
-can more than make up for the overhead in creating the larger table.
-Usually it doubles the size. [1]
+This is because the average time for operations can become quite substantial.
 
+Subsequent dictionary operations will be more efficient and can more than make up for the overhead in creating 
+the larger table. Usually it doubles the size. [1]
 
 ---
-## Conclusion
+
+### Conclusions
 
 Pros:
 * No size overhead apart from the hash table array. 
@@ -273,7 +274,7 @@ Pros:
 advance and the churn is low.
 
 Cons:
-* Chaining results better performing than this implementation (alpha >=2 )
+* Chaining results better performing than this implementation ($\alpha > 2$ )
 
 --- 
 ### Extra Credits
