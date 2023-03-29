@@ -142,18 +142,31 @@ This guarantees a low number of collisions in expectation, even if the data is c
 
 ## How do we hash? - Open Addressing
 
-The hash function is now different from the one we faced before
-* Input: `U x {0,1,...,m-1}`
-  * Key, chosen from *U* 
-  * **Order of inspection**, a number in the interval `[0, m-1]` 
-* Output: 
-  * An **index** in the hash table, in the interval `[0, m-1]`
+Since all the possible elements are in the table, the table must be as large as $n$ at most, $S(n) = \mathcal{O}(n)$.
+However, this does not mean the table is always full, nor that the elements are in some kind of order, beside the one
+dictated by the hash function and the solutions of possible collisions.
 
-So `h(K,i)` <mark>represents the position of the key k after **i** failed inspections.</mark>
-* We want that for every key `k`, the sequence of inspections <h(k, 0), h(k,1), ..., h(k,m-1)> must be a permutation of all the
-hash table's indexes. This means we use our table exhaustively.
-* The permutation must let every cell, be considered like a possible cell for an insertion of a key (using the tables' indexes)
+For this reason when probing we **always start from** the index $i = 0$ and in the worst case we might need to examine
+the whole table, which might require $T(n) = \Theta(n)$ if there is a way to keep track of the cells previously
+visited.
 
+To determine which slots to probe, we extend the hash function to include the **probe number** (starting from 0)
+as a second input. 
+
+To sum up, the hash function takes into account the key being inserted $k \in U$ and the order of inspection 
+$i \in \lbrace 0, 1, \ldots , m-1 \rbrace$. It then returns an index $j \in T \Rightarrow i \in 0, 1, \ldots , m-1$
+
+$$h: U \times \lbrace 0, 1, \ldots , m-1  \rbrace \rightarrow \lbrace 0, 1, \ldots , m-1  \rbrace $$
+
+With open addressing, we require that for every key $k \in U$, the probe/inspection sequence:
+
+$$\langle h(k, 0), h(k, 1), \ldots, h(k, m-1) \rangle$$
+
+be a permutation of all the hash-table's indexes $\langle 0, 1, \ldots, m-1 \rangle $ so that every hash-table 
+position is eventually considered as a possible slot for a new key as the table fills up. If this is respected,
+the table is being used exhaustively.
+
+> So $h(k,i)$ represents the position of the key $k$ after $i$ failed inspections.
 
 
 ### Probe

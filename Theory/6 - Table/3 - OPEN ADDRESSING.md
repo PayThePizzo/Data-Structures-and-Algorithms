@@ -1,99 +1,215 @@
 # Open Addressing
 It is also known as *Close Hashing*
 
-Collisions are dealt with by <mark>searching for another empty bucket within the hash table array itself.</mark> 
-There is no help from external data structures.
-* There is, at most, one key per bucket.
-* If the bucket is empty, it contains NULL.
+$$n \leq m \wedge \alpha \leq 1$$
 
-The hash functions used are slightly different from the ones in the closed addressing. We face this topic
-in the next section.
+In Open Addressing Hashtables, **all elements occupy the hash table itself**. That is, each table entry 
+contains either an element of the dynamic set (one key per bucket) or NIL. 
+
+When searching for an element, we systematically examine table slots until either we find the desired
+element or we have ascertained that the element is not in the table. No lists and no elements are stored outside 
+the table, unlike in chaining. Thus, in open addressing, the hash table can “fill up” so that no further insertions 
+can be made; one consequence is that the load factor can never exceed 1 $\alpha \leq 1$.
+
+Of course, we could store the linked lists for chaining inside the hash table, in
+the otherwise unused hash-table slots, but the advantage of open addressing is that it avoids pointers altogether. 
+
+Instead of following pointers, we compute the sequence of slots to be examined. The extra memory freed by not
+storing pointers provides the hash table with a larger number of slots for the same amount of memory, 
+potentially yielding fewer collisions and faster retrieval.
+
+---
+
+## Properties
+
+### Load Factor $alpha \leq 1$
+Theoretical maximum load factor of 1.
+
+The size of the hash table array must always be at least as large as the number of keys in the hash table.
+
+### Collisions 
+To sum up, collisions are dealt with by **searching for another empty bucket** within the hash table array itself.
+* There is **NO** help from external data structures.
+
+The hash functions used are slightly different from the ones in the closed addressing, but they still respect the SUHA. 
+We face this topic in the next section.
+
+#### Hash functions
+
 
 ![Open Addressing](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/OpenAddressing.png?raw=TRUE)
 
-### Implementation Techniques
-1. Linear Probing 
-2. Quadratic Probing 
-3. Double hashing 
+## Implementation Techniques
+To perform insertion using open addressing, we successively examine, or **probe**, the hash table until we find an 
+empty slot in which to put the key. The most common types of probing are:
+1. **Linear Probing** 
+2. **Quadratic Probing** 
+3. **Double hashing** 
 4. Hopscotch hashing 
 5. Robin Hood hashing 
 6. Cuckoo hashing 
 7. 2-Choice hashing
 
 ---
-## Load Factor
 
-Theoretical maximum load factor of 1. 
-
-The size of the hash table array must always be at least as large as the 
-number of keys in the hash table.
-
----
 ## Operations
+We assume all the elements $x$ are made solely with the key $k$ (for simplicity).
 
-### Search
-1. <mark>Probe</mark>: compute `h(k)` and check its content.
-   1. When inspecting <mark> we always start from the index `i = 0`!</mark>
-   2. Every key has its own path, that is why we start from 0
-   3. <mark>The maximum number of inspections represents the worst time in time complexity.</mark>
-2. There are three cases now:
-   1. CASE 1: If the cells **contains k**, the search succeeded. 
-      1. We stop here.
-   2. CASE 2: Else if the cell **contains NULL** and the search failed. 
-      1. We stop here.
-   3. CASE 3: Else if the cell **contains a key different from k**
-      1. We compute another cell's index, based on k and the order of inspection (0, 1, 2,...m-1).
+### Search/ Inspection/ Probing
+To search, inspect or probe an open addressing hashtable all mean the same: 
 
-We keep inspecting until we happen to be in the first two cases, or we already 
-scanned the whole table.
+> Given an element $k$, a hash function $h(k)$ is computed and its result is a cell's address inside the given hashtable
+> T, such that $h(k) \in T$. The content of the cell is, then, examined (usually for insertion purposes).
 
-Now we can se the hash function, not only depends on the key but also on the number of 
-inspections.
+Since all the possible elements are in the table, the table must be as large as $n$ at most, $S(n) = \mathcal{O}(n)$. 
+However, this does not mean the table is always full, nor that the elements are in some kind of order, beside the one
+dictated by the hash function and the solutions of possible collisions.
+
+For this reason when probing we **always start from** the index $i = 0$ and in the worst case we might need to examine 
+the whole table, which might require $T(n) = \Theta(n)$ if there is a way to keep track of the cells previously
+visited.
+
+After computing the hash function $h(k)$ and getting to some address, we mainly face 3 cases:
+1. Successful Search: If the cell $h(k)$ **contains** $k$, the search **succeeded**.
+2. Unsuccessful Search: Else if the cell $h(k)$ **contains** $NIL$ and the search **failed**. 
+3. Busy Cell: Else if the cell $h(k)$  **contains a key different from** $k$ 
+   1. We compute another cell's index, based on $k$, the **order** of inspection $0, 1, 2,\ldots , m-1$, and the
+   previously inspected cells.
+
+We keep inspecting 
+1. Until we happen to be in the first two cases, 
+2. Or we have already scanned the whole table: $m$ inspections.
+
+Now we can see the hash function, must avoid traversing the whole table for each probe operation. 
+not only depends on the **key** but also on the **order of inspection**.
+This is section is specified in the section [Hash Function - Open Addressing](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Theory/6%20-%20Table/4%20-%20HASH%20FUNCTION.md#how-do-we-hash---open-addressing)
 
 ```python
-hash_search(T,K){
-    int i = 0, found = 0, j; #We can set found to a boolean too
-
-    do:
-        j = h(K, i); # Compute the hash function
-        if(T[j] == K):
-            found = 1;
+hash_search(T,k)
+    i = 0 
+    found = false
+    repeat: 
+        j = h(k, i) # Compute the hash function
+        if T[j] == k:
+            found = true
         else:
-            i++;
-    while(T[J] != NULL && i != m && !found); # like (found || T[j] == NULL || i == m)
-   
-    if(found):
-        return j;
+            i=i+1
+    until found or T[j]==NIL or i==m 
+    if found:
+        # Key in table
+        return j
     else:
-        return NULL;
+        # Key not in table
+        return NIL 
 ```
-**Final Time Complexity**: T(n) =  Θ(m)
-* m being the count of the indexes
+
+**Final Time Complexity**: $T(n) = $ 
 
 ### Hash Insert
+Now that we defined how to search, we can proceed with insertion.
 
 ```python
 hash_insert_v1(T, k)
-    int i = 0, found = 0; #We can set found to a boolean too
-    
-    do:
-        int j = h(k, i);  # Compute the hash function
-        if(T[j] == NULL): 
-            T[j] = k; #We can insert only if it's an empty cell
-            found = 1; #Set to true/1
+    i = 0
+    found = false
+    repeat:
+        j = h(k, i)  # Compute the hash function
+        if T[j] == NIL: 
+            T[j] = k # We can insert only if it's an empty cell
+            found = true #Set to true
         else:
-            i++;
-    while(i != m && !found); # same as (i==m || found)
-    
-    if(found):
-        return j;
+            i=i+1
+    until found or i==m
+    if found:
+        return j
     else:
-       raise_error (“overflow hash table”);
+       raise_error ("overflow hash table")
 ```
 
-* Usually, when the table is _X_% full, we need to restructure the table and re-insert all the keys
-   * We change m, so the positions change
-* This heavily impacts on the performances
+**Final Time Complexity**: $T(n) = \mathcal{O}(n)$
+* The worst case is upon insertion of an element, when table is already full.
+* Usually, when the table reaches a certain low percentage of empty cells, we need to restructure the table and 
+re-insert all the keys. 
+* By changing $m$, all the keys also change position and this heavily impacts the performances.
+
+### Delete
+
+Deletion from an open-address hash table is difficult.
+
+#### Deletion Problem
+
+When we delete a key from slot $i$, we cannot simply mark that slot as empty by storing $NIL$ in it. If
+we did, we might be unable to retrieve any key $k$ during whose insertion we had probed slot $i$ and found it occupied.
+
+We can solve this problem by marking the slot, storing in it the special value $DELETED$ instead of $NIL$, where $DELETED \neq NIL$.
+We would then modify the procedure `hash_insert` to treat such a slot as if it were empty so that we can insert a
+new key there.
+
+We do not need to modify `hash_search`, since it will pass over $DELETED$ values while searching.
+When we use the special value $DELETED$, however, search times no longer depend on the load factor $\alpha$, and for
+this reason chaining is more commonly selected as a collision resolution technique when keys must be deleted.
+
+Example: Say we want to perform these operations in order
+* `hash_insert_v1(T,k=118)`
+* `hash_delete(T, k=39)`
+* `hash_search(T, k=118)`
+
+with $T$ as
+
+| index $i$ 	| key $k$  	|
+|-----------	|----------	|
+| $0$       	| $15$     	|
+| $1$       	| $25$     	|
+| $2$       	| $NIL$    	|
+| $3$       	| $NIL$    	|
+| $\ldots$  	| $\ldots$ 	|
+| $5$       	| $NIL$    	|
+| $6$       	| $NIL$    	|
+| $7$       	| $39$     	|
+| $\ldots$  	| $\ldots$ 	|
+| $n$       	| $NIL$    	|
+
+Would result in:
+1. $h(118,0) = 2$, Collision
+2. $h(118,0) = 7$, Collision
+3. $h(118,0) = 3$, Empty
+    1. We proceed with insertion
+
+| index $i$ 	| key $k$  	|
+|-----------	|----------	|
+| $0$       	| $15$     	|
+| $1$       	| $25$     	|
+| $2$       	| $NIL$    	|
+| $3$       	| **118**  	|
+| $\ldots$  	| $\ldots$ 	|
+| $5$       	| $NIL$    	|
+| $6$       	| $NIL$    	|
+| $7$       	| $39$     	|
+| $\ldots$  	| $\ldots$ 	|
+| $n$       	| $NIL$    	|
+
+Now, we want to remove the key $k=39$
+
+| index $i$ 	| key $k$  	|
+|-----------	|----------	|
+| $0$       	| $15$     	|
+| $1$       	| $25$     	|
+| $2$       	| $NIL$    	|
+| $3$       	| **118**  	|
+| $\ldots$  	| $\ldots$ 	|
+| $5$       	| $NIL$    	|
+| $6$       	| $NIL$    	|
+| $7$       	| ~39~     	|
+| $\ldots$  	| $\ldots$ 	|
+| $n$       	| $NIL$    	|
+
+And finally we look for $k=118$:
+1. $h(k,0) = 2$, is not the right one
+2. $h(k,1) = 7 \Rightarrow NIL$
+    1. Then $k=118 \notin T$ since we used the value $NIL$ to substitute the previous one upon deletion.
+    2. By construction of the algorithm this stops the search.
+
+### Rewriting Insert
 
 ```python
 hash_insert_v2(T, k)
@@ -113,23 +229,11 @@ hash_insert_v2(T, k)
     else:
        raise_error (“overflow hash table”);
 ```
-**Final Time Complexity**: T(n) =  Θ(m)
-* m being the count of the indexes
 
-### Delete
-
-It is hard to delete keys from the table since if we delete a cell, it is automatically set to NULL.
-This means we 
-
-So we introduce a constant **"deleted"** that tells us if a cell used to contain a key.
-* This impacts lightly the insertion
-* `DELETED != NULL`
-
-So we need to modify the insert, but the search does not need any modifications. 
-However, this means the load factor is not the primary actor in the time complexity of the search, 
-and closed addressing through chaining has better performances in case of many deletions.
+**Final Time Complexity**: $T(n) = \mathcal{O}(n)$
 
 ---
+
 ## Analysis of Open Addressing 
 
 We will utilize some assumptions:
