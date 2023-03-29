@@ -18,9 +18,9 @@ Output:
   
 Example:
 
-![rodcuttingexample]()
+![rodcuttingexample](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/rodcuttingexample.png?raw=TRUE)
 
-![rodcuttingexample2]()
+![rodcuttingexample2](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/rodcuttingexample.png?raw=TRUE)
 
 ---
 
