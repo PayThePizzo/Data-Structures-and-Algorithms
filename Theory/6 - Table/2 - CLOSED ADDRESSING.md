@@ -111,13 +111,6 @@ chain_hash_delete(T, x)
 
 ---
 
-With SUHA: $nj$ as $T[j].length$
-* $T$ is the table
-* $j$ is the list index
-
-The average value of nj is `sum(n0 to nm-1)/m` = `n/m` = alpha
-
-
 ## Analysis of hashing with chaining 
 Let $T$ be a closed addressing hashtable with $m$ cells, and $n$ stored elements. With this implementation we can 
 think of the load factor $\alpha$ as the average number of elements saved inside a certain list. If $\alpha >1$ the keys

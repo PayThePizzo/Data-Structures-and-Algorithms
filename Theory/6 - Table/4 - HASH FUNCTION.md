@@ -48,7 +48,7 @@ Let's consider a lucky case:
 These keys are randomly and uniformly distributed (like i.i.d. random variables) inside the interval $0 \leq k \leq 1$
 * The hash function $h(k) = \lfloor k * m \rfloor$ satisfies the SUHA.
 
-Usually, hash functions assume the keys are natural numbers belonging to *N*. When
+Usually, hash functions assume the keys are natural numbers belonging to $\mathbb{N}$. When
 they are not natural numbers we need to interpret them as numbers (i.e. char to int)
 
 $$h(k) = \lfloor k \cdot m \rfloor$$
@@ -154,99 +154,152 @@ To determine which slots to probe, we extend the hash function to include the **
 as a second input. 
 
 To sum up, the hash function takes into account the key being inserted $k \in U$ and the order of inspection 
-$i \in \lbrace 0, 1, \ldots , m-1 \rbrace$. It then returns an index $j \in T \Rightarrow i \in 0, 1, \ldots , m-1$
+$i \in \lbrace 0, 1, \ldots , m-1 \rbrace$. It then returns an index $j \in T \Rightarrow j \in 0, 1, \ldots , m-1$
 
-$$h: U \times \lbrace 0, 1, \ldots , m-1  \rbrace \rightarrow \lbrace 0, 1, \ldots , m-1  \rbrace $$
+$$h: U \times \lbrace 0, 1, \ldots , m-1  \rbrace \rightarrow \lbrace 0, 1, \ldots , m-1  \rbrace$$
 
 With open addressing, we require that for every key $k \in U$, the probe/inspection sequence:
 
 $$\langle h(k, 0), h(k, 1), \ldots, h(k, m-1) \rangle$$
 
-be a permutation of all the hash-table's indexes $\langle 0, 1, \ldots, m-1 \rangle $ so that every hash-table 
+be a permutation of all the hash-table's indexes $\langle 0, 1, \ldots, m-1 \rangle$ so that every hash-table 
 position is eventually considered as a possible slot for a new key as the table fills up. If this is respected,
 the table is being used exhaustively.
 
 > So $h(k,i)$ represents the position of the key $k$ after $i$ failed inspections.
 
-### Hash functions with Probe method
+### Uniform Hashing 
 
-In our analysis, we assume **uniform hashing** at every iteration: the probe sequence of each key
-is equally likely to be any of the _m!_ permutations of <0, 1, ..., m-1> of our hash table.
-* h(k,0) distributes the keys uniformly on the *m* cells
-* h(k,0) distributes the keys uniformly on the *m-1* cells
+> In our analysis, we assume **uniform hashing** at every iteration: at each iteration, every key $k$ has the same probability 
+> to return as a probe sequence any of the $m!$ permutations of the indices $\langle 0, 1, \ldots , m-1 \rangle $ of our hash table.
 
-### Linear Probe
+For example:
+* $h(k,0)$ is uniformly distributed on the $m$ cells
+* $h(k,1)$ is uniformly distributed on the $m-1$ cells
+* $h(k,2)$ is uniformly distributed on the $m-2$ cells
+* $\ldots$
 
-Given an auxiliary ordinary hash function `h'`: _U_ --> {0,1,..., m-1}
+At each iteration the returned value of the hash function is the probe sequence: an **entire sequence of inspections**.
 
-The method of linear probing uses the hash function: `h(k,i) = (h'(k) + i) mod m`
+True uniform hashing is difficult to implement, however, and in practice suitable approximations 
+(such as double hashing, defined below) are used. None of these techniques fulfills the assumption of uniform hashing, 
+however, since none of them is capable of generating more than m2 different probe sequences (instead of the $m^{2}$ 
+that uniform hashing requires). Double hashing has the greatest number of probe sequences and, as one might expect, 
+seems to give the best results.
 
-<mark>We cannot alter the order of the keys we want to insert</mark>, this completely
-alters the outcome of the function.
+> Every probe method guarantees the returned permutation is a permutation of hash-table's slots
 
-Example:
-![Linear Probe](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/linearprobe.png?raw=TRUE)
+### Linear Probing
+
+Given an auxiliary ordinary hash function $h'$ which maps the keys into possible indices
+
+$$h'`: U \rightarrow \lbrace 0,1, \ldots , m-1 \rbrace$$
+
+The method of linear probing uses the hash function: `
+
+$$h(k,i) = (h'(k) + i) \text{ mod } m, \text{ } \forall i = 0,1, \ldots , m-1$$
+
+We cannot alter the order of the keys we want to insert, this completely alters the outcome of the function.
+
+Example: Inserting the following sequence in order: $69, 4, 31, 43$
+* $m=13$
+* $h'(k)= k \text{ mod } m $
+* $h(k,i) = ((k \text{ mod } m)+ i) \text{ mod } m = ((k \text{ mod } 13)+ i) \text{ mod } 13$
+
+![Insert Linear Probe](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/insertlinearprobe.png?raw=TRUE)
 
 Pros: 
 * Linear probing is easy to implement
 
 Cons:
-* There are only <mark>m distinct sequences of probe</mark> since the first cell probed determines the entire sequence of probes.
+* There are only $m$ distinct probe sequences per key, 
+  * Observation: The first inspected determines the entire probe sequence.
+  * While ideally we would like to have $m!$
 * It suffers from a problem known as **primary clustering**. 
-  * Long runs of occupied slots **tend to get longer**, and the average search time increases.
-  * Clusters arise because an empty slot preceded by `i` full slots gets filled next with probability `(i+1)/m`. 
-  
+  * There are long queues of occupied slots which increase the average search time and tend to get longer with time.
+  * Clusters arise because an empty slot preceded by $i$ full slots gets filled next with probability $\frac{i+1}{m}$.
+    * The probability to occupy the cell $i+1$ is $\frac{i+1}{m}$.
+    
 
-### Quadratic Probe
+### Quadratic Probing
 
-Quadratic probing uses a hash function of the form: `h(k,i) = (h'(k) + (c1*i) + (c2*(i**2)) mod m`
-* h' is an auxiliary hash function
-* c1 and c2 are positive auxiliary constants such that `c1 != 0 && c2 != 0`
-* i takes value in {0, 1,..., m-1}
+Quadratic probing uses a hash function of the form: 
+
+$$h(k,i) = (h'(k) + c_{1}i + c_{2}i^{2}) \text{ mod } m$$
+
+Where
+* $h'(k)$ is an auxiliary hash function
+* $c_{1}, c_{2} \neq 0$ are positive auxiliary constants 
+* $i = 0, 1, \ldots, m-1$
+  * Possible trials
 
 Pros:
 * Better performances than linear probe
+* Only the keys with the same hash get conflicts
 
 Cons:
-* _c1, c2 and m_ must not have arbitrary values.
-  * `c1 = c2 = 1/2` and `m = (2**p)`.
-* The first position determines the entire sequence, again the count of permutations is m and not *m!*
+* $c_{1}, c_{2}, m$ **must not have arbitrary values**, 
+  * We need to generate all the indices of the table 
+  * As previously stated, $\langle h(k,0), \ldots , h(k,m-1) \rangle$ must be a permutation of the indices $0 \ldots m-1$ 
+  in the table.
+  * For instance, some good options would be $c_{1} = c_{2} = \frac{1}{2} \wedge m = 2^{p}$
+* The first position determines the entire sequence, again the count of permutations is $m$ and not $m!$
 * It suffers from a problem known as **secondary clustering**.
-  * Secondary clusters are generated when **two distinct keys** are mapped to the same cell. This means
-  their **sequences turns out to be the same**.
+  * Secondary clusters are generated when, given **two distinct keys** $k_{1}, k_{2} \wedge k_{1} \neq k_{2}$, the auxiliary
+  hash function returns $h'(k_{1}) = h'(k_{2})$.
+  * Namely, they are mapped to the same cell, which implies their **probe sequence turns out to be the same**. 
 
 
 ### Double Hashing
 
-Here we combine two hashing auxiliary functions: `h(k,i) = ((h1(k)*i) + h2(k)) mod m`
+Here we combine two hashing auxiliary functions: 
 
-The initial probe goes to position T[h1(k)]; successive probe positions are offset
-from previous positions by the amount h2(k), modulo m.
+$h(k,i) = (h_{1}(k)+ i \cdot h_{2}(k)) mod m$
+
+Where:
+* Both $h_{1}(k), h_{2}(k)$ are auxiliary hash functions.
+* $h_{1}(k)$ determines the starting position
+* $h_{2}(k)$ determines the *step*, pace of probing (distance between keys). 
+  * How far we are going to insert the next key
+
+The initial probe goes to position $T[h_{1}(k)]$ successive probe positions are offset
+from previous positions by the amount $h_{2}(k)$, modulo $m$.
+
+![InsertDoubleHash](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/InsertDoubleHash.png?raw=TRUE)
 
 Thus, unlike the case of linear or quadratic probing, the probe sequence here depends in
-two ways upon the key k, since the initial probe position, the offset, or both, may vary.
+two ways upon the key $k$, since the initial probe position, the offset, or both, may vary.
 
-The value of h2(k) must be relatively prime to the hash-table size m for the entire
-hash table to be searched
-
-What is the role of these hash functions?
-1. <mark>The first one determines the starting point
-2. The second one the pace of probing</mark> (the distance between the keys)
+Here's another example:
 
 ![doublehash](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/doublehash.jpg?raw=TRUE)
 
+
+#### Ensuring correctness
+
+The value of $h_{2}(k)$ must be **relatively prime** to the hash-table size $m$ for the entire
+hash table to be inspected.
+
 How do we ensure this?
-* A convenient way to ensure this condition is to let m be a power of 2 and to design h2 so
-  that it always produces an odd number.
-* Another way is to let m be prime and to design h2 so that it always
-  returns a positive integer less than m.
+1. $m=2^{p} \wedge h_{2}(k) = 2 \cdot h_{1}(k)+1$ 
+   1. A convenient way to ensure this condition is to let $m$ be a power of $2$ and to design $h_{2}(k)$ so
+   that it always produces an odd number.
+2. $m \text{ is prime } h_{2}(k) = \text{ positive number smaller than } m$
+   1. Another way is to let $m$ be prime and to design $h_{2}(k)$ so that it always returns a positive integer 
+   smaller than $m$.
+   2. Example: $h_{1}(k) = k \text{ mod } m \wedge h_{2}(k) = 1 + ( k \text{ mod } m' ) \wedge m' < m$
+
 
 Pros:
-* Double hashing uses Theta(`m**2`) sequences of probing since every possible pair `(h1(k), h2(k))` produces a
+* Double hashing uses $\Theta(m^{2})$ sequences of probing since every possible pair $(h_{1}(k), h_{2}(k))$ produces a
 distinct sequence of probing.
 * We get closer to the uniform distribution
+* We avoid secondary clusters
 
 Cons:
+* Although values of $m$ other than primes or powers of $2$ could in principle be used with double hashing, 
+in practice it becomes more difficult to efficiently generate $h_{2}(k)$ in a way that ensures that it is relatively 
+prime to $m$, in part because the relative density $\phi(m)/m$ of such numbers may be small
 
 ---
 
