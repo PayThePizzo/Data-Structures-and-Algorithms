@@ -20,7 +20,7 @@ Example:
 
 ![rodcuttingexample](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/rodcuttingexample.png?raw=TRUE)
 
-![rodcuttingexample2](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/rodcuttingexample.png?raw=TRUE)
+![rodcuttingexample2](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/rodcuttingexample2.png?raw=TRUE)
 
 ---
 
