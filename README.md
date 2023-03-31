@@ -79,4 +79,6 @@ If you feel like any of the content is yours and/or should be removed, please co
 
 #### Shout to helpful resources
 I must mention a couple of resources which I found useful:
-* [Markdown Tables Generator](https://www.tablesgenerator.com/) by 
+* [Markdown Tables Generator](https://www.tablesgenerator.com/) 
+* [Equation Render for online mathematics](https://latex.codecogs.com/) by Zyba Ltd
+* [Latex Mathematical Symbols](https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf) by [Matthias Heinkenschloss](https://www.cmor-faculty.rice.edu/~heinken/)
