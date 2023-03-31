@@ -126,13 +126,13 @@ Demonstration Ad-Absurdum:
 * Part 1.1: $w_{k} = x_{m} = y_{n}$, 
   * Ad-absurdum, if this was not true we could build a sequence by chaining $x_{m}$ to $W$, resulting in 
   $W_{x_{m}}$ which is still a subsequence of $X$ and $Y$. 
-  * But, this means there should be a subsequence longer than $W$, which is **absurd** because $W \im LCS(X,Y)$, 
+  * But, this means there should be a subsequence longer than $W$, which is **absurd** because $W \in LCS(X,Y)$, 
   so it is already an optimal solution.
   * Then, $w_{k} = x_{m} = y_{n}$ is true.
 * Part 1.2: $W^{k-1} \in LCS(X^{m-1}, Y^{n-1})$
   * Ad-absurdum, if this was not true we could have some $W' \in LCS(X^{m-1}, Y^{n-1})$ and $|W'| > |W^{k-1}| = k-1$
   * Since we know, $w_{k} = x_{m} = y_{n}$, If we concat the sequences with $w_{k}$ we would 
-  get $|W^{k-1}_{w_{k}}| < |W^{'}_{w_{k}}|$ (which are both $LCS$).
+  get $| W^{k-1}_{w_{k}} | < | W^{'}_{w_{k}} |$ (which are both $LCS$).
   * But, $W^{k-1}_{w_{k}} = W$ as it is the string concatenated with the last character.
   * We reach an absurd as $|W| < |W^{'}_{w_{k}}|$, and $W$ would not be an optimal solution anymore.
 * Part 2.1: $x_{m} \neq y_{n} \wedge w_{k} \neq x_{m} \Rightarrow W^{k} \in LCS(X^{m-1}, Y)$
