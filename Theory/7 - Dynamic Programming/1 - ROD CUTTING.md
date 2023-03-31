@@ -84,13 +84,13 @@ We already have a vector $p[i]$ where all the prices by length are memorized.
 ## Step 4 - pt.1 Sub-Optimal Solution
 Compute the value of an optimal solution.
 
-Cut_Rod(p,n):
-* Input: 
-  * A **vector p** containing the prices
-    * p[i] price of a rod of length i
-  * **n**, the length of the rod
-* Output: 
-  * q, the maximum revenue
+| _Operation_ 	| `Cut_Rod(Vector p[], Integer n) -> Integer`                                                          	|
+|-------------	|------------------------------------------------------------------------------------------------------	|
+| **Input**   	| A vector $p[1, \ldots, n]$ of prices, The length of a rod $n \geq 0$                                 	|
+| **Output**  	| The maximum revenue $q$, given by $q = max_{1 \leq i \leq n}(p_{i} + \text{CUT-ROD}(p, n-i))$        	|
+| **Notes**   	| $p[i]$ is the price of a rod of length $i$, and if negative we use `MIN_INT` or $- \infty()$ for `q` 	|
+
+<table style="border-collapse:collapse;border-spacing:0" class="tg"><thead><tr><th style="border-color:inherit;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"><span style="font-style:italic">_Operation_</span></th><th style="border-color:inherit;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"><span style="color:#905;background-color:#ddd">`Cut_Rod(Vector p[], Integer n) -&gt; Integer`</span></th></tr></thead><tbody><tr><td style="border-color:inherit;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"><span style="font-weight:bold">**Input**</span></td><td style="border-color:inherit;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">A vector $p[1, \ldots, n]$ of prices, The length of a rod $n \geq 0$</td></tr><tr><td style="border-color:inherit;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"><span style="font-weight:bold">**Output**</span></td><td style="border-color:inherit;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">The maximum revenue $q$, given by $q = max_{1 \leq i \leq n}(p_{i} + \text{CUT-ROD}(p, n-i))$</td></tr><tr><td style="border-color:inherit;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"><span style="font-weight:bold">**Notes**</span></td><td style="border-color:inherit;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">$p[i]$ is the price of a rod of length $i$, and if negative we use <span style="color:#905;background-color:#ddd">`MIN_INT`</span> or $- \infty()$ for <span style="color:#905;background-color:#ddd">`q`</span></td></tr></tbody></table>
 
 ```python
 cut_rod(p,n)
@@ -105,6 +105,10 @@ cut_rod(p,n)
 ```
 
 ### Final Time Complexity 
+The final time complexity is given by
+
+$$T(n) = max \lbrace T_{if}, T_{else} \rbrace = $$
+
 
 **Final Time Complexity** $T(n) = \Theta(2^{n})$
 * T(n) as the count of cut_rod calls. n, as the second parameter in cut_rod

@@ -1,6 +1,7 @@
 # Data Structures and Algorithms
 
-This repo follows the topics of the following courses for students of [Laurea triennale in Informatica](https://www.unive.it/pag/3/) at [Università Ca' Foscari di Venezia](https://www.unive.it/):
+This repo follows the topics of the following courses for students of [Laurea triennale in Informatica](https://www.unive.it/pag/3/) 
+at [Università Ca' Foscari di Venezia](https://www.unive.it/):
 * [Mod. 1](https://www.unive.it/data/insegnamento/339889) 
 * [Mod. 2](https://www.unive.it/data/insegnamento/339890)
 
@@ -73,3 +74,9 @@ We will add specific sections to give credit when due, but we recommend to buy t
 in order to understand these concepts better.
 
 If you feel like any of the content is yours and/or should be removed, please contact me immediately.
+
+---
+
+#### Shout to helpful resources
+I must mention a couple of resources which I found useful:
+* [Markdown Tables Generator](https://www.tablesgenerator.com/) by 
