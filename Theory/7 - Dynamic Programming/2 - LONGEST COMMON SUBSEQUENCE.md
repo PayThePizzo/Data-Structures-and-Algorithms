@@ -150,7 +150,7 @@ To sum up:
 a polynomial way to construct our solution. 
 2. The way that Theorem 15.1 characterizes the longest common subsequences tells
 us that an LCS of two sequences contains within it an LCS of prefixes of the two sequences. 
-3. This means we can start from prefixes of length i=1, and then proceed towards i=m (m as the last index)
+3. This means we can start from prefixes of length $i=1$, and then proceed towards $i=m$ ($m$ as the last index)
 4. Thus, the LCS problem has an optimal-substructure property. A recursive solution also has 
 the overlapping sub-problems property, as we shall see in a moment.
 
@@ -158,41 +158,50 @@ the overlapping sub-problems property, as we shall see in a moment.
 
 ## Step 2 - Recursive Solution
 A recursive solution
-1. If x(m)=y(n)
-   1. Find an LCS(X(m-1), Y(n-1))
-   2. Appending x(m)=y(m), to this LCS yields an LCS(X,Y)
+1. If $x_{m} = y_{n}$
+   1. Find an $LCS(X^{m-1}, Y^{n-1})$
+   2. Appending $x_{m}=y_{n}$, to this LCS yields an $LCS(X,Y)$
 2. Else, we must solve two subproblems
-   1. Finding an LCS(X(m-1), Y)
-   2. Finding an LCS(X, Y(n-1))
-   3. The longest is an LCS(X,Y) and this exhaust all possibilities recursively.
+   1. Finding an $LCS(X^{m-1}, Y)$
+   2. Finding an $LCS(X, Y^{n-1})$
+   3. The longest is an $LCS(X,Y)$ and this exhaust all possibilities recursively.
 
 Our recursive solution to the LCS problem involves establishing a recurrence for the value 
-of an optimal solution. Let us define c[i,j] 
-* If(i=0 || j=0), then `c[i,j] = 0`
-* if(i,j>0 && x(i)==y(j)), then `c[i,j] = c[i-1,j-1]+1
-  * We add one because we have one more char, so it's longer than our current LCS
-* if(i,j>0 && x(i)!=y(j)), then `c[i,j] = max(c[i,j-1], c[i-1,j])`
+of an optimal solution. Let us define $c[i,j]$ to be the length of an $LCS(X^{i}, Y^{j})$
 
-You see we **rule out** some sub-problems due to how we defined the problem and the possible 
-solutions. We have now, _`n*m` subproblems_
+```math
+c[i,j] = 
+\left\{\begin{matrix}
+0 &  i=0 \vee j=0 \\
+c[i-1,j-1]+1 &  i,j>0 \wedge x_{i}=y_{j} \\
+max \lbrace c[i-1,j], c[i, j-1] \rbrace &  i,j>0 \wedge x_{i} \neq y_{j}\\
+\end{matrix}\right.
+```
+
+We **ruled out** some sub-problems due to how we defined the problem and the possible 
+solutions. We have now, $n \cdot m$ distinct subproblems
 
 ---
 
 ## Step 3 & 4 - Bottom Up
-Computing the length of an LCS to be the length of an LCS of the sequences X(i), Y(j)
+Computing the length of an LCS to be the length of an $LCS(X^{i}, Y^{j})$
 
-### LCS
-Input:
-* X, Y
+| Operation                   	| `BU_LCS(X, Y) -> Pair(b,c)`                                                                                	|
+|-----------------------------	|------------------------------------------------------------------------------------------------------------	|
+| Input                       	| Sequences $X,Y$                                                                                            	|
+| Output                      	| Tables $b,c$ with $c[m,n]$ containing the length of an $LCS(X,Y)$                                          	|
+| $c[0 \ldots m, 0 \ldots n]$ 	| is a 2D vector that saves the lengths of $LCS(X^{i}, Y^{j})$                                               	|
+| $b[i \ldots m, j \ldots n]$ 	| is a 2D vector that helps us construct an optimal solution                                                 	|
+| $b[i,j]$                    	| Points to the table entry corresponding to the optimal sub-problem solution chosen when computing $c[i,j]$ 	|
 
-Output:
-* b[] and c[] tables, with c[m,n] containing the length of an LCS(X,Y)
-
-Strategy:
-* c[0...m,0...n] is a 2D vector that saves the lengths of LCS(x(i),y(j))
-* b[i...m,j...n] is a 2D vector that helps us construct an optimal solution
-  * b[i,j] points to the table entry corresponding to the optimal sub-problem solution chosen
-  when computing c[i,j]
+```math 
+\text{movements on the board} = 
+\left\{\begin{matrix}
+\nwarrow &  x_{i}=y_{j} & LCS(X^{i}, Y^{j}) \rightsquigarrow LCS(X^{i-1}, Y^{j-1}) \\
+\uparrow & x_{i} \neq y_{j} & LCS(X^{i}, Y^{j}) \rightsquigarrow LCS(X^{i-1}, Y^{j}) \\
+\leftarrow & x_{i} \neq y_{j} & LCS(X^{i}, Y^{j}) \rightsquigarrow LCS(X^{i}, Y^{j-1})
+\end{matrix}\right.
+```
 
 ![LCS movement on matrix B](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/lcsmovement.png?raw=TRUE)
 
@@ -208,21 +217,21 @@ BU_LCS(x,y)
         c[0,j] = 0;
     for (i = 1 to m): 
         for (j = 1 to n):
-            if(x[i] == y[j]): # Equal
+            if(x[i] == y[j]): # CASE 1 
                 c[i,j] = c[i-1,j-1] + 1;
                 b[i,j] = ↖;
-            else if (c[i-1, j] >= c[i,j-1]): 
+            else if (c[i-1, j] >= c[i,j-1]): # CASE 2
                 c[i,j] = c[i-1, j];
                 b[i,j] = ↑;
-            else:
+            else: # CASE 3
                 c[i,j] = c[i, j - 1];
                 b[i,j] = ←;
     return b,c;
 ```
-**Final Time Complexity** T(n)= Θ(n*m)
+**Final Time Complexity** $T(n)= \Theta(m) + \Theta(n) + \Theta(n \cdot m) = \Theta(n \cdot m)$
 * Polynomial
 
-![example lcs](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exlcs.png?raw=TRUE)
+![examplebulcs](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/examplebulcs.png?raw=TRUE)
 
 Now that we have found the count of an LCS, we want to display which one it could be!
 
@@ -230,7 +239,7 @@ Now that we have found the count of an LCS, we want to display which one it coul
 Constructing an LCS
 
 Let's print an LCS!
-* We start from the i,j position and decrease either i or j
+* We start from the $i,j$ position and decrease eithe $i$ or $j$
 * We only print if there's an oblique arrow.
 * Since the recursive call happens before the print, we get to the top from the bottom
 and only print at the very end.
@@ -246,7 +255,7 @@ printLCSAux(X, b, i, j)
         else:
             printLCSAux(X, b, i, j - 1);
 ```
-**Final Time Complexity** T(n)= O(i+j)
+**Final Time Complexity** $T(n)= \mathcal{O}(i+j)$
 * At every function call, we decrease either one of the two parameters.
 
 ```python
@@ -254,7 +263,7 @@ printLCS(X,Y)
     b,c = BU_LCS(X,Y);
     printLCSaux(X,b, X.length, Y.length);
 ```
-**Final Time Complexity** T(n)= Θ(n*m)
+**Final Time Complexity** $T(n)= \Theta(n \cdot m) + \Theta(n + m)= \Theta(n \cdot m)$
 * We need to go through LCS
 
 ---
@@ -262,18 +271,18 @@ printLCS(X,Y)
 ### Improve memory
 We can reduce the memory usage through two different optimizations
 
-**First Method**
+#### First Method
 
-In the LCS algorithm, for example, we can eliminate the b table altogether.
+In the LCS algorithm, for example, we can eliminate the $b$ table altogether.
 
-Given the value of c[i,j], we can determine in O(1) time which of
-these three values was used to compute c[i,j] without inspecting table b.
-Each c[i,j]  entry **depends on only three other c table entries**:
-1. c[i-1,j-1]
-2. c[i-1,j]
-3. c[i,j-1]
+Given the value of $c[i,j]$, we can determine in $O(1)$ time which of
+these three values was used to compute $c[i,j]$ without inspecting table $b$.
+Each $c[i,j]$  entry **depends on only three other $c$ table entries**:
+1. $c[i-1,j-1]$
+2. $c[i-1,j]$
+3. $c[i,j-1]$
 
-Thus, we can reconstruct an LCS in O(m+n) time using a procedure similar to printLCS.
+Thus, we can reconstruct an $LCS$ in $\mathcal{O}(m+n)$ time using a procedure similar to printLCS.
 The order here matters a lot!
 
 ```python
@@ -287,20 +296,21 @@ printLCSAux(X, c, i, j)
             printLCSAux(X, c, i - 1, j - 1);
             print(X[i]);
 ```
-Although we save `Θ(n*m)` space by this method, the auxiliary 
+Although we save $\Theta(n*m)$ space by this method, the auxiliary 
 space requirement for computing an LCS does not asymptotically decrease, since 
-we need `Θ(n*m)` space for the c table anyway.
+we need $\Theta(n*m)$ space for the $c$ table anyway.
 
 
-**Second Method**
+#### Second Method
 
-We can, however, reduce the asymptotic space requirements for LCS-LENGTH,
-since it needs only two rows of table c at a time: the row being computed, and the
-previous row
+We can, however, reduce the asymptotic space requirements for `LCS_Length`,
+since it needs only two rows of table $c$ at a time:
+* The row being computed, 
+* and the previous row
 
 This improvement works if **we need only the length of an LCS**; if we need to reconstruct
 the elements of an LCS, the smaller table does not keep enough information to
-retrace our steps in O(m+n) time.
+retrace our steps in $\mathcal{O}(m+n)$ time and using only $\mathcal{O}(n)$.
 
 ---
 
@@ -318,7 +328,7 @@ TD_LCSAux(x, y, c, i, j)
                          TD_LCSAux(x, y, i, j - 1));
     return c[i,j];
 ```
-**Final Time Complexity** T(n)= O(n*m)
+**Final Time Complexity** $T(n)= \mathcal{O}(n \cdot m)$
 * This is directly proportional to the possible sub-problems 
 
 ```python
@@ -328,8 +338,8 @@ TD_LCS(X, Y)
     c[0..m,0..n] = -1 #initialized with all elements equals to -1
     return TD_LCSAux(X, Y, c, m, n)
 ```
-**Final Time Complexity** T(n)= Θ(n*m)
-* If the strings are equivalent, we are in O(m) rather than O(n**2)
+**Final Time Complexity** $T(n)= \Theta(n \cdot m)$
+* If the strings are equivalent, we are in $\mathcal{O}(n)$ rather than $\mathcal{O}(n^{2})$
 
 ![example lcs td](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/exlcstd.png?raw=TRUE)
 
