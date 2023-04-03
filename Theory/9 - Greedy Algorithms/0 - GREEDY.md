@@ -5,17 +5,17 @@ the moment.
 That is, it makes a **locally optimal choice** in the hope that this choice
 will lead to a globally optimal solution.
 
-## An activity-selection problem
+## An activity-selection problem - Introductory Example
+
 Our first example is the problem of scheduling several competing activities that 
 **require exclusive use of a common resource**, with a goal of selecting a maximum-size
 set of mutually compatible activities.
-* V, a set of mutually compatible activities, V={1, 2, ..., n}, with i=1 to n.
-  * Each activity tracks a starting time **s(i)** and end time **f(i)**, with i=1 to n.
-  * We can interpret an activity as interval **i = [s(i), f(i)[**
-* Two activities i, j are said to be **compatible if**
-**[s(i), f(i)[ ∩ [s(j), f(j)[ = ∅**
-  * f(i)<= s(j) OR f(j)<= s(i)
-  * They do not overlap!
+* $V$, a set of mutually compatible activities, $V = \lbrace 1, 2, \ldots, n \rbrace$, with $i = 1 \ldots n$.
+  * Each activity tracks a starting time $s(i)$ and end time $f(i)$, with $\forall i = 1 \ldots n$.
+  * We can interpret an activity as interval $i = [s(i), f(i)[$
+* Two activities $i, j$ are said to be **compatible if** they do not overlap!
+  * $[s(i), f(i)) \cap [s(j), f(j)) = \emptyset$
+  * $f(i) \geq s(j) \vee f(j) \geq s(i)$
 
 Example with Gantt diagram:
 
@@ -25,7 +25,7 @@ Let's try and study an algorithm that extracts activities in a greedy way:
 1) Sort activities by end time
 2) Create a set A to regroup the maximum number of compatible activities
 3) Initialize it with the longest activity
-4) For each remaining activity
+4) For each remaining activity, 
    1) if the current activity i has a starting time, bigger than the first activity j,
    add it to the group A.
    2) Set current activity for next comparison
@@ -43,10 +43,18 @@ Greedy_Activity_Selector(Double[] s, Double[] f): #Arrays of times
             j = i;
     return A;
 ```
-**Final Time Complexity**: T(n) = **O(n * log(n))**
+**Final Time Complexity**: $T(n) = \mathcal{O}(nlog(n))$
 
 This algorithm is very similar to Kruskal, that is because they
 share a common structure. 
+
+### Kruskal
+
+
+### Prim-Dijkstra
+
+
+---
 
 ## Greedy Common Structure
 The following structure is a very common structure between certain types of greedy algorithm.
