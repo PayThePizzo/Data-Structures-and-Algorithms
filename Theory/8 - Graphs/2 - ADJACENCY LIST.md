@@ -15,10 +15,10 @@ Example: this graph right here, would be implemented like this
 
 ## Space
 
-| Case         	| Space $S(n)$                                           	|
-|--------------	|-------------------------------------------------------	|
-| Sparse Graph 	| $S(n) = \mathcal{O} (|V|+|E|) = \mathcal{O} (n+m)$ 	|
-| Dense Graph  	| $S(n) = \mathcal{O} (n^{2})$                           	|
+| Case         	| Space $S(n)$                                            	|
+|--------------	|---------------------------------------------------------	|
+| Sparse Graph 	| $S(n) = \mathcal{O} (\|V\|+\|E\|) = \mathcal{O} (n+m)$  	|
+| Dense Graph  	| $S(n) = \mathcal{O} (n^{2})$                            	|
 
 ## Time
 Verifying adjacency in the case of a long linked-list, takes more time.
