@@ -2,8 +2,8 @@
 For this implementation we use a **matrix** $n \times m = |V| \times |E|$ 
 * $n$ rows, representing the vertices
 * $m$ columns, representing the edges
-  * For every column j, we put a 1 in the row i corresponding to the vertices
-  connected by edge represented by the column j (ex: e1)
+  * For every column $j$, we put a $1$ in the row $i$ corresponding to the vertices
+  connected by edge represented by the column $j$ (ex: $e_{1}$)
 
 Example: this undirected graph right here, would be implemented like this
 
@@ -15,8 +15,8 @@ All the columns are different from each other, since they represent different ki
 information.
 
 In the case we face a directed graph:
-* -1 if the edge is **incident** from/ leaves vertex u, 
-* +1 if the edge is **incident** to/ enters vertex v.
+* $-1$ if the edge is **incident** from/ leaves vertex $u$, 
+* $+1$ if the edge is **incident** to/ enters vertex $v$.
 
 ---
 

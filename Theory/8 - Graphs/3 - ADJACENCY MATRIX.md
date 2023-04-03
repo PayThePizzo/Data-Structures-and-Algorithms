@@ -38,11 +38,11 @@ with $i = 1, \ldots, n$ and $j = 1, \ldots, k$
 ---
 
 ## Matrix manipulation and graph properties - Undirected Graphs
-Let G be an undirected graph $G=(V,E)$, let's consider its Adjacency Matrix A and see if we can find 
+Let G be an undirected graph $G=(V,E)$, let's consider its Adjacency Matrix $A$ and see if we can find 
 any properties 
 
 ### $A^{2} = A \times A$
-We can do AxA which is product of two matrices.
+We can do $A \times A$ which is product of two matrices.
 
 $$$$
 

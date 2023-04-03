@@ -1,4 +1,5 @@
 # Weighted Graphs
+
 Weighted graphs are graphs $G(V,E, w)$ where $w$ is a weight function that
 can be associated with vertices, edges or both.
 
@@ -44,9 +45,9 @@ element of the linked list
 
 Using an adjacency matrix:
 * Vertex-Weighted Graphs: Using the main diagonal for the weights associated with the vertices and 
-leaving the rest with 0s or `inf()`
+leaving the rest with $0$s or $\infty$
 * Edge-Weighted Graphs: Instead of having 1s, we would put the weight of the edge in the right 
-position and instead of having 0s, we would use something like `inf()`
+position and instead of having $0$s, we would use something like $\infty$
 
 
 
