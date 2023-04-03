@@ -106,9 +106,8 @@ int gradosquil_aux(PNode t){
         int r = gradosquil_aux(t->right);
         int grado = abs(l-r);
 
-        if()
     }
-
+    return 0;
 }
 
 int gradosquil(PNode t){
@@ -122,6 +121,8 @@ int gradosquil(PNode t){
 int k_limitato(PNode t){
 
 }
+
+
 
 PNode test_tree_1(){
     PNode tree = newTree(0);
@@ -210,8 +211,22 @@ int count_leaves(PNodeG tree){
     if(tree == nullptr){
         return 0;
     }else{
-        return count_leaves_aux(tree);
+        if(tree->left_child == nullptr){
+            return 1 + count_leaves_aux(tree->right_sib);
+        }else{
+            return count_leaves_aux(tree->left_child) + count_leaves_aux(tree->right_sib);
+        }
     }
+}
+
+int k_completo_aux(PNodeG tree, int k){
+
+}
+
+// Existential property, verify
+bool k_completo(PNodeG tree, int k){
+
+
 }
 
 PNodeG test_tree4(){
