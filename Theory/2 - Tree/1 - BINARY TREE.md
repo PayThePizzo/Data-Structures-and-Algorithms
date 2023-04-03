@@ -106,7 +106,7 @@ Induction
    1. Only the root is present, trivially true
 2. Inductive Hypothesis:
    1. We suppose that $f(T_{n}) = \frac{n+1}{2}$ is true at step $n=h-1 \Longrightarrow f(T_{n}) = \frac{n(h-1)+1}{2}$
-   2. We assume that $\forall k$ with $1 \leq k <n$, the property is true. 
+   2. We assume that $\forall k \ni' 1 \leq k < n$ , the property is true. 
 3. Inductive step: we need to demonstrate for any $n>0$ 
    1. We exclude $n=0$ by definition
 

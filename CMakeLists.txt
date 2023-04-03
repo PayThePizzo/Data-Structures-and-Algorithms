@@ -10,7 +10,6 @@ add_executable(first_assignment Assignment/old_assignments/first_assignment/main
 add_executable(second_assignment Assignment/old_assignments/second_assignment/main.cpp)
 
 add_executable(third_assignment Assignment/old_assignments/third_assignment/main.cpp)
-add_executable(FibonacciDP "Exercises/Dynamic Progr/FibonacciDP.cpp")
 add_executable(PalindromeString "Exercises/Dynamic Progr/PalindromeString.cpp")
 add_executable(exercise1 Exercises/Trees/exercise1.cpp)
 add_executable(sortingexercises Exercises/Sorting/sortingexercises.cpp)
@@ -21,3 +20,4 @@ add_executable(GeneralTree "Theory/2 - Tree/GeneralTree.cpp")
 add_executable(bst "Theory/2 - Tree/bst.cpp")
 add_executable(BinaryTree Exercises/Trees/BinaryTree.cpp)
 add_executable(dynamicprogramming "Theory/7 - Dynamic Programming/dynamicprogramming.cpp")
+add_executable(MinHeap "Theory/4 - Heap/MinHeap.cpp")
