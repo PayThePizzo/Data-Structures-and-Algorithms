@@ -57,6 +57,7 @@ AxA = [ [3, 1, 2, 1]
         [2, 1, 3, 1]
         [1, 2, 1, 2]]
 ```
+
 The numbers on the main diagonal, [3,2,3,2] represent the degrees of the vertices.
 * <mark>∀i = 1 to n: a(i,i)∈(AxA) = deg(i)</mark>
   * a(i,i)∈(AxA) = sum(a(i,l)*a(l,i), l= 1 to n) 
