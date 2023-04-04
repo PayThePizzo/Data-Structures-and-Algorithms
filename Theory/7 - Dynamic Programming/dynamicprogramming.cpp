@@ -76,20 +76,23 @@ int fib_td(int n) {
 }
 
 /**
- * Fibonacci Dynamic Programming Bottom Up Solution with T(n) = Theta(n), S(n) = Theta(n)
+ * Fibonacci Dynamic Programming Bottom Up Solution with T(n) = O(n), S(n) = Theta(n)
  *
  * @param n
  * @return
  */
 int fib_bu(int n){
-    int Fib[n];
-    Fib[0] = 0, Fib[1] = 1;
+    if(n>0){
+        int Fib[n];
+        Fib[0] = 0, Fib[1] = 1;
 
-    for (int i = 2; i <= n; i++) {
-        Fib[i] = Fib[i-1] + Fib[i-2];
+        for (int i = 2; i <= n; i++) {
+            Fib[i] = Fib[i-1] + Fib[i-2];
+        }
+        return Fib[n];
+    }else{
+        return 0;
     }
-
-    return Fib[n];
 }
 
 int fib_optimized(int n){
@@ -134,7 +137,8 @@ int Memoized_CR_Aux(vector<int> p, vector<int> r, int j){
 
 int Memoized_CR(vector<int> p, int n){
     vector<int> r;
-    for(int i = 0; i<=n; i++){
+    r.push_back(-1);
+    for(int i = 0; i<n; i++){
         r.push_back(-1);
     }
     return Memoized_CR_Aux(p, r, n);
@@ -146,6 +150,7 @@ int BU_CR(vector<int> p, int n){
         r.push_back(-1);
     }
     r[0]=0;
+
     for(int j=1; j<=n;j++){
         int q=-1;
         for(int i=1; i<=j; i++){
@@ -190,6 +195,10 @@ void Print_CR_BU_CR2(vector<int>p, int n){
 }
 
 // LCS Solutions
+
+
+
+// Palindrome
 
 
 
