@@ -195,26 +195,30 @@ void insert_right_sibling(PNodeG tree, int key){
     }
 }
 
-//Theta(n)
-int count_leaves_aux(PNodeG tree){
-    if(tree != nullptr){
-        if(tree->left_child == nullptr){
-            return 1 + count_leaves_aux(tree->right_sib);
-        }else{
-            return count_leaves_aux(tree->left_child) + count_leaves_aux(tree->right_sib);
-        }
+void Visit_PreOrder(PNodeG tree){
+    if(tree == nullptr){
+        return ;
+    }else{
+        cout << "" << tree->key;
+        Visit_PreOrder(tree->left_child);
+        Visit_PreOrder(tree->right_sib);
     }
-    return 0;
 }
 
+// Theta(n)
+// Preorder Visit on the general tree to verify the existential property of being a leaf
+// As we have a general tree, we must iterate through all the nodes to find out whether each node
+// is a leaf.
+// We must check each node to get our final answer as at any point, a node could be a leaf.
+// Thus, be covering the tree exactly once, we perform a Preorder Visit of complexity T(n) = O(n).
 int count_leaves(PNodeG tree){
     if(tree == nullptr){
         return 0;
     }else{
-        if(tree->left_child == nullptr){
-            return 1 + count_leaves_aux(tree->right_sib);
+        if(tree->left_child== nullptr){
+            return 1 + count_leaves(tree->right_sib);
         }else{
-            return count_leaves_aux(tree->left_child) + count_leaves_aux(tree->right_sib);
+            return count_leaves(tree->left_child) + count_leaves(tree->right_sib);
         }
     }
 }
@@ -254,9 +258,37 @@ PNodeG test_tree5(){
     return tree;
 }
 
+// 4 leaves
+PNodeG test_tree6(){
+    PNodeG tree = newTree2(0);
+    insert_left_child(tree, 1);
+    insert_right_sibling(tree->left_child, 2);
+    insert_right_sibling(tree->left_child->right_sib, 3);
+    insert_left_child(tree->left_child, 4);
+    insert_right_sibling(tree->left_child->left_child, 5);
+    insert_left_child(tree->left_child->left_child->right_sib, 6);
+    return tree;
+}
+
+PNodeG test_tree7(){
+    PNodeG tree = newTree2(0);
+    insert_left_child(tree, 1);
+    insert_right_sibling(tree->left_child, 2);
+    insert_right_sibling(tree->left_child->right_sib, 3);
+    insert_right_sibling(tree->left_child->right_sib->right_sib, 7);
+    insert_left_child(tree->left_child, 4);
+    insert_right_sibling(tree->left_child->left_child, 5);
+    insert_left_child(tree->left_child->left_child->right_sib, 6);
+    return tree;
+}
+
+
 int main ()
 {
-    PNodeG t = test_tree5();
-    cout << count_leaves(t);
+    PNodeG t = test_tree7();
+    int a = count_leaves(t);
+    cout << " " << a;
+
+    Visit_PreOrder(t);
     return 0;
 }

@@ -135,7 +135,7 @@ By Induction on $n$:
   * $T(n) + T(n) =  2^{n} +  2^{n} = 2 \cdot  2^{n}$, trivially
   * $2 \cdot  2^{n} = 2^{n+1}$
 
-$T(n) has exponential time$
+$T(n) \text{ has exponential time}$
 
 Why is `Cut_Rod` so inefficient? The problem is that `Cut_Rod` calls itself recursively over and over again with the same
 parameter values; it solves the same sub-problems repeatedly.
