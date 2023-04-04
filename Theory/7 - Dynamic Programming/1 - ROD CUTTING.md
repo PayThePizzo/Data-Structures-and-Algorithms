@@ -184,7 +184,7 @@ Memoized_Cut_Rod(p, n)
 
 ### Final Time Complexity
 
-**Final Time Complexity**: T(n) = `sum(j, j=1 to n)` = `(n*(n+1))/2` = θ(n**2)
+**Final Time Complexity**: $T(n) = \sum_{j=1}^{n}(j) = \frac{n(n+1)}{2} = \Theta(n^{2})$
 * The for cycle in `Memoized_Cut_Rod` is executed only once per sub-problem
 * A call for a problem that has already been solved has constant time.
   * So in the worst case we reach the `else` branch only once per sub-problem.
