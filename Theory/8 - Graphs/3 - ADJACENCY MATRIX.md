@@ -45,7 +45,7 @@ For undirected graphs:
   * Because edges do not have a direction. 
 * $a_{i,j} = a_{j,i} \forall i,j = 1,2, \ldots, n$.
   * As the matrix is symmetric
-* $deg(a_{i,j}) = \sum_{j=1, \ldots, n} a_{i,j}$
+* $deg(i) = \sum_{j=1, \ldots, n} a_{i,j}$
   * The degree of a vertex is given by the sum of the i-th row
 
 ### Properties of $A^{2} = A \times A$
@@ -79,13 +79,13 @@ $$a_{i,l} = a_{l,i} \Rightarrow a^{2}_{i,i} = \sum_{l=1}^{n} a_{i,l}^{2} =  \sum
 
 While, as we stated before, the degree of a vertex $i$ is given by the **sum of the** $i$-th **row**
 
-$$deg(i) = \sum_{l=1}^{n} a_{i,l} \wedge deg(i) = \sum_{l=1}^{n} a_{i,l}^{2}$$
+$$a_{i,i}^{2} = \sum_{l=1}^{n} a_{i,l}^{2} = deg(i) \wedge \sum_{l=1}^{n} a_{i,l} = deg(i)$$
 
 Which means
 
 $$deg(i) = \sum_{l=1}^{n} a_{i,l} = \sum_{l=1}^{n} a_{i,l}^{2}$$
 
-Then, since we only have $1$ and $0$ inside $A$
+Then, since we only have $1$ and $0$ inside $A$ the summation executes exactly the sum of the i-th row's elements.
 
 $$a_{i,l} = a_{i,l}^{2}$$
 
