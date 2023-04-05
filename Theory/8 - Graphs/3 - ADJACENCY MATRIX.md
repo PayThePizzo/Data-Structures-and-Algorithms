@@ -1,5 +1,6 @@
 # Adjacency Matrix
-For this implementation we use a $|V| \times |V| = n \times n$ **matrix** $A_{G} = a_{i,j}$, where:
+Given that the vertices have distinct numbers as labels, ffor this implementation we use 
+a $|V| \times |V| = n \times n$ **matrix** $A_{G} = a_{i,j}$, where:
 
 ```math
 a_{i,j} = 
@@ -8,6 +9,8 @@ a_{i,j} =
 1 & (i,j) \in E & \text{Edge between i and j} \\
 \end{matrix}\right.
 ```
+
+---
 
 Example for directed and undirected graphs:
 
@@ -87,13 +90,21 @@ The elements represent
 
 ---
 
+## Space
+
+Always requires $S(n) = \Theta(n^{2})$
+
+## Time
+
+Access to information is immediate $T(n) = \mathcal{O}(1)$
+
+---
+
 ### Conclusions
 We may prefer an adjacency-matrix representation, when the graph is dense or when we need to be able to tell quickly
 if there is an edge connecting two given vertices
 
-Pros: 
-* Works best with dense graphs
-* Verifying adjacency, regardless of the graph's density, takes $T(n) = \mathcal{O}(1)$ 
-
-Cons:
-* May occupy more space if the graph is sparse, as it will always require $S(n) = \mathcal{O}(n^{2})$
+| **Pros**                                          	| **Cons**                                     	|
+|---------------------------------------------------	|----------------------------------------------	|
+| Best for dense graphs                             	| Waste of memory in case of sparse graphs     	|
+| Verifying adjacency is immediate $\mathcal{O}(n)$ 	| Space complexity is fixed to $\Theta(n^{2})$ 	|
