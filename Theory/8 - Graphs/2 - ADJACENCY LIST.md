@@ -41,4 +41,4 @@ of choice.
 | Best for sparse graphs                                     	| Worst for dense graphs                                       	|
 | Space complexity is not fixed to $\Theta(n^{2})$           	| Can worsen with dense graphs and large $n$                   	|
 | Flexible structure for both undirected and directed graphs 	| Verifying adjacency when the lists are long, takes more time 	|
-e
+
