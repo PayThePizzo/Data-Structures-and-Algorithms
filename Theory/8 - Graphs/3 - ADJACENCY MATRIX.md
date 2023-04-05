@@ -66,7 +66,7 @@ AxA = [ [3, 1, 2, 1]
 ### 1 - Main diagonal of $A^{2}$
 We notice that, the numbers on the main diagonal, $[3,2,3,2]$ represent the degrees of the vertices. More generally:
 
-$$\forall i = 1, \ldots, n : $a^{2}_{i,i} \in A^{2} = deg(i)$$
+$$\forall i = 1, \ldots, n : a^{2}_{i,i} \in A^{2} = deg(i)$$
 
 #### Demonstration
 By definition of dot product:
@@ -79,7 +79,15 @@ $$a_{i,l} = a_{l,i} \Rightarrow a^{2}_{i,i} = \sum_{l=1}^{n} a_{i,l}^{2} =  \sum
 
 While, as we stated before, the degree of a vertex $i$ is given by the **sum of the** $i$-th **row**
 
-$deg(i) = \sum_{l=1}^{n} a_{i,l}$
+$$deg(i) = \sum_{l=1}^{n} a_{i,l} \wedge deg(i) = \sum_{l=1}^{n} a_{i,l}^{2}$$
+
+Which means
+
+$$deg(i) = \sum_{l=1}^{n} a_{i,l} = \sum_{l=1}^{n} a_{i,l}^{2}$$
+
+Then, since we only have $1$ and $0$ inside $A$
+
+$$a_{i,l} = a_{i,l}^{2}$$
 
   * a(i,i)∈(AxA) = sum(a(i,l)*a(l,i), l= 1 to n) 
   * a(i,i)∈(AxA) = sum(a(i,l)*a(i,l), l= 1 to n), since they are symmetrical
