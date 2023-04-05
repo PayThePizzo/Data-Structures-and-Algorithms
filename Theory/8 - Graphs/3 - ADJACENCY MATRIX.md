@@ -19,7 +19,7 @@ Given two matrices
 * $A = n \times m$ and,
 * $B = m \times k$ 
 
-$$\text{i.i.f} m = m \Rightarrow A \times B = C = n \times k$$
+$$\text{i.i.f } m = m \Rightarrow A \times B = C = n \times k$$
 
 and
 
@@ -34,24 +34,22 @@ Example for directed and undirected graphs:
 
 ![adjmat](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/adjmat.png?raw=TRUE)
 
-As we can see, for undirected graphs:
+### Properties of $A$
+Let G be an undirected graph $G=(V,E)$, let's consider its Adjacency Matrix $A$ and see if we can find
+any properties
+
+For undirected graphs:
 * $a_{i,j} = 0$ when $i = j$ 
   * Since self-loops are absent, the main diagonal is filled with 0
 * $A^{T} = A$, the matrix is symmetric 
   * Because edges do not have a direction. 
 * $a_{i,j} = a_{j,i} \forall i,j = 1,2, \ldots, n$.
-* $deg(a_{i,j}) = \sum_{j=1, \ldots, n}a_{i,j}$
+  * As the matrix is symmetric
+* $deg(a_{i,j}) = \sum_{j=1, \ldots, n} a_{i,j}$
   * The degree of a vertex is given by the sum of the i-th row
-  
 
-#### Matrix manipulation and graph properties - Undirected Graphs
-Let G be an undirected graph $G=(V,E)$, let's consider its Adjacency Matrix $A$ and see if we can find 
-any properties 
-
-#### $A^{2} = A \times A$
-We can do $A \times A$ which is product of two matrices.
-
-$$$$
+### Properties of $A^{2} = A \times A$
+We can do $A \times A = A^{2}$ which is product of two matrices.
 
 ```python
 A = [   [0,1,1,1],
@@ -65,8 +63,24 @@ AxA = [ [3, 1, 2, 1]
         [1, 2, 1, 2]]
 ```
 
-The numbers on the main diagonal, [3,2,3,2] represent the degrees of the vertices.
-* <mark>∀i = 1 to n: a(i,i)∈(AxA) = deg(i)</mark>
+### 1 - Main diagonal of $A^{2}$
+We notice that, the numbers on the main diagonal, $[3,2,3,2]$ represent the degrees of the vertices. More generally:
+
+$$\forall i = 1, \ldots, n : $a^{2}_{i,i} \in A^{2} = deg(i)$$
+
+#### Demonstration
+By definition of dot product:
+
+$$a^{2}_{i,i} = \sum_{l=1}^{n} a_{i,l} \cdot a_{l,i} = deg(i)$$
+
+By property of symmetry, since $A$ represents an undirected graph
+
+$$a_{i,l} = a_{l,i} \Rightarrow a^{2}_{i,i} = \sum_{l=1}^{n} a_{i,l}^{2} =  \sum_{l=1}^{n} a_{l,i}^{2} = deg(i)$$
+
+While, as we stated before, the degree of a vertex $i$ is given by the **sum of the** $i$-th **row**
+
+$deg(i) = \sum_{l=1}^{n} a_{i,l}$
+
   * a(i,i)∈(AxA) = sum(a(i,l)*a(l,i), l= 1 to n) 
   * a(i,i)∈(AxA) = sum(a(i,l)*a(i,l), l= 1 to n), since they are symmetrical
   * a(i,i)∈(AxA) = sum(a(i,l)^2, i= 1 to n), which is similar to sum(a(i,l), i= 1 to n)
