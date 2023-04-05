@@ -71,6 +71,10 @@ $$\forall i = 1, \ldots, n : a^{2}_{i,i} \in A^{2} = deg(i)$$
 #### Demonstration
 By definition of dot product:
 
+$$a^{2}_{i,i} = \sum_{l=1}^{n} a_{i,l} \cdot a_{l,i}$$
+
+Then 
+
 $$a^{2}_{i,i} = \sum_{l=1}^{n} a_{i,l} \cdot a_{l,i} = deg(i)$$
 
 By property of symmetry, since $A$ represents an undirected graph $a_{i,l} = a_{l,i}$
@@ -86,40 +90,98 @@ Which means
 $$a_{i,i}^{2} = \sum_{l=1}^{n} a_{i,l}^{2} = \sum_{l=1}^{n} a_{i,l} = deg(i)$$
 
 Then, since we only have $1$ and $0$ inside $A$ the summation executes exactly the sum of the i-th row's elements.
+* The graph is undirected and non-weighted!
 
 $$a_{i,l}^{2} = a_{i,l}$$
 
-  * a(i,i)∈(AxA) = sum(a(i,l)*a(l,i), l= 1 to n) 
-  * a(i,i)∈(AxA) = sum(a(i,l)*a(i,l), l= 1 to n), since they are symmetrical
-  * a(i,i)∈(AxA) = sum(a(i,l)^2, i= 1 to n), which is similar to sum(a(i,l), i= 1 to n)
-  * Since we only have 1s and 0s sum(a(i,l)^2, i= 1 to n) = sum(a(i,l), i= 1 to n)
-  * a(i,i)∈(AxA) = sum(a(i,l), i= 1 to n) = deg(i)
+In fact,
 
-Now, we consider the elements outside the main diagonal. 
-* ∀i,j = 1 to n, with i!=j: a(i,j)∈(AxA) <mark>represents the count path of length 2, 
-between the vertex i and j.</mark>
-  * a(i,j)∈(AxA) = sum(a(i,l)*a(l,j), l = 1 to n), mind that the product is 1 when both are not 0.
-  * This is only possible when there exist two edges a(i,l) and a(l,j) 
-  
-### $A^{k}$
-1. ∀i = 1 to n, with i!=j: <mark>a(i,j)∈(A^k)</mark> is the count of path of length **k**, between i and j.
+$$a_{i,l} = 0 \Rightarrow a_{i,l}^{2} = 0  \wedge a_{i,l} = 1 \Rightarrow a_{i,l}^{2} = 1$$
+
+We conclude that:
+
+$a_{i,i}^{2} = \sum_{l=1}^{n} a_{i,l} = deg(i), \forall i = 1, \ldots, n$
+
+
+### 2 - Elements outside the main diagonal of $A^{2}$
+Now, we consider the elements outside the main diagonal
+
+$$\forall i,j = 1, \ldots, n \ni' i \neq j: a_{i,j}^{2} = \text{ count of paths of length 2 between i and j}$$
+
+#### Demonstration
+By definition of dot product:
+
+$$a^{2}_{i,j} = \sum_{l=1}^{n} a_{i,l} \cdot a_{l,j}$$
+
+By construction of $A$, $a_{i,j} = 0 \vee a_{i,j} = 1$ for undirected non-weighted graphs. Then,
+
+$$a_{i,l} \cdot a_{l,j} \neq 0 \Leftrightarrow a_{i,l} = a_{l,j} = 1$$
+
+By definition of $A$, this is possible only if there exist two edges 
+* One going from $i$ to $l$
+* One going from $l$ to $j$
+
+$$a_{i,l} = a_{l,j} = 1 \Leftrightarrow (i,l) \in E \wedge (l,j) \in E$$
+
+![edgeexists](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/edgeexists.png?raw=TRUE)
+
+By definition of path, and length of path, the existence of a sequence of vertices connected through some edges,
+defines a path of length equal to the number of edges. In this case, there is a path of length $2$ from $i$ to $j$
+
+We conclude that this is true.
+
+### 3 - Elements outside the main diagonal of $A^{k}$
+This previous concept can be generalized to paths of length $k$
+
+$$\forall i,j = 1, \ldots, n \ni' i \neq j: a_{i,j}^{k} = \text{ count of paths of length k between i and j}$$
+
+#### Demonstration by induction
+Steps:
+1. Base Case: 
+2. Inductive Hypothesis: True, check previous section
+3. Inductive Step: Demonstration for $k \geq 1$
+
+For $k \geq 1$
+
+Trivially, 
+
+$$A^{k} = A \cdot A^{k-1}$$
+
+By definition of dot product:
+
+$$a^{k}_{i,j} = \sum_{l=1}^{n} a_{i,l}^{1} \cdot a_{l,j}^{k-1}$$
+
+By construction of $A$, $a_{i,l} = 0 \vee a_{i,l} = 1$ for undirected non-weighted graphs. 
+
+By Inductive Hypothesis, the count of paths of length $k-1$ between $l$ and $j$ is given by $a_{l,j}^{k-1}$
+
+We conclude this is true.
 
 ---
 
 ## Directed Graphs
 
+TODO: Check SP Problems for solutions (FW)
+
 Example for weighted graphs:
 
 ![wadjmat](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/wadjmat.png?raw=TRUE)
 
+### Properties of $A$
+Let G be an directed graph $G=(V,E)$, let's consider its Adjacency Matrix $A$ and see if we can find
+any properties
 
-### Matrix manipulation and graph properties - Directed Graphs
+For directed graphs:
+* $in-deg(i) = \sum_{l=1, \ldots, n} a_{i,l}$
+* $out-deg(i)= \sum_{l=1, \ldots, n} a_{l,i}$
 
-#### $A^{2}$
-The elements represent
+### Properties of $A^{2} = A \times A$
 
-#### $A^{k}$
-The elements represent
+
+
+### Properties of $A^{k}$
+
+$$a_{i,j}^{k} = \sum_{l=1}^{m} a_{i,l} \cdot a_{l,j} = \text{ the count of paths of length k from i to j}$$
 
 ---
 
