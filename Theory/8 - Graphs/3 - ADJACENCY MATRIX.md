@@ -79,7 +79,7 @@ $$a^{2}_{i,i} = \sum_{l=1}^{n} a_{i,l}^{2} =  \sum_{l=1}^{n} a_{l,i}^{2} = deg(i
 
 While, as we stated before, the degree of a vertex $i$ is given by the **sum of the** $i$-th **row**
 
-$$\sum_{l=1}^{n} a_{i,l}^{2} = deg(i)$$
+$$\sum_{l=1}^{n} a_{i,l} = deg(i)$$
 
 Which means
 
@@ -87,7 +87,7 @@ $$a_{i,i}^{2} = \sum_{l=1}^{n} a_{i,l}^{2} = \sum_{l=1}^{n} a_{i,l} = deg(i)$$
 
 Then, since we only have $1$ and $0$ inside $A$ the summation executes exactly the sum of the i-th row's elements.
 
-$$a_{i,l} = a_{i,l}^{2}$$
+$$a_{i,l}^{2} = a_{i,l}$$
 
   * a(i,i)∈(AxA) = sum(a(i,l)*a(l,i), l= 1 to n) 
   * a(i,i)∈(AxA) = sum(a(i,l)*a(i,l), l= 1 to n), since they are symmetrical
