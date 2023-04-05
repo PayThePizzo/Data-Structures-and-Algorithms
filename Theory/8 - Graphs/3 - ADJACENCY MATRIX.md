@@ -73,17 +73,17 @@ By definition of dot product:
 
 $$a^{2}_{i,i} = \sum_{l=1}^{n} a_{i,l} \cdot a_{l,i} = deg(i)$$
 
-By property of symmetry, since $A$ represents an undirected graph
+By property of symmetry, since $A$ represents an undirected graph $a_{i,l} = a_{l,i}$
 
-$$a_{i,l} = a_{l,i} \Rightarrow a^{2}_{i,i} = \sum_{l=1}^{n} a_{i,l}^{2} =  \sum_{l=1}^{n} a_{l,i}^{2} = deg(i)$$
+$$a^{2}_{i,i} = \sum_{l=1}^{n} a_{i,l}^{2} =  \sum_{l=1}^{n} a_{l,i}^{2} = deg(i)$$
 
 While, as we stated before, the degree of a vertex $i$ is given by the **sum of the** $i$-th **row**
 
-$$a_{i,i}^{2} = \sum_{l=1}^{n} a_{i,l}^{2} = deg(i) \wedge \sum_{l=1}^{n} a_{i,l} = deg(i)$$
+$$\sum_{l=1}^{n} a_{i,l}^{2} = deg(i)$$
 
 Which means
 
-$$deg(i) = \sum_{l=1}^{n} a_{i,l} = \sum_{l=1}^{n} a_{i,l}^{2}$$
+$$a_{i,i}^{2} = \sum_{l=1}^{n} a_{i,l}^{2} = \sum_{l=1}^{n} a_{i,l} = deg(i)$$
 
 Then, since we only have $1$ and $0$ inside $A$ the summation executes exactly the sum of the i-th row's elements.
 
