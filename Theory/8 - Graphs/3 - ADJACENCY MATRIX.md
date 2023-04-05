@@ -1,5 +1,5 @@
 # Adjacency Matrix
-Given that the vertices have distinct numbers as labels, ffor this implementation we use 
+Given that the vertices have distinct numbers as labels, for this implementation we use 
 a $|V| \times |V| = n \times n$ **matrix** $A_{G} = a_{i,j}$, where:
 
 ```math
@@ -11,6 +11,24 @@ a_{i,j} =
 ```
 
 ---
+
+## Quick Recap - Matrix Operations
+
+### Matrix Multiplication - Dot Product
+Given two matrices
+* $A = n \times m$ and,
+* $B = m \times k$ 
+
+$$\text{i.i.f} m = m \Rightarrow A \times B = C = n \times k$$
+
+and
+
+$$c_{i,j} = \sum_{l=1}^{m}a_{i,l} \cdot b_{l,j}, \text{ with } i = 1, \ldots, n \wedge j = 1, \ldots, k$$
+
+
+---
+
+## Undirected Graphs
 
 Example for directed and undirected graphs:
 
@@ -24,27 +42,13 @@ As we can see, for undirected graphs:
 * $a_{i,j} = a_{j,i} \forall i,j = 1,2, \ldots, n$.
 * $deg(a_{i,j}) = \sum_{j=1, \ldots, n}a_{i,j}$
   * The degree of a vertex is given by the sum of the i-th row
+  
 
-Example for weighted graphs:
-
-![wadjmat](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/wadjmat.png?raw=TRUE)
-
----
-
-### Matrix Multiplication
-Given two matrices $A = n \times m$ and $B = m \times k$, $A \times B = C = n \times k$ since $m = m$
-
-$$c_{i,j} = \sum_{l=1}^{m}a_{i,l} \cdot b_{l,j}$$
-
-with $i = 1, \ldots, n$ and $j = 1, \ldots, k$ 
-
----
-
-## Matrix manipulation and graph properties - Undirected Graphs
+#### Matrix manipulation and graph properties - Undirected Graphs
 Let G be an undirected graph $G=(V,E)$, let's consider its Adjacency Matrix $A$ and see if we can find 
 any properties 
 
-### $A^{2} = A \times A$
+#### $A^{2} = A \times A$
 We can do $A \times A$ which is product of two matrices.
 
 $$$$
@@ -80,12 +84,19 @@ between the vertex i and j.</mark>
 
 ---
 
-## Matrix manipulation and graph properties - Directed Graphs
+## Directed Graphs
 
-### $A^{2}$
+Example for weighted graphs:
+
+![wadjmat](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/wadjmat.png?raw=TRUE)
+
+
+### Matrix manipulation and graph properties - Directed Graphs
+
+#### $A^{2}$
 The elements represent
 
-### $A^{k}$
+#### $A^{k}$
 The elements represent
 
 ---
