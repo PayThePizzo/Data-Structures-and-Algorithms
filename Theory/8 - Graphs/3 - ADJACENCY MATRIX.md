@@ -100,7 +100,7 @@ $$a_{i,l} = 0 \Rightarrow a_{i,l}^{2} = 0  \wedge a_{i,l} = 1 \Rightarrow a_{i,l
 
 We conclude that:
 
-$a_{i,i}^{2} = \sum_{l=1}^{n} a_{i,l} = deg(i), \forall i = 1, \ldots, n$
+$$a_{i,i}^{2} = \sum_{l=1}^{n} a_{i,l} = deg(i), \forall i = 1, \ldots, n$$
 
 
 ### 2 - Elements outside the main diagonal of $A^{2}$
@@ -199,7 +199,7 @@ Access to information is immediate $T(n) = \mathcal{O}(1)$
 We may prefer an adjacency-matrix representation, when the graph is dense or when we need to be able to tell quickly
 if there is an edge connecting two given vertices
 
-| **Pros**                                          	| **Cons**                                     	|
-|---------------------------------------------------	|----------------------------------------------	|
-| Best for dense graphs                             	| Waste of memory in case of sparse graphs     	|
-| Verifying adjacency is immediate $\mathcal{O}(n)$ 	| Space complexity is fixed to $\Theta(n^{2})$ 	|
+| **Pros**                                          	 | **Cons**                                     	|
+|-----------------------------------------------------|----------------------------------------------	|
+| Best for dense graphs                             	 | Waste of memory in case of sparse graphs     	|
+| Verifying adjacency is immediate $\mathcal{O}(1)$ 	 | Space complexity is fixed to $\Theta(n^{2})$ 	|
