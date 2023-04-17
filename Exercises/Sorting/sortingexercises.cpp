@@ -18,6 +18,7 @@ void quickSelect(int *arr, int p, int r, int q){
 
 }
 
+
 /**
  * Efficient function which sorts an array of n elements such that
  * given i,j (with 1 <= i <= j <= n) we obtain mod(arr[i], factor) <= mod(arr[j], factor)
@@ -30,6 +31,10 @@ void quickSelect(int *arr, int p, int r, int q){
 void sort_mod(int *arr, int n, int factor){
     
 }
+
+// Stable?
+// In-Place?
+
 
 // Implementations
 

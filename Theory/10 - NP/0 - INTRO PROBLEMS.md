@@ -1,38 +1,44 @@
-### Intro
+# NP-Completeness Theory
+
 Almost all the algorithms we have studied thus far have been
-polynomial-time algorithms: on inputs of size n, their worst-case
-running time is O(n^k) for some constant k. You might wonder whether all
-problems can be solved in polynomial time. The answer is no.
+polynomial-time algorithms: on inputs of size $n$, their worst-case
+running time is $\mathcal{O}(n^{k})$ for some constant $k$. 
+
+You might wonder whether all problems can be solved in polynomial time. The answer is no.
 
 However, there is an interesting class of problems, called
-the “NP-complete” problems, whose status is unknown.
-No polynomial-time algorithm has yet been discovered for an
-NP-complete problem, nor has anyone yet been able to prove that no
-polynomial-time algorithm can exist for any one of them.
+the *NP-complete* problems, whose status is unknown.
+1. No polynomial-time algorithm has yet been discovered for an NP-complete problem, 
+2. Nor has anyone yet been able to prove that no polynomial-time algorithm can exist for any one of them.
 
 Several NP-complete problems are particularly tantalizing because they seem
 on the surface to be similar to problems that we know how to solve in polynomial
 time. In each of the following pairs of problems, one is solvable in polynomial
-time and the other is NP-complete. This is the case for the greedy clique.
+time and the other is NP-complete. 
+
+This is the case for the [greedy clique](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Theory/9%20-%20Greedy%20Algorithms/1.1%20-%20GREEDY%20CLIQUE.md).
 
 ---
 
-# Problem
-We will focus here on the **complexity of the PROBLEMS**, not the algorithms.
+## Problems
+We will focus here on the **complexity of PROBLEMS**, not the algorithms.
 
-We want to categorize the <mark> the complexity of a problem</mark>. 
-But first let's define a "problem".
+We want to categorize the complexity of a problem. But first, let's define a "problem".
 
-A problem is a **binary relation between two sets** (typically large).
-> P ⊆ I x S 
-* I, the set of problem's instances
-* S, the set of problem's solutions
+> A problem is a **binary relation between two sets** (typically large).
+
+$$P \subseteq I \times S$$
+
+Where
+
+* $I$, the set of problem's instances
+* $S$, the set of problem's solutions
 
 Problems have two subcategories:
-* _Decidable_, for which it is possible to write an algorithm that **solve them in a finite time-span**
-  * Treatable: algorithms that have polynomial time **O(n^k)**
-  * Untreatable: algorithms that have exponential o super-exponential time **O(k^n)**, and are not usable
-    in real life. They cannot be reduced to polynomial time.
+* _Decidable_, **for which it is possible to write an algorithm that solves them in a finite time-span**
+  * Treatable: algorithms that have polynomial time $\mathcal{O}(n^{k})$
+  * Untreatable: algorithms that have exponential $\mathcal{O}(k^{n})$ o super-exponential time $\mathcal{O}(n!)$, and are not usable
+  in real life. They cannot be reduced to polynomial time.
 * _Undecidable_, for which **it is not possible to write algorithms** that **solve them in a finite time-span**
   * We have no clue whether it is possible to find an algorithm that will converge, like the *alt problem*
 
@@ -47,11 +53,12 @@ It is a paradox.
 We cannot reduce the hardness of a problem on the presence of a solution at a certain time in history!
 We need some classification!
 
----
 
-# Classes of Problems
+## Classification of Problems
+Given the definition given above, we can initially identify three classes of problems:
 * Optimization Problems
   * Max Clique
+* Search Problems
 * Decision Problems
 
 ## Optimization Problems
