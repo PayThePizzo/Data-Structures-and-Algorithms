@@ -68,6 +68,7 @@ Given the definition given above, we can initially identify three classes of pro
   * Spanning Trees, Walks between nodes, ...
 * Optimization Problems
   * Max Clique
+  * MST
 * Decision Problems
 
 #### Search Problems
@@ -90,34 +91,35 @@ I  \\
 S = S_{yes} \cup S_{no} \\
 \end{matrix}\right.
 ```
-
   
 Examples:
 * Given an x and a set A, does x belong to A?
 * Given a graph G, is there a _cycle that connects all the vertices in G_ (also called a **Hamiltonian Cycle**)?
 
-
 ---
 
 ### From an optimization problem to a decision problem
 Two useful facts about these two classes of problems, are the following ones:
-* We usually can **transform** a given **optimization problem to a related decision problem** by imposing a
-bound on the value to be optimized.
-* **The optimization problem and its decision problem version, belong to the same complexity class**.
+
+> FACT 1: It is, usually, possible to **transform** a given **optimization problem to a related decision problem** by imposing a
+bound on the value to be optimized, and vice-versa.
+
+> FACT 2: **The optimization problem and its decision problem version, belong to the same complexity class**.
+
 It, is easier to demonstrate the class to which a decision problem belongs than an optimization one.
-  * A decision problem is untreatable, the optimization version is untreatable too.
-  * For the same principle, if there is a polynomial-time solution for a decision problem, there must exist a polynomial
-  solution for the optimization problem too, and vice-versa.
+* A decision problem is untreatable, the optimization version is untreatable too.
+* For the same principle, if there is a polynomial-time solution for a decision problem, there must exist a polynomial
+solution for the optimization problem too, and vice-versa.
 
 #### Example: Max-Clique
 The max clique problem (optimization) is related to the clique problem (decision).
 
 Clique:
-* Instances: undirected graphs, integer k
-* Is there a clique with at least, k vertices? (Y/N).
+* Instances: undirected graphs, integer $k$
+* Is there a clique with at least, $k$ vertices? (Y/N).
 
 If there is a polynomial-time solution for _Clique_, there must exist a polynomial
-solution for _Max Clique_ too, an.
+solution for _Max Clique_ too, and vice-versa.
 
 
 
