@@ -41,7 +41,7 @@ There are many ways to classify problems, such as
 
 ---
 
-### Classes of Problems - Decidability :
+## Classes of Problems - Decidability :
 * _Decidable_, **for which it is possible to write an algorithm that solves them in a finite time-span**
   * Treatable: algorithms that have polynomial time $\mathcal{O}(n^{k})$
   * Untreatable: algorithms that have exponential $\mathcal{O}(k^{n})$ o super-exponential time $\mathcal{O}(n!)$, and are not usable
@@ -49,7 +49,7 @@ There are many ways to classify problems, such as
 * _Undecidable_, for which **it is not possible to write algorithms** that **solve them in a finite time-span**
   * We have no clue whether it is possible to find an algorithm that will converge, like the *alt problem*
 
-#### Example of Undecidable Problem: The Alt Problem.
+### Example of Undecidable Problem: The Alt Problem.
 Given a program and some data, we want to write an algorithm to that returns:
 * `TRUE`, if the program stops at some point, given with the input.
 * `FALSE`, else.
@@ -62,7 +62,7 @@ We need some classification!
 
 ---
 
-### Classes of Problems - Types:
+## Classes of Problems - Types:
 Given the definition given above, we can initially identify three classes of problems:
 * Search Problems
   * Spanning Trees, Walks between nodes, ...
@@ -71,10 +71,10 @@ Given the definition given above, we can initially identify three classes of pro
   * MST
 * Decision Problems
 
-#### Search Problems
+### Search Problems
 These problems, given an instance $x$, require to find a solution $s$, such that $(x,s) \in P$ 
 
-#### Optimization Problems
+### Optimization Problems
 These problems, given an instance $x$, require finding **the best** solution $s$ (within all possible solutions), 
 such that $(x,s) \in P$
 
@@ -82,7 +82,7 @@ Many problems of interest are optimization problems, in which each feasible (i.e
 “legal”) solution has an associated value, and we wish to find a feasible solution
 with the best value.
 
-#### Decision Problems
+### Decision Problems
 These problems, expect a binary answer, (i.e. either yes or no). They usually require to verify some condition.
 
 ```math
@@ -98,7 +98,7 @@ Examples:
 
 ---
 
-### From an optimization problem to a decision problem
+## From an optimization problem to a decision problem
 Two useful facts about these two classes of problems, are the following ones:
 
 > FACT 1: It is, usually, possible to **transform** a given **optimization problem to a related decision problem** by imposing a
@@ -111,7 +111,7 @@ It, is easier to demonstrate the class to which a decision problem belongs than 
 * For the same principle, if there is a polynomial-time solution for a decision problem, there must exist a polynomial
 solution for the optimization problem too, and vice-versa.
 
-#### Example: Max-Clique
+### Example: Max-Clique
 The max clique problem (optimization) is related to the clique problem (decision).
 
 Clique:
