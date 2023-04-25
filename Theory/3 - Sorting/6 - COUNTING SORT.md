@@ -62,13 +62,13 @@ Example:
 ![countingsortex](https://github.com/PayThePizzo/DataStrutucures-Algorithms/blob/main/Resources/countisortex.png?raw=TRUE)
 
 **Final Time Complexity**: $T(n) = \Theta(n+k)$
-* Usually best when $k = \mathcal{O}(n) \Rightarrow T(n) = \Theta(n+k)$
+* Usually best when $k = \mathcal{O}(n) \Rightarrow T(n) = \Theta(n)$
 
 --- 
 
 ## Conclusions
 Pro:
-* If $k = \mathcal{O}(n) \Rightarrow T(n) = \Theta(n+k)$
+* If $k = \mathcal{O}(n) \Rightarrow T(n) = \Theta(n)$
 * It is a **stable sorting algorithm**, if we start from the end.
 
 Cons:
