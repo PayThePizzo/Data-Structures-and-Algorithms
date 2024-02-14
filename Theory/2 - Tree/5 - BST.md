@@ -184,7 +184,7 @@ A Symmetric visit for a BST of n nodes can be implemented by
 ---
 
 ## Successor
-Given $x \in T$ the successor of $x$ is the node $y \in T$ which precedes $x$ in a Symmetric visit
+Given $x \in T$ the successor of $x$ is the node $y \in T$ which succeeds $x$ in a Symmetric visit
 * Remember: if all the keys are distinct the successor of u is the node v with the **smallest key** such that `v.key > u.key`
 
 We distinguish two cases here:

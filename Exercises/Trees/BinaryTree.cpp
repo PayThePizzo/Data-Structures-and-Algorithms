@@ -7,32 +7,35 @@
 
 using namespace std;
 
-struct NodeB{
-    int key; //Might change of type
-    NodeB* p; //Might not be included
-    NodeB* left;
-    NodeB* right;
+struct Node{
+    int key;
+    Node* p;
+    Node* left;
+    Node* right;
 
-    NodeB(int val, NodeB* parent = nullptr, NodeB* sx = nullptr, NodeB* dx = nullptr)
+    Node(int val, Node* parent = nullptr, Node* sx = nullptr, Node* dx = nullptr)
             : key{val}, p{parent}, left{sx}, right{dx}{}
 };
 
-typedef NodeB* PNodeB;
+typedef Node* PNode;
 
 struct Tree{
-    PNodeB root;
+    PNode root;
 
-    Tree(PNodeB r = nullptr): root{r} {}
+    Tree(PNode r = nullptr)
+            : root{r} {}
 };
 
 typedef Tree* PTree;
 
-PNodeB NewNode(int k){
-    PNodeB node = new NodeB(k);
+// Initialization
+
+PNode NewNode(int k){
+    PNode node = new Node(k);
     return node;
 }
 
-PTree NewTree(PNodeB r){
+PTree NewTree(PNode r){
     PTree tree = new Tree(r);
     return tree;
 }
@@ -41,10 +44,10 @@ bool TreeEmpty(PTree t){
     return t->root == nullptr;
 }
 
-NodeB parent(PTree t, PNodeB u){
+Node parent(PTree t, PNode u){
 }
 
-list<NodeB> children(PTree t, PNodeB u){
+list<Node> children(PTree t, PNode u){
 }
 
 void PreOrderVisit(PTree t){
@@ -67,23 +70,23 @@ int TreeHeight(PTree t){
 
 }
 
-int NodeHeight(PTree t, PNodeB u){
+int NodeHeight(PTree t, PNode u){
 
 }
 
-int NodeDepth(PTree t, PNodeB u){
+int NodeDepth(PTree t, PNode u){
 
 }
 
-int LengthPath(PTree t, PNodeB u, PNodeB v){
+int LengthPath(PTree t, PNode u, PNode v){
 
 }
 
-PTree InducedSubTree(PTree t, PNodeB u){
+PTree InducedSubTree(PTree t, PNode u){
 
 }
 
-void Neighborhood(PTree t, PNodeB u){
+void Neighborhood(PTree t, PNode u){
 
 }
 
@@ -91,7 +94,7 @@ void Search(PTree t, int key){
 
 }
 
-void Delete(PTree t, PNodeB u){
+void Delete(PTree t, PNode u){
 
 }
 
@@ -111,7 +114,7 @@ PTree TestTree3(){
 
 // Main function
 int main() {
-    PNodeB u = NewNode(4);
+    PNode u = NewNode(4);
     PTree t = NewTree(u);
 
     return 0;

@@ -5,6 +5,8 @@ There are many ways to define trees as a data structure
 > A (rooted) tree $T$ consists of a root, and zero or more subtrees $T_{1}, T_{2}, \ldots , T_{k}$ such that there is 
 > an edge from the root of the tree $T$ to the root of each subtree.
 
+<br>
+
 ### Traditional Definition
 It is a pair
 
@@ -19,16 +21,23 @@ where
 In a tree every node (except for the root $r$) $v \in N$ has exactly 1 parent or father node $u \in N$, 
 such that $(u,v) \in A$ 
 
+<br>
+
 ### Graph Theory Definition 
-> A tree is an undirected, connected and acyclic graph.
+> A rooted tree is a free tree (an undirected, connected and acyclic graph) in which one of the vertices (called the 
+> root node) is distinguished from the others.
 * In other words, a connected graph that does not contain even a single cycle is called a tree. 
 * A tree represents hierarchical structure in a graphical form
+
+<br>
 
 ### Data Structure Definition
 A tree is **non-linear** and a **hierarchical** data structure consisting of a collection of nodes such that each node
 of the tree stores a value, a list of references to nodes.
 
 ---
+
+<br>
 
 ## Terminology
 
