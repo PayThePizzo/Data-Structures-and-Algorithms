@@ -1,0 +1,17 @@
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/sorting.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/first_assignment.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/ex1.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/PalindromeString.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/second_assignment.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/third_assignment.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/sortingexercises.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/exercise1.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/efficientprogramming.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/dynamicprogramming.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/GeneralTree.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/bst.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/BinaryTree.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/BinaryHeap.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/GeneralTree-LCRS.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/edit_cache.dir
+C:/Users/PayThePizzo/CLionProjects/ASD/cmake-build-release/CMakeFiles/rebuild_cache.dir

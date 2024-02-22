@@ -1,0 +1,16 @@
+"C:\Program Files\JetBrains\CLion 2021.1.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Release "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2021.1.2/bin/ninja/win/ninja.exe" -G Ninja C:\Users\PayThePizzo\CLionProjects\ASD
+-- Configuring done
+CMake Error at CMakeLists.txt:19 (add_executable):
+  Cannot find source file:
+
+    Exercises/Trees/GeneralTree.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+
+
+CMake Error at CMakeLists.txt:19 (add_executable):
+  No SOURCES given to target: GeneralTree
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
