@@ -80,7 +80,7 @@ typedef Node *PNode;
  * @param col char key
  * @return Empty tree
  */
-PNode newTree(int key, char col) {
+PNode newTree(int key = 0, char col = 'U') {
     return new Node(key, col);
 }
 
@@ -96,12 +96,12 @@ bool treeEmpty(PNode t) {
 
 
 PNode parent(PNode t, PNode v){
-
+    return v->p;
 }
 
 // If the v->p does not exist (namely we assume not to have the pointer here)
 PNode parent_v2(PNode t, PNode v){
-
+    return nullptr;
 }
 
 // Children
@@ -110,10 +110,14 @@ PNode parent_v2(PNode t, PNode v){
 // ====================================================================================
 // Util functions
 
-void insertLeft(PNode t, int key) {
+void insertLeft(PNode t, PNode l) {
+    if (t != nullptr && l != nullptr)
+        t->left = l;
 }
 
-void insertRight(PNode t, int key) {
+void insertRight(PNode t, PNode r) {
+    if (t != nullptr && r != nullptr)
+        t->right = r;
 }
 
 // ====================================================================================
@@ -178,7 +182,6 @@ int gradosquil_aux(PNode t){
         int l = gradosquil_aux(t->left);
         int r = gradosquil_aux(t->right);
         int grado = abs(l-r);
-
     }
     return 0;
 }
@@ -215,8 +218,26 @@ int gradosquil_tree(Node *root){
 // ====================================================================================
 // Main
 
-int main() {
+// g++ -std=c++14 --pedantic -Wall -o BST main_es1.cpp
+// 
 
+int main() {
+    // Empty Tree
+    PNode empty_tree = newTree();
+
+    // Simple Binary Tree
+    PNode tree1 = newTree();
+    PNode left_node = newTree(1, 'U');
+    PNode right_node = newTree(2, 'U');
+    insertLeft(tree1, left_node);
+    insertRight(tree1, right_node);
+
+    cout << "root" << endl;
+    cout << tree1->key << endl;
+    cout << "left" << endl;
+    cout << tree1->left->key << endl;
+    cout << "right" << endl;
+    cout << tree1->right->key << endl;
 
     return 0;
 }

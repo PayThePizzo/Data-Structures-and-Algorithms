@@ -7,13 +7,21 @@ Formally, the output of any sorting algorithm must satisfy two conditions:
 2. The output is a **permutation**
    1. A reordering, yet retaining all of the original elements of the input.
 
-## Concepts
+## Why Sorting?
+The application of this field are vast:
+* Sorting as a **solution**: the initial problem may just be having a sorted output;
+* Sorting as a key subroutine: we might need sorting as an aid or **auxialiary operation** to make other algorithms more effiecient;
+* Sorting **comprehend modern techniques** mimicked by other algorithms to improve efficiency;
+* Sorting has a **non-trivial lower-bound** that can be demonstrated. This proof, can be used to prove other algorithms' lower-bounds and optimality.
 
+---
+
+## Concepts Recap
 Here we will introduce some main concepts and characteristics of the sorting algorithms we are going to
 study in this section [3]:
-1. Computational Complexity, T(n)
+1. Computational Complexity, $T(n)$
    1. **Adaptability**
-2. Space Complexity, S(n)
+2. Space Complexity, $S(n)$
    1. **In-Loco** (In-Place) or not
 3. Usage of Iteration and/or recursion
 4. **Stability**
@@ -32,6 +40,8 @@ study in this section [3]:
       1. Incremental Sorting
 
 ---
+
+<br>
 
 ## 1 - Computational Complexity
 We know an algorithm has a best, an average and a worst time. Here we focus on the latter one, but we will mention any important
@@ -85,9 +95,13 @@ The Stable sorting algorithms we will cover are:
 
 ## 5 - Comparison Sort
 
-> A comparison sort is a type of **sorting algorithm** that **only reads the list elements through** a single abstract **comparison** 
-operation (often a "less than or equal to" operator or a three-way comparison) that determines which of 
-two elements should occur first in the final sorted list. 
+> A comparison sort is a type of **sorting algorithm** that **only reads the list elements through** a single abstract **comparison**  
+> operation (often a "less than or equal to" operator or a three-way comparison) that determines which of 
+> two elements should occur first in the final sorted list. 
+
+In a way, an algorithm follows a "sorting blueprint based on comparison" i.f.f it makes use of simple comparisons between objects without using
+any other arithmetic operation (such as sum, products, logic `and`, logic `or`, logic `shift`, ...). 
+In this sense, the unit of measure (for time complexity) does not correspond to the size of the input, it represents the number of comparisons made.
 
 The only requirement is that the operator forms a total preorder over the data, with the following properties:
 1. **Transitivity** 
@@ -104,7 +118,7 @@ The Comparison sorting algorithms we will cover are:
 
 The NON-Comparison sorting algorithms we will cover are:
 * Countingsort 
-  * It uses key values as indexes into an array and the Ω(n log n) lower bound for comparison sorting will not apply.
+  * It uses key values as indexes into an array and the $\Omega(n log n)$ lower bound for comparison sorting will not apply.
 * Radixsort (using Countingsort, but depends on subroutine)
 
 The latter ones do not follow any of the methods we will describe here, they operate in their own way.
@@ -124,10 +138,10 @@ The latter ones do not follow any of the methods we will describe here, they ope
     2. Else, find a way to the base case.
 3. Combine/ **Merging**: merges the solutions of the smaller sub-problems to return the final answer.
 
-### Partitioning
+#### 6.1.1 - Partitioning
 When the algorithm **does not need** to merge the sub-problems' results, usually because it is **in-place**
 
-### Merging
+#### 6.1.2 - Merging
 When the algorithm **needs to combine** the sub-problems' results, usually because it is **NOT-in-place**
 
 The Divide et Impera sorting algorithms we will cover are:
@@ -136,12 +150,16 @@ The Divide et Impera sorting algorithms we will cover are:
 * Quicksort (Partitioning)
   * Which does not merge
 
+<br>
+
 ### 6.2 - Insertion, focus on insertion
-An **Insertion** sorting algorithm removes one element from the input data, **finds the location 
-it belongs** within the sorted list, and inserts it there. It repeats until no input elements remain.
+An **Insertion** sorting algorithm removes one element from the input data, **finds the location it belongs** 
+within the sorted list, and inserts it there. It repeats until no input elements remain.
 
 The Insertion sorting algorithms we will cover are:
 * Insertionsort
+
+<br>
 
 ### 6.3 - Selection, focus on extraction
 A Selection sorting algorithm, divides its input into a sorted and an unsorted region, and it iteratively shrinks 
@@ -149,6 +167,8 @@ the unsorted region by **extracting** the largest element from it and inserting 
 
 The Selection sorting algorithms we will cover are:
 * Heapsort
+
+<br>
 
 ### 6.4 - Exchanging
 An Exchanging sorting algorithm, repeatedly steps through the input list element by element, comparing 
@@ -176,19 +196,19 @@ The Online sorting algorithms we will cover are:
 Total sorting is the problem of returning a list of items such that its elements all appear in order.
 
 ### 8.2 - Partial Sorting
-In computer science, partial sorting is a relaxed variant of the sorting problem, namely returning a list of the k smallest
-(or k largest) elements in order. The other elements (above the k smallest ones) may also be sorted, as in an in-place
+In computer science, partial sorting is a relaxed variant of the sorting problem, namely returning a list of the $k$ smallest
+(or $k$ largest) elements in order. The other elements (above the $k$ smallest ones) may also be sorted, as in an in-place
 partial sort, or may be discarded.
 
 ### 8.2.1 - Incremental Sorting
 Incremental sorting is a version of the partial sorting problem where the **input is given up front but k is unknown**:
-given a k-sorted array, it should be possible to extend the partially sorted part so that the array becomes (k+1)-sorted.
+given a $k\text{-sorted}$ array, it should be possible to extend the partially sorted part so that the array becomes $(k+1)\text{-sorted}$.
 
 The Incremental sorting algorithms we will cover are:
 * Insertionsort
 * Heapsort
-    * Heaps lead to an O(n + k log n) solution to incremental partial sorting: first "heapify", in linear time, the
-      complete input array to produce a min-heap. Then extract the minimum of the heap k times.[1]
+   * Heaps lead to an $\text{O}(n + k log n)$ solution to incremental partial sorting: first "heapify", in linear time, the
+   complete input array to produce a min-heap. Then extract the minimum of the heap $k$ times.[1]
 
 
 ---

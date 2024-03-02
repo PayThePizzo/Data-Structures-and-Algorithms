@@ -49,7 +49,7 @@ struct NodeList{
 typedef NodeList * PNodeList;
 
 // ====================================================================================
-// Base Data Type functions
+// Tree Operations
 
 bool treeEmpty(PTree t){
     return t->root == nullptr;
@@ -73,7 +73,103 @@ list<Node> children(PTree t, PNode u){
 
 
 // ====================================================================================
-// Util functions
+// Dictionary Operations
+
+/**
+ * Search a key inside a BST and return the first corresponding node.
+ * 
+ * @note Recursive version.
+ *      Pre-Condition: 
+ *          - `None`
+ *      Post-Condition:
+ *          - Return a node `v` with `v->key == k` if it exists inside the BST with root in `u`. Else, return`NIL`
+ *      Worst Time Complexity Analysis:`O(h)`, where `h` is the height of the BST.
+ *          - The nodes encountered through the recursion create a path starting from the root and proceeding downard. The 
+ *          worst case corresponds to the length of the longest path, which depends on whether the tree is balanced or not.
+ *      Worst Space Complexity Analysis: O(1), No external data structure used.
+ * 
+ * @param u node of the BST, usually the root
+ * @param k integer key 
+ * @return `PNode v` if there is a node `v->key == k`, else `nullptr`
+*/
+PNode searchRec(PNode u, int k){
+    // Base case: No match
+    if(u == nullptr || u->key == k){
+        return u;
+    }else{
+        if(u->key < k){
+            return searchRec(u->right, k);
+        }else{
+            return searchRec(u->left, k);
+        }
+    }
+}
+
+/**
+ * Search a key inside a BST and return the first corresponding node.
+ * 
+ * @note Iterative version.
+ *      Pre-Condition: 
+ *          - `None`
+ *      Post-Condition:
+ *          - Return a node `v` with `v->key == k` if it exists inside the BST with root in `u`. Else, return`NIL`
+ *      Worst Time Complexity Analysis:`O(h)`, where `h` is the height of the BST.
+ *          - The nodes encountered through the iteration create a path starting from the root and proceeding downard. The 
+ *          worst case corresponds to the length of the longest path, which depends on whether the tree is balanced or not.
+ *          
+ *      Worst Space Complexity Analysis: O(1), No external data structure used.
+ * 
+ * @param u node of the BST, usually the root
+ * @param k integer key 
+ * @return `PNode v` if there is a node `v->key == k`, else `nullptr`
+*/
+PNode searchIter(PNode u, int k){
+    while(u != nullptr && u->key != k){
+        if(u->key < k){
+            u = u->right;
+        }else{
+            u = u->left;
+        }
+    }
+    return u;
+}
+
+
+PNode minimum(PNode u){
+    while(u->left != nullptr){
+        u = u->left;
+    }
+    return u;
+}
+
+PNode maximum(PNode u){
+    while(u->right != nullptr){
+        u = u->right;
+    }
+    return u;
+}
+
+// Predecessor and Successor (with regards to the symmetric visit)
+
+int predecessor(){
+
+}
+
+int successor(){
+
+}
+
+void insert(){
+
+}
+
+void transplant(){
+
+}
+
+void treeDelete(){
+
+}
 
 
 // ======================================================================
@@ -87,8 +183,9 @@ void postOrderVisit(PTree t){
 
 }
 
-void symmetricVisit(PTree t){
 
+void symmetricVisit(PTree t){
+    
 }
 
 void breadFirstSearchVisit(PTree t){
@@ -124,10 +221,6 @@ PTree inducedSubTree(PTree t, PNode u){
 }
 
 void neighborhood(PTree t, PNode u){
-
-}
-
-void search(PTree t, int key){
 
 }
 
