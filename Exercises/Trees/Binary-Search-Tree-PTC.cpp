@@ -65,7 +65,8 @@ PTree newTree(PNode r){
     return tree;
 }
 
-Node parent(PTree t, PNode u){
+PNode parent(PTree t, PNode u){
+    return t->root == u ? nullptr : u->p;
 }
 
 list<Node> children(PTree t, PNode u){
@@ -105,6 +106,7 @@ PNode searchRec(PNode u, int k){
     }
 }
 
+
 /**
  * Search a key inside a BST and return the first corresponding node.
  * 
@@ -142,6 +144,7 @@ PNode minimum(PNode u){
     return u;
 }
 
+
 PNode maximum(PNode u){
     while(u->right != nullptr){
         u = u->right;
@@ -151,16 +154,69 @@ PNode maximum(PNode u){
 
 // Predecessor and Successor (with regards to the symmetric visit)
 
-int predecessor(){
+PNode predecessor(PNode u){
+    if(u->left != nullptr){
+        return maximum(u->left);
+    }
 
+    PNode y = u->p;
+    while(y != nullptr && y->left == u){
+        u = y;
+        y = u->p;
+    }
+
+    return y;
 }
 
-int successor(){
 
+PNode successor(PNode u){
+    if(u->right != nullptr){
+        return minimum(u->right);
+    }
+
+    PNode y = u->p;
+    while(y != nullptr && y->right == u){
+        u = y;
+        y = u->p;
+    }
+
+    return y;
 }
 
-void insert(){
 
+void insert(PTree t, PNode z){
+    // Keep track of parent
+    PNode y = nullptr; 
+    // Node used to iterate
+    PNode x = t->root;
+    
+    // Iterate to get to the leaves and keep track
+    // of parent 
+    while(x != nullptr){
+        // Update parent
+        y = x;
+        // Choose direction
+        if(z->key < x->key){
+            x = x->left;
+        }else{
+            x = x->right;
+        }
+    }
+    // Set parent for new node
+    z->p = y;
+
+    if(y == nullptr){
+        // If Tree is empty z is new root
+        t->root = z;
+    }else{
+        // If y points to an existing node
+        // set it according to value
+        if(z->key < y->key){
+            y->left = z;
+        }else{
+            y->right = z;
+        }
+    }
 }
 
 void transplant(){
@@ -229,7 +285,18 @@ void nodeDelete(PTree t, PNode u){
 }
 
 // Removes all keys greater than k, in a BST with distinct integer keys
-void nodeRemove(PTree t, PNode z, int k){
+void nodeRemoveGreater(PTree t, PNode z, int k){
+}
+
+
+void nodeRemoveSmaller(PTree t, PNode z, int k){
+}
+
+
+bool isBST(PTree t){
+}
+
+PTree Modify_key(PTree t, PNode x, int key){
 }
 
 // ====================================================================================
